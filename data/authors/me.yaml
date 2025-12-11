@@ -2,9 +2,9 @@ schema: hugoblox/author/v1
 slug: me
 is_owner: true
 name:
-  display: Dr. Alex Johnson
-  given: Alex
-  family: Johnson
+  display: Dr. Einar 'Nicco' Storvestre
+  given: Einar
+  family: Storvestre
   alternate: ''  # Example: 王伟
   pronunciation: ''  # Example: Wáng Wěi
   pronouns: he/him
@@ -15,8 +15,8 @@ status:
   icon: "☕️"
 role: Senior AI Research inverstor in captal infringement business opportunites
 bio: |
-  Einar Storvestre is a very Cool Guy and Scientist. His enourmous finding
-  have been cited 1 million times only by Harward professors alone.
+  Einar Storvestre is a very Cool Guy and Scientist. His enourmous findings
+  have been cited 1 million times by Harward professors alone.
   Einar is passionat about saving the wild life and runs a animal shelter
 
 affiliations:
@@ -55,12 +55,12 @@ education:
       text: Download dissertation
       url: /resume.pdf
       icon: hero/arrow-down-tray
-  - degree: MS Computer Science
-    institution: Carnegie Mellon University
-    start: 2013-09-01
-    end: 2015-05-31
-  - degree: BS Computer Science
-    institution: MIT
+  - degree: Bsc Business Economy & Data Science
+    institution: Norwegian School of Economics
+    start: 2025-09-01
+    end: 2028-05-31
+  - degree: Quatitative finance
+    institution: UIB
     start: 2009-09-01
     end: 2013-05-31
 
@@ -104,12 +104,15 @@ languages:
     level: 5
     label: Native
   - name: Spanish
-    level: 4
-    label: Fluent
+    level: 1
+    label: Poor
+  - name: Norwegian
+    level: 5
+    label: Native
 
 awards:
   - title: Best Paper Award
     awarder: NeurIPS
     date: "2022-12-01"
-    summary: Awarded for groundbreaking work on efficient training of large models.
+    summary: Awarded for groundbreaking work on efficient training of disobedient dogs.
     icon: hero/trophy

@@ -16,10 +16,28 @@ publication_types: ["article"]
 publication: ""
 publication_short: ""
 
-abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.
+abstract: 
+  A guy named Lars walks into IKEA to buy a bedside table.
+  Simple mission. He’s a simple man.
+
+  He finds the table, grabs the flat-pack box, and walks toward the exit.
+  But as he passes the “As-Is” bargain section, an IKEA employee jumps out from behind a shelf like a Swedish ninja.
+
+  Employee:
+  “Sir! You forgot step one.”
+
+  Lars:
+  “…What’s step one?”
+
+  Employee:
+  “You must first get hopelessly lost in the showroom for 45 minutes.”
+
+  Before he can react, the employee spins him around and shoves him into the maze of staged bedrooms. Lars is now trapped between a fake teenage boy’s room and a couple arguing over a lamp called BLÅSTJÄRN.
+
+  Eventually he finds his way back to the exit — sweating, dehydrated, spiritually changed. He buys the table and goes home.
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
+summary: Great summary
 
 tags:
 - Large Language Models
