@@ -16,7 +16,7 @@ publication_types: ["article"]
 publication: ""
 publication_short: ""
 
-abstract: 
+abstract: |-
   A guy named Lars walks into IKEA to buy a bedside table.
   Simple mission. He’s a simple man.
 
