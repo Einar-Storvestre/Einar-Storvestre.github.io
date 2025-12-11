@@ -13,5 +13,10 @@
     "@tailwindcss/typography": "^0.5.10",
     "preact": "^10.27.2",
     "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "@parcel/watcher": "^2.5.1",
+    "@parcel/watcher-darwin-arm64": "^2.5.1",
+    "@parcel/watcher-darwin-x64": "^2.5.1"
   }
 }
