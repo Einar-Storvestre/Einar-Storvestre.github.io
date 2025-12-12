@@ -38,18 +38,27 @@ sections:
         shape: circle # Options: circle (default), square, rounded
   - block: markdown
     content:
-      title: '📚 My Research'
+      title: '📚 About Me'
       subtitle: ''
       text: |-
-        I'm CEO of Neste Steget. Which is all about beeing captalistic and earning money. As a pro-bono thing I blog about machine learning, deep learning, and training.
-
-        I apply a range of qualitative and quantitative methods to comprehensively investigate the role of science and technology in the economy.
-
-        Please reach out to collaborate 😃
+        I am a student at Norwgian School of Economics studying Business, Economics and Data Science. I have interests in AI, entrepeneurship, sports and global challanges.
+        
+        Please reach out if you have any questions :)
     design:
       columns: '1'
   - block: collection
     id: papers
+    content:
+      title: Featured Publications
+      filters:
+        folders:
+          - publications
+        featured_only: true
+    design:
+      view: article-grid
+      columns: 2
+  - block: collection
+    id: notebooks
     content:
       title: Featured Notebooks
       text: 'Highlights from my notebook lab, including the Tech2 term paper deep dive.'
@@ -60,16 +69,6 @@ sections:
     design:
       view: card
       columns: 1
-  - block: collection
-    content:
-      title: Recent Publications
-      text: ''
-      filters:
-        folders:
-          - publications
-        exclude_featured: false
-    design:
-      view: citation
   - block: collection
     id: talks
     content:
@@ -82,7 +81,7 @@ sections:
   - block: collection
     id: news
     content:
-      title: Recent News
+      title: Recent Projects
       subtitle: ''
       text: ''
       # Page type to display. E.g. post, talk, publication...

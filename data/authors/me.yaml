@@ -2,21 +2,19 @@ schema: hugoblox/author/v1
 slug: me
 is_owner: true
 name:
-  display: Dr. Einar 'Nicco' Storvestre
+  display: Einar Storvestre
   given: Einar
   family: Storvestre
   alternate: ''  # Example: 王伟
   pronunciation: ''  # Example: Wáng Wěi
   pronouns: he/him
 postnominals:
-  - PhD in trust me bro
+  - Bsc in Business, Economics and Data Science
 status:
   icon: "☕️"
-role: Senior AI Research inverstor in captal infringement business opportunites
+role: Student
 bio: |
-  Einar Storvestre is a very Cool Guy and Scientist. His enourmous findings
-  have been cited 1 million times by Harward professors alone.
-  Einar is passionate about saving the wild life and runs a animal shelter
+  Einar Storvestre is a student with many interests.
 
 affiliations:
   - name: NHH
@@ -24,10 +22,8 @@ affiliations:
 
 links:
   - icon: at-symbol
-    url: mailto:alex.johnson@example.com
+    url: mailto:einargaard@icloud.com
     label: E-mail me
-  - icon: brands/x
-    url: https://x.com/example
   - icon: brands/github
     url: https://github.com/Einar-Storvestre
   - icon: brands/linkedin
@@ -38,80 +34,70 @@ links:
     url: https://orcid.org/0000-0002-1825-0097
 
 interests:
-  - Using Large Language Models to outsouce thinking
-  - Big Guns
-  - Heavy lifting
-  - Girls
+  - AI
+  - Entrepreneurship
+  - Global Challanges
 
 education:
-  - degree: PhD in scamming
-    institution: Hustlers Uinversity
-    start: 2015-09-01
-    end: 2019-06-30
+  - degree: Bsc Business, Economics and Data Science
+    institution: NHH
+    start: 2025-08-08
+    end: 2028-06-30
     summary: |
-      Thesis on pyramid scams
+      Interesting times
     button:
       text: Download dissertation
       url: /resume.pdf
       icon: hero/arrow-down-tray
-  - degree: Bsc Business Economy & Data Science
-    institution: Norwegian School of Economics
-    start: 2025-09-01
-    end: 2028-05-31
-  - degree: Quatitative finance
-    institution: UIB
-    start: 2009-09-01
-    end: 2013-05-31
 
 experience:
-  - role: Senior AI guy
-    org: AI university
-    start: 2020-01-01
+  - role: Math and Norwegian Tutor
+    org: Freelance
+    start: 2024-08-10
     summary: |
-      Leading research on multimodal AI systems. Like to code in python
+      Offering tailored tutoring to students at different levels.
     button:
       text: View portfolio
       url: /
       icon: hero/arrow-down-tray
-  - role: AI Research Intern
-    org: OpenAI
-    start: 2019-06-01
-    end: 2019-12-31
+  - role: Substitue Teacher and teaching assistant
+    org: Drøbak Primary School
+    start: 2024-09-01
+    end: 2024-11-01
     summary: |
-      Worked on GPT-0 scaling. Co-authored paper on prompt engineering.
+      Assited in learning at different levels.
 
 skills:
   - name: Technical Skills
     items:
-      - label: Pytho
-        level: 5
-      - label: Machine Learning
-        level: 5
-      - label: Cloud Computing
-        level: 4
-  - name: Research & Communication
+      - label: Python
+        level: 3
+      - label: Data Analysis
+        level: 3
+  - name: Communication
     items:
       - label: Academic Writing
-        level: 5
+        level: 3
       - label: Conference Presentations
-        level: 4
-      - label: Grant Proposals
-        level: 4
+        level: 3
 
 languages:
   - name: English
-    level: 5
-    label: Native
-  - name: Spanish
-    level: 1
-    label: Poor
+    level: 4
+    label: Fluent
   - name: Norwegian
     level: 5
     label: Native
+  - name: German
+    level: 2
+    label: Beginner
+  - name: French
+    level: 1
+    label: Beginner
 
 awards:
-  - title: Best Paper Award
-    awarder: NeurIPS
-    date: "2022-12-01"
-    summary: Awarded for groundbreaking work on efficient training of disobedient dogs.
+  - title: Best Individual Athlete
+    awarder: TIF Viking
+    date: "2021-12-01"
+    summary: Awarded for sports performance
     icon: hero/trophy

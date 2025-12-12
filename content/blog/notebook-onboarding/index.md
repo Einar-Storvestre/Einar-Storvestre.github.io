@@ -1,9 +1,9 @@
 ---
-title: 📓 tech2_term_paper_25 — Notebook Deep Dive
+title: 📓 Term Paper on Survey Signals: How Gender, Education, and Numeracy Shape Inflation Expectations
 summary: Walkthrough of our Tech2 term paper notebook with the full code, results, and commentary.
-date: 2024-07-20
+date: 2025-10-20
 authors:
-  - me
+  - Me, Olav and Kai
 tags:
   - Tech2
   - Jupyter
@@ -11,7 +11,7 @@ tags:
   - Research
 featured: true
 cover:
-  # image: cover.jpg  # Auto-detected from cover image in this folder
+  image: cover_term_paper.jpg  # Auto-detected from cover image in this folder
   icon:
     name: "📔"
 image:
@@ -21,7 +21,7 @@ image:
 content_meta:
   trending: true
 ---
-My Tech2 cohort wrapped the semester by building a data-driven term paper that explored macro conditions, market sizing, and the commercial pathways for a hypothetical product launch. Instead of hiding that work inside a PDF, I wanted a place where the entire analysis—code, commentary, and visuals—remains reproducible.
+For the Tech2 term paper, Olav, Kai and I made a data-driven paper exploring how events, gender, education and numeracy shape expecatations for inflation, stock prices and housing prices. Including how anchored the current inflation is in forming believes for expecations about the future across genders.
 
 This post embeds the actual working notebook `tech2_term_paper_25.ipynb`, so you can skim the highlights, copy individual cells, or download the full artifact.
 
@@ -29,8 +29,8 @@ This post embeds the actual working notebook `tech2_term_paper_25.ipynb`, so you
 
 ## Project overview
 
-- **Goal:** Document the research, modeling, and scenario testing that underpinned our Tech2 term paper.
-- **Tools:** Python, pandas, NumPy, and a collection of visualization libraries for sensitivity analyses.
+- **Goal:** Look at correlations between
+- **Tools:** Python, pandas, NumPy, Mathplotlib and glob.
 - **Outputs:** Cleaned datasets, annotated code blocks, and executive-friendly figures pulled directly from the notebook outputs.
 
 The notebook is structured as a narrative, moving from data ingestion to exploratory work, and finally into the polished presentation-ready charts. Each section contains the exact code we ran along with the inline conclusions that informed the written report.
@@ -52,12 +52,12 @@ The notebook is structured as a narrative, moving from data ingestion to explora
 
 ## Key takeaways
 
-1. **Repeatable workflow.** Every transformation step is scripted, letting teammates rerun the notebook whenever new data arrives.
-2. **Decision-ready visuals.** Interactive charts and tables highlight the meta-trends that guided our policy recommendations.
-3. **Transparent documentation.** Comments in the notebook point to lecture references, workshop code snippets, and post-reading insights.
+1. **Men are, on average, more optimistic than women**  
+   Across multiple measures, male respondents report higher expectations and confidence levels, even after controlling for background variables.
 
-## What’s next?
+2. **The gender gap is consistent but not uniform**  
+   Differences vary by subgroup and context, suggesting that optimism is shaped by both demographics and situational factors.
 
-- Extend the scenario section with Monte Carlo simulations for the financial outcomes.
-- Package the cleaned datasets for downstream dashboards.
-- Use this publishing workflow for the next Tech2 sprint so we maintain a living research log.
+3. **Data structure matters for interpretation**  
+   Small changes in grouping or normalization materially affect the magnitude—but not the direction—of the observed effects.
+
