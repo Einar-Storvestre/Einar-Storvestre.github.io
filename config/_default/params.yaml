@@ -64,7 +64,7 @@ hugoblox:
     size: "md"
   assets:
     css:
-      - "css/custom.css/styles.css"
+      - "css/notebook.css"
 
   # ────────────────────────────────────────────────────────────────────────────
   # LAYOUT
