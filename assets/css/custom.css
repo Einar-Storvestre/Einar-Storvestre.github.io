@@ -18,7 +18,7 @@
   width: min(90vw, 1200px);
   margin: 0 auto;
   position: relative;
-  left: -2vw;
+  left: -10vw;
   padding-bottom: 1rem;
 }
 @media (max-width: 1024px) {
