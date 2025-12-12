@@ -1,9 +1,9 @@
 ---
-title: "📓 Term Paper on Survey Signals: How Gender, Education, and Numeracy Shape Inflation Expectations (2015-2025)"
+title: "Term Paper on Survey Signals: How Gender, Education, and Numeracy Shape Inflation Expectations (2015-2025)"
 summary: Walkthrough of our Tech2 term paper notebook with the full code, results, and commentary.
 date: 2025-12-12
 authors:
-  - Me, Olav and Kai
+  - Einar Storvestre, Olav Lidal and Kai Thomas
 tags:
   - Tech2
   - Jupyter
@@ -16,21 +16,21 @@ cover:
     name: ""
 image:
   image: featured.jpg
-  caption: "Image credit: [HugoBlox](https://hugoblox.com)"
+  caption: "Snapshot of our findings"
   focal_point: Center
   placement: 1
 content_meta:
   trending: true
 ---
-For the Tech2 term paper, Olav, Kai and I made a data-driven paper exploring how events, gender, education and numeracy shape expecatations for inflation, stock prices and housing prices in the 10 year period (2015-2025). Including how anchored the current inflation is in forming believes for expecations about the future across genders.
+For the Tech2 term paper, Olav, Kai and I made a data-driven paper exploring how events, gender, education and numeracy shape expecatations for inflation, stock prices and housing prices in the 10 year period (2015-2025) based on data from [Survey of Consumer Expectations (SCE)](https://www.newyorkfed.org/microeconomics/sce#/). Including how anchored the current inflation is in forming believes for expecations about the future across genders.
 
-This post embeds the actual working notebook `tech2_term_paper_25.ipynb`, so you can skim the highlights, copy individual cells, or download the full artifact.
+This post embeds the actual working notebook, so you can skim the highlights, copy individual cells, or download the full artifact.
 
 {{< toc mobile_only=true is_open=true >}}
 
 ## Project overview
 
-- **Goal:** Look at correlations between
+- **Goal:** Look at correlations between gender and education and future expecations on macroeconomic expectations.
 - **Tools:** Python, pandas, NumPy, Mathplotlib and glob.
 - **Outputs:** Cleaned datasets, annotated code blocks, and executive-friendly figures pulled directly from the notebook outputs.
 

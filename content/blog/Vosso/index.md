@@ -1,5 +1,5 @@
 ---
-title: "(Article in Norwegian): Vosso – en risikoanalyse av fremtidens farer"
+title: "Vosso – en risikoanalyse av fremtidens farer (in norwegian)"
 summary: Rapport som kartlegger naturfare, samfunnssårbarhet og tiltak for Vosso-vassdraget.
 date: 2025-12-12
 
@@ -21,13 +21,13 @@ tags:
   - Analyse
 
 ---
-Jeg har skrevet en rapport om flom-, skred- og samfunnsrisiko i Vosso-området (22-05-2024).
-**Vosso – en risikoanalyse av fremtidens farer**. Rapporten kombinerer klimascenarier, lokale beredskapsplaner og egne feltobservasjoner, og viser hvilke tiltak som er nødvendig de neste ti årene.
+**Vosso – en risikoanalyse av fremtidens farer** er en rapport om flom-, skred- og samfunnsrisiko knyttet til elven Vosso som går gjennom Voss og ned til Bolstandfjorden på Vestlandet. Rapporten kombinerer klimascenarier, lokale beredskapsplaner og egne feltobservasjoner, og viser hvilke tiltak som er nødvendig de neste ti årene.
 
 ## Hovedfunn
 
 - **Klima mot 2035.** Økt nedbør og hyppigere stormfloe truer infrastruktur og befolkningen ved Vossevangen og Bolstadfjorden.
 - **Tiltaksliste.** Naturbaserte løsninger og målrettede tiltak.
+
 
 <iframe
   src="/uploads/vosso-riskioanalyse.pdf#view=FitH"
@@ -39,6 +39,4 @@ Jeg har skrevet en rapport om flom-, skred- og samfunnsrisiko i Vosso-området (
 ## Last ned rapporten
 
 [Last ned PDF-en](/uploads/vosso-riskioanalyse.pdf)
-
-> Plasser filen `vosso-riskioanalyse.pdf` i `static/uploads/` (eller last den opp via CMS/Netlify) slik at lenken peker på den faktiske rapporten din.
 

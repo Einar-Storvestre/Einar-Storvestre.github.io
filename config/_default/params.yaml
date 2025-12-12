@@ -62,6 +62,9 @@ hugoblox:
     font: "sans"
     # Size: 'sm', 'md', 'lg', or 'xl' (affects base font size and scale)
     size: "md"
+  assets:
+    css:
+      - "css/custom.css/styles.css"
 
   # ────────────────────────────────────────────────────────────────────────────
   # LAYOUT
