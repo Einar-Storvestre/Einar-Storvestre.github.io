@@ -49,10 +49,10 @@ education:
     end: 2024-06-30
     summary: |
       Interesting times
-    button:
-      text: Download dissertation
-      url: /resume.pdf
-      icon: hero/arrow-down-tray
+    #button:
+      #text: Download dissertation
+      #url: /resume.pdf
+      #icon: hero/arrow-down-tray
 
 experience:
   - role: Math and Norwegian Tutor

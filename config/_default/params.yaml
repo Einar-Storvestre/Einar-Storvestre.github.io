@@ -107,7 +107,7 @@ hugoblox:
     style: minimal # minimal | columns | centered
     language_switcher: true
     # Custom footer text (HTML supported)
-    text: ""
+    text: "Einar Storvestre"
 
   # ────────────────────────────────────────────────────────────────────────────
   # COPYRIGHT
@@ -115,9 +115,9 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   copyright:
     # Copyright notice - supports {year}, {name}, {license} placeholders
-    notice: "© {year} {name}. This work is licensed under {license}"
+    notice: "© {year} {name}. All rights {license}"
     license:
-      type: cc # cc | all_rights | custom
+      type: all_rights # cc | all_rights | custom
       allow_derivatives: false
       share_alike: true
       allow_commercial: false
