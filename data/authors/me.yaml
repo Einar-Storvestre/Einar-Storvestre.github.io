@@ -11,7 +11,7 @@ name:
 postnominals:
   - "Bsc in Business, Economics and Data Science"
 status:
-  icon: "☕️"
+  icon: ""
 role: "Student"
 bio: "Einar Storvestre is a student with many interests.\n"
 affiliations:
@@ -43,7 +43,7 @@ education:
       text: "View program"
       url: "https://www.nhh.no/en/study-programmes/bsc-in-business-economics-and-data-science/"
       icon: "hero/arrow-down-tray"
-  - degree: "Norwegian College of Elite Sports"
+  - degree: "Norwegian High School of Elite Sports"
     institution: "NTG Geilo"
     start: "2021-08-05"
     end: "2024-06-15"
@@ -74,13 +74,13 @@ skills:
   - name: "Hobbies"
     items:
       - label: "Cross-country skiing"
-        level: 5
+  
       - label: "Trail running"
-        level: 3
+
       - label: "Golf"
-        level: 2
+
       - label: "Padel"
-        level: 2
+
 languages:
   - name: "English"
     level: 4.5

@@ -15,7 +15,7 @@ hugoblox:
     # Site name - shown in navbar, footer, copyright, and browser title by default
     name: "Einar Storvestre"
     # Legal entity for copyright notices (defaults to name if not set)
-    organization: "Norwegian School of Economics"
+    organization: ""
     # Schema.org type for structured data
     type: person # person | organization | local_business
     # Short tagline displayed on your site
@@ -107,7 +107,7 @@ hugoblox:
     style: minimal # minimal | columns | centered
     language_switcher: true
     # Custom footer text (HTML supported)
-    text: ""
+    text: "<span>Einar Storvestre</span>"
 
   # ────────────────────────────────────────────────────────────────────────────
   # COPYRIGHT
@@ -115,12 +115,9 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   copyright:
     # Copyright notice - supports {year}, {name}, {license} placeholders
-    notice: "© {year} {name}. This work is licensed under {license}"
+    notice: "© {year} {name}. All rights reserved."
     license:
-      type: cc # cc | all_rights | custom
-      allow_derivatives: false
-      share_alike: true
-      allow_commercial: false
+      type: all_rights # cc | all_rights | custom
 
   # ────────────────────────────────────────────────────────────────────────────
   # SEO
