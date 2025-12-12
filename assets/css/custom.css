@@ -1,0 +1,8 @@
+.tech2-notebook .nb-output pre,
+.tech2-notebook .nb-code pre {
+  white-space: pre;
+  overflow-x: auto;
+}
+.tech2-notebook .nb-frame {
+  width: 100%;
+}
