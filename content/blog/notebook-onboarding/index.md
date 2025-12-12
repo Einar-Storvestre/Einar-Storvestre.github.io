@@ -1,5 +1,5 @@
 ---
-title: 📓 Term Paper on Survey Signals: How Gender, Education, and Numeracy Shape Inflation Expectations
+title: "📓 Term Paper on Survey Signals: How Gender, Education, and Numeracy Shape Inflation Expectations"
 summary: Walkthrough of our Tech2 term paper notebook with the full code, results, and commentary.
 date: 2025-10-20
 authors:
@@ -60,4 +60,3 @@ The notebook is structured as a narrative, moving from data ingestion to explora
 
 3. **Data structure matters for interpretation**  
    Small changes in grouping or normalization materially affect the magnitude—but not the direction—of the observed effects.
-
