@@ -15,6 +15,7 @@ cover:
   icon:
     name: "📔"
 image:
+  image: cover_term_paper.jpg
   caption: "Image credit: [HugoBlox](https://hugoblox.com)"
   focal_point: Center
   placement: 1

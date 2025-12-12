@@ -46,17 +46,17 @@ sections:
         Please reach out if you have any questions :)
     design:
       columns: '1'
-  - block: collection
-    id: papers
-    content:
-      title: Featured Publications
-      filters:
-        folders:
-          - publications
-        featured_only: true
-    design:
-      view: article-grid
-      columns: 2
+  # - block: collection
+  #   id: papers
+  #   content:
+  #     title: Featured Publications
+  #     filters:
+  #       folders:
+  #         - publications
+  #       featured_only: true
+  #   design:
+  #     view: article-grid
+  #     columns: 2
   - block: collection
     id: notebooks
     content:
@@ -64,20 +64,20 @@ sections:
       text: 'Highlights from my notebook lab, including the Tech2 term paper deep dive.'
       filters:
         folders:
-          - blog/notebook-onboarding
+          - blog
         featured_only: true
     design:
       view: card
       columns: 1
-  - block: collection
-    id: talks
-    content:
-      title: Recent & Upcoming Talks
-      filters:
-        folders:
-          - events
-    design:
-      view: card
+  # - block: collection
+  #   id: talks
+  #   content:
+  #     title: Recent & Upcoming Talks
+  #     filters:
+  #       folders:
+  #         - events
+  #   design:
+  #     view: card
   - block: collection
     id: news
     content:

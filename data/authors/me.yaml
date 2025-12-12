@@ -28,21 +28,25 @@ links:
     url: https://github.com/Einar-Storvestre
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/einar-storvestre-668924202/
-  - icon: academicons/google-scholar
-    url: https://scholar.google.com/citations?user=example
-  - icon: academicons/orcid
-    url: https://orcid.org/0000-0002-1825-0097
+  - icon: brands/instagram
+    url: https://www.instagram.com/einarstorvestre/
 
 interests:
   - AI
   - Entrepreneurship
   - Global Challanges
+  - Economics
+  - Sports
 
 education:
   - degree: Bsc Business, Economics and Data Science
     institution: NHH
     start: 2025-08-08
     end: 2028-06-30
+  - degree: Norwegian College of Elite Sports
+    institution: NTG Geilo
+    start: 2021-08-08
+    end: 2024-06-30
     summary: |
       Interesting times
     button:
