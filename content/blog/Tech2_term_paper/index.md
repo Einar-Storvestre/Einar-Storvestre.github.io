@@ -3,7 +3,7 @@ title: "Term Paper on Survey Signals: How Gender, Education, and Numeracy Shape 
 summary: Walkthrough of our Tech2 term paper notebook with the full code, results, and commentary.
 date: 2025-12-12
 authors:
-  - Einar Storvestre, Olav Lidal and Kai Thomas
+  - "Einar Storvestre, Olav Lidal and Kai Thomas"
 tags:
   - Tech2
   - Jupyter
@@ -22,7 +22,7 @@ image:
 content_meta:
   trending: true
 ---
-For the Tech2 term paper, Olav, Kai and I made a data-driven paper exploring how events, gender, education and numeracy shape expecatations for inflation, stock prices and housing prices in the 10 year period (2015-2025) based on data from [Survey of Consumer Expectations (SCE)](https://www.newyorkfed.org/microeconomics/sce#/). Including how anchored the current inflation is in forming believes for expecations about the future across genders.
+For the Tech2 term paper, Olav, Kai and I made a data-driven paper exploring how events, gender, education and numeracy shape expectations for inflation, stock prices and housing prices in the 10 year period (2015-2025) based on data from [Survey of Consumer Expectations (SCE)](https://www.newyorkfed.org/microeconomics/sce#/). Including how anchored the current inflation is in forming beliefs for expectations about the future across genders.
 
 This post embeds the actual working notebook, so you can skim the highlights, copy individual cells, or download the full artifact.
 
@@ -30,8 +30,8 @@ This post embeds the actual working notebook, so you can skim the highlights, co
 
 ## Project overview
 
-- **Goal:** Look at correlations between gender and education and future expecations on macroeconomic expectations.
-- **Tools:** Python, pandas, NumPy, Mathplotlib and glob.
+- **Goal:** Look at correlations between gender and education and future expectations about macroeconomic trends.
+- **Tools:** Python, pandas, NumPy, Matplotlib and glob.
 - **Outputs:** Cleaned datasets, annotated code blocks, and executive-friendly figures pulled directly from the notebook outputs.
 
 The notebook is structured as a narrative, moving from data ingestion to exploratory work, and finally into the polished presentation-ready charts. Each section contains the exact code we ran along with the inline conclusions that informed the written report.
@@ -62,15 +62,16 @@ The notebook is structured as a narrative, moving from data ingestion to explora
 </div>
 
 > [!NOTE]
-> The JSON and HTML outputs have been preserved so you can trace the intermediate calculations that shaped the final presentation deck.
+> The outputs have been preserved so you can trace the intermediate calculations that shaped the final results.
 
 ## Key takeaways
 
-1. **Men are, on average, more optimistic than women**  
-   Across multiple measures, male respondents report higher expectations and confidence levels, even after controlling for background variables.
+1. **Demographics drive expectation bias**  
+   Men, college‑educated respondents, and high‑numeracy households consistently expect lower inflation, milder housing gains, and stronger equity performance. Women, non‑college, and low‑numeracy groups price in higher inflation and house-price growth but remain skeptical about stocks. Numeracy amplifies optimism even within the same education tier.
 
-2. **The gender gap is consistent but not uniform**  
-   Differences vary by subgroup and context, suggesting that optimism is shaped by both demographics and situational factors.
+2. **Macro shocks move all groups—but unequally.**  
+   US elections, COVID-19, and the Ukraine invasion triggered sharp shifts in inflation, housing, and equity expectations across every demographic, yet less-educated and low-numeracy respondents “swing” farther—especially on inflation—while college/high-numeracy cohorts stay steadier. Gender differences surface mainly in volatility (women react more to household-price pressures).
 
-3. **Data structure matters for interpretation**  
-   Small changes in grouping or normalization materially affect the magnitude—but not the direction—of the observed effects.
+3. **Expectations are adaptive, not predictive**  
+   Forward-looking correlations between expected and realized inflation are only moderate 
+   (≈0.55 for both genders), while backward-looking correlations exceed 0.80. Both genders extrapolate recent inflation rather than anticipate future moves, tending toward pessimistic bias; neither group is significantly better at forecasting.

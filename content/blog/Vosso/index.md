@@ -25,9 +25,12 @@ tags:
 
 ## Hovedfunn
 
-- **Klima mot 2035.** Økt nedbør og hyppigere stormfloe truer infrastruktur og befolkningen ved Vossevangen og Bolstadfjorden.
-- **Tiltaksliste.** Naturbaserte løsninger og målrettede tiltak.
+- **Klima i 2035:** Økt nedbør og hyppigere stormfloe truer infrastruktur og befolkningen ved Vossevangen og Bolstadfjorden.
+- **Tiltak:** Naturbaserte løsninger, robust infrastruktur og flomavledning.
 
+## Last ned rapporten 
+
+[Last ned PDF-en](/uploads/vosso-riskioanalyse.pdf)
 
 <iframe
   src="/uploads/vosso-riskioanalyse.pdf#view=FitH"
@@ -36,7 +39,4 @@ tags:
   style="border: none;">
 </iframe>
 
-## Last ned rapporten
-
-[Last ned PDF-en](/uploads/vosso-riskioanalyse.pdf)
 
