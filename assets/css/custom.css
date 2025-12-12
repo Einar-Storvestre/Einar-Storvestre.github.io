@@ -15,15 +15,19 @@
   max-width: none;
 }
 .tech2-notebook {
-  width: 90vw;
-  max-width: 1200px;
-  margin-left: calc(50% - 45vw);
+  width: min(90vw, 1200px);
+  margin: 0 auto;
+  padding-bottom: 1rem;
 }
 @media (max-width: 1024px) {
   .tech2-notebook {
     width: 100%;
-    margin-left: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
+}
+.tech2-notebook .nb-cell {
+  overflow-x: auto;
 }
 .tech2-notebook .nb-output figure,
 .tech2-notebook .nb-output img,
