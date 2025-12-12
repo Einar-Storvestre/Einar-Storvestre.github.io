@@ -1,7 +1,7 @@
 ---
-title: "📓 Term Paper on Survey Signals: How Gender, Education, and Numeracy Shape Inflation Expectations"
+title: "📓 Term Paper on Survey Signals: How Gender, Education, and Numeracy Shape Inflation Expectations (2015-2025)"
 summary: Walkthrough of our Tech2 term paper notebook with the full code, results, and commentary.
-date: 2025-10-20
+date: 2025-12-12
 authors:
   - Me, Olav and Kai
 tags:
@@ -22,7 +22,7 @@ image:
 content_meta:
   trending: true
 ---
-For the Tech2 term paper, Olav, Kai and I made a data-driven paper exploring how events, gender, education and numeracy shape expecatations for inflation, stock prices and housing prices. Including how anchored the current inflation is in forming believes for expecations about the future across genders.
+For the Tech2 term paper, Olav, Kai and I made a data-driven paper exploring how events, gender, education and numeracy shape expecatations for inflation, stock prices and housing prices in the 10 year period (2015-2025). Including how anchored the current inflation is in forming believes for expecations about the future across genders.
 
 This post embeds the actual working notebook `tech2_term_paper_25.ipynb`, so you can skim the highlights, copy individual cells, or download the full artifact.
 
