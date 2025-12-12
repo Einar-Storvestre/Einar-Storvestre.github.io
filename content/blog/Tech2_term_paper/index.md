@@ -38,6 +38,18 @@ The notebook is structured as a narrative, moving from data ingestion to explora
 
 ## Explore the notebook
 
+<style>
+.tech2-notebook .nb-output pre,
+.tech2-notebook .nb-code pre {
+  white-space: pre;
+  overflow-x: auto;
+}
+.tech2-notebook .nb-frame {
+  width: 100%;
+}
+</style>
+
+<div class="tech2-notebook">
 {{< notebook
     src="tech2_term_paper_25.ipynb"
     title="tech2_term_paper_25"
@@ -47,6 +59,7 @@ The notebook is structured as a narrative, moving from data ingestion to explora
     download_label="Download Tech2 notebook"
     show_outputs=true
 >}}
+</div>
 
 > [!NOTE]
 > The JSON and HTML outputs have been preserved so you can trace the intermediate calculations that shaped the final presentation deck.

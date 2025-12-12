@@ -62,10 +62,6 @@ hugoblox:
     font: "sans"
     # Size: 'sm', 'md', 'lg', or 'xl' (affects base font size and scale)
     size: "md"
-  assets:
-    css:
-      - "css/notebook.css"
-
   # ────────────────────────────────────────────────────────────────────────────
   # LAYOUT
   # Spacing and shape tokens
