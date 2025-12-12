@@ -11,11 +11,11 @@ tags:
   - Research
 featured: true
 cover:
-  image: cover_term_paper.jpg  # Auto-detected from cover image in this folder
+  image: featured.jpg  # Auto-detected from cover image in this folder
   icon:
-    name: "📔"
+    name: ""
 image:
-  image: cover_term_paper.jpg
+  image: featured.jpg
   caption: "Image credit: [HugoBlox](https://hugoblox.com)"
   focal_point: Center
   placement: 1
