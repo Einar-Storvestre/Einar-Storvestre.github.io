@@ -6,3 +6,14 @@
 .tech2-notebook .nb-frame {
   width: 100%;
 }
+.tech2-notebook {
+  width: 90vw;
+  max-width: 1200px;
+  margin-left: calc(50% - 45vw);
+}
+@media (max-width: 1024px) {
+  .tech2-notebook {
+    width: 100%;
+    margin-left: 0;
+  }
+}
