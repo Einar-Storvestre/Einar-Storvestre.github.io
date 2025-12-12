@@ -1,107 +1,93 @@
-schema: hugoblox/author/v1
-slug: me
+schema: "hugoblox/author/v1"
+slug: "me"
 is_owner: true
 name:
-  display: Einar Storvestre
-  given: Einar
-  family: Storvestre
-  alternate: ''  # Example: 王伟
-  pronunciation: ''  # Example: Wáng Wěi
-  pronouns: he/him
+  display: "Einar Storvestre"
+  given: "Einar"
+  family: "Storvestre"
+  alternate: ""
+  pronunciation: ""
+  pronouns: "he/him"
 postnominals:
-  - Bsc in Business, Economics and Data Science
+  - "Bsc in Business, Economics and Data Science"
 status:
   icon: "☕️"
-role: Student
-bio: |
-  Einar Storvestre is a student with many interests.
-
+role: "Student"
+bio: "Einar Storvestre is a student with many interests.\n"
 affiliations:
-  - name: NHH
-    url: https://bitly.com/98K8eH
-
+  - name: "NHH"
+    url: "https://bitly.com/98K8eH"
 links:
-  - icon: at-symbol
-    url: mailto:einargaard@icloud.com
-    label: E-mail me
-  - icon: brands/github
-    url: https://github.com/Einar-Storvestre
-  - icon: brands/linkedin
-    url: https://www.linkedin.com/in/einar-storvestre-668924202/
-  - icon: brands/instagram
-    url: https://www.instagram.com/einarstorvestre/
-
+  - icon: "at-symbol"
+    url: "mailto:einargaard@icloud.com"
+    label: "E-mail me"
+  - icon: "brands/github"
+    url: "https://github.com/Einar-Storvestre"
+  - icon: "brands/linkedin"
+    url: "https://www.linkedin.com/in/einar-storvestre-668924202/"
+  - icon: "brands/instagram"
+    url: "https://www.instagram.com/einarstorvestre/"
 interests:
-  - AI
-  - Entrepreneurship
-  - Global Challanges
-  - Economics
-  - Sports
-
+  - "AI"
+  - "Entrepreneurship"
+  - "Global Challanges"
+  - "Economics"
+  - "Sports"
+  - "Finance"
 education:
-  - degree: Bsc Business, Economics and Data Science
-    institution: NHH
-    start: 2025-08-10
-    end: 2028-06-30
-  - degree: Norwegian College of Elite Sports
-    institution: NTG Geilo
-    start: 2021-08-05
-    end: 2024-06-15
-    summary: |
-      Interesting times
-    #button:
-      #text: Download dissertation
-      #url: /resume.pdf
-      #icon: hero/arrow-down-tray
-
+  - degree: "Bsc Business, Economics and Data Science"
+    institution: "NHH"
+    start: "2025-08-10"
+    end: "2028-06-30"
+  - degree: "Norwegian College of Elite Sports"
+    institution: "NTG Geilo"
+    start: "2021-08-05"
+    end: "2024-06-15"
+    summary: ""
 experience:
-  - role: Math and Norwegian Tutor
-    org: Freelance
-    start: 2024-08-10
-    summary: |
-      Offering tailored tutoring to students at different levels.
+  - role: "Math and Norwegian Tutor"
+    org: "Freelance"
+    start: "2024-08-10"
+    summary: "Offering tailored tutoring to students at different levels.\n"
     button:
-      text: View portfolio
-      url: /
-      icon: hero/arrow-down-tray
-  - role: Substitue Teacher and teaching assistant
-    org: Drøbak Primary School
-    start: 2024-09-01
-    end: 2024-11-01
-    summary: |
-      Assited in learning at different levels.
-
+      text: "View portfolio"
+      url: "/"
+      icon: "hero/arrow-down-tray"
+  - role: "Substitue Teacher and teaching assistant"
+    org: "Drøbak Primary School"
+    start: "2024-09-01"
+    end: "2024-11-01"
+    summary: "Assited in learning at different levels.\n"
 skills:
-  - name: Technical Skills
+  - name: "Technical Skills"
     items:
-      - label: Python
+      - label: "Python"
         level: 3
-      - label: Data Analysis
+      - label: "Data Analysis"
         level: 3
-  - name: Communication
+  - name: "Communication"
     items:
-      - label: Academic Writing
+      - label: "Academic Writing"
         level: 3
-      - label: Conference Presentations
+      - label: "Conference Presentations"
         level: 3
-
 languages:
-  - name: English
+  - name: "English"
     level: 4
-    label: Fluent
-  - name: Norwegian
+    label: "Fluent"
+  - name: "Norwegian"
     level: 5
-    label: Native
-  - name: German
-    level: 2
-    label: Beginner
-  - name: French
+    label: "Native"
+  - name: "German"
     level: 1
-    label: Beginner
-
+    label: "Beginner"
+  - name: "French"
+    level: 0.5
+    label: "Beginner"
 awards:
-  - title: Best Individual Athlete
-    awarder: TIF Viking
+  - title: "Best Individual Athlete"
+    awarder: "TIF Viking"
     date: "2021-12-01"
-    summary: Awarded for sports performance
-    icon: hero/trophy
+    summary: "Awarded for sports performance"
+    icon: "hero/trophy"
+weight: null

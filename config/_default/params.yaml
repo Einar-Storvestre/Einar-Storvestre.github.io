@@ -15,7 +15,7 @@ hugoblox:
     # Site name - shown in navbar, footer, copyright, and browser title by default
     name: "Einar Storvestre"
     # Legal entity for copyright notices (defaults to name if not set)
-    organization: ""
+    organization: "Norwegian School of Economics"
     # Schema.org type for structured data
     type: person # person | organization | local_business
     # Short tagline displayed on your site
@@ -33,7 +33,7 @@ hugoblox:
     # Mode: 'light', 'dark', or 'system' (follows OS preference)
     mode: system
     # Theme pack: name from data/themes/ or { light: "x", dark: "y" } for mix-and-match
-    pack: "default"
+    pack: "coffee"
     # Optional: Override theme pack colors
     colors:
       primary: "" # Tailwind palette name or hex (e.g., "indigo" or "#6366f1")
@@ -62,6 +62,7 @@ hugoblox:
     font: "sans"
     # Size: 'sm', 'md', 'lg', or 'xl' (affects base font size and scale)
     size: "md"
+
   # ────────────────────────────────────────────────────────────────────────────
   # LAYOUT
   # Spacing and shape tokens
@@ -106,7 +107,7 @@ hugoblox:
     style: minimal # minimal | columns | centered
     language_switcher: true
     # Custom footer text (HTML supported)
-    text: "Einar Storvestre"
+    text: ""
 
   # ────────────────────────────────────────────────────────────────────────────
   # COPYRIGHT
@@ -114,9 +115,9 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   copyright:
     # Copyright notice - supports {year}, {name}, {license} placeholders
-    notice: "© {year} {name}. All rights reserved"
+    notice: "© {year} {name}. This work is licensed under {license}"
     license:
-      type: all_rights # cc | all_rights | custom
+      type: cc # cc | all_rights | custom
       allow_derivatives: false
       share_alike: true
       allow_commercial: false
