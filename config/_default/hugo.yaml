@@ -34,7 +34,9 @@ ignoreFiles: [".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
 disableAliases: true
 outputs:
   home: [HTML, RSS, JSON, headers, redirects, backlinks]
-  section: [HTML, RSS]
+  section: [HTML, RSS, JSON]
+  taxonomy: [HTML, RSS, JSON]
+  taxonomyTerm: [HTML, RSS, JSON]
 imaging:
   resampleFilter: lanczos
   quality: 90

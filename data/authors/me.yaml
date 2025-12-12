@@ -39,6 +39,10 @@ education:
     institution: "NHH"
     start: "2025-08-10"
     end: "2028-06-30"
+    button:
+      text: "View program"
+      url: "https://www.nhh.no/en/study-programmes/bsc-in-business-economics-and-data-science/"
+      icon: "hero/arrow-down-tray"
   - degree: "Norwegian College of Elite Sports"
     institution: "NTG Geilo"
     start: "2021-08-05"
@@ -49,10 +53,6 @@ experience:
     org: "Freelance"
     start: "2024-08-10"
     summary: "Offering tailored tutoring to students at different levels.\n"
-    button:
-      text: "View portfolio"
-      url: "/"
-      icon: "hero/arrow-down-tray"
   - role: "Substitue Teacher and teaching assistant"
     org: "Drøbak Primary School"
     start: "2024-09-01"
@@ -71,9 +71,19 @@ skills:
         level: 3
       - label: "Conference Presentations"
         level: 3
+  - name: "Hobbies"
+    items:
+      - label: "Cross-country skiing"
+        level: 5
+      - label: "Trail running"
+        level: 3
+      - label: "Golf"
+        level: 2
+      - label: "Padel"
+        level: 2
 languages:
   - name: "English"
-    level: 4
+    level: 4.5
     label: "Fluent"
   - name: "Norwegian"
     level: 5
