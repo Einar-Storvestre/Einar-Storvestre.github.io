@@ -41,12 +41,12 @@ interests:
 education:
   - degree: Bsc Business, Economics and Data Science
     institution: NHH
-    start: 2025-08
-    end: 2028-06
+    start: 2025-08-10
+    end: 2028-06-10
   - degree: Norwegian College of Elite Sports
     institution: NTG Geilo
-    start: 2021-08
-    end: 2024-06
+    start: 2021-08-5
+    end: 2024-06-15
     summary: |
       Interesting times
     #button:
