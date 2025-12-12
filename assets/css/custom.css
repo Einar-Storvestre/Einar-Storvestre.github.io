@@ -3,8 +3,16 @@
   white-space: pre;
   overflow-x: auto;
 }
+.tech2-notebook .nb-code,
+.tech2-notebook .nb-output {
+  overflow-x: auto;
+}
 .tech2-notebook .nb-frame {
   width: 100%;
+}
+.tech2-notebook .nb {
+  width: 100%;
+  max-width: none;
 }
 .tech2-notebook {
   width: 90vw;
@@ -16,4 +24,11 @@
     width: 100%;
     margin-left: 0;
   }
+}
+.tech2-notebook .nb-output figure,
+.tech2-notebook .nb-output img,
+.tech2-notebook .nb-output svg,
+.tech2-notebook .nb-output canvas {
+  width: 100%;
+  max-width: 100%;
 }
