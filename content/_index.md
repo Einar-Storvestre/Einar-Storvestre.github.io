@@ -51,14 +51,15 @@ sections:
   - block: collection
     id: papers
     content:
-      title: Featured Publications
+      title: Featured Notebooks
+      text: 'Highlights from my notebook lab, including the Tech2 term paper deep dive.'
       filters:
         folders:
-          - publications
+          - blog/notebook-onboarding
         featured_only: true
     design:
-      view: article-grid
-      columns: 2
+      view: card
+      columns: 1
   - block: collection
     content:
       title: Recent Publications

@@ -1,14 +1,15 @@
 ---
-title: ⚡️ Turn Jupyter Notebooks into Blog Posts
-summary: Publish your data science and research directly from Jupyter Notebooks. No screenshots required.
-date: 2024-07-15
+title: 📓 tech2_term_paper_25 — Notebook Deep Dive
+summary: Walkthrough of our Tech2 term paper notebook with the full code, results, and commentary.
+date: 2024-07-20
 authors:
   - me
 tags:
-  - Hugo Blox
+  - Tech2
   - Jupyter
-  - Open Science
-  - Tutorials
+  - Education
+  - Research
+featured: true
 cover:
   # image: cover.jpg  # Auto-detected from cover image in this folder
   icon:
@@ -20,51 +21,43 @@ image:
 content_meta:
   trending: true
 ---
+My Tech2 cohort wrapped the semester by building a data-driven term paper that explored macro conditions, market sizing, and the commercial pathways for a hypothetical product launch. Instead of hiding that work inside a PDF, I wanted a place where the entire analysis—code, commentary, and visuals—remains reproducible.
 
-As a researcher or data scientist, your work often lives in Jupyter Notebooks. But sharing those insights effectively usually means taking screenshots, messy copy-pasting, or exporting to PDF.
-
-Hugo Blox changes that. With the `{{</* notebook */>}}` shortcode, you can render your actual `.ipynb` files directly as beautiful, interactive blog posts or project pages. Keep your code, outputs, and narrative in one place.
+This post embeds the actual working notebook `tech2_term_paper_25.ipynb`, so you can skim the highlights, copy individual cells, or download the full artifact.
 
 {{< toc mobile_only=true is_open=true >}}
 
-## Why publish notebooks?
+## Project overview
 
-> [!TIP]
-> **Reproducible Research**: By publishing the actual notebook, you allow others to download and run your code, verifying your results and building upon your work.
+- **Goal:** Document the research, modeling, and scenario testing that underpinned our Tech2 term paper.
+- **Tools:** Python, pandas, NumPy, and a collection of visualization libraries for sensitivity analyses.
+- **Outputs:** Cleaned datasets, annotated code blocks, and executive-friendly figures pulled directly from the notebook outputs.
 
-- **No more screenshots** – Render crisp code and vector plots directly from your source.
-- **Theme consistent** – Notebooks automatically adapt to your site's theme (including dark mode).
-- **Flexible sourcing** – Display notebooks from your `assets/` folder, page bundles, or even directly from a remote GitHub URL.
-- **Interactive** – Users can copy code blocks or download the full notebook to run locally.
+The notebook is structured as a narrative, moving from data ingestion to exploratory work, and finally into the polished presentation-ready charts. Each section contains the exact code we ran along with the inline conclusions that informed the written report.
 
-## Example: Data Science Workflow
-
-Below is a live example of a notebook rendered right here in this post. Notice how the markdown, code, and outputs (text, HTML, and JSON) are all preserved and styled.
+## Explore the notebook
 
 {{< notebook
-    src="hugoblox-onboarding.ipynb"
-    title="Launch Readiness Analysis"
+    src="tech2_term_paper_25.ipynb"
+    title="tech2_term_paper_25"
     show_metadata=true
     line_numbers=true
     dense=false
-    download_label="Download notebook"
+    download_label="Download Tech2 notebook"
     show_outputs=true
 >}}
 
-## How to add a notebook
+> [!NOTE]
+> The JSON and HTML outputs have been preserved so you can trace the intermediate calculations that shaped the final presentation deck.
 
-1. **Save your notebook.** Place your `.ipynb` file in `assets/notebooks/` (for global access) or inside a page bundle (like `content/blog/my-post/analysis.ipynb`).
-2. **Add the shortcode.** In any Markdown page, simply use:
-   `{{</* notebook src="analysis.ipynb" */>}}`
-3. **Customize.** You can hide code cells for non-technical audiences (`show_code=false`) or just show the output (`show_outputs=true`).
+## Key takeaways
 
-> [!IMPORTANT]
-> Hugo Blox respects your privacy. Notebook rendering happens statically at build time—no third-party services required.
+1. **Repeatable workflow.** Every transformation step is scripted, letting teammates rerun the notebook whenever new data arrives.
+2. **Decision-ready visuals.** Interactive charts and tables highlight the meta-trends that guided our policy recommendations.
+3. **Transparent documentation.** Comments in the notebook point to lecture references, workshop code snippets, and post-reading insights.
 
-## Next steps
+## What’s next?
 
-- **Try it out:** Drop one of your existing notebooks into this site and see how it looks.
-- **Link your papers:** Use the Embed shortcode to link your notebook to your latest arXiv preprint or GitHub repository.
-- **Get help:** Join the community on [Discord](https://discord.gg/z8wNYzb) or check the [documentation](https://docs.hugoblox.com).
-
-Happy researching! 🚀
+- Extend the scenario section with Monte Carlo simulations for the financial outcomes.
+- Package the cleaned datasets for downstream dashboards.
+- Use this publishing workflow for the next Tech2 sprint so we maintain a living research log.
