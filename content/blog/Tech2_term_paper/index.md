@@ -56,13 +56,13 @@ The notebook is structured as a narrative, moving from data ingestion to explora
     show_metadata=true
     line_numbers=true
     dense=false
-    download_label="Download Tech2 notebook"
     show_outputs=true
 >}}
 </div>
 
-<div style="text-align:center; margin-top: -0.5rem;">
-  <a class="btn btn-sm" href="/uploads/environment.yml">Download environment.yml</a>
+<div class="tech2-downloads">
+  <a class="btn btn-sm" href="/blog/Tech2_term_paper/tech2_term_paper_25.ipynb">Download Tech2 notebook</a>
+  <a class="btn btn-sm btn-outline" href="/uploads/environment.yml">Download environment.yml</a>
 </div>
 
 > [!NOTE]

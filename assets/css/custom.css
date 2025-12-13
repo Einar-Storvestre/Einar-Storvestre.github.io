@@ -38,3 +38,11 @@
   width: 100%;
   max-width: 100%;
 }
+.tech2-downloads {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
