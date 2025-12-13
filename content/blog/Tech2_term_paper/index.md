@@ -59,9 +59,9 @@ The notebook is structured as a narrative, moving from data ingestion to explora
     download_label="Download Tech2 notebook"
     show_outputs=true
 >}}
+</div>
 
 [Download environment.yml](/uploads/environment.yml)
-</div>
 
 > [!NOTE]
 > The outputs have been preserved so you can trace the intermediate calculations that shaped the final results.
