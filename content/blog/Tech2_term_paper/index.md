@@ -61,7 +61,9 @@ The notebook is structured as a narrative, moving from data ingestion to explora
 >}}
 </div>
 
-[Download environment.yml](/uploads/environment.yml)
+<div style="text-align:center; margin-top: -0.5rem;">
+  <a class="btn btn-sm" href="/uploads/environment.yml">Download environment.yml</a>
+</div>
 
 > [!NOTE]
 > The outputs have been preserved so you can trace the intermediate calculations that shaped the final results.
