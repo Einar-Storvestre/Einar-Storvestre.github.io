@@ -61,7 +61,7 @@ The notebook is structured as a narrative, moving from data ingestion to explora
 </div>
 
 <div class="tech2-downloads">
-  <a class="btn btn-sm" href="/tech2_term_paper_25.ipynb">Download Tech2 notebook</a>
+  <a class="btn btn-sm" href="/blog/Tech2_term_paper/tech2_term_paper_25.ipynb">Download Tech2 notebook</a>
   <a class="btn btn-sm btn-outline" href="/uploads/environment.yml">Download environment.yml</a>
 </div>
 
