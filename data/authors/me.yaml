@@ -13,10 +13,12 @@ postnominals:
 status:
   icon: ""
 role: "Student"
-bio: "Einar Storvestre is a student with many interests.\n"
+bio: "I'm a Business, Economics and Data Science student at NHH with a background in elite sports. 
+      I'm curious about how data and technology influence real-world decisions, and I'm motivated by solving real-world problems. 
+      I have a special interest for early-stage problem solving and startups - breaking down complex problems and testing ideas.\n"
 affiliations:
   - name: "NHH"
-    url: "https://bitly.com/98K8eH"
+    url: "https://www.youtube.com/watch?v=xvFZjo5PgG0"
 links:
   - icon: "at-symbol"
     url: "mailto:einargaard@icloud.com"
@@ -57,7 +59,8 @@ experience:
     org: "Drøbak Primary School"
     start: "2024-09-01"
     end: "2024-11-01"
-    summary: "Assited in learning at different levels.\n"
+    summary: "Assisted teachers in daily classroom activities and led sessions independently when needed 
+      Worked with students with disabilities and supported tailored learning plans\n"
 skills:
   - name: "Technical Skills"
     items:
@@ -75,7 +78,7 @@ skills:
     items:
       - label: "Cross-country skiing"
   
-      - label: "Trail running"
+      - label: "Running"
 
       - label: "Golf"
 
