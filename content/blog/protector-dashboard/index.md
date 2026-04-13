@@ -21,4 +21,6 @@ image:
 
 Denne siden viser dashboardet direkte inne i nettstedet. Hvis du vil bruke hele appen i egen fane, kan du åpne [fullskjermversjonen](/prot-dashboard/).
 
+Følgende data hentes i sanntid fra Yahoo Finance hver gang siden lastes: **aksjekurs, daglig kursendring, markedsverdi, P/E, P/B, EPS, utbytte og dividendyield.** Øvrig data — herunder combined ratio, inntjeningshistorikk, ROE-utvikling, geografisk fordeling og scorecard-vurderinger — er basert på siste gjennomgang av aksjen og oppdateres manuelt.
+
 {{< prot-dashboard >}}
