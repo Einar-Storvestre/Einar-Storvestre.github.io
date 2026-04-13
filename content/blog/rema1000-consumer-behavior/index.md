@@ -10,6 +10,14 @@ tags:
   - Research
   - MAB1
   - NHH
+cover:
+  image: featured.png
+  icon:
+    name: ""
+image:
+  image: featured.png
+  focal_point: Center
+  placement: 1
 ---
 
 **Group 6** · Knut Steckmest, Marius Andersen, Kai Thomas, Peder Olsen, Olav Lidal, Einar Storvestre

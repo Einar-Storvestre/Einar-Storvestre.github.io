@@ -9,6 +9,14 @@ tags:
   - Dashboard
   - React
   - Investing
+cover:
+  image: featured.jpg
+  icon:
+    name: ""
+image:
+  image: featured.jpg
+  focal_point: Center
+  placement: 1
 ---
 
 Denne siden viser dashboardet direkte inne i nettstedet. Hvis du vil bruke hele appen i egen fane, kan du åpne [fullskjermversjonen](/prot-dashboard/).
