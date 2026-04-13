@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Protector Forsikring Dashboard</title>
+    <script type="module" crossorigin src="./assets/index-D5lfVlE-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-rc7zVZq9.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (() => {
+        const root = document.getElementById("root");
+        if (!root) return;
+
+        const updateHeaderDate = () => {
+          root.querySelectorAll("p").forEach((paragraph) => {
+            if (paragraph.textContent?.trim() === "Oppdatert: April 2026") {
+              paragraph.textContent = "Oppdatert: 12. april";
+            }
+          });
+        };
+
+        const copyObserver = new MutationObserver(updateHeaderDate);
+
+        window.addEventListener("load", () => {
+          copyObserver.observe(root, {
+            childList: true,
+            subtree: true,
+            characterData: true,
+          });
+
+          updateHeaderDate();
+          window.setTimeout(updateHeaderDate, 250);
+          window.setTimeout(updateHeaderDate, 1000);
+        });
+
+        if (window.self === window.top) return;
+
+        let observedNode = null;
+
+        const normalizeLayout = () => {
+          root.style.minHeight = "auto";
+
+          const appShell = root.firstElementChild;
+          if (appShell instanceof HTMLElement) {
+            appShell.style.minHeight = "auto";
+          }
+
+          return appShell;
+        };
+
+        const reportHeight = () => {
+          const appShell = normalizeLayout();
+          const height = Math.max(
+            document.documentElement ? document.documentElement.scrollHeight : 0,
+            document.body ? document.body.scrollHeight : 0,
+            root.scrollHeight,
+            appShell instanceof HTMLElement ? appShell.scrollHeight : 0,
+          );
+
+          window.parent.postMessage(
+            { type: "prot-dashboard:height", height },
+            window.location.origin,
+          );
+        };
+
+        const resizeObserver = new ResizeObserver(reportHeight);
+        const mutationObserver = new MutationObserver(() => {
+          const appShell = normalizeLayout();
+          updateHeaderDate();
+
+          if (appShell && appShell !== observedNode) {
+            if (observedNode) resizeObserver.unobserve(observedNode);
+            resizeObserver.observe(appShell);
+            observedNode = appShell;
+          }
+
+          reportHeight();
+        });
+
+        window.addEventListener("load", () => {
+          mutationObserver.observe(root, { childList: true, subtree: false });
+          resizeObserver.observe(root);
+
+          const appShell = normalizeLayout();
+          if (appShell) {
+            resizeObserver.observe(appShell);
+            observedNode = appShell;
+          }
+
+          reportHeight();
+          window.setTimeout(reportHeight, 250);
+          window.setTimeout(reportHeight, 1000);
+        });
+
+        window.addEventListener("resize", reportHeight);
+      })();
+    </script>
+  </body>
+  </html>

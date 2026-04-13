@@ -1,0 +1,68 @@
+{{- $src := .Get "src" | default "/prot-dashboard/" -}}
+{{- $title := .Get "title" | default "Protector Forsikring dashboard" -}}
+{{- $id := printf "prot-dashboard-%d" now.UnixNano -}}
+
+<div class="prot-dashboard-embed">
+  <div class="prot-dashboard-embed__actions">
+    <a href="{{ $src }}" target="_blank" rel="noopener">Open full screen</a>
+  </div>
+  <iframe
+    id="{{ $id }}"
+    class="prot-dashboard-embed__frame"
+    src="{{ $src }}"
+    title="{{ $title }}"
+    loading="lazy"
+  ></iframe>
+</div>
+
+<script>
+  (() => {
+    const iframe = document.getElementById('{{ $id }}');
+    if (!iframe) return;
+
+    const applyHeight = (nextHeight) => {
+      const safeHeight = Math.max(Number(nextHeight) || 0, 960);
+      const currentHeight = parseFloat(iframe.style.height || "0");
+
+      if (!safeHeight || Math.abs(currentHeight - safeHeight) < 2) {
+        return;
+      }
+
+      iframe.style.height = `${safeHeight}px`;
+    };
+
+    const resizeFromDocument = () => {
+      try {
+        const doc = iframe.contentWindow?.document;
+        if (!doc) return;
+
+        applyHeight(
+          Math.max(
+            doc.documentElement ? doc.documentElement.scrollHeight : 0,
+            doc.body ? doc.body.scrollHeight : 0,
+          ),
+        );
+      } catch (error) {
+        // The iframe is same-origin in this site setup, but fail silently if that changes.
+      }
+    };
+
+    const scheduleResize = () => window.requestAnimationFrame(resizeFromDocument);
+
+    window.addEventListener("message", (event) => {
+      if (event.origin !== window.location.origin) return;
+      if (event.source !== iframe.contentWindow) return;
+      if (event.data?.type !== "prot-dashboard:height") return;
+
+      applyHeight(event.data.height);
+    });
+
+    iframe.addEventListener("load", () => {
+      scheduleResize();
+      window.setTimeout(scheduleResize, 250);
+      window.setTimeout(scheduleResize, 1000);
+    });
+
+    window.addEventListener("resize", scheduleResize);
+  })();
+</script>
