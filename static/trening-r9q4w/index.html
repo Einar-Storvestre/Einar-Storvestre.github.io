@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Treningsøkter">
+<meta name="robots" content="noindex, nofollow">
+<title>Treningsøkter</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #e8f4fd; color: #1c1c1e; font-size: 15px; padding-bottom: 40px; }
+
+  .header { background: linear-gradient(135deg, #1a6bb5 0%, #2196f3 100%); padding: 20px 16px 16px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #fff; }
+  .header p { font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 3px; }
+
+  .tabs { display: flex; background: #1a6bb5; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab { padding: 10px 18px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65); cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; -webkit-tap-highlight-color: transparent; }
+  .tab.active { color: #fff; border-bottom-color: #fff; }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .section { margin: 14px 12px 0; }
+  .section-title { font-size: 12px; font-weight: 700; color: #1a6bb5; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; padding-left: 2px; }
+
+  .zones { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .zone { border-radius: 12px; padding: 10px 12px; }
+  .zone-rolig { background: #d4edda; border-left: 4px solid #28a745; }
+  .zone-terskel { background: #fff3cd; border-left: 4px solid #fd7e14; }
+  .zone-intervall { background: #ffd6d6; border-left: 4px solid #dc3545; }
+  .zone-rep { background: #f8d7da; border-left: 4px solid #b91c1c; }
+  .zone-label { font-size: 11px; font-weight: 600; color: #555; }
+  .zone-val { font-size: 15px; font-weight: 700; margin-top: 2px; color: #1c1c1e; }
+  .zone-borg { font-size: 11px; color: #666; margin-top: 1px; }
+
+  .card { border-radius: 14px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .card-header { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .card-header:active { opacity: 0.85; }
+  .card-left .title { font-size: 15px; font-weight: 700; color: #fff; }
+  .card-left .sub { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+  .card-left .dur { font-size: 12px; color: rgba(255,255,255,0.9); margin-top: 3px; font-weight: 600; }
+  .right-side { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  .badge { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.25); color: #fff; }
+  .chevron { font-size: 14px; color: rgba(255,255,255,0.7); transition: transform 0.2s; display: inline-block; }
+  .chevron.open { transform: rotate(90deg); }
+
+  .card-body { display: none; padding: 12px 16px 14px; background: #fff; }
+  .card-body.open { display: block; }
+
+  .row-title { font-size: 11px; font-weight: 700; color: #1a6bb5; text-transform: uppercase; letter-spacing: 0.4px; margin: 10px 0 4px; }
+  .row-title:first-child { margin-top: 0; }
+  .row { font-size: 14px; color: #1c1c1e; padding: 3px 0; display: flex; gap: 8px; line-height: 1.4; }
+  .row-dot { color: #2196f3; flex-shrink: 0; font-weight: 700; }
+  .divider { height: 0.5px; background: #e8f4fd; margin: 8px 0; }
+
+  .kval-box { border-radius: 10px; padding: 10px 12px; margin: 6px 0; }
+  .kval-main { font-size: 16px; font-weight: 700; }
+  .kval-sub { font-size: 13px; margin-top: 2px; }
+  .kval-warn { font-size: 13px; margin-top: 3px; font-weight: 600; }
+  .kval-borg { font-size: 12px; margin-top: 3px; font-weight: 600; }
+
+  .kval-rolig { background: #d4edda; }
+  .kval-rolig .kval-main { color: #155724; }
+  .kval-rolig .kval-sub { color: #1e7e34; }
+  .kval-rolig .kval-borg { color: #28a745; }
+
+  .kval-terskel { background: #fff3cd; }
+  .kval-terskel .kval-main { color: #856404; }
+  .kval-terskel .kval-sub { color: #7a5700; }
+  .kval-terskel .kval-warn { color: #fd7e14; }
+  .kval-terskel .kval-borg { color: #fd7e14; }
+
+  .kval-intervall { background: #ffd6d6; }
+  .kval-intervall .kval-main { color: #842029; }
+  .kval-intervall .kval-sub { color: #842029; }
+  .kval-intervall .kval-warn { color: #b91c1c; }
+  .kval-intervall .kval-borg { color: #dc3545; }
+
+  .kval-rad { background: #f8d7da; }
+  .kval-rad .kval-main { color: #6d1217; }
+  .kval-rad .kval-sub { color: #6d1217; }
+  .kval-rad .kval-warn { color: #b91c1c; }
+  .kval-rad .kval-borg { color: #b91c1c; }
+
+  .kval-lilla { background: #ede9fe; }
+  .kval-lilla .kval-main { color: #4c1d95; }
+  .kval-lilla .kval-sub { color: #6d28d9; }
+
+  .fuel-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; background: #ffd6d6; color: #b91c1c; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+
+  .hdr-rolig { background: linear-gradient(135deg, #28a745, #20c997); }
+  .hdr-terskel { background: linear-gradient(135deg, #fd7e14, #ffc107); }
+  .hdr-intervall { background: linear-gradient(135deg, #dc3545, #e83e8c); }
+  .hdr-rad { background: linear-gradient(135deg, #b91c1c, #dc3545); }
+  .hdr-lilla { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+  .hdr-fartlek { background: linear-gradient(135deg, #fd7e14, #dc3545); }
+
+  .sko-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sko-card { background: #fff; border-radius: 12px; padding: 10px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
+  .sko-card.star { border: 2px solid #2196f3; background: #e8f4fd; }
+  .sko-okt { font-size: 11px; color: #8e8e93; font-weight: 600; }
+  .sko-name { font-size: 13px; font-weight: 700; margin-top: 2px; color: #1c1c1e; }
+
+  .fuel-card { background: #fff; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
+  .fuel-card-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #1a6bb5; }
+  .fuel-note { font-size: 12px; color: #8e8e93; margin-top: 8px; }
+  .fuel-total { font-size: 15px; font-weight: 700; color: #dc3545; margin: 6px 0 4px; }
+
+  .mat-item { background: #fff; border-radius: 10px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .mat-name { font-size: 14px; font-weight: 500; }
+  .mat-karbs { font-size: 12px; font-weight: 700; color: #1a6bb5; background: #e8f4fd; padding: 2px 8px; border-radius: 20px; }
+
+  .info-card { background: #fff; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
+  .borg-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 0.5px solid #e8f4fd; }
+  .borg-row:last-child { border-bottom: none; }
+  .borg-num { font-size: 15px; font-weight: 700; min-width: 36px; color: #1c1c1e; }
+  .borg-desc { font-size: 13px; color: #444; flex: 1; padding: 0 8px; }
+  .borg-zone { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+
+  .principle-card { background: #fff; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; border-left: 4px solid #2196f3; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Treningsøkter</h1>
+  <p>3k 9:20 · 10k 35:00 · 21k 1:25</p>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showPage('okter',this)">Økter</div>
+  <div class="tab" onclick="showPage('sko',this)">Sko</div>
+  <div class="tab" onclick="showPage('fueling',this)">Fueling</div>
+  <div class="tab" onclick="showPage('info',this)">Info</div>
+</div>
+
+<!-- SIDE: ØKTER -->
+<div class="page active" id="okter">
+
+  <div class="section">
+    <div class="section-title">Intensitetssoner</div>
+    <div class="zones">
+      <div class="zone zone-rolig"><div class="zone-label">Rolig</div><div class="zone-val">5:15–5:45</div><div class="zone-borg">Borg 11–12</div></div>
+      <div class="zone zone-terskel"><div class="zone-label">Terskel</div><div class="zone-val">3:45–3:50</div><div class="zone-borg">Borg 15–16</div></div>
+      <div class="zone zone-intervall"><div class="zone-label">Intervall</div><div class="zone-val">3:20–3:25</div><div class="zone-borg">Borg 17</div></div>
+      <div class="zone zone-rep"><div class="zone-label">Rep / råfart</div><div class="zone-val">2:55–3:05</div><div class="zone-borg">Borg 18–19</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Grunnlag</div>
+
+    <div class="card">
+      <div class="card-header hdr-rolig" onclick="toggle('o4','c4')">
+        <div class="card-left">
+          <div class="title">Rolig langtur</div>
+          <div class="sub">Fjellveien · CTM Ultra 3 / Speedgoat 6</div>
+          <div class="dur">Ca. 60–70 min total</div>
+        </div>
+        <div class="right-side">
+          <span class="badge">L</span>
+          <span class="chevron" id="c4">›</span>
+        </div>
+      </div>
+      <div class="card-body" id="o4">
+        <div class="row-title">Intervall</div>
+        <div class="kval-box kval-rolig">
+          <div class="kval-main">50–60 min @ 5:15–5:30/km</div>
+          <div class="kval-sub">Løp på følelse, ikke pace</div>
+          <div class="kval-borg">Borg 11–12 · ingen opp/nedvarming nødvendig</div>
+        </div>
+        <div class="row-title">Under (over 50 min)</div>
+        <div class="row"><span class="row-dot">·</span> Fra min 20: 2 dl saft hvert 20. min</div>
+        <div class="row"><span class="row-dot">·</span> Etter: måltid innen 30 min</div>
+        <div class="divider"></div>
+        <div class="row-title">Tøying (10 min)</div>
+        <div class="row"><span class="row-dot">·</span> Legg 60 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Hamstring 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Pirifomis 30 sek × 2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Terskel og tempo</div>
+
+    <div class="card">
+      <div class="card-header hdr-terskel" onclick="toggle('o1','c1')">
+        <div class="card-left">
+          <div class="title">Terskelintervaller</div>
+          <div class="sub">Ludebryggen · Sky Tokyo / VF2</div>
+          <div class="dur">Ca. 65–70 min total</div>
+        </div>
+        <div class="right-side">
+          <span class="badge">T</span>
+          <span class="chevron" id="c1">›</span>
+        </div>
+      </div>
+      <div class="card-body" id="o1">
+        <div class="row-title">Mat 2–3 timer før</div>
+        <div class="row"><span class="row-dot">·</span> Havregrøt med banan og honning (~100g karbs)</div>
+        <div class="row"><span class="row-dot">·</span> Brød med syltetøy + juice (~80g karbs)</div>
+        <div class="divider"></div>
+        <div class="row-title">Oppvarming (20 min)</div>
+        <div class="row"><span class="row-dot">·</span> 12 min rolig jogg @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> Dynamisk: benhev, hofteåpner, A-skip (5 min)</div>
+        <div class="row"><span class="row-dot">·</span> 3× 80m stigningsløp – rett før dragene</div>
+        <div class="row"><span class="row-dot">·</span> 2 min rolig pust</div>
+        <div class="divider"></div>
+        <div class="row-title">Intervall</div>
+        <div class="kval-box kval-terskel">
+          <div class="kval-main">5 × 8 min @ 3:45/km</div>
+          <div class="kval-sub">90 sek jogg hvile</div>
+          <div class="kval-borg">Borg 15–16</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming (10 min)</div>
+        <div class="row"><span class="row-dot">·</span> 8 min jogg @ 5:45/km + 2 min gange</div>
+        <div class="divider"></div>
+        <div class="row-title">Tøying (8 min)</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Hamstring 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Legg / akilles 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Pirifomis 30 sek × 2</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-fartlek" onclick="toggle('o5','c5')">
+        <div class="card-left">
+          <div class="title">Fartlek</div>
+          <div class="sub">Fjellveien / Ludebryggen · VF2 / CTM</div>
+          <div class="dur">Ca. 50–55 min total</div>
+        </div>
+        <div class="right-side">
+          <span class="badge">F</span>
+          <span class="chevron" id="c5">›</span>
+        </div>
+      </div>
+      <div class="card-body" id="o5">
+        <div class="row-title">Mat 2–3 timer før</div>
+        <div class="row"><span class="row-dot">·</span> Havregrøt med bær (~80g karbs)</div>
+        <div class="row"><span class="row-dot">·</span> Brød med egg (~70g karbs)</div>
+        <div class="divider"></div>
+        <div class="row-title">Oppvarming (15 min)</div>
+        <div class="row"><span class="row-dot">·</span> 12 min rolig jogg @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> Benhev, hofteåpner, A-skip (3 min)</div>
+        <div class="divider"></div>
+        <div class="row-title">Intervall</div>
+        <div class="kval-box kval-terskel">
+          <div class="kval-main">10 × 1 min hard / 1 min rolig</div>
+          <div class="kval-sub">Hard ~3:30/km · Rolig ~5:00/km</div>
+          <div class="kval-borg">Borg 16–17 på hardpartene</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming (10 min)</div>
+        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg ned</div>
+        <div class="divider"></div>
+        <div class="row-title">Tøying (8 min)</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Hamstring 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Legg / akilles 45 sek × 2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">VO2max</div>
+
+    <div class="card">
+      <div class="card-header hdr-intervall" onclick="toggle('o2','c2')">
+        <div class="card-left">
+          <div class="title">1000m intervaller</div>
+          <div class="sub">Skansemyren · VF2</div>
+          <div class="dur">Ca. 70–75 min total</div>
+        </div>
+        <div class="right-side">
+          <span class="badge">I</span>
+          <span class="chevron" id="c2">›</span>
+        </div>
+      </div>
+      <div class="card-body" id="o2">
+        <div class="fuel-tag">⚡ Viktig økt – fuelup</div>
+        <div class="row-title">Mat 2–3 timer før</div>
+        <div class="row"><span class="row-dot">·</span> Pasta med lett tomatsaus (~110g karbs)</div>
+        <div class="row"><span class="row-dot">·</span> Ris med kylling og grønnsaker (~100g karbs)</div>
+        <div class="row-title" style="margin-top:10px;">30 min før oppvarming</div>
+        <div class="row"><span class="row-dot">·</span> 10 seigmenn + 2 dl saft = <strong>~55g karbs</strong></div>
+        <div class="divider"></div>
+        <div class="row-title">Oppvarming (20–25 min)</div>
+        <div class="row"><span class="row-dot">·</span> 15 min rolig jogg dit @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> A-skip, B-skip, hofteåpner (5 min)</div>
+        <div class="row"><span class="row-dot">·</span> 3× 100m stigningsløp – rett før dragene</div>
+        <div class="row"><span class="row-dot">·</span> 2 min rolig pust</div>
+        <div class="divider"></div>
+        <div class="row-title">Intervall</div>
+        <div class="kval-box kval-intervall">
+          <div class="kval-main">6 × 1000m @ 3:22/km</div>
+          <div class="kval-sub">90 sek stående hvile</div>
+          <div class="kval-warn">Start rolig – siste rep = første rep</div>
+          <div class="kval-borg">Borg 17</div>
+        </div>
+        <div class="row-title" style="margin-top:8px;">Under</div>
+        <div class="row"><span class="row-dot">·</span> 4–5 seigmenn mellom rep 3 og 4</div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming</div>
+        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg hjem @ 5:30/km</div>
+        <div class="divider"></div>
+        <div class="row-title">Tøying (10 min)</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Hamstring 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Legg / akilles 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Quadriceps 30 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Pirifomis 30 sek × 2</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-intervall" onclick="toggle('o6','c6')">
+        <div class="card-left">
+          <div class="title">600m intervaller</div>
+          <div class="sub">Skansemyren · VF2</div>
+          <div class="dur">Ca. 65 min total</div>
+        </div>
+        <div class="right-side">
+          <span class="badge">I</span>
+          <span class="chevron" id="c6">›</span>
+        </div>
+      </div>
+      <div class="card-body" id="o6">
+        <div class="fuel-tag">⚡ Viktig økt – fuelup</div>
+        <div class="row-title">Mat 2–3 timer før</div>
+        <div class="row"><span class="row-dot">·</span> Pasta med lett tomatsaus (~110g karbs)</div>
+        <div class="row"><span class="row-dot">·</span> Ris med kylling (~100g karbs)</div>
+        <div class="row-title" style="margin-top:10px;">30 min før oppvarming</div>
+        <div class="row"><span class="row-dot">·</span> 8 seigmenn + 2 dl saft = <strong>~49g karbs</strong></div>
+        <div class="divider"></div>
+        <div class="row-title">Oppvarming (20–25 min)</div>
+        <div class="row"><span class="row-dot">·</span> 15 min rolig jogg dit @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> A-skip, B-skip, hofteåpner (5 min)</div>
+        <div class="row"><span class="row-dot">·</span> 3× 100m stigningsløp – rett før dragene</div>
+        <div class="row"><span class="row-dot">·</span> 2 min rolig pust</div>
+        <div class="divider"></div>
+        <div class="row-title">Intervall</div>
+        <div class="kval-box kval-intervall">
+          <div class="kval-main">8 × 600m @ 2:00–2:02</div>
+          <div class="kval-sub">90 sek stående hvile</div>
+          <div class="kval-warn">Bro mellom terskel og råfart</div>
+          <div class="kval-borg">Borg 17–18</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming</div>
+        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg hjem</div>
+        <div class="divider"></div>
+        <div class="row-title">Tøying (10 min)</div>
+        <div class="row"><span class="row-dot">·</span> Legg / akilles 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Hamstring 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Pirifomis 30 sek × 2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Råfart</div>
+
+    <div class="card">
+      <div class="card-header hdr-rad" onclick="toggle('o3','c3')">
+        <div class="card-left">
+          <div class="title">400m repetisjoner</div>
+          <div class="sub">Skansemyren · Sky Tokyo</div>
+          <div class="dur">Ca. 75–80 min total</div>
+        </div>
+        <div class="right-side">
+          <span class="badge">R</span>
+          <span class="chevron" id="c3">›</span>
+        </div>
+      </div>
+      <div class="card-body" id="o3">
+        <div class="fuel-tag">⚡ Viktig økt – fuelup</div>
+        <div class="row-title">Mat 2–3 timer før</div>
+        <div class="row"><span class="row-dot">·</span> Pasta med lett tomatsaus (~100g karbs)</div>
+        <div class="row"><span class="row-dot">·</span> Ris med kylling (~100g karbs)</div>
+        <div class="row-title" style="margin-top:10px;">30 min før oppvarming</div>
+        <div class="row"><span class="row-dot">·</span> 8 seigmenn + 2 dl saft = <strong>~49g karbs</strong></div>
+        <div class="divider"></div>
+        <div class="row-title">Oppvarming (30 min inkl. løp dit)</div>
+        <div class="row"><span class="row-dot">·</span> 20 min jogg dit @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> A-skip, B-skip, hofteåpner (5 min)</div>
+        <div class="row"><span class="row-dot">·</span> 3× 100m stigningsløp – rett før dragene</div>
+        <div class="row"><span class="row-dot">·</span> 2 min rolig pust</div>
+        <div class="divider"></div>
+        <div class="row-title">Intervall</div>
+        <div class="kval-box kval-rad">
+          <div class="kval-main">10 × 400m @ 74–76 sek</div>
+          <div class="kval-sub">75 sek stående hvile</div>
+          <div class="kval-warn">Jakob-prinsipp: siste rep = første rep</div>
+          <div class="kval-borg">Borg 18–19</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming</div>
+        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg hjem + 5 min gange</div>
+        <div class="divider"></div>
+        <div class="row-title">Tøying (10 min)</div>
+        <div class="row"><span class="row-dot">·</span> Legg / akilles 60 sek × 2 (prioritet!)</div>
+        <div class="row"><span class="row-dot">·</span> Hamstring 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Quadriceps 30 sek × 2</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-rad" onclick="toggle('o7','c7')">
+        <div class="card-left">
+          <div class="title">Bakkeintervaller</div>
+          <div class="sub">Fjellveien · VF2 / CTM</div>
+          <div class="dur">Ca. 55–60 min total</div>
+        </div>
+        <div class="right-side">
+          <span class="badge">B</span>
+          <span class="chevron" id="c7">›</span>
+        </div>
+      </div>
+      <div class="card-body" id="o7">
+        <div class="fuel-tag">⚡ Viktig økt – fuelup</div>
+        <div class="row-title">Mat 2–3 timer før</div>
+        <div class="row"><span class="row-dot">·</span> Havregrøt med banan og honning (~100g karbs)</div>
+        <div class="row"><span class="row-dot">·</span> Brød med syltetøy + juice (~80g karbs)</div>
+        <div class="row-title" style="margin-top:10px;">30 min før oppvarming</div>
+        <div class="row"><span class="row-dot">·</span> 8 seigmenn + 2 dl saft = <strong>~49g karbs</strong></div>
+        <div class="divider"></div>
+        <div class="row-title">Oppvarming (15 min)</div>
+        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> Benhev, hofteåpner, A-skip (3 min)</div>
+        <div class="row"><span class="row-dot">·</span> 2× lett bakkeakselerasjon – rett før dragene</div>
+        <div class="divider"></div>
+        <div class="row-title">Intervall</div>
+        <div class="kval-box kval-rad">
+          <div class="kval-main">8–10 × 60 sek bakke</div>
+          <div class="kval-sub">Jogg ned som hvile (~90 sek) · Kraftig armpendel</div>
+          <div class="kval-warn">Bygger styrke og løpsøkonomi uten baneslitasje</div>
+          <div class="kval-borg">Borg 17–18</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming (10 min)</div>
+        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg ned</div>
+        <div class="divider"></div>
+        <div class="row-title">Tøying (10 min)</div>
+        <div class="row"><span class="row-dot">·</span> Legg / akilles 60 sek × 2 (prioritet!)</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Hamstring 45 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Quadriceps 30 sek × 2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Bevegelighet</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('o8','c8')">
+        <div class="card-left">
+          <div class="title">Bevegelighet</div>
+          <div class="sub">2× per uke · Ikke øktdager</div>
+          <div class="dur">Ca. 15 min</div>
+        </div>
+        <div class="right-side">
+          <span class="badge">M</span>
+          <span class="chevron" id="c8">›</span>
+        </div>
+      </div>
+      <div class="card-body" id="o8">
+        <div class="kval-box kval-lilla">
+          <div class="kval-main">4 øvelser · 15 min</div>
+          <div class="kval-sub">Gjør separat fra treningsdager</div>
+        </div>
+        <div class="row-title" style="margin-top:10px;">Øvelser</div>
+        <div class="row"><span class="row-dot">·</span> Hofteåpner dyp utfall: 60 sek × 2</div>
+        <div class="row"><span class="row-dot">·</span> Glute bridge: 3 × 15</div>
+        <div class="row"><span class="row-dot">·</span> Thoraxrotasjon: 10 reps × 2</div>
+        <div class="row"><span class="row-dot">·</span> Ankelbevegelighet: 15 reps × 2</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SIDE: SKO -->
+<div class="page" id="sko">
+  <div class="section">
+    <div class="section-title">Skorotasjon</div>
+    <div class="sko-grid">
+      <div class="sko-card"><div class="sko-okt">Terskel</div><div class="sko-name">Sky Tokyo / VF2</div></div>
+      <div class="sko-card"><div class="sko-okt">1000m / 600m</div><div class="sko-name">VF2</div></div>
+      <div class="sko-card star"><div class="sko-okt">400m + konkurranse</div><div class="sko-name">Sky Tokyo ★</div></div>
+      <div class="sko-card"><div class="sko-okt">Bakke + fartlek</div><div class="sko-name">VF2 / CTM</div></div>
+      <div class="sko-card"><div class="sko-okt">Fjellveien</div><div class="sko-name">CTM / Speedgoat 6</div></div>
+      <div class="sko-card"><div class="sko-okt">Alt annet</div><div class="sko-name">Hoka Clifton</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SIDE: FUELING -->
+<div class="page" id="fueling">
+  <div class="section">
+    <div class="section-title">Viktige økter – fuel opp</div>
+    <div class="fuel-card">
+      <div class="fuel-card-title">30 min FØR oppvarming</div>
+      <div class="fuel-total">~49–55g karbs totalt</div>
+      <div class="row"><span class="row-dot">·</span> 8–10 seigmenn (~24–30g karbs)</div>
+      <div class="row"><span class="row-dot">·</span> 2 dl saft (25g karbs)</div>
+      <div class="fuel-note">Gjelder: 1000m, 600m, 400m, bakke, konkurranse</div>
+    </div>
+    <div class="fuel-card">
+      <div class="fuel-card-title">Under lange viktige økter</div>
+      <div class="row"><span class="row-dot">·</span> Mellom rep 3–4 på 1000m: 4–5 seigmenn (~12–15g)</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Rolige / terskeløkter</div>
+    <div class="fuel-card">
+      <div class="fuel-card-title">Ingen spesiell fueling nødvendig</div>
+      <div class="row"><span class="row-dot">·</span> Normalt måltid 2–3t før holder</div>
+      <div class="row"><span class="row-dot">·</span> Rolig langtur over 50 min: 2 dl saft hvert 20. min</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Matretter 2–3 timer før viktige økter</div>
+    <div class="mat-item"><span class="mat-name">Pasta med tomatsaus</span><span class="mat-karbs">~110g karbs</span></div>
+    <div class="mat-item"><span class="mat-name">Ris med kylling</span><span class="mat-karbs">~100g karbs</span></div>
+    <div class="mat-item"><span class="mat-name">Havregrøt + banan + honning</span><span class="mat-karbs">~100g karbs</span></div>
+    <div class="mat-item"><span class="mat-name">Brød med syltetøy + juice</span><span class="mat-karbs">~80g karbs</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Quickref</div>
+    <div class="fuel-card">
+      <div class="row"><span class="row-dot">·</span> Saft: 12.5g karbs / 100ml</div>
+      <div class="row"><span class="row-dot">·</span> Seigmenn: ~3g karbs / stk</div>
+    </div>
+  </div>
+</div>
+
+<!-- SIDE: INFO -->
+<div class="page" id="info">
+  <div class="section">
+    <div class="section-title">Borg-skala</div>
+    <div class="info-card">
+      <div class="borg-row"><span class="borg-num">11–12</span><span class="borg-desc">Lett</span><span class="borg-zone" style="background:#d4edda;color:#155724;">Rolig</span></div>
+      <div class="borg-row"><span class="borg-num">13–14</span><span class="borg-desc">Noe anstrengende</span><span class="borg-zone" style="background:#e8f4fd;color:#1a6bb5;">Oppvarming</span></div>
+      <div class="borg-row"><span class="borg-num">15–16</span><span class="borg-desc">Anstrengende</span><span class="borg-zone" style="background:#fff3cd;color:#856404;">Terskel</span></div>
+      <div class="borg-row"><span class="borg-num">17</span><span class="borg-desc">Meget anstrengende</span><span class="borg-zone" style="background:#ffd6d6;color:#842029;">Intervall</span></div>
+      <div class="borg-row"><span class="borg-num">18–19</span><span class="borg-desc">Ekstremt anstrengende</span><span class="borg-zone" style="background:#f8d7da;color:#6d1217;">400m / bakke</span></div>
+      <div class="borg-row"><span class="borg-num">20</span><span class="borg-desc">Maksimal</span><span class="borg-zone" style="background:#1c1c1e;color:#fff;">Maks</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Jakob-prinsipper</div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Siste rep = første rep – gå aldri ut for hardt</div></div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Bakkeintervaller ukentlig – styrke uten baneslitasje</div></div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Terskel er kjernen – uten aerob base ingen råfart</div></div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Rolige dager skal være rolige – ikke la ego styre pace</div></div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Stigningsløp alltid sist i oppvarming – rett før dragene</div></div>
+  </div>
+</div>
+
+<script>
+function toggle(id, chevId) {
+  document.getElementById(id).classList.toggle('open');
+  document.getElementById(chevId).classList.toggle('open');
+}
+function showPage(name, el) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(name).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
