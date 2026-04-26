@@ -99,8 +99,11 @@
   .hdr-fartlek { background: linear-gradient(135deg, #fd7e14, #dc3545); }
 
   .sko-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .sko-card { background: #fff; border-radius: 12px; padding: 10px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
-  .sko-card.star { border: 2px solid #2196f3; background: #e8f4fd; }
+  .sko-card { background: #fff; border-radius: 12px; padding: 10px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); border-left: 4px solid #e0e0e0; }
+  .sko-card.race { border-left: 4px solid #dc3545; background: #fff8f8; }
+  .sko-card.intervall { border-left: 4px solid #fd7e14; background: #fff9f2; }
+  .sko-card.tempo { border-left: 4px solid #ffc107; background: #fffdf0; }
+  .sko-card.rolig { border-left: 4px solid #28a745; background: #f4fff6; }
   .sko-okt { font-size: 11px; color: #8e8e93; font-weight: 600; }
   .sko-name { font-size: 13px; font-weight: 700; margin-top: 2px; color: #1c1c1e; }
 
@@ -127,13 +130,16 @@
 
 <div class="header">
   <h1>Treningsøkter</h1>
-  <p>3k 9:20 · 10k 35:00 · 21k 1:25</p>
+  <p>3k 9:20 · 10k 35:00 · 21k 1:20</p>
 </div>
 
 <div class="tabs">
   <div class="tab active" onclick="showPage('okter',this)">Økter</div>
   <div class="tab" onclick="showPage('sko',this)">Sko</div>
   <div class="tab" onclick="showPage('fueling',this)">Fueling</div>
+  <div class="tab" onclick="showPage('ukeplaner',this)">Ukeplaner</div>
+  <div class="tab" onclick="showPage('styrke',this)">Styrke</div>
+  <div class="tab" onclick="showPage('formtopping',this)">Formtopping</div>
   <div class="tab" onclick="showPage('info',this)">Info</div>
 </div>
 
@@ -144,9 +150,9 @@
     <div class="section-title">Intensitetssoner</div>
     <div class="zones">
       <div class="zone zone-rolig"><div class="zone-label">Rolig</div><div class="zone-val">5:15–5:45</div><div class="zone-borg">Borg 11–12</div></div>
-      <div class="zone zone-terskel"><div class="zone-label">Terskel</div><div class="zone-val">3:45–3:50</div><div class="zone-borg">Borg 15–16</div></div>
-      <div class="zone zone-intervall"><div class="zone-label">Intervall</div><div class="zone-val">3:20–3:25</div><div class="zone-borg">Borg 17</div></div>
-      <div class="zone zone-rep"><div class="zone-label">Rep / råfart</div><div class="zone-val">2:55–3:05</div><div class="zone-borg">Borg 18–19</div></div>
+      <div class="zone zone-terskel"><div class="zone-label">Terskel – 21k race pace</div><div class="zone-val">3:45–3:50</div><div class="zone-borg">Borg 15–16</div></div>
+      <div class="zone zone-intervall"><div class="zone-label">VO2max – 10k race pace</div><div class="zone-val">3:28–3:35</div><div class="zone-borg">Borg 17</div></div>
+      <div class="zone zone-rep"><div class="zone-label">Rep – 3k-5k pace</div><div class="zone-val">3:05–3:20</div><div class="zone-borg">Borg 18–19</div></div>
     </div>
   </div>
 
@@ -161,7 +167,7 @@
           <div class="dur">Ca. 60–70 min total</div>
         </div>
         <div class="right-side">
-          <span class="badge">L</span>
+          <span class="badge">R</span>
           <span class="chevron" id="c4">›</span>
         </div>
       </div>
@@ -289,7 +295,7 @@
         <div class="row"><span class="row-dot">·</span> Pasta med lett tomatsaus (~110g karbs)</div>
         <div class="row"><span class="row-dot">·</span> Ris med kylling og grønnsaker (~100g karbs)</div>
         <div class="row-title" style="margin-top:10px;">30 min før oppvarming</div>
-        <div class="row"><span class="row-dot">·</span> 10 seigmenn + 2 dl saft = <strong>~55g karbs</strong></div>
+        <div class="row"><span class="row-dot">·</span> 4 seigmenn + 2 dl saft = <strong>~53g karbs</strong></div>
         <div class="divider"></div>
         <div class="row-title">Oppvarming (20–25 min)</div>
         <div class="row"><span class="row-dot">·</span> 15 min rolig jogg dit @ 5:30/km</div>
@@ -305,7 +311,7 @@
           <div class="kval-borg">Borg 17</div>
         </div>
         <div class="row-title" style="margin-top:8px;">Under</div>
-        <div class="row"><span class="row-dot">·</span> 4–5 seigmenn mellom rep 3 og 4</div>
+        <div class="row"><span class="row-dot">·</span> 2 seigmenn mellom rep 3 og 4</div>
         <div class="divider"></div>
         <div class="row-title">Nedvarming</div>
         <div class="row"><span class="row-dot">·</span> 10 min rolig jogg hjem @ 5:30/km</div>
@@ -318,62 +324,17 @@
         <div class="row"><span class="row-dot">·</span> Pirifomis 30 sek × 2</div>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-header hdr-intervall" onclick="toggle('o6','c6')">
-        <div class="card-left">
-          <div class="title">600m intervaller</div>
-          <div class="sub">Skansemyren · VF2</div>
-          <div class="dur">Ca. 65 min total</div>
-        </div>
-        <div class="right-side">
-          <span class="badge">I</span>
-          <span class="chevron" id="c6">›</span>
-        </div>
-      </div>
-      <div class="card-body" id="o6">
-        <div class="fuel-tag">⚡ Viktig økt – fuelup</div>
-        <div class="row-title">Mat 2–3 timer før</div>
-        <div class="row"><span class="row-dot">·</span> Pasta med lett tomatsaus (~110g karbs)</div>
-        <div class="row"><span class="row-dot">·</span> Ris med kylling (~100g karbs)</div>
-        <div class="row-title" style="margin-top:10px;">30 min før oppvarming</div>
-        <div class="row"><span class="row-dot">·</span> 8 seigmenn + 2 dl saft = <strong>~49g karbs</strong></div>
-        <div class="divider"></div>
-        <div class="row-title">Oppvarming (20–25 min)</div>
-        <div class="row"><span class="row-dot">·</span> 15 min rolig jogg dit @ 5:30/km</div>
-        <div class="row"><span class="row-dot">·</span> A-skip, B-skip, hofteåpner (5 min)</div>
-        <div class="row"><span class="row-dot">·</span> 3× 100m stigningsløp – rett før dragene</div>
-        <div class="row"><span class="row-dot">·</span> 2 min rolig pust</div>
-        <div class="divider"></div>
-        <div class="row-title">Intervall</div>
-        <div class="kval-box kval-intervall">
-          <div class="kval-main">8 × 600m @ 2:00–2:02</div>
-          <div class="kval-sub">Pace: 3:20–3:23/km · 90 sek stående hvile</div>
-          <div class="kval-warn">Bro mellom terskel og råfart</div>
-          <div class="kval-borg">Borg 17–18</div>
-        </div>
-        <div class="divider"></div>
-        <div class="row-title">Nedvarming</div>
-        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg hjem</div>
-        <div class="divider"></div>
-        <div class="row-title">Tøying (10 min)</div>
-        <div class="row"><span class="row-dot">·</span> Legg / akilles 45 sek × 2</div>
-        <div class="row"><span class="row-dot">·</span> Hamstring 45 sek × 2</div>
-        <div class="row"><span class="row-dot">·</span> Hoftebøyer 45 sek × 2</div>
-        <div class="row"><span class="row-dot">·</span> Pirifomis 30 sek × 2</div>
-      </div>
-    </div>
   </div>
 
   <div class="section">
-    <div class="section-title">Råfart</div>
+    <div class="section-title">Over terskel</div>
 
     <div class="card">
-      <div class="card-header hdr-rad" onclick="toggle('o3','c3')">
+      <div class="card-header hdr-terskel" onclick="toggle('o3','c3')">
         <div class="card-left">
-          <div class="title">400m repetisjoner</div>
-          <div class="sub">Skansemyren · Sky Tokyo</div>
-          <div class="dur">Ca. 75–80 min total</div>
+          <div class="title">400m race pace</div>
+          <div class="sub">Skansemyren · VF2</div>
+          <div class="dur">Ca. 70–75 min total</div>
         </div>
         <div class="right-side">
           <span class="badge">R</span>
@@ -386,7 +347,7 @@
         <div class="row"><span class="row-dot">·</span> Pasta med lett tomatsaus (~100g karbs)</div>
         <div class="row"><span class="row-dot">·</span> Ris med kylling (~100g karbs)</div>
         <div class="row-title" style="margin-top:10px;">30 min før oppvarming</div>
-        <div class="row"><span class="row-dot">·</span> 8 seigmenn + 2 dl saft = <strong>~49g karbs</strong></div>
+        <div class="row"><span class="row-dot">·</span> 4 seigmenn + 2 dl saft = <strong>~53g karbs</strong></div>
         <div class="divider"></div>
         <div class="row-title">Oppvarming (30 min inkl. løp dit)</div>
         <div class="row"><span class="row-dot">·</span> 20 min jogg dit @ 5:30/km</div>
@@ -395,11 +356,11 @@
         <div class="row"><span class="row-dot">·</span> 2 min rolig pust</div>
         <div class="divider"></div>
         <div class="row-title">Intervall</div>
-        <div class="kval-box kval-rad">
-          <div class="kval-main">10 × 400m @ 74–76 sek</div>
-          <div class="kval-sub">Pace: 3:05–3:10/km · 75 sek stående hvile</div>
-          <div class="kval-warn">Jakob-prinsipp: siste rep = første rep</div>
-          <div class="kval-borg">Borg 18–19</div>
+        <div class="kval-box kval-terskel">
+          <div class="kval-main">15–20 × 400m @ 84 sek</div>
+          <div class="kval-sub">Pace: 3:30/km (10k-pace) · 1 min stående hvile</div>
+          <div class="kval-warn">Terskelarbeid i forkledd – samme prinsipp som Jakob 25×400m</div>
+          <div class="kval-borg">Borg 16–17</div>
         </div>
         <div class="divider"></div>
         <div class="row-title">Nedvarming</div>
@@ -431,7 +392,7 @@
         <div class="row"><span class="row-dot">·</span> Havregrøt med banan og honning (~100g karbs)</div>
         <div class="row"><span class="row-dot">·</span> Brød med syltetøy + juice (~80g karbs)</div>
         <div class="row-title" style="margin-top:10px;">30 min før oppvarming</div>
-        <div class="row"><span class="row-dot">·</span> 8 seigmenn + 2 dl saft = <strong>~49g karbs</strong></div>
+        <div class="row"><span class="row-dot">·</span> 4 seigmenn + 2 dl saft = <strong>~53g karbs</strong></div>
         <div class="divider"></div>
         <div class="row-title">Oppvarming (15 min)</div>
         <div class="row"><span class="row-dot">·</span> 10 min rolig jogg @ 5:30/km</div>
@@ -499,12 +460,12 @@
   <div class="section">
     <div class="section-title">Skorotasjon</div>
     <div class="sko-grid">
-      <div class="sko-card"><div class="sko-okt">Terskel</div><div class="sko-name">Sky Tokyo / VF2</div></div>
-      <div class="sko-card"><div class="sko-okt">1000m / 600m</div><div class="sko-name">VF2</div></div>
-      <div class="sko-card star"><div class="sko-okt">400m + konkurranse</div><div class="sko-name">Sky Tokyo ★</div></div>
-      <div class="sko-card"><div class="sko-okt">Bakke + fartlek</div><div class="sko-name">VF2 / CTM</div></div>
-      <div class="sko-card"><div class="sko-okt">Fjellveien</div><div class="sko-name">CTM / Speedgoat 6</div></div>
-      <div class="sko-card"><div class="sko-okt">Alt annet</div><div class="sko-name">Clifton</div></div>
+      <div class="sko-card race"><div class="sko-okt">🔴 Race / 400m</div><div class="sko-name">Sky Tokyo ★</div></div>
+      <div class="sko-card intervall"><div class="sko-okt">🟠 Intervall (1000m)</div><div class="sko-name">VF2</div></div>
+      <div class="sko-card intervall"><div class="sko-okt">🟠 Terskel / bakke</div><div class="sko-name">VF2 / Sky Tokyo</div></div>
+      <div class="sko-card tempo"><div class="sko-okt">🟡 Fartlek / tempo</div><div class="sko-name">VF2 / CTM Ultra 3</div></div>
+      <div class="sko-card rolig"><div class="sko-okt">🟢 Fjellveien</div><div class="sko-name">CTM / Speedgoat 6</div></div>
+      <div class="sko-card rolig"><div class="sko-okt">🟢 Rolig / hverdagsløp</div><div class="sko-name">Clifton</div></div>
     </div>
   </div>
 </div>
@@ -515,14 +476,14 @@
     <div class="section-title">Viktige økter – fuel opp</div>
     <div class="fuel-card">
       <div class="fuel-card-title">30 min FØR oppvarming</div>
-      <div class="fuel-total">~49–55g karbs totalt</div>
-      <div class="row"><span class="row-dot">·</span> 8–10 seigmenn (~24–30g karbs)</div>
+      <div class="fuel-total">~53g karbs totalt</div>
+      <div class="row"><span class="row-dot">·</span> 4 seigmenn (28g karbs)</div>
       <div class="row"><span class="row-dot">·</span> 2 dl saft (25g karbs)</div>
-      <div class="fuel-note">Gjelder: 1000m, 600m, 400m, bakke, konkurranse</div>
+      <div class="fuel-note">Gjelder: 1000m, 400m, bakke, konkurranse</div>
     </div>
     <div class="fuel-card">
       <div class="fuel-card-title">Under lange viktige økter</div>
-      <div class="row"><span class="row-dot">·</span> Mellom rep 3–4 på 1000m: 4–5 seigmenn (~12–15g)</div>
+      <div class="row"><span class="row-dot">·</span> Mellom rep 3–4 på 1000m: 2 seigmenn (14g)</div>
     </div>
   </div>
 
@@ -532,6 +493,60 @@
       <div class="fuel-card-title">Ingen spesiell fueling nødvendig</div>
       <div class="row"><span class="row-dot">·</span> Normalt måltid 2–3t før holder</div>
       <div class="row"><span class="row-dot">·</span> Rolig langtur over 50 min: 2 dl saft hvert 20. min</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Halvmaraton – 1:20 (3:47/km)</div>
+    <div class="fuel-card" style="border-left: 4px solid #1a6bb5;">
+      <div class="fuel-card-title">Kvelden før</div>
+      <div class="fuel-total">400–500g karbs</div>
+      <div class="row"><span class="row-dot">·</span> Stor pasta/ris-middag (150–200g tørr pasta)</div>
+      <div class="row"><span class="row-dot">·</span> Juice til middag (2–3 dl)</div>
+      <div class="row"><span class="row-dot">·</span> Unngå fett, fiber og alkohol</div>
+    </div>
+    <div class="fuel-card" style="border-left: 4px solid #1a6bb5;">
+      <div class="fuel-card-title">3 timer før start</div>
+      <div class="fuel-total">~130g karbs</div>
+      <div class="row"><span class="row-dot">·</span> Havregrøt (100g tørr) + banan + honning – ~100g karbs</div>
+      <div class="row"><span class="row-dot">·</span> 2 dl juice – ~25g karbs</div>
+      <div class="row"><span class="row-dot">·</span> Unngå mye fett og fiber</div>
+    </div>
+    <div class="fuel-card" style="border-left: 4px solid #fd7e14;">
+      <div class="fuel-card-title">60 min før start</div>
+      <div class="fuel-total">25g karbs</div>
+      <div class="row"><span class="row-dot">·</span> 2 dl saft (25g) – rolig inntak</div>
+    </div>
+    <div class="fuel-card" style="border-left: 4px solid #fd7e14;">
+      <div class="fuel-card-title">15 min før startskuddet</div>
+      <div class="fuel-total">28g karbs</div>
+      <div class="row"><span class="row-dot">·</span> 4 seigmenn (28g) – rask energi rett før start</div>
+    </div>
+    <div class="fuel-card" style="border-left: 4px solid #dc3545;">
+      <div class="fuel-card-title">Under løpet – kun sportsdrikk</div>
+      <div class="fuel-total">Mål: 80–90g karbs/time · ~107–120g totalt</div>
+      <div class="row"><span class="row-dot">·</span> Drikk på <strong>alle</strong> drikkeposter – ikke hopp over noen</div>
+      <div class="row"><span class="row-dot">·</span> Ta 2.5–3 dl per post (ikke bare en slurk)</div>
+      <div class="row"><span class="row-dot">·</span> Sportsdrikk @ 6g/100ml: 275ml × 5 poster = <strong>~83g karbs</strong></div>
+      <div class="row"><span class="row-dot">·</span> Typisk poster: km 5, 8, 12, 16, 19</div>
+      <div class="row"><span class="row-dot">·</span> Siste post (km 19): drikk vann, sportsdrikk hjelper ikke lenger</div>
+      <div class="fuel-note">Seigmenn droppes under løpet – sportsdrikk holder med god oppfueling før start</div>
+    </div>
+    <div class="fuel-card" style="border-left: 4px solid #28a745;">
+      <div class="fuel-card-title">Etter løpet (innen 30 min)</div>
+      <div class="fuel-total">~97g karbs + protein</div>
+      <div class="row"><span class="row-dot">·</span> 5 dl saft (62g karbs)</div>
+      <div class="row"><span class="row-dot">·</span> 5 seigmenn (35g karbs)</div>
+      <div class="row"><span class="row-dot">·</span> Deretter skikkelig måltid innen 60–90 min</div>
+    </div>
+    <div class="fuel-card">
+      <div class="fuel-card-title">Totalt karbs halvmaraton</div>
+      <div class="row"><span class="row-dot">·</span> Kvelden før: ~450g</div>
+      <div class="row"><span class="row-dot">·</span> Frokost: ~130g</div>
+      <div class="row"><span class="row-dot">·</span> 60 min før: 25g</div>
+      <div class="row"><span class="row-dot">·</span> 15 min før startskuddet: 28g</div>
+      <div class="row"><span class="row-dot">·</span> Under (sportsdrikk): ~83g</div>
+      <div class="row"><span class="row-dot">·</span> Etter: ~97g</div>
     </div>
   </div>
 
@@ -547,13 +562,605 @@
     <div class="section-title">Quickref</div>
     <div class="fuel-card">
       <div class="row"><span class="row-dot">·</span> Saft: 12.5g karbs / 100ml</div>
-      <div class="row"><span class="row-dot">·</span> Seigmenn: ~3g karbs / stk</div>
+      <div class="row"><span class="row-dot">·</span> Seigmenn: 7g karbs / stk</div>
     </div>
   </div>
 </div>
 
+<!-- SIDE: UKEPLANER -->
+<div class="page" id="ukeplaner">
+  <div class="section">
+    <div class="section-title">Eksempel – mest robust (ca. 10 timer)</div>
+  </div>
+
+  <!-- UKE 1 -->
+  <div class="section">
+    <div class="section-title">Uke 1 – Standard struktur</div>
+
+    <div class="card">
+      <div class="card-header hdr-terskel" onclick="toggle('u1t','u1tc')">
+        <div class="card-left">
+          <div class="title">Tirsdag: Terskelintervaller</div>
+          <div class="sub">📍 Ludebryggen · Sky Tokyo / VF2</div>
+        </div>
+        <div class="right-side"><span class="badge">T</span><span class="chevron" id="u1tc">›</span></div>
+      </div>
+      <div class="card-body" id="u1t">
+        <div class="row-title">Oppvarming (25 min)</div>
+        <div class="row"><span class="row-dot">·</span> 15 min jogg @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> Benhev, hofteåpner, A-skip (5 min)</div>
+        <div class="row"><span class="row-dot">·</span> 3× 80m stigningsløp – rett før dragene</div>
+        <div class="divider"></div>
+        <div class="kval-box kval-terskel">
+          <div class="kval-main">5 × 8 min @ 3:45/km</div>
+          <div class="kval-sub">90 sek jogg hvile · Borg 15–16</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming + tøying</div>
+        <div class="row"><span class="row-dot">·</span> 8 min jogg + 2 min gange</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer, hamstring, legg 45 sek × 2</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-intervall" onclick="toggle('u1i','u1ic')">
+        <div class="card-left">
+          <div class="title">Fredag: 1000m intervaller</div>
+          <div class="sub">📍 Skansemyren · VF2</div>
+        </div>
+        <div class="right-side"><span class="badge">I</span><span class="chevron" id="u1ic">›</span></div>
+      </div>
+      <div class="card-body" id="u1i">
+        <div class="fuel-tag">⚡ Fuelup: 4 seigmenn + 2dl saft</div>
+        <div class="row-title">Oppvarming (20–25 min inkl. løp dit)</div>
+        <div class="row"><span class="row-dot">·</span> 15 min jogg dit @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> A-skip, B-skip, hofteåpner (5 min)</div>
+        <div class="row"><span class="row-dot">·</span> 3× 100m stigningsløp – rett før dragene</div>
+        <div class="divider"></div>
+        <div class="kval-box kval-intervall">
+          <div class="kval-main">6 × 1000m @ 3:22/km</div>
+          <div class="kval-sub">90 sek stående hvile · Borg 17</div>
+          <div class="kval-warn">Start rolig – siste rep = første rep</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming + tøying</div>
+        <div class="row"><span class="row-dot">·</span> 10 min jogg hjem</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer, hamstring, legg, quad, pirifomis</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-rolig" onclick="toggle('u1r','u1rc')">
+        <div class="card-left">
+          <div class="title">Søndag: Rolig langtur</div>
+          <div class="sub">📍 Fjellveien · CTM / Speedgoat</div>
+        </div>
+        <div class="right-side"><span class="badge">R</span><span class="chevron" id="u1rc">›</span></div>
+      </div>
+      <div class="card-body" id="u1r">
+        <div class="kval-box kval-rolig">
+          <div class="kval-main">75–90 min @ 5:15–5:30/km</div>
+          <div class="kval-sub">Løp på følelse · Borg 11–12</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Under (over 60 min)</div>
+        <div class="row"><span class="row-dot">·</span> 2 dl saft hvert 20. min fra min 20</div>
+        <div class="row-title" style="margin-top:8px;">Tøying</div>
+        <div class="row"><span class="row-dot">·</span> Legg 60 sek × 2 · Hoftebøyer · Hamstring · Pirifomis</div>
+      </div>
+    </div>
+
+    <div class="info-card" style="margin-top:10px;">
+      <div style="font-size:13px;color:#666;">Andre dager: 2–4 rolige turer 30–50 min</div>
+    </div>
+  </div>
+
+  <!-- UKE 2 -->
+  <div class="section">
+    <div class="section-title">Uke 2 – 400m race pace</div>
+
+    <div class="card">
+      <div class="card-header hdr-terskel" onclick="toggle('u2t','u2tc')">
+        <div class="card-left">
+          <div class="title">Tirsdag: Terskelintervaller</div>
+          <div class="sub">📍 Ludebryggen · Sky Tokyo / VF2</div>
+        </div>
+        <div class="right-side"><span class="badge">T</span><span class="chevron" id="u2tc">›</span></div>
+      </div>
+      <div class="card-body" id="u2t">
+        <div class="row-title">Oppvarming (25 min)</div>
+        <div class="row"><span class="row-dot">·</span> 15 min jogg @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> Benhev, hofteåpner, A-skip (5 min)</div>
+        <div class="row"><span class="row-dot">·</span> 3× 80m stigningsløp – rett før dragene</div>
+        <div class="divider"></div>
+        <div class="kval-box kval-terskel">
+          <div class="kval-main">5 × 8 min @ 3:45/km</div>
+          <div class="kval-sub">90 sek jogg hvile · Borg 15–16</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming + tøying</div>
+        <div class="row"><span class="row-dot">·</span> 8 min jogg + 2 min gange</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer, hamstring, legg 45 sek × 2</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-terskel" onclick="toggle('u2f','u2fc')">
+        <div class="card-left">
+          <div class="title">Fredag: 400m race pace</div>
+          <div class="sub">📍 Skansemyren · VF2</div>
+        </div>
+        <div class="right-side"><span class="badge">R</span><span class="chevron" id="u2fc">›</span></div>
+      </div>
+      <div class="card-body" id="u2f">
+        <div class="fuel-tag">⚡ Fuelup: 4 seigmenn + 2dl saft</div>
+        <div class="row-title">Oppvarming (30 min inkl. løp dit)</div>
+        <div class="row"><span class="row-dot">·</span> 20 min jogg dit @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> A-skip, B-skip, hofteåpner (5 min)</div>
+        <div class="row"><span class="row-dot">·</span> 3× 100m stigningsløp – rett før dragene</div>
+        <div class="divider"></div>
+        <div class="kval-box kval-terskel">
+          <div class="kval-main">15–20 × 400m @ 84 sek</div>
+          <div class="kval-sub">Pace: 3:30/km · 1 min stående hvile · Borg 16–17</div>
+          <div class="kval-warn">Terskelarbeid i forkledd – Jakob-prinsipp</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming + tøying</div>
+        <div class="row"><span class="row-dot">·</span> 10 min jogg hjem + 5 min gange</div>
+        <div class="row"><span class="row-dot">·</span> Legg 60 sek × 2 · Hamstring · Hoftebøyer · Quad</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-rolig" onclick="toggle('u2r','u2rc')">
+        <div class="card-left">
+          <div class="title">Søndag: Rolig langtur</div>
+          <div class="sub">📍 Fjellveien · CTM / Speedgoat</div>
+        </div>
+        <div class="right-side"><span class="badge">R</span><span class="chevron" id="u2rc">›</span></div>
+      </div>
+      <div class="card-body" id="u2r">
+        <div class="kval-box kval-rolig">
+          <div class="kval-main">75–90 min @ 5:15–5:30/km</div>
+          <div class="kval-sub">Løp på følelse · Borg 11–12</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Under (over 60 min)</div>
+        <div class="row"><span class="row-dot">·</span> 2 dl saft hvert 20. min fra min 20</div>
+        <div class="row-title" style="margin-top:8px;">Tøying</div>
+        <div class="row"><span class="row-dot">·</span> Legg 60 sek × 2 · Hoftebøyer · Hamstring · Pirifomis</div>
+      </div>
+    </div>
+
+    <div class="info-card" style="margin-top:10px;">
+      <div style="font-size:13px;color:#666;">Andre dager: 2–4 rolige turer 30–50 min</div>
+    </div>
+  </div>
+
+  <!-- UKE 3 -->
+  <div class="section">
+    <div class="section-title">Uke 3 – Bakke og styrke</div>
+
+    <div class="card">
+      <div class="card-header hdr-terskel" onclick="toggle('u3t','u3tc')">
+        <div class="card-left">
+          <div class="title">Tirsdag: Terskelintervaller</div>
+          <div class="sub">📍 Ludebryggen · Sky Tokyo / VF2</div>
+        </div>
+        <div class="right-side"><span class="badge">T</span><span class="chevron" id="u3tc">›</span></div>
+      </div>
+      <div class="card-body" id="u3t">
+        <div class="row-title">Oppvarming (25 min)</div>
+        <div class="row"><span class="row-dot">·</span> 15 min jogg @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> Benhev, hofteåpner, A-skip (5 min)</div>
+        <div class="row"><span class="row-dot">·</span> 3× 80m stigningsløp – rett før dragene</div>
+        <div class="divider"></div>
+        <div class="kval-box kval-terskel">
+          <div class="kval-main">5 × 8 min @ 3:45/km</div>
+          <div class="kval-sub">90 sek jogg hvile · Borg 15–16</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming + tøying</div>
+        <div class="row"><span class="row-dot">·</span> 8 min jogg + 2 min gange</div>
+        <div class="row"><span class="row-dot">·</span> Hoftebøyer, hamstring, legg 45 sek × 2</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-rad" onclick="toggle('u3b','u3bc')">
+        <div class="card-left">
+          <div class="title">Fredag: Bakkeintervaller</div>
+          <div class="sub">📍 Asfaltbakke 5–8% · VF2 / CTM</div>
+        </div>
+        <div class="right-side"><span class="badge">B</span><span class="chevron" id="u3bc">›</span></div>
+      </div>
+      <div class="card-body" id="u3b">
+        <div class="fuel-tag">⚡ Fuelup: 4 seigmenn + 2dl saft</div>
+        <div class="row-title">Oppvarming (15 min)</div>
+        <div class="row"><span class="row-dot">·</span> 10 min jogg @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> Benhev, hofteåpner, A-skip (3 min)</div>
+        <div class="row"><span class="row-dot">·</span> 2× lett bakkeakselerasjon</div>
+        <div class="divider"></div>
+        <div class="kval-box kval-rad">
+          <div class="kval-main">2 × 6 × 200m bakke</div>
+          <div class="kval-sub">~42 sek opp · 90 sek jogg ned · 4–5 min mellom sett</div>
+          <div class="kval-warn">8–10 mmol laktat · Borg 17–18</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Nedvarming + tøying</div>
+        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg ned</div>
+        <div class="row"><span class="row-dot">·</span> Legg 60 sek × 2 · Hoftebøyer · Hamstring · Quad</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-rolig" onclick="toggle('u3r','u3rc')">
+        <div class="card-left">
+          <div class="title">Søndag: Rolig langtur</div>
+          <div class="sub">📍 Fjellveien · CTM / Speedgoat</div>
+        </div>
+        <div class="right-side"><span class="badge">R</span><span class="chevron" id="u3rc">›</span></div>
+      </div>
+      <div class="card-body" id="u3r">
+        <div class="kval-box kval-rolig">
+          <div class="kval-main">75–90 min @ 5:15–5:30/km</div>
+          <div class="kval-sub">Løp på følelse · Borg 11–12</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Under (over 60 min)</div>
+        <div class="row"><span class="row-dot">·</span> 2 dl saft hvert 20. min fra min 20</div>
+        <div class="row-title" style="margin-top:8px;">Tøying</div>
+        <div class="row"><span class="row-dot">·</span> Legg 60 sek × 2 · Hoftebøyer · Hamstring · Pirifomis</div>
+      </div>
+    </div>
+
+    <div class="info-card" style="margin-top:10px;">
+      <div style="font-size:13px;color:#666;">Andre dager: 2–4 rolige turer 30–50 min</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Hver 4.–5. uke</div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:6px;">Fredag bytter til:</div>
+      <div class="row"><span class="row-dot">·</span> 15–20 × 400m @ 84 sek i stedet for bakkeintervaller</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SIDE: STYRKETRENING -->
+<div class="page" id="styrke">
+  <div class="section">
+    <div class="section-title">Jakobs opplegg – 4 økter per uke</div>
+    <div class="info-card">
+      <div class="row"><span class="row-dot">·</span> Mandag + onsdag: Drills, mobilitet, plyometrikk</div>
+      <div class="row"><span class="row-dot">·</span> Fredag + søndag: Løft med vekter</div>
+      <div class="row"><span class="row-dot">·</span> Fredag: 2 sett (mellom rolige turer)</div>
+      <div class="row"><span class="row-dot">·</span> Søndag: 3 sett (selvstendig økt, kveld)</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Mandag – Drills og mobilitet</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('s1','s1c')">
+        <div class="card-left">
+          <div class="title">Drills + stairwork + strides</div>
+          <div class="sub">10km rolig ER oppvarmingen – drills etter</div>
+        </div>
+        <div class="right-side"><span class="badge">D</span><span class="chevron" id="s1c">›</span></div>
+      </div>
+      <div class="card-body" id="s1">
+        <div class="row-title">Jakobs opplegg</div>
+        <div class="row"><span class="row-dot">·</span> 5–6 dynamiske bevegelser og skips (varierer per sesong)</div>
+        <div class="row"><span class="row-dot">·</span> Trappearbeid: eksplosive step-ups og høye kneløft oppover trapp – sagittal kraft og fleksibilitet</div>
+        <div class="row"><span class="row-dot">·</span> Strides for å aktivere hurtige muskelfibre</div>
+        <div class="divider"></div>
+        <div class="row-title">Tilpasning for deg – etter rolig løpetur</div>
+        <div class="row"><span class="row-dot">·</span> A-skip, B-skip (3 × 20m) – direkte relevant for løpsøkonomi</div>
+        <div class="row"><span class="row-dot">·</span> Høye kneløft opp trapp eller bratt bakke (3 × 10 steg) – erstatter Jakobs trappearbeid</div>
+        <div class="row"><span class="row-dot">·</span> Enkeltbein-hopp opp trapp (3 × 5 per side)</div>
+        <div class="row"><span class="row-dot">·</span> 4× strides: gradvis akselerasjon over 60m – bygg opp til ~3:00/km, hold 2–3 sek, rolig ned. Ikke rett på toppfart.</div>
+        <div class="row"><span class="row-dot">·</span> Ingen nedvarming nødvendig etter drills og strides</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Onsdag – Plyometrikk</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('s2','s2c')">
+        <div class="card-left">
+          <div class="title">Vertikale hopp og eksplosivitet</div>
+          <div class="sub">10km rolig ER oppvarmingen – hopp etter</div>
+        </div>
+        <div class="right-side"><span class="badge">P</span><span class="chevron" id="s2c">›</span></div>
+      </div>
+      <div class="card-body" id="s2">
+        <div class="row-title">Jakobs opplegg</div>
+        <div class="row"><span class="row-dot">·</span> Fokus på vertikale hopp og eksplosivitet</div>
+        <div class="row"><span class="row-dot">·</span> Annerledes fokus enn mandagens laterale drills</div>
+        <div class="divider"></div>
+        <div class="row-title">Tilpasning for deg – etter rolig løpetur</div>
+        <div class="row"><span class="row-dot">·</span> Box jumps 3 × 6 – eksplosivt opp, rolig ned</div>
+        <div class="row"><span class="row-dot">·</span> Enkeltbeinhopp 3 × 5 per side</div>
+        <div class="row"><span class="row-dot">·</span> Ingen nedvarming nødvendig etter hopp</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Fredag + søndag – Vektløfting</div>
+    <div class="info-card">
+      <div style="font-size:13px;color:#666;margin-bottom:8px;">Fredag: 2 sett · Søndag: 3 sett · Samme 5 øvelser begge dager</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('s3','s3c')">
+        <div class="card-left">
+          <div class="title">Jakobs 5-øvelses rutine</div>
+          <div class="sub">RIR 3–4 · Aldri til failure</div>
+        </div>
+        <div class="right-side"><span class="badge">V</span><span class="chevron" id="s3c">›</span></div>
+      </div>
+      <div class="card-body" id="s3">
+        <div class="kval-box kval-lilla">
+          <div class="kval-main">1. Quarter squats</div>
+          <div class="kval-sub">8 reps · Øk vekt per sett · Kun kvart knebøy</div>
+        </div>
+        <div class="kval-box kval-lilla" style="margin-top:6px;">
+          <div class="kval-main">2. Weighted lunges</div>
+          <div class="kval-sub">6 reps per bein · Øk vekt per sett</div>
+        </div>
+        <div class="kval-box kval-lilla" style="margin-top:6px;">
+          <div class="kval-main">3. Step-ups</div>
+          <div class="kval-sub">6 reps per bein · Kasse eller benk</div>
+        </div>
+        <div class="kval-box kval-lilla" style="margin-top:6px;">
+          <div class="kval-main">4. Standing calf raises</div>
+          <div class="kval-sub">8 reps · Viktig for akilles og løpsøkonomi</div>
+        </div>
+        <div class="kval-box kval-lilla" style="margin-top:6px;">
+          <div class="kval-main">5. Romanian deadlift</div>
+          <div class="kval-sub">6 reps · Hamstring og hofte</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Intensitet og utmattelse</div>
+        <div class="row"><span class="row-dot">·</span> Mål: RIR 3–4 – ha 3–4 reps igjen i tanken på hvert sett</div>
+        <div class="row"><span class="row-dot">·</span> Aldri til failure – målet er nevromuskulær aktivering, ikke hypertrofi</div>
+        <div class="row"><span class="row-dot">·</span> Du skal ikke være utslitt etter styrke – lett pumpe og aktivert, ikke ødelagt</div>
+        <div class="row"><span class="row-dot">·</span> Eksplosive og kontrollerte bevegelser – ikke rush teknikken</div>
+        <div class="divider"></div>
+        <div class="row-title">Kortversjon – dårlige dager / lite tid</div>
+        <div class="row"><span class="row-dot">·</span> Kun for dager med sykdom, overtretthet eller ekstrem tidsmangel</div>
+        <div class="row"><span class="row-dot">·</span> 1 sett per øvelse i stedet for 2–3</div>
+        <div class="row"><span class="row-dot">·</span> 60–70% av vanlig vekt – ikke kortere pauser</div>
+        <div class="row"><span class="row-dot">·</span> Beholder stimulansen uten å belaste kroppen unødvendig</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Tilpasning for deg (2× per uke)</div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:6px;">Anbefalt: onsdag + lørdag etter rolig jogg</div>
+      <div class="row"><span class="row-dot">·</span> Start med 2 sett per øvelse, bygg gradvis til 3</div>
+      <div class="row"><span class="row-dot">·</span> Aldri styrke dagen før en intervalløkt</div>
+      <div class="row"><span class="row-dot">·</span> Vanlig trening: normal vekt, 2–3 sett – kortversjon er kun unntaket</div>
+    </div>
+  </div>
+</div>
+
+<!-- SIDE: FORMTOPPING -->
+<div class="page" id="formtopping">
+
+  <div class="section">
+    <div class="section-title">Filosofi – ikke test formen i trening</div>
+    <div class="principle-card">
+      <div class="row"><span class="row-dot">·</span> Jakob: "Vi er som bønder – vi drar ikke opp gulroten før løpsdagen"</div>
+    </div>
+    <div class="principle-card">
+      <div class="row"><span class="row-dot">·</span> Almgrens coach: "Er du sikker på at du trenger det siste intervallet?" – ankom starten frisk</div>
+    </div>
+    <div class="principle-card">
+      <div class="row"><span class="row-dot">·</span> Kipchoge: Ingen tradisjonell taper – holder volum til siste uke. Tillit til treningen er nok</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">2 uker før løpet – fitnessjekk</div>
+    <div class="card">
+      <div class="card-header hdr-intervall" onclick="toggle('f1','f1c')">
+        <div class="card-left">
+          <div class="title">Almgren-sjekk: 3 × 2km</div>
+          <div class="sub">📍 Skansemyren · VF2</div>
+        </div>
+        <div class="right-side"><span class="badge">I</span><span class="chevron" id="f1c">›</span></div>
+      </div>
+      <div class="card-body" id="f1">
+        <div class="row-title">Formål</div>
+        <div class="row"><span class="row-dot">·</span> Sjekk om kroppen er klar for løp – ikke prestasjonsøkt</div>
+        <div class="row"><span class="row-dot">·</span> Almgren brukte 3×3km – tilpasset for ditt nivå: 3×2km</div>
+        <div class="divider"></div>
+        <div class="kval-box kval-intervall">
+          <div class="kval-main">3 × 2km @ 3:35–3:40/km</div>
+          <div class="kval-sub">2 min stående hvile · Litt raskere enn terskel</div>
+          <div class="kval-warn">Kjennes pace kontrollert? – Du er klar. Sliter du? – Rolig til løpet</div>
+          <div class="kval-borg">Borg 16–17</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Oppvarming (20 min)</div>
+        <div class="row"><span class="row-dot">·</span> 15 min rolig jogg + drills + 2× strides</div>
+        <div class="row-title" style="margin-top:8px;">Nedvarming</div>
+        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg hjem</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">1 uke før løpet – race readiness</div>
+    <div class="card">
+      <div class="card-header hdr-terskel" onclick="toggle('f2','f2c')">
+        <div class="card-left">
+          <div class="title">Almgren race-prep: 6 × 1km race pace</div>
+          <div class="sub">📍 Skansemyren · Sky Tokyo</div>
+        </div>
+        <div class="right-side"><span class="badge">R</span><span class="chevron" id="f2c">›</span></div>
+      </div>
+      <div class="card-body" id="f2">
+        <div class="row-title">Formål</div>
+        <div class="row"><span class="row-dot">·</span> Kjenn at race pace sitter uten å tømme deg</div>
+        <div class="row"><span class="row-dot">·</span> Almgren kjørte 10×1km – tilpasset for deg: 6×1km</div>
+        <div class="divider"></div>
+        <div class="kval-box kval-terskel">
+          <div class="kval-main">6 × 1km @ 3:30/km (race pace)</div>
+          <div class="kval-sub">1 min stående hvile · Jevnt og kontrollert</div>
+          <div class="kval-warn">Ikke kjør deg ut – start rolig, hold pace</div>
+          <div class="kval-borg">Borg 16–17</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Oppvarming (20 min)</div>
+        <div class="row"><span class="row-dot">·</span> 15 min rolig jogg + drills + 3× strides</div>
+        <div class="row-title" style="margin-top:8px;">Nedvarming</div>
+        <div class="row"><span class="row-dot">·</span> 10 min rolig jogg</div>
+        <div class="row"><span class="row-dot">·</span> Tøying: legg, hamstring, hoftebøyer</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Dagene rett før løpet</div>
+    <div class="card">
+      <div class="card-header hdr-rolig" onclick="toggle('f3','f3c')">
+        <div class="card-left">
+          <div class="title">2 dager før: lett løp + strides</div>
+          <div class="sub">Ingen hard trening</div>
+        </div>
+        <div class="right-side"><span class="badge">R</span><span class="chevron" id="f3c">›</span></div>
+      </div>
+      <div class="card-body" id="f3">
+        <div class="kval-box kval-rolig">
+          <div class="kval-main">20–30 min rolig @ 5:30/km</div>
+          <div class="kval-sub">+ 4–6× strides mot slutten</div>
+          <div class="kval-borg">Borg 11–12 · Strides: gradvis opp til ~3:00/km, hold 2 sek</div>
+        </div>
+        <div class="row-title" style="margin-top:8px;">Jakob – tidlig/midsesong</div>
+        <div class="row"><span class="row-dot">·</span> 6× korte bakkedrag @ 95% med full hvile – aktiverer hurtige muskelfibre</div>
+        <div class="row-title" style="margin-top:8px;">Jakob – sen sesong (store løp)</div>
+        <div class="row"><span class="row-dot">·</span> 3×100m + 2×150m i race pace – enkel og spesifikk</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-rolig" onclick="toggle('f4','f4c')">
+        <div class="card-left">
+          <div class="title">Dagen før: kort shakeout</div>
+          <div class="sub">Bare beina i gang</div>
+        </div>
+        <div class="right-side"><span class="badge">R</span><span class="chevron" id="f4c">›</span></div>
+      </div>
+      <div class="card-body" id="f4">
+        <div class="kval-box kval-rolig">
+          <div class="kval-main">15–20 min rolig jogg @ 5:30–5:45/km</div>
+          <div class="kval-sub">Valgfritt: 2–3× korte strides</div>
+          <div class="kval-borg">Borg 10–11 · Fokus på å kjenne seg løs og lett</div>
+        </div>
+        <div class="row-title" style="margin-top:8px;">Ikke gjør</div>
+        <div class="row"><span class="row-dot">·</span> Ingen intervaller, ingen terskel, ingen styrke</div>
+        <div class="row"><span class="row-dot">·</span> Ikke mye gåing eller stående – hvil beina</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Løpsdagen – oppvarming</div>
+    <div class="card">
+      <div class="card-header hdr-terskel" onclick="toggle('f5','f5c')">
+        <div class="card-left">
+          <div class="title">Oppvarming 10k-løp</div>
+          <div class="sub">Start 30–40 min før pistol</div>
+        </div>
+        <div class="right-side"><span class="badge">★</span><span class="chevron" id="f5c">›</span></div>
+      </div>
+      <div class="card-body" id="f5">
+        <div class="row-title">Struktur (Jakob-inspirert)</div>
+        <div class="row"><span class="row-dot">·</span> 10–12 min rolig jogg @ 5:30/km</div>
+        <div class="row"><span class="row-dot">·</span> 5 min drills: A-skip, B-skip, benhev, hofteåpner</div>
+        <div class="row"><span class="row-dot">·</span> 3× strides med gradvis akselerasjon (60m) – siste stride nær race pace</div>
+        <div class="row"><span class="row-dot">·</span> 2 min rolig pust / shake out</div>
+        <div class="divider"></div>
+        <div class="row-title">Alternativ (kortere)</div>
+        <div class="row"><span class="row-dot">·</span> 8 min jogg + drills + 2× strides – hvis det er kaldt eller trangt</div>
+        <div class="divider"></div>
+        <div class="row-title">Fueling løpsdag</div>
+        <div class="row"><span class="row-dot">·</span> 3t før: havregrøt + juice (~130g karbs)</div>
+        <div class="row"><span class="row-dot">·</span> 60 min før: 2 dl saft (25g)</div>
+        <div class="row"><span class="row-dot">·</span> 15 min før startskuddet: 4 seigmenn (28g)</div>
+        <div class="row"><span class="row-dot">·</span> Under løpet (10k): ingenting nødvendig – under 40 min</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Etter løpet</div>
+    <div class="fuel-card">
+      <div class="fuel-card-title">Umiddelbart etter (innen 30 min)</div>
+      <div class="row"><span class="row-dot">·</span> 5 dl saft (62g) + 5 seigmenn (35g) = ~97g karbs</div>
+      <div class="row"><span class="row-dot">·</span> Lett nedvarming 5–10 min gange</div>
+    </div>
+    <div class="fuel-card">
+      <div class="fuel-card-title">Kipchoge – dagene etter</div>
+      <div class="row"><span class="row-dot">·</span> 4 rolige dager – sjekk at kroppen er hel</div>
+      <div class="row"><span class="row-dot">·</span> Deretter tilbake til normal trening</div>
+    </div>
+  </div>
+
+</div>
+
 <!-- SIDE: INFO -->
 <div class="page" id="info">
+  <div class="section">
+    <div class="section-title">Prioriteringsliste</div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:8px;">1. Terskelintervaller (5×8 min / lignende)</div>
+      <div class="row" style="font-size:13px;color:#666;margin-bottom:8px;"><span class="row-dot">·</span> Best total effekt for 10k. Bygger motor, tåler høy frekvens.</div>
+    </div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:8px;">2. 1000m intervaller (6–7×1k)</div>
+      <div class="row" style="font-size:13px;color:#666;margin-bottom:8px;"><span class="row-dot">·</span> Mest spesifikk kvalitetsøkt for 10k. Fart + utholdenhet.</div>
+    </div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:8px;">3. Rolig langtur</div>
+      <div class="row" style="font-size:13px;color:#666;margin-bottom:8px;"><span class="row-dot">·</span> Bygger aerob base og restitusjonsevne. Viktig for progresjon.</div>
+    </div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:8px;">4. Fartlek</div>
+      <div class="row" style="font-size:13px;color:#666;margin-bottom:8px;"><span class="row-dot">·</span> Fleksibel og effektiv. Bra miks av terskel og fart.</div>
+    </div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:8px;">5. 400m race pace (Bakken-stil)</div>
+      <div class="row" style="font-size:13px;color:#666;"><span class="row-dot">·</span> Mye tid på 10k-pace. Terskelarbeid i forkledd. Rotasjonsøkt.</div>
+    </div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:8px;">6. Bakkeintervaller</div>
+      <div class="row" style="font-size:13px;color:#666;margin-bottom:8px;"><span class="row-dot">·</span> God styrke og variasjon. Nyttig, men mindre spesifikk.</div>
+    </div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:8px;">7. 400m repetisjoner / råfart</div>
+      <div class="row" style="font-size:13px;color:#666;"><span class="row-dot">·</span> Fin for steg og speed. Lavest direkte verdi for 10k.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Intervallrytme</div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:6px;">Rotasjonsplan for kortere intervaller</div>
+      <div class="row" style="font-size:13px;margin:4px 0;"><span class="row-dot">·</span> Bakkedrag: hver 3. uke</div>
+      <div class="row" style="font-size:13px;margin:4px 0;"><span class="row-dot">·</span> 400m race pace: hver 4.–5. uke</div>
+    </div>
+  </div>
+
   <div class="section">
     <div class="section-title">Borg-skala</div>
     <div class="info-card">
