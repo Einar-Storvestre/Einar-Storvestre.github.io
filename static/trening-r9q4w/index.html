@@ -140,6 +140,8 @@
   <div class="tab" onclick="showPage('ukeplaner',this)">Ukeplaner</div>
   <div class="tab" onclick="showPage('styrke',this)">Styrke</div>
   <div class="tab" onclick="showPage('formtopping',this)">Formtopping</div>
+  <div class="tab" onclick="showPage('piggsko',this)">Piggsko</div>
+  <div class="tab" onclick="showPage('teknikk',this)">Teknikk</div>
   <div class="tab" onclick="showPage('info',this)">Info</div>
 </div>
 
@@ -1193,6 +1195,409 @@
       <div class="row"><span class="row-dot">·</span> Lett å fordøye – viktig 2–3t før hard økt</div>
     </div>
   </div>
+</div>
+
+<!-- SIDE: PIGGSKO -->
+<div class="page" id="piggsko">
+
+  <div class="section">
+    <div class="section-title">Hva er piggsko?</div>
+    <div class="info-card">
+      <div class="row"><span class="row-dot">·</span> Lette sko med metallpigger (6–9 mm) for grep på gress og bløt mark</div>
+      <div class="row"><span class="row-dot">·</span> Brukes kun i trening – konkurranser er på asfalt</div>
+      <div class="row"><span class="row-dot">·</span> Ikke en erstatning for vanlige sko – et supplement for spesifikke økter</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Fordeler for løpesteg og teknikk</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('pg1','pg1c')">
+        <div class="card-left">
+          <div class="title">Løpsøkonomi og teknikk</div>
+          <div class="sub">Hvorfor piggsko forbedrer steget</div>
+        </div>
+        <div class="right-side"><span class="badge">+</span><span class="chevron" id="pg1c">›</span></div>
+      </div>
+      <div class="card-body" id="pg1">
+        <div class="row-title">Forkant-landing</div>
+        <div class="row"><span class="row-dot">·</span> Tåkurven i piggskon tvinger deg opp på forfoten – samme mekanikk Jakob og Kipchoge bruker</div>
+        <div class="row"><span class="row-dot">·</span> Kortere bakkekontakt → raskere stretch-shortening cycle → mer energi tilbake per steg</div>
+        <div class="row"><span class="row-dot">·</span> Trener ankelen og legg til å absorbere støt uten hæl – direkte overføring til sko på asfalt</div>
+        <div class="divider"></div>
+        <div class="row-title">Propriosepsjon og fottøy-feedback</div>
+        <div class="row"><span class="row-dot">·</span> Tynn såle → kroppen registrerer bakken bedre → stiffer ankelledd → mer effektiv kraftoverføring</div>
+        <div class="row"><span class="row-dot">·</span> Bløt mark øker muskelaktivering i fot, legg og hofte sammenlignet med hardt underlag</div>
+        <div class="divider"></div>
+        <div class="row-title">Holdning og kneløft</div>
+        <div class="row"><span class="row-dot">·</span> Lav vekt (150–200g) gjør det naturlig å løfte kneet høyt – reduserer treghet i steget</div>
+        <div class="row"><span class="row-dot">·</span> Fremoverlent posisjon kommer mer naturlig uten tung hæl å kompensere for</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Når bruke piggsko</div>
+    <div class="card">
+      <div class="card-header hdr-rolig" onclick="toggle('pg2','pg2c')">
+        <div class="card-left">
+          <div class="title">Rolige turer – teknikk og propriosepsjon</div>
+          <div class="sub">Gress · Fjellveien · CTM / Speedgoat</div>
+          <div class="dur">10–20 min i piggsko på slutten av turen</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="pg2c">›</span></div>
+      </div>
+      <div class="card-body" id="pg2">
+        <div class="kval-box kval-rolig">
+          <div class="kval-main">Siste 10–15 min av rolig tur i piggsko</div>
+          <div class="kval-sub">Gress eller bløt sti · Rolig pace 5:15–5:30/km</div>
+          <div class="kval-borg">Formål: trene foten, ankelen og propriosepsjon</div>
+        </div>
+        <div class="row-title">Hva du merker</div>
+        <div class="row"><span class="row-dot">·</span> Mer aktivering i legg og fotbunn – er forventet</div>
+        <div class="row"><span class="row-dot">·</span> Du vil naturlig lande lenger fremme på foten</div>
+        <div class="row"><span class="row-dot">·</span> Fokus: lett, høy kadens – ikke presse pace</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('pg3','pg3c')">
+        <div class="card-left">
+          <div class="title">Drills og strides i piggsko</div>
+          <div class="sub">Gress · Etter rolig jogg</div>
+          <div class="dur">15–20 min</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="pg3c">›</span></div>
+      </div>
+      <div class="card-body" id="pg3">
+        <div class="kval-box kval-lilla">
+          <div class="kval-main">Drills + 4–6 × strides i piggsko</div>
+          <div class="kval-sub">Etter 30–40 min rolig jogg i vanlige sko</div>
+        </div>
+        <div class="row-title">Opplegg</div>
+        <div class="row"><span class="row-dot">·</span> A-skip, B-skip, benhev (3 × 20m) – fokus på høy kneløft og stiv ankel</div>
+        <div class="row"><span class="row-dot">·</span> 4–6 × strides 80–100m: gradvis opp til 3:20–3:30/km, hold 3 sek, rolig ned</div>
+        <div class="row"><span class="row-dot">·</span> Lett landing, fremoverlent, kort bakkekontakt – piggskoen forsterker riktig mekanikk</div>
+        <div class="row-title" style="margin-top:8px;">Teknikkmål</div>
+        <div class="row"><span class="row-dot">·</span> Kjenn forskjellen på hæl-landing vs. forfot-landing i strides</div>
+        <div class="row"><span class="row-dot">·</span> Jakob: strides alltid sist i oppvarming – samme prinsipp her</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header hdr-rad" onclick="toggle('pg4','pg4c')">
+        <div class="card-left">
+          <div class="title">Bakkeintervaller i piggsko</div>
+          <div class="sub">Gress eller lett asfalt med stigning · VF2 / Piggsko</div>
+          <div class="dur">Etter 4–6 uker i piggsko</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="pg4c">›</span></div>
+      </div>
+      <div class="card-body" id="pg4">
+        <div class="kval-box kval-rad">
+          <div class="kval-main">6–8 × 60 sek bakke i piggsko</div>
+          <div class="kval-sub">Gressbakke · Jogg ned som hvile · Borg 17–18</div>
+          <div class="kval-warn">Kun etter 4–6 uker med rolig piggsko-eksponering</div>
+        </div>
+        <div class="row-title">Hvorfor</div>
+        <div class="row"><span class="row-dot">·</span> Bakken tvinger deg opp på forfoten uansett – piggskoens mekanikk forsterker dette</div>
+        <div class="row"><span class="row-dot">·</span> Høy kneløft + kraftig armpendel i kombinasjon med forfot-landing = optimal teknikk-trening</div>
+        <div class="row"><span class="row-dot">·</span> Lavere belastning på knær enn asfalt bakkeintervaller</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Hva du må tenke på</div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:6px;">Underlag</div>
+      <div class="row"><span class="row-dot">·</span> Kun på gress, bløt sti eller lett grus – aldri asfalt med piggsko</div>
+      <div class="row"><span class="row-dot">·</span> 6–9 mm pigger for gress og bløt mark</div>
+    </div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:6px;">Kadens og steg</div>
+      <div class="row"><span class="row-dot">·</span> Øk kadensen lett – piggskoen er ment for kortere, raskere steg</div>
+      <div class="row"><span class="row-dot">·</span> Ikke overstretch steget – la foten lande under hoften</div>
+    </div>
+    <div class="info-card">
+      <div style="font-size:13px;font-weight:700;color:#1a6bb5;margin-bottom:6px;">Rotasjon</div>
+      <div class="row"><span class="row-dot">·</span> Aldri to tunge økter på rad i piggsko</div>
+      <div class="row"><span class="row-dot">·</span> Maks 20–25% av ukentlig volum i piggsko når du er innkjørt</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Risiko og hvordan unngå dem</div>
+    <div class="card">
+      <div class="card-header hdr-terskel" onclick="toggle('pg5','pg5c')">
+        <div class="card-left">
+          <div class="title">Risikofaktorer</div>
+          <div class="sub">Hva som kan gå galt og hvordan unngå det</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="pg5c">›</span></div>
+      </div>
+      <div class="card-body" id="pg5">
+        <div class="kval-box kval-terskel">
+          <div class="kval-main">Achilles og legg</div>
+          <div class="kval-sub">Størst risiko – forfot-landing øker belastning på akilles og gastrocnemius</div>
+          <div class="kval-warn">Unngå: bygg gradvis, gjør legg-tøying etter HVER piggsko-økt</div>
+        </div>
+        <div class="kval-box kval-terskel" style="margin-top:6px;">
+          <div class="kval-main">Plantarfasciitt</div>
+          <div class="kval-sub">Tynn såle gir ingen støtabsorpsjon i fotbunn</div>
+          <div class="kval-warn">Unngå: start med korte økter, styrk legg og fotbue gradvis</div>
+        </div>
+        <div class="kval-box kval-terskel" style="margin-top:6px;">
+          <div class="kval-main">Overbelastning av lår og hofte</div>
+          <div class="kval-sub">Ny muskelaktivering = ny belastning</div>
+          <div class="kval-warn">Unngå: ikke piggsko dagen etter hard intervalløkt</div>
+        </div>
+        <div class="divider"></div>
+        <div class="row-title">Innkjøringsprotokoll</div>
+        <div class="row"><span class="row-dot">·</span> Uke 1–2: siste 10 min av rolig tur i piggsko på gress</div>
+        <div class="row"><span class="row-dot">·</span> Uke 3–4: drills + strides i piggsko (ikke intervaller ennå)</div>
+        <div class="row"><span class="row-dot">·</span> Uke 5+: kan introdusere lette bakkeintervaller i piggsko</div>
+        <div class="row"><span class="row-dot">·</span> Tøy alltid legg og akilles etter piggsko-bruk (60 sek × 2)</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SIDE: TEKNIKK -->
+<div class="page" id="teknikk">
+
+  <div class="section">
+    <div class="section-title">Grunnprinsipper</div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Effektiv løping handler om å bruke minst mulig energi per meter – ikke å se imponerende ut</div></div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Kortere bakkekontakt + tilstrekkelig benktivitet = kraftfullt steg uten energisøl</div></div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Alle endringer tar tid – ikke overarbeid teknikken. Øv i drills og strides, la det sette seg</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Holdning og posisjon</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('tk1','tk1c')">
+        <div class="card-left">
+          <div class="title">Kroppslinje og fremoverlening</div>
+          <div class="sub">Jakob · Kipchoge · Almgren</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="tk1c">›</span></div>
+      </div>
+      <div class="card-body" id="tk1">
+        <div class="kval-box kval-lilla">
+          <div class="kval-main">Hofte, thorax og hode i én linje</div>
+          <div class="kval-sub">~5 grader fremoverlent fra midtsteg – ikke fra livet</div>
+        </div>
+        <div class="row-title">Jakob</div>
+        <div class="row"><span class="row-dot">·</span> God oppreist holdning – hoften, brystkassen og hodet i én rett linje</div>
+        <div class="row"><span class="row-dot">·</span> Hodet i nøytral posisjon – ikke nikke, ikke se ned i bakken</div>
+        <div class="row"><span class="row-dot">·</span> Leningen kommer fra anklene, ikke fra livet – unngå "sittende" løping</div>
+        <div class="divider"></div>
+        <div class="row-title">Kipchoge</div>
+        <div class="row"><span class="row-dot">·</span> Oppreist skulder, avslappet nakke – ingenting spenner seg unødvendig</div>
+        <div class="row"><span class="row-dot">·</span> Hodet holdes høyt – ser ca. 20–30m fremover, ikke ned</div>
+        <div class="row-title" style="margin-top:8px;">Praktisk drill</div>
+        <div class="row"><span class="row-dot">·</span> Strides: fokus på å "falle fremover" fra anklene, ikke presse bakover</div>
+        <div class="row"><span class="row-dot">·</span> Sjekk: kan du se horisonten komfortabelt? Da er holdningen riktig</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Armpendel</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('tk2','tk2c')">
+        <div class="card-left">
+          <div class="title">Armer som motor</div>
+          <div class="sub">Kipchoge · Jakob</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="tk2c">›</span></div>
+      </div>
+      <div class="card-body" id="tk2">
+        <div class="kval-box kval-lilla">
+          <div class="kval-main">90 graders bøy · Midtlinjen</div>
+          <div class="kval-sub">Hendene til brystet frem, albuen bak – ikke over midtlinjen</div>
+        </div>
+        <div class="row-title">Kipchoge</div>
+        <div class="row"><span class="row-dot">·</span> Albuer 60–90 grader – korte armer = raskere sving = høyere kadens</div>
+        <div class="row"><span class="row-dot">·</span> Hender nær brystet i frontsving, albuen tilbake til midtlinjen i baksving</div>
+        <div class="row"><span class="row-dot">·</span> Hendene avslappet – løse håndledd, ikke knytt neven (tenk: hold en chips-pose uten å knuse den)</div>
+        <div class="divider"></div>
+        <div class="row-title">Jakob</div>
+        <div class="row"><span class="row-dot">·</span> Håndleddet tilbake til midtlinjen – ikke over – på tilbakesvingen</div>
+        <div class="row"><span class="row-dot">·</span> Albuen kraftig fremover til samme midtlinje i fremsvingen</div>
+        <div class="row"><span class="row-dot">·</span> Mer aggressiv armbevegelse enn Kipchoge – støtter 200 spm kadens</div>
+        <div class="divider"></div>
+        <div class="row-title">Praktisk</div>
+        <div class="row"><span class="row-dot">·</span> Armer driver bena – raskere armpendel = raskere kadens automatisk</div>
+        <div class="row"><span class="row-dot">·</span> Test i strides: speed opp armene først, la bena følge</div>
+        <div class="row"><span class="row-dot">·</span> Aldri la armene krysse midtlinjen – det roterer overkroppen og stjeler energi</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Kadens</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('tk3','tk3c')">
+        <div class="card-left">
+          <div class="title">Stegfrekvens</div>
+          <div class="sub">Mål: 180–202 spm avhengig av pace</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="tk3c">›</span></div>
+      </div>
+      <div class="card-body" id="tk3">
+        <div class="zones" style="margin-bottom:8px;">
+          <div class="zone zone-rolig"><div class="zone-label">Jakob – rolig</div><div class="zone-val">180 spm</div></div>
+          <div class="zone zone-intervall"><div class="zone-label">Jakob – intervall</div><div class="zone-val">202 spm</div></div>
+          <div class="zone zone-terskel"><div class="zone-label">Kipchoge – marathon</div><div class="zone-val">186–188 spm</div></div>
+          <div class="zone zone-terskel"><div class="zone-label">Almgren – terskel</div><div class="zone-val">186 spm</div></div>
+        </div>
+        <div class="row-title">Hvorfor høy kadens</div>
+        <div class="row"><span class="row-dot">·</span> Kortere steg → foten lander under hoften → mindre bremsekraft mot bakken</div>
+        <div class="row"><span class="row-dot">·</span> Reduserer vertikal oscillasjon (opp-ned-bevegelse) – energi fremover, ikke oppover</div>
+        <div class="row"><span class="row-dot">·</span> Mindre belastning på kne og hofte per steg</div>
+        <div class="divider"></div>
+        <div class="row-title">Hvordan øke kadensen</div>
+        <div class="row"><span class="row-dot">·</span> Øk med maks 5–10% om gangen – brå økning gir ny belastning</div>
+        <div class="row"><span class="row-dot">·</span> Bruk metronom-app (180 bpm) i 5 min av rolig tur – kjenn rytmen</div>
+        <div class="row"><span class="row-dot">·</span> Kortere steg, ikke raskere fart – det er forskjell</div>
+        <div class="row"><span class="row-dot">·</span> Strides er beste trening: høy kadens på kort distanse uten slitasje</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Kneløft og hoftearbeid</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('tk4','tk4c')">
+        <div class="card-left">
+          <div class="title">Høy knedrive og hoftestrekk</div>
+          <div class="sub">Jakob – kjerneforskjellen fra broren Henrik</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="tk4c">›</span></div>
+      </div>
+      <div class="card-body" id="tk4">
+        <div class="kval-box kval-lilla">
+          <div class="kval-main">Mer lårdrive – større femursvingen</div>
+          <div class="kval-sub">Jakob har mer overbeins-drive sammenlignet med Henriks lavere steg</div>
+        </div>
+        <div class="row-title">Mekanikk</div>
+        <div class="row"><span class="row-dot">·</span> Høyt kneløft foran → lengre steg bak → mer hoftestrekk → mer kraft per steg</div>
+        <div class="row"><span class="row-dot">·</span> Full hoftestrekk bak er avgjørende – halvt hoftestrekk = tapte watt</div>
+        <div class="row"><span class="row-dot">·</span> Foten setter ned under kroppen – ikke foran (overstriding)</div>
+        <div class="divider"></div>
+        <div class="row-title">Kipchoge</div>
+        <div class="row"><span class="row-dot">·</span> Foten lander direkte under kneet, svært nær kroppen</div>
+        <div class="row"><span class="row-dot">·</span> Nærmest vertikal legge ved landing – minimal bremsekraft</div>
+        <div class="row"><span class="row-dot">·</span> Ankel flektert ved landing – ikke slappt hengende</div>
+        <div class="divider"></div>
+        <div class="row-title">Drills for hoftearbeid</div>
+        <div class="row"><span class="row-dot">·</span> A-skip: høy kneløft med aktiv nedplanting av foten under hoften</div>
+        <div class="row"><span class="row-dot">·</span> B-skip: kneløft + spark ut + aktiv nedplanting – trener hele hoftsykkelen</div>
+        <div class="row"><span class="row-dot">·</span> Bakkeintervaller: bakken tvinger frem høyt kne og full hoftestrekk naturlig</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Fotlanding</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('tk5','tk5c')">
+        <div class="card-left">
+          <div class="title">Midtfot – under hoften</div>
+          <div class="sub">Jakob · Kipchoge</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="tk5c">›</span></div>
+      </div>
+      <div class="card-body" id="tk5">
+        <div class="kval-box kval-lilla">
+          <div class="kval-main">Midtfot-landing under hoften</div>
+          <div class="kval-sub">Ikke hæl, ikke for mye forfot – last fordeles jevnt</div>
+        </div>
+        <div class="row-title">Jakob</div>
+        <div class="row"><span class="row-dot">·</span> Nærmest perfekt midtfot-landing – fordeler støt og holder bakkekontakttid kort</div>
+        <div class="row"><span class="row-dot">·</span> Foten plantes aktivt ned – ikke passivt dett</div>
+        <div class="divider"></div>
+        <div class="row-title">Kipchoge</div>
+        <div class="row"><span class="row-dot">·</span> Landing med ankel flektert – 3–4 graders landingsvinkel</div>
+        <div class="row"><span class="row-dot">·</span> Foten nær kroppen ved landing – nær-vertikal legg gir minst mulig bremsekraft</div>
+        <div class="divider"></div>
+        <div class="row-title">Hva du skal kjenne etter</div>
+        <div class="row"><span class="row-dot">·</span> Lander du foran kroppen? Da brems du – kor steg inn</div>
+        <div class="row"><span class="row-dot">·</span> Lander du på hælen? Øk kadensen litt – korter steget automatisk</div>
+        <div class="row"><span class="row-dot">·</span> Hør på lyden: tunge "klask" = hælplanting. Lett "trapp" = midtfot</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Avslapning</div>
+    <div class="card">
+      <div class="card-header hdr-lilla" onclick="toggle('tk6','tk6c')">
+        <div class="card-left">
+          <div class="title">Kipchoge-prinsippet: slapp kraft</div>
+          <div class="sub">Effektivitet handler om å ikke sløse</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="tk6c">›</span></div>
+      </div>
+      <div class="card-body" id="tk6">
+        <div class="kval-box kval-lilla">
+          <div class="kval-main">"Relaxed face – relaxed run"</div>
+          <div class="kval-sub">Spenning i ansikt og skuldre sprer seg til hele kroppen – og sakte løping</div>
+        </div>
+        <div class="row-title">Kipchoge</div>
+        <div class="row"><span class="row-dot">·</span> Avslappet ansikt – ikke bite tenner, ikke spenne kjeven</div>
+        <div class="row"><span class="row-dot">·</span> Løse håndledd og fingre – ikke knytt neven</div>
+        <div class="row"><span class="row-dot">·</span> Avslappet rytme til tross for høy fart – det er kjennemerket hans</div>
+        <div class="row"><span class="row-dot">·</span> Mental kontroll: "My mind is always free. My mind is flexible."</div>
+        <div class="divider"></div>
+        <div class="row-title">I praksis</div>
+        <div class="row"><span class="row-dot">·</span> Sjekk skuldrene hvert 5. min i hard økt – er de oppe ved ørene? Slipp dem</div>
+        <div class="row"><span class="row-dot">·</span> Kjenn om du holder pusten – pust ut bevisst, la innpusten komme av seg selv</div>
+        <div class="row"><span class="row-dot">·</span> Terskelintervaller: siste rep skal se like avslappet ut som første rep</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Teknikk-drills i praksis</div>
+    <div class="card">
+      <div class="card-header hdr-rolig" onclick="toggle('tk7','tk7c')">
+        <div class="card-left">
+          <div class="title">Ukentlig teknikk-rutine</div>
+          <div class="sub">Etter rolig jogg · 10–15 min</div>
+        </div>
+        <div class="right-side"><span class="chevron" id="tk7c">›</span></div>
+      </div>
+      <div class="card-body" id="tk7">
+        <div class="row-title">Drills (3 × 20m hver)</div>
+        <div class="row"><span class="row-dot">·</span> <strong>A-skip</strong>: høy kneløft, aktiv nedplanting under hoften, stiv ankel</div>
+        <div class="row"><span class="row-dot">·</span> <strong>B-skip</strong>: kneløft + spark fremover + aktiv nedplanting – full hoftsykkel</div>
+        <div class="row"><span class="row-dot">·</span> <strong>Benhev</strong>: raske, høye kneløft – trener kadensmuskulatur</div>
+        <div class="row"><span class="row-dot">·</span> <strong>Hofteåpner</strong>: rotasjon i hofteleddet – viktig for full hoftestrekk</div>
+        <div class="divider"></div>
+        <div class="row-title">Strides (4–6 × 80–100m)</div>
+        <div class="row"><span class="row-dot">·</span> Start rolig – bygg gradvis til ~3:00–3:10/km de siste 20m</div>
+        <div class="row"><span class="row-dot">·</span> Fokus veksler hver stride: 1) armer, 2) kneløft, 3) avslapning, 4) kadens</div>
+        <div class="row"><span class="row-dot">·</span> Alltid sist i oppvarming – rett før dragene</div>
+        <div class="divider"></div>
+        <div class="row-title">Trappearbeid (Jakob-stil)</div>
+        <div class="row"><span class="row-dot">·</span> 3 × 10 eksplosive step-ups opp trapp – sagittal kraft og fleksibilitet</div>
+        <div class="row"><span class="row-dot">·</span> Enkeltbein-hopp opp trapp: 3 × 5 per side – aktiverer hurtige fibre</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-bottom:16px;">
+    <div class="section-title">Almgren – konsistens over heroes</div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> 206 km på én uke – bygget over år med identiske uker, ikke heroøkter</div></div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> 186 spm konsistent kadens – teknikk holder seg selv når kroppen er trett</div></div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Dobbel terskel: form holdes når kroppen er trøtt – det er der teknikken testes</div></div>
+    <div class="principle-card"><div class="row"><span class="row-dot">·</span> Hjertefrekvens 167–178 bpm i terskel – kontroll over intensitet gir kontroll over form</div></div>
+  </div>
+
 </div>
 
 <script>
