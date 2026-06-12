@@ -1,0 +1,164 @@
+{{- $fn := .Get "fn" | default "/.netlify/functions/innsidehandel" -}}
+{{- $id := printf "innside-%d" now.UnixNano -}}
+
+<div class="innside" id="{{ $id }}">
+  <div class="innside__tabs" role="tablist">
+    <button class="innside__tab is-active" data-scope="protector" role="tab">Protector</button>
+    <button class="innside__tab" data-scope="all" role="tab">Hele Oslo Børs</button>
+  </div>
+
+  <div class="innside__bar">
+    <div class="innside__legend">
+      <span class="innside__dot innside__dot--buy"></span> Kjøp
+      <span class="innside__dot innside__dot--sell"></span> Salg
+      <span class="innside__dot innside__dot--other"></span> Annet
+    </div>
+    <div class="innside__meta" data-role="meta"></div>
+  </div>
+
+  <div class="innside__list" data-role="list">
+    <p class="innside__empty">Henter innsidehandler …</p>
+  </div>
+
+  <p class="innside__src">
+    Kilde: meldepliktig handel for primærinnsidere, Oslo Børs NewsWeb. Ikke investeringsråd.
+  </p>
+</div>
+
+<style>
+  .innside { --buy:#1a9d5a; --sell:#d23b3b; --other:#9aa0a6;
+    margin: 1rem 0; font-size: 0.96rem; line-height: 1.5; }
+  .innside__tabs { display:flex; gap:.4rem; margin-bottom:.9rem; flex-wrap:wrap; }
+  .innside__tab { appearance:none; cursor:pointer; border:1px solid rgba(125,125,125,.32);
+    background:transparent; color:inherit; padding:.5rem .95rem; border-radius:999px;
+    font-weight:600; font-size:.9rem; transition:all .15s ease; }
+  .innside__tab:hover { border-color:rgba(125,125,125,.6); }
+  .innside__tab.is-active { background:#1f6feb; border-color:#1f6feb; color:#fff; }
+  .innside__bar { display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:.5rem; margin-bottom:.6rem; font-size:.82rem; opacity:.85; }
+  .innside__legend { display:flex; align-items:center; gap:.45rem; }
+  .innside__dot { width:.7rem; height:.7rem; border-radius:50%; display:inline-block;
+    margin-left:.5rem; vertical-align:-1px; }
+  .innside__dot--buy { background:var(--buy); }
+  .innside__dot--sell { background:var(--sell); }
+  .innside__dot--other { background:var(--other); }
+  .innside__meta { font-variant-numeric:tabular-nums; }
+  .innside__live { color:var(--buy); font-weight:700; }
+  .innside__list { display:flex; flex-direction:column; gap:.7rem; }
+  .innside__card { border:1px solid rgba(125,125,125,.22); border-left:4px solid var(--other);
+    border-radius:10px; padding:.75rem .9rem; background:rgba(125,125,125,.05); }
+  .innside__card[data-side="buy"] { border-left-color:var(--buy); }
+  .innside__card[data-side="sell"] { border-left-color:var(--sell); }
+  .innside__chead { display:flex; justify-content:space-between; align-items:baseline;
+    gap:.6rem; margin-bottom:.35rem; flex-wrap:wrap; }
+  .innside__who { font-weight:700; }
+  .innside__ticker { opacity:.6; font-weight:600; font-size:.82rem; margin-left:.35rem; }
+  .innside__date { opacity:.65; font-size:.82rem; white-space:nowrap; }
+  .innside__badge { font-size:.72rem; font-weight:800; letter-spacing:.03em;
+    padding:.12rem .5rem; border-radius:6px; color:#fff; }
+  .innside__badge--buy { background:var(--buy); }
+  .innside__badge--sell { background:var(--sell); }
+  .innside__badge--other { background:var(--other); }
+  .innside__sum { margin:.15rem 0 .4rem; }
+  .innside__more { font-size:.82rem; text-decoration:none; opacity:.85; }
+  .innside__more:hover { opacity:1; text-decoration:underline; }
+  .innside__empty { opacity:.7; padding:.6rem 0; }
+  .innside__src { font-size:.76rem; opacity:.6; margin-top:.9rem; }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById("{{ $id }}");
+    if (!root) return;
+    var FN = "{{ $fn }}";
+    var listEl = root.querySelector('[data-role="list"]');
+    var metaEl = root.querySelector('[data-role="meta"]');
+    var tabs = root.querySelectorAll(".innside__tab");
+    var cache = {};
+    var current = "protector";
+
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+    function noDate(iso) {
+      if (!iso) return "";
+      var p = iso.split("-");
+      return p.length === 3 ? p[2] + "." + p[1] + "." + p[0] : iso;
+    }
+    function label(side) {
+      return side === "buy" ? "KJØP" : side === "sell" ? "SALG" : "ANNET";
+    }
+    function shortName(name) {
+      return String(name || "").replace(/\s+(ASA|AS|A\/S|ASA\.?)$/i, "");
+    }
+
+    function render(scope, payload, live) {
+      var trades = (payload && payload.trades) || [];
+      if (!trades.length) {
+        listEl.innerHTML = '<p class="innside__empty">Fant ingen nylige innsidehandler.</p>';
+      } else {
+        var html = trades.map(function (t) {
+          var who = scope === "protector"
+            ? "Protector Forsikring"
+            : esc(shortName(t.issuerName)) + '<span class="innside__ticker">' + esc(t.issuerSign) + "</span>";
+          return '<div class="innside__card" data-side="' + esc(t.side) + '">' +
+            '<div class="innside__chead">' +
+              '<span class="innside__who">' + who + "</span>" +
+              '<span class="innside__date">' + noDate(t.date) +
+                ' <span class="innside__badge innside__badge--' + esc(t.side) + '">' + label(t.side) + "</span></span>" +
+            "</div>" +
+            '<div class="innside__sum">' + esc(t.summary) + "</div>" +
+            '<a class="innside__more" href="' + esc(t.url) + '" target="_blank" rel="noopener">Les hele meldingen på NewsWeb →</a>' +
+          "</div>";
+        }).join("");
+        listEl.innerHTML = html;
+      }
+      var when = payload && payload.updated ? new Date(payload.updated) : null;
+      var stamp = when ? when.toLocaleString("nb-NO", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : "";
+      metaEl.innerHTML = live
+        ? '<span class="innside__live">● Live</span> · oppdatert ' + esc(stamp)
+        : "Sist lagret " + esc(stamp);
+    }
+
+    function load(scope) {
+      if (cache[scope]) { render(scope, cache[scope].data, cache[scope].live); return; }
+      listEl.innerHTML = '<p class="innside__empty">Henter innsidehandler …</p>';
+      metaEl.textContent = "";
+      fetch(FN + "?scope=" + scope, { headers: { Accept: "application/json" } })
+        .then(function (r) { if (!r.ok) throw new Error("fn"); return r.json(); })
+        .then(function (data) {
+          if (!data || data.error) throw new Error("data");
+          cache[scope] = { data: data, live: true };
+          if (current === scope) render(scope, data, true);
+        })
+        .catch(function () {
+          // Fallback: statisk JSON skrevet av GitHub Action (virker også lokalt)
+          fetch("/innside-" + scope + ".json")
+            .then(function (r) { if (!r.ok) throw new Error("json"); return r.json(); })
+            .then(function (data) {
+              cache[scope] = { data: data, live: false };
+              if (current === scope) render(scope, data, false);
+            })
+            .catch(function () {
+              if (current === scope) {
+                listEl.innerHTML = '<p class="innside__empty">Kunne ikke hente innsidedata akkurat nå. Prøv å laste siden på nytt.</p>';
+              }
+            });
+        });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var scope = tab.getAttribute("data-scope");
+        if (scope === current) return;
+        current = scope;
+        tabs.forEach(function (t) { t.classList.toggle("is-active", t === tab); });
+        load(scope);
+      });
+    });
+
+    load("protector");
+  })();
+</script>

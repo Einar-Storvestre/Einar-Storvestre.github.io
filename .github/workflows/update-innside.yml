@@ -1,0 +1,30 @@
+name: Update insider trades
+
+on:
+  schedule:
+    - cron: '0 5,17 * * *'   # 05:00 & 17:00 UTC – backup-data to ganger daglig
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-innside:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch insider trades from Oslo Børs NewsWeb
+        run: node scripts/fetch-innside.mjs static
+
+      - name: Commit updated insider data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/innside-protector.json static/innside-all.json
+          git diff --staged --quiet || git commit -m "chore: update insider trades $(date +%Y-%m-%d) [skip ci]"
+          git push
