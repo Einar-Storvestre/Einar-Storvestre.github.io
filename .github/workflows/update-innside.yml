@@ -2,7 +2,8 @@ name: Update insider trades
 
 on:
   schedule:
-    - cron: '0 5,17 * * *'   # 05:00 & 17:00 UTC – backup-data to ganger daglig
+    - cron: '0 6-18/2 * * 1-5'  # hver 2. time 06–18 UTC på hverdager (Oslo Børs-tid)
+    - cron: '0 12 * * 6,0'      # én oppdatering i helgen
   workflow_dispatch:
 
 permissions:
