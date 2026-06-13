@@ -287,3 +287,11 @@ hugoblox:
     # Affiliate referral code for rewards program
     # Join affiliate program: https://hugoblox.com/affiliates
     affiliate_code: ""
+
+# ══════════════════════════════════════════════════════════════════════════════
+# NYHETSBREV (Buttondown)
+# Brukernavnet ditt på buttondown.com. Tomt = påmeldingsskjemaet vises "av".
+# Opprett gratis konto på https://buttondown.com og skriv brukernavnet inn her.
+# ══════════════════════════════════════════════════════════════════════════════
+buttondown:
+  username: "storvestre"

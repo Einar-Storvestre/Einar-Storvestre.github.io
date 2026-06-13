@@ -25,6 +25,9 @@ main:
   - name: Innsidehandel
     url: /innsidehandel/
     weight: 36
+  - name: Nyhetsbrev
+    url: /nyhetsbrev/
+    weight: 37
   # - name: Courses
   #   url: courses/
   #   weight: 40

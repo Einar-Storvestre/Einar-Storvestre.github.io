@@ -1,0 +1,187 @@
+{{- /* Nyhetsbrev: Buttondown-påmelding + dagens utgave + arkiv.
+       Henter static/newsletter.json live fra main (samme mønster som innsidehandel),
+       så nye utgaver vises uten ny bygg. */ -}}
+{{- $bd := .Get "buttondown" | default (index site.Params "buttondown" "username") | default "" -}}
+{{- $src := .Get "src" | default "https://raw.githubusercontent.com/Einar-Storvestre/Einar-Storvestre.github.io/main/static/newsletter.json" -}}
+{{- $id := printf "nb-%d" now.UnixNano -}}
+
+<div class="nb" id="{{ $id }}" data-src="{{ $src }}">
+
+  <!-- ── Påmelding ─────────────────────────────────────────────── -->
+  <div class="nb__signup">
+    <h2 class="nb__signup-title">Få morgenbriefen i innboksen</h2>
+    <p class="nb__signup-sub">Nyheter, markeder, AI og dagens leksjon — kort og lettlest hver morgen. Gratis, og du melder deg av når du vil.</p>
+    {{ if $bd }}
+    <form class="nb__form"
+          action="https://buttondown.com/api/emails/embed-subscribe/{{ $bd }}"
+          method="post" target="popupwindow"
+          onsubmit="window.open('https://buttondown.com/{{ $bd }}', 'popupwindow')">
+      <input class="nb__input" type="email" name="email" required
+             placeholder="din@epost.no" aria-label="E-postadresse" autocomplete="email" />
+      <input type="hidden" name="tag" value="nettside" />
+      <input type="hidden" name="embed" value="1" />
+      <button class="nb__btn" type="submit">Meld meg på</button>
+    </form>
+    <p class="nb__fineprint">Vi sender kun morgenbriefen. Ingen spam, ingen videresalg.</p>
+    {{ else }}
+    <form class="nb__form nb__form--off" onsubmit="return false;">
+      <input class="nb__input" type="email" placeholder="din@epost.no" disabled />
+      <button class="nb__btn" type="button" disabled>Påmelding åpner snart</button>
+    </form>
+    <p class="nb__fineprint">Påmelding åpner om kort tid — kom gjerne tilbake.</p>
+    <!-- For Einar: skru på påmelding ved å sette buttondown.username i config/_default/params.yaml
+         (opprett gratis konto på https://buttondown.com), eller gi shortcoden buttondown="navn". -->
+    {{ end }}
+  </div>
+
+  <!-- ── Dagens utgave ─────────────────────────────────────────── -->
+  <div class="nb__today" data-role="today">
+    <p class="nb__loading">Henter dagens utgave …</p>
+  </div>
+
+  <!-- ── Arkiv ─────────────────────────────────────────────────── -->
+  <div class="nb__archive" data-role="archive"></div>
+</div>
+
+<style>
+  .nb { margin: 1rem 0; font-size: 1rem; line-height: 1.6; }
+
+  /* Påmelding */
+  .nb__signup { border: 1px solid rgba(125,125,125,.22); border-radius: 14px;
+    padding: 1.4rem 1.5rem; margin-bottom: 2rem;
+    background: linear-gradient(180deg, rgba(31,111,235,.07), rgba(125,125,125,.04)); }
+  .nb__signup-title { margin: 0 0 .35rem; font-size: 1.35rem; font-weight: 800; }
+  .nb__signup-sub { margin: 0 0 1rem; opacity: .82; font-size: .96rem; }
+  .nb__form { display: flex; gap: .55rem; flex-wrap: wrap; align-items: stretch; }
+  .nb__input { flex: 1 1 240px; min-width: 0; padding: .7rem .95rem; font-size: 1rem;
+    border: 1px solid rgba(125,125,125,.4); border-radius: 10px;
+    background: rgba(255,255,255,.7); color: inherit; }
+  @media (prefers-color-scheme: dark) {
+    .nb__input { background: rgba(0,0,0,.25); }
+  }
+  .nb__input:focus { outline: none; border-color: #1f6feb; box-shadow: 0 0 0 3px rgba(31,111,235,.25); }
+  .nb__btn { appearance: none; cursor: pointer; border: 0; border-radius: 10px;
+    padding: .7rem 1.4rem; font-size: 1rem; font-weight: 700; white-space: nowrap;
+    background: #1f6feb; color: #fff; transition: background .15s ease; }
+  .nb__btn:hover { background: #1a5fd0; }
+  .nb__form--off { opacity: .55; }
+  .nb__form--off .nb__btn { cursor: not-allowed; }
+  .nb__fineprint { margin: .7rem 0 0; font-size: .8rem; opacity: .6; }
+  .nb__admin { opacity: .85; }
+  .nb__admin code { font-size: .76rem; background: rgba(125,125,125,.16);
+    padding: .08rem .35rem; border-radius: 5px; }
+
+  /* Utgave */
+  .nb__edition-tag { display: inline-block; font-size: .72rem; font-weight: 800;
+    letter-spacing: .06em; text-transform: uppercase; color: #1f6feb;
+    background: rgba(31,111,235,.12); padding: .2rem .6rem; border-radius: 6px;
+    margin-bottom: .7rem; }
+  .nb__edition-title { margin: 0 0 .25rem; font-size: 1.7rem; font-weight: 800; line-height: 1.2; }
+  .nb__edition-meta { margin: 0 0 1.4rem; font-size: .85rem; opacity: .6; }
+
+  /* Briefens brødtekst (pandoc-HTML) */
+  .nb__body { font-size: 1.02rem; }
+  .nb__body h2 { font-size: 1.3rem; font-weight: 800; margin: 1.9rem 0 .7rem;
+    padding-bottom: .3rem; border-bottom: 1px solid rgba(125,125,125,.18); }
+  .nb__body h3 { font-size: 1.08rem; font-weight: 700; margin: 1.3rem 0 .5rem; }
+  .nb__body p { margin: .75rem 0; }
+  .nb__body ul, .nb__body ol { margin: .6rem 0; padding-left: 1.4rem; }
+  .nb__body li { margin: .3rem 0; }
+  .nb__body a { color: #1f6feb; text-decoration: none; }
+  .nb__body a:hover { text-decoration: underline; }
+  .nb__body hr { border: 0; border-top: 1px solid rgba(125,125,125,.2); margin: 1.6rem 0; }
+  .nb__body strong { font-weight: 700; }
+
+  /* Arkiv */
+  .nb__archive { margin-top: 2.6rem; }
+  .nb__archive-title { font-size: 1.15rem; font-weight: 800; margin: 0 0 .9rem;
+    opacity: .9; }
+  .nb__item { border: 1px solid rgba(125,125,125,.2); border-radius: 10px;
+    margin-bottom: .6rem; overflow: hidden; }
+  .nb__item > summary { cursor: pointer; list-style: none; padding: .8rem 1rem;
+    display: flex; justify-content: space-between; align-items: baseline; gap: .8rem;
+    font-weight: 600; }
+  .nb__item > summary::-webkit-details-marker { display: none; }
+  .nb__item > summary:hover { background: rgba(125,125,125,.06); }
+  .nb__item-date { font-size: .82rem; opacity: .6; white-space: nowrap;
+    font-variant-numeric: tabular-nums; }
+  .nb__item[open] > summary { border-bottom: 1px solid rgba(125,125,125,.18); }
+  .nb__item .nb__body { padding: .4rem 1.1rem 1.1rem; }
+
+  .nb__loading, .nb__error { opacity: .7; padding: .8rem 0; }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById("{{ $id }}");
+    if (!root) return;
+    var SRC = root.getAttribute("data-src");
+    var todayEl = root.querySelector('[data-role="today"]');
+    var archiveEl = root.querySelector('[data-role="archive"]');
+
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    // Gjør lenker i den injiserte briefen trygge (ny fane, noopener)
+    function harden(container) {
+      container.querySelectorAll("a[href]").forEach(function (a) {
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener noreferrer");
+      });
+    }
+
+    function renderToday(ed) {
+      todayEl.innerHTML =
+        '<span class="nb__edition-tag">Dagens utgave</span>' +
+        '<h2 class="nb__edition-title">' + esc(ed.title) + "</h2>" +
+        '<p class="nb__edition-meta">' + esc(ed.dateLabel || "") +
+          (ed.readingTime ? " · " + esc(ed.readingTime) : "") + "</p>" +
+        '<div class="nb__body">' + (ed.html || "") + "</div>";
+      harden(todayEl);
+    }
+
+    function renderArchive(eds) {
+      if (!eds.length) { archiveEl.innerHTML = ""; return; }
+      var items = eds.map(function (ed) {
+        return '<details class="nb__item">' +
+          "<summary><span>" + esc(ed.title) + "</span>" +
+          '<span class="nb__item-date">' + esc(ed.dateLabel || ed.date) + "</span></summary>" +
+          '<div class="nb__body">' + (ed.html || "") + "</div>" +
+        "</details>";
+      }).join("");
+      archiveEl.innerHTML =
+        '<h3 class="nb__archive-title">Tidligere utgaver</h3>' + items;
+      archiveEl.querySelectorAll(".nb__item").forEach(function (d) {
+        d.addEventListener("toggle", function () { if (d.open) harden(d); });
+      });
+    }
+
+    function show(data) {
+      var eds = (data && data.editions) || [];
+      if (!eds.length) {
+        todayEl.innerHTML = '<p class="nb__error">Ingen utgaver publisert ennå. Kom tilbake i morgen tidlig!</p>';
+        return;
+      }
+      renderToday(eds[0]);
+      renderArchive(eds.slice(1));
+    }
+
+    function fetchJSON(url) {
+      return fetch(url, { headers: { Accept: "application/json" }, cache: "no-store" })
+        .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); });
+    }
+
+    // 1) fersk JSON fra main (raw.githubusercontent, CORS-ok)  2) lokal backup fra bygget
+    fetchJSON(SRC)
+      .then(show)
+      .catch(function () {
+        fetchJSON("/newsletter.json")
+          .then(show)
+          .catch(function () {
+            todayEl.innerHTML = '<p class="nb__error">Kunne ikke hente dagens utgave akkurat nå. Prøv å laste siden på nytt.</p>';
+          });
+      });
+  })();
+</script>
