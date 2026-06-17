@@ -1,0 +1,119 @@
+{{- $id := printf "innsum-%d" now.UnixNano -}}
+<div class="innsum" id="{{ $id }}">
+  <div class="innsum__head">
+    <span class="innsum__title">Siste innsidehandler i Protector</span>
+    <span class="innsum__meta" data-role="meta"></span>
+  </div>
+  <div class="innsum__counts" data-role="counts"></div>
+  <div class="innsum__list" data-role="list">
+    <p class="innsum__empty">Henter innsidehandler …</p>
+  </div>
+  <a class="innsum__link" href="/innsidehandel/">Se full live-oversikt for PROT og hele Oslo Børs →</a>
+  <p class="innsum__src">Live fra Oslo Børs NewsWeb, oppdateres automatisk. Ikke investeringsråd.</p>
+</div>
+
+<style>
+  .innsum { --buy:#1a9d5a; --sell:#d23b3b; --other:#9aa0a6;
+    border:1px solid rgba(125,125,125,.22); border-radius:12px; padding:1rem 1.1rem;
+    margin:1.2rem 0; font-size:.95rem; line-height:1.5; }
+  .innsum__head { display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:.4rem; margin-bottom:.5rem; }
+  .innsum__title { font-weight:700; }
+  .innsum__meta { font-size:.78rem; opacity:.7; }
+  .innsum__live { color:var(--buy); font-weight:700; }
+  .innsum__counts { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:.7rem; }
+  .innsum__pill { font-size:.8rem; font-weight:600; padding:.25rem .6rem; border-radius:999px;
+    border:1px solid currentColor; }
+  .innsum__pill--buy { color:var(--buy); }
+  .innsum__pill--sell { color:var(--sell); }
+  .innsum__pill--other { color:var(--other); }
+  .innsum__list { display:flex; flex-direction:column; gap:.5rem; }
+  .innsum__row { display:flex; gap:.6rem; align-items:flex-start; }
+  .innsum__dot { width:.6rem; height:.6rem; border-radius:50%; margin-top:.45rem; flex:0 0 auto; }
+  .innsum__dot--buy { background:var(--buy); }
+  .innsum__dot--sell { background:var(--sell); }
+  .innsum__dot--other { background:var(--other); }
+  .innsum__rdate { font-variant-numeric:tabular-nums; opacity:.65; font-size:.8rem; white-space:nowrap; }
+  .innsum__rtext { flex:1; }
+  .innsum__empty { opacity:.7; margin:0; }
+  .innsum__link { display:inline-block; margin-top:.8rem; font-weight:600; font-size:.9rem; }
+  .innsum__src { font-size:.74rem; opacity:.6; margin:.5rem 0 0; }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById("{{ $id }}");
+    if (!root) return;
+    var listEl = root.querySelector('[data-role="list"]');
+    var metaEl = root.querySelector('[data-role="meta"]');
+    var countsEl = root.querySelector('[data-role="counts"]');
+    var RAW = "https://raw.githubusercontent.com/Einar-Storvestre/Einar-Storvestre.github.io/main/static/innside-protector.json";
+    var LOCAL = "/innside-protector.json";
+
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+    function noDate(iso) {
+      if (!iso) return "";
+      var p = String(iso).slice(0, 10).split("-");
+      return p.length === 3 ? p[2] + "." + p[1] + "." + p[0] : iso;
+    }
+    function within(iso, days) {
+      var t = Date.parse(iso);
+      return isFinite(t) ? (Date.now() - t) <= days * 86400000 : false;
+    }
+
+    function render(payload, live) {
+      var trades = (payload && payload.trades) || [];
+      // Tellinger siste 12 mnd
+      var b = 0, s = 0, o = 0;
+      trades.forEach(function (t) {
+        if (!within(t.date, 365)) return;
+        if (t.side === "buy") b++; else if (t.side === "sell") s++; else o++;
+      });
+      countsEl.innerHTML =
+        '<span class="innsum__pill innsum__pill--buy">' + b + ' kjøp</span>' +
+        '<span class="innsum__pill innsum__pill--sell">' + s + ' salg</span>' +
+        '<span class="innsum__pill innsum__pill--other">' + o + ' annet</span>' +
+        '<span style="font-size:.8rem;opacity:.6;align-self:center;">siste 12 mnd</span>';
+
+      var latest = trades.slice(0, 4);
+      if (!latest.length) {
+        listEl.innerHTML = '<p class="innsum__empty">Fant ingen nylige innsidehandler.</p>';
+      } else {
+        listEl.innerHTML = latest.map(function (t) {
+          return '<div class="innsum__row">' +
+            '<span class="innsum__dot innsum__dot--' + esc(t.side) + '"></span>' +
+            '<span class="innsum__rdate">' + noDate(t.date) + '</span>' +
+            '<span class="innsum__rtext">' + esc(t.summary) + '</span>' +
+          '</div>';
+        }).join("");
+      }
+      var when = payload && payload.updated ? new Date(payload.updated) : null;
+      var stamp = when ? when.toLocaleString("nb-NO", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : "";
+      metaEl.innerHTML = (live ? '<span class="innsum__live">● Live</span> · ' : "") + "oppdatert " + esc(stamp);
+    }
+
+    function fetchJSON(url) {
+      return fetch(url, { headers: { Accept: "application/json" } }).then(function (r) {
+        if (!r.ok) throw new Error("http " + r.status);
+        return r.json();
+      }).then(function (d) {
+        if (!d || !d.trades) throw new Error("bad payload");
+        return d;
+      });
+    }
+
+    fetchJSON(RAW)
+      .then(function (d) { render(d, true); })
+      .catch(function () {
+        fetchJSON(LOCAL)
+          .then(function (d) { render(d, false); })
+          .catch(function () {
+            listEl.innerHTML = '<p class="innsum__empty">Kunne ikke hente innsidedata akkurat nå. Se <a href="/innsidehandel/">innsidehandel-siden</a>.</p>';
+          });
+      });
+  })();
+</script>
