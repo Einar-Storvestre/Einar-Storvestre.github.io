@@ -90,13 +90,15 @@ function parseFigures(body, title) {
   const text = cleanText(body);
   const hay = text + " " + (title || "");
   const combinedRatio = num(hay, "combined ratio", "%");
+  const lossRatio = num(hay, "(?:net )?(?:loss|claims) ratio", "%");
+  const costRatio = num(hay, "(?:net )?(?:cost|expense) ratio", "%");
   const gwpGrowth = num(hay, "(?:gross written premium|premium) growth", "%");
   const eps = num(hay, "earnings per share[^0-9]*NOK", "");
   const solvency = num(hay, "solvency (?:ii )?ratio", "%");
   const dividend = num(hay, "dividend(?: per share)?[^0-9]*NOK", "");
   const profit = num(hay, "(?:profit for the period|profit before tax)[^0-9]*NOK", "");
   const investmentReturn = num(hay, "(?:total )?investment return[^0-9]*NOK", "");
-  return { combinedRatio, gwpGrowth, eps, solvency, dividend, profit, investmentReturn };
+  return { combinedRatio, lossRatio, costRatio, gwpGrowth, eps, solvency, dividend, profit, investmentReturn };
 }
 
 export async function buildKvartal() {
