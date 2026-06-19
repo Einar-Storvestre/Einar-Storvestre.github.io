@@ -1,9 +1,17 @@
 name: Update PROT quarterly figures
 
 on:
+  # Protector rapporterer ~28. jan (Q4/FY), ~slutten av apr (Q1), ~10. jul (Q2/H1), ~22. okt (Q3).
+  # Kjør daglig 14:00 UTC i et vindu rundt hver dato: fanger rapporten samme dag den slippes
+  # OG fortsetter ~1 uke etter som backup. Scriptet committer kun når tallene faktisk endrer seg.
   schedule:
-    - cron: '0 6 * * 1-5'  # 06:00 UTC på hverdager – fanger nye kvartalsrapporter
-  workflow_dispatch:
+    - cron: '0 14 26-31 1 *'   # Q4/FY-vindu (slutten av jan)
+    - cron: '0 14 1-7 2 *'     # Q4/FY backup (tidlig feb)
+    - cron: '0 14 22-30 4 *'   # Q1-vindu (slutten av apr)
+    - cron: '0 14 1-6 5 *'     # Q1 backup (tidlig mai)
+    - cron: '0 14 6-20 7 *'    # Q2/H1-vindu (rundt 10. jul) + backup
+    - cron: '0 14 18-31 10 *'  # Q3-vindu (rundt 22. okt) + backup
+  workflow_dispatch:           # + manuell kjøring når som helst
 
 permissions:
   contents: write
