@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="no"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>AI-trading — Oslo Børs</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg:#0d1117; --card:#161b22; --line:#21262d; --tx:#e6edf3; --dim:#8b949e;
+           --pos:#3fb950; --neg:#f85149; --acc:#58a6ff; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--bg);
+          color:var(--tx); font-size:14px; padding-bottom:50px; }
+  .header { padding:18px 16px 12px; border-bottom:1px solid var(--line); }
+  .header h1 { font-size:19px; font-weight:700; }
+  .header p { font-size:12px; color:var(--dim); margin-top:3px; }
+  .lek { display:inline-block; background:#30363d; color:#d29922; font-size:11px; font-weight:700;
+          padding:2px 8px; border-radius:5px; margin-left:8px; vertical-align:middle; }
+  .tabs { display:flex; background:var(--bg); border-bottom:1px solid var(--line); overflow-x:auto;
+           position:sticky; top:0; z-index:5; }
+  .tab { padding:11px 18px; font-size:13px; font-weight:600; color:var(--dim); cursor:pointer;
+          white-space:nowrap; border-bottom:2px solid transparent; }
+  .tab.active { color:var(--tx); border-bottom-color:var(--acc); }
+  .page { display:none; padding:4px 12px 0; } .page.active { display:block; }
+  .section-title { font-size:11px; font-weight:700; color:var(--dim); text-transform:uppercase;
+                    letter-spacing:.6px; margin:18px 2px 8px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px;
+           margin-bottom:4px; overflow-x:auto; }
+  .grid-kpi { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px;
+               margin-top:14px; }
+  .kpi { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:11px 13px; }
+  .kpi-l { font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:.4px; }
+  .kpi-v { font-size:20px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums; }
+  table { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  th,td { text-align:left; padding:7px 9px; border-bottom:1px solid var(--line); font-size:13px; }
+  th { color:var(--dim); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.3px; }
+  td.r,th.r { text-align:right; } .tk { font-weight:700; color:var(--acc); }
+  .sek { color:var(--dim); font-size:12px; }
+  .pos { color:var(--pos); } .neg { color:var(--neg); } .nt { color:var(--dim); }
+  .mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .small { font-size:12px; } .tomt { color:var(--dim); padding:24px 4px; text-align:center; }
+  .chart { width:100%; height:auto; } .grid { stroke:#21262d; stroke-width:1; }
+  .base { stroke:#484f58; stroke-width:1; stroke-dasharray:4 3; }
+  .ax { fill:#8b949e; font-size:10px; }
+  .legend { display:flex; gap:16px; margin-top:8px; font-size:12px; color:var(--dim); }
+  .legend i { display:inline-block; width:11px; height:11px; border-radius:2px; margin-right:5px;
+               vertical-align:middle; }
+</style></head><body>
+<div class="header"><h1>AI-trading — Oslo Børs<span class="lek">LEKEPENGER</span></h1>
+  <p>Oppdatert 2026-07-11 10:09 · fiktiv portefølje, ekte forsinkede kurser · ikke finansiell rådgivning</p></div>
+<div class="tabs">
+  <div class="tab active" data-p="p1">Oversikt</div>
+  <div class="tab" data-p="p2">Posisjoner</div>
+  <div class="tab" data-p="p3">Handelslogg</div>
+  <div class="tab" data-p="p4">Strategi &amp; plan</div>
+</div>
+<div id="p1" class="page active"><div class="grid-kpi"><div class="kpi"><div class="kpi-l">NAV</div><div class="kpi-v ">99 476 kr</div></div><div class="kpi"><div class="kpi-l">Avkastning</div><div class="kpi-v neg">-0.5 %</div></div><div class="kpi"><div class="kpi-l">vs OSEBX (alfa)</div><div class="kpi-v neg">-0.5 %</div></div><div class="kpi"><div class="kpi-l">Kontanter</div><div class="kpi-v ">872 kr</div></div><div class="kpi"><div class="kpi-l">Eksponering</div><div class="kpi-v ">100 %</div></div><div class="kpi"><div class="kpi-l">Regime/modus</div><div class="kpi-v ">normal</div></div><div class="kpi"><div class="kpi-l">Drawdown</div><div class="kpi-v neg">-0.5 %</div></div><div class="kpi"><div class="kpi-l">Posisjoner</div><div class="kpi-v ">8</div></div></div>
+      <div class="section-title">NAV vs OSEBX</div>
+      <div class="card"><div class="tomt">Samler NAV-historikk — grafen tegnes når det finnes minst to måledager.</div></div>
+      <div class="section-title">Eksponering &amp; regime</div>
+      <div class="card mono small">vol-target 22%/16%→1.00 · regime OSEBX 1932 ≥ 200d-snitt 1817→1.00 · eksponering 100% (kontanter 0%)</div></div>
+<div id="p2" class="page"><div class="card"><table>
+          <thead><tr><th>Ticker</th><th class="r">Antall</th><th class="r">Snitt</th>
+          <th class="r">Kurs</th><th class="r">Verdi</th><th class="r">% NAV</th>
+          <th class="r">Urea.</th><th class="r">Mom</th><th class="r">Kval</th>
+          <th class="r">Verdi</th><th>Sektor</th></tr></thead>
+          <tbody><tr>
+              <td class="tk">AUTO.OL</td><td class="r">1105</td>
+              <td class="r">11.31</td><td class="r">11.38</td>
+              <td class="r">12 575</td>
+              <td class="r">12.6 %</td>
+              <td class="r pos">+0.6 %</td>
+              <td class="r">-0.3</td>
+              <td class="r">0.4</td>
+              <td class="r">-0.5</td>
+              <td class="sek">teknologi</td></tr><tr>
+              <td class="tk">DNB.OL</td><td class="r">42</td>
+              <td class="r">297.30</td><td class="r">298.40</td>
+              <td class="r">12 533</td>
+              <td class="r">12.6 %</td>
+              <td class="r pos">+0.4 %</td>
+              <td class="r">0.3</td>
+              <td class="r">1.2</td>
+              <td class="r">0.6</td>
+              <td class="sek">finans</td></tr><tr>
+              <td class="tk">ORK.OL</td><td class="r">118</td>
+              <td class="r">105.70</td><td class="r">105.50</td>
+              <td class="r">12 449</td>
+              <td class="r">12.5 %</td>
+              <td class="r neg">-0.2 %</td>
+              <td class="r">-0.4</td>
+              <td class="r">0.3</td>
+              <td class="r">-0.0</td>
+              <td class="sek">konsum</td></tr><tr>
+              <td class="tk">TEL.OL</td><td class="r">86</td>
+              <td class="r">144.40</td><td class="r">144.20</td>
+              <td class="r">12 401</td>
+              <td class="r">12.5 %</td>
+              <td class="r neg">-0.1 %</td>
+              <td class="r">-0.0</td>
+              <td class="r">0.0</td>
+              <td class="r">0.1</td>
+              <td class="sek">telekom</td></tr><tr>
+              <td class="tk">STB.OL</td><td class="r">66</td>
+              <td class="r">187.30</td><td class="r">185.80</td>
+              <td class="r">12 263</td>
+              <td class="r">12.3 %</td>
+              <td class="r neg">-0.8 %</td>
+              <td class="r">0.5</td>
+              <td class="r">-1.7</td>
+              <td class="r">-0.1</td>
+              <td class="sek">finans</td></tr><tr>
+              <td class="tk">GJF.OL</td><td class="r">45</td>
+              <td class="r">271.80</td><td class="r">272.00</td>
+              <td class="r">12 240</td>
+              <td class="r">12.3 %</td>
+              <td class="r pos">+0.1 %</td>
+              <td class="r">-0.1</td>
+              <td class="r">1.3</td>
+              <td class="r">-1.8</td>
+              <td class="sek">finans</td></tr><tr>
+              <td class="tk">SUBC.OL</td><td class="r">36</td>
+              <td class="r">338.00</td><td class="r">338.60</td>
+              <td class="r">12 190</td>
+              <td class="r">12.3 %</td>
+              <td class="r pos">+0.2 %</td>
+              <td class="r">1.2</td>
+              <td class="r">-0.1</td>
+              <td class="r">-0.1</td>
+              <td class="sek">energiservice</td></tr><tr>
+              <td class="tk">FRO.OL</td><td class="r">34</td>
+              <td class="r">360.60</td><td class="r">351.60</td>
+              <td class="r">11 954</td>
+              <td class="r">12.0 %</td>
+              <td class="r neg">-2.5 %</td>
+              <td class="r">1.0</td>
+              <td class="r">2.1</td>
+              <td class="r">0.3</td>
+              <td class="sek">shipping</td></tr></tbody></table></div>
+          <div class="small nt">Mom/Kval/Verdi = z-normaliserte faktorbidrag fra siste analyse.</div></div>
+<div id="p3" class="page"><div class="card"><table>
+          <thead><tr><th>Tid</th><th>Ticker</th><th>Side</th><th class="r">Antall</th>
+          <th class="r">Kurs</th><th class="r">Verdi</th><th>Begrunnelse</th></tr></thead>
+          <tbody><tr><td class="mono small">2026-07-10 12:09</td><td class="tk">TEL.OL</td><td class="pos">KJØP</td><td class="r">86</td><td class="r">144.40</td><td class="r">12418.40</td><td class="small">score 0.41 (1M -3.5%, 3M -12.5%, vol 20% p.a.)</td></tr><tr><td class="mono small">2026-07-10 12:09</td><td class="tk">FRO.OL</td><td class="pos">KJØP</td><td class="r">34</td><td class="r">360.60</td><td class="r">12260.40</td><td class="small">score 0.49 (1M +3.4%, 3M +5.2%, vol 46% p.a.)</td></tr><tr><td class="mono small">2026-07-10 12:09</td><td class="tk">AUTO.OL</td><td class="pos">KJØP</td><td class="r">1105</td><td class="r">11.31</td><td class="r">12497.55</td><td class="small">score 0.50 (1M +2.8%, 3M +15.6%, vol 53% p.a.)</td></tr><tr><td class="mono small">2026-07-10 12:09</td><td class="tk">SUBC.OL</td><td class="pos">KJØP</td><td class="r">36</td><td class="r">338.00</td><td class="r">12168.00</td><td class="small">score 0.58 (1M -1.7%, 3M +12.0%, vol 40% p.a.)</td></tr><tr><td class="mono small">2026-07-10 12:09</td><td class="tk">ORK.OL</td><td class="pos">KJØP</td><td class="r">118</td><td class="r">105.70</td><td class="r">12472.60</td><td class="small">score 1.13 (1M +6.5%, 3M -9.1%, vol 24% p.a.)</td></tr><tr><td class="mono small">2026-07-10 12:09</td><td class="tk">DNB.OL</td><td class="pos">KJØP</td><td class="r">42</td><td class="r">297.30</td><td class="r">12486.60</td><td class="small">score 1.78 (1M +4.9%, 3M +2.4%, vol 15% p.a.)</td></tr><tr><td class="mono small">2026-07-10 12:09</td><td class="tk">GJF.OL</td><td class="pos">KJØP</td><td class="r">45</td><td class="r">271.80</td><td class="r">12231.00</td><td class="small">score 1.85 (1M +7.1%, 3M +4.0%, vol 18% p.a.)</td></tr><tr><td class="mono small">2026-07-10 12:09</td><td class="tk">STB.OL</td><td class="pos">KJØP</td><td class="r">66</td><td class="r">187.30</td><td class="r">12361.80</td><td class="small">score 2.22 (1M +9.7%, 3M +8.0%, vol 17% p.a.)</td></tr></tbody></table></div></div>
+<div id="p4" class="page">
+          <div class="section-title">Målportefølje (2026-07-11)</div>
+          <div class="card"><table><thead><tr><th>Ticker</th><th class="r">Målvekt</th></tr></thead>
+          <tbody><tr><td class="tk">DNB.OL</td><td class="r">20.0 %</td></tr><tr><td class="tk">NHY.OL</td><td class="r">13.3 %</td></tr><tr><td class="tk">MPCC.OL</td><td class="r">13.1 %</td></tr><tr><td class="tk">VAR.OL</td><td class="r">11.7 %</td></tr><tr><td class="tk">HAFNI.OL</td><td class="r">11.3 %</td></tr><tr><td class="tk">SUBC.OL</td><td class="r">10.8 %</td></tr><tr><td class="tk">TGS.OL</td><td class="r">10.4 %</td></tr><tr><td class="tk">FRO.OL</td><td class="r">9.4 %</td></tr></tbody></table></div>
+          <div class="section-title">Planlagte ordre</div>
+          <div class="card"><table><thead><tr><th>Side</th><th>Ticker</th><th class="r">Antall</th>
+          <th>Begrunnelse</th></tr></thead><tbody><tr><td class="neg">SALG</td><td class="tk">STB.OL</td><td class="r">66</td><td class="small">score -0.36 | momentum +0.5 (6-1M +3.6%, 12-1M +25.8%, vol 18%) | kvalitet -1.7 (ROE 14%, margin 6%) | verdi -0.1</td></tr><tr><td class="neg">SALG</td><td class="tk">GJF.OL</td><td class="r">45</td><td class="small">score 0.11 | momentum -0.1 (6-1M -10.9%, 12-1M +3.6%, vol 18%) | kvalitet +1.3 (ROE 30%, margin 15%) | verdi -1.8</td></tr><tr><td class="neg">SALG</td><td class="tk">ORK.OL</td><td class="r">118</td><td class="small">score -0.08 | momentum -0.4 (6-1M -5.1%, 12-1M -2.2%, vol 24%) | kvalitet +0.3 (ROE 14%, margin 16%) | verdi -0.0</td></tr><tr><td class="neg">SALG</td><td class="tk">AUTO.OL</td><td class="r">1105</td><td class="small">score -0.08 | momentum -0.3 (6-1M -4.7%, 12-1M +77.2%, vol 54%) | kvalitet +0.4 (ROE 8%, margin 20%) | verdi -0.5</td></tr><tr><td class="neg">SALG</td><td class="tk">FRO.OL</td><td class="r">7</td><td class="small">score 1.30 | momentum +1.0 (6-1M +58.5%, 12-1M +86.4%, vol 46%) | kvalitet +2.1 (ROE 35%, margin 40%) | verdi +0.3</td></tr><tr><td class="neg">SALG</td><td class="tk">TEL.OL</td><td class="r">86</td><td class="small">score 0.02 | momentum -0.0 (6-1M +5.6%, 12-1M +0.8%, vol 20%) | kvalitet +0.0 (ROE 23%, margin 17%) | verdi +0.1</td></tr><tr><td class="pos">KJØP</td><td class="tk">MPCC.OL</td><td class="r">537</td><td class="small">score 1.64 | momentum +1.3 (6-1M +56.5%, 12-1M +68.9%, vol 33%) | kvalitet +2.0 (ROE 24%, margin 43%) | verdi +2.0</td></tr><tr><td class="pos">KJØP</td><td class="tk">DNB.OL</td><td class="r">24</td><td class="small">score 0.70 | momentum +0.3 (6-1M +8.5%, 12-1M +7.8%, vol 15%) | kvalitet +1.2 (ROE 14%, margin 49%) | verdi +0.6</td></tr><tr><td class="pos">KJØP</td><td class="tk">HAFNI.OL</td><td class="r">164</td><td class="small">score 0.46 | momentum +0.1 (6-1M +30.2%, 12-1M +32.1%, vol 38%) | kvalitet +0.7 (ROE 19%, margin 19%) | verdi +1.1</td></tr><tr><td class="pos">KJØP</td><td class="tk">NHY.OL</td><td class="r">154</td><td class="small">score 0.44 | momentum +1.4 (6-1M +35.8%, 12-1M +90.9%, vol 33%) | kvalitet -0.6 (ROE 6%, margin 3%) | verdi -0.1</td></tr><tr><td class="pos">KJØP</td><td class="tk">VAR.OL</td><td class="r">270</td><td class="small">score 0.39 | momentum +1.0 (6-1M +54.5%, 12-1M +66.2%, vol 37%) | kvalitet -0.3 (ROE 97%, margin 9%) | verdi -0.1</td></tr><tr><td class="pos">KJØP</td><td class="tk">TGS.OL</td><td class="r">77</td><td class="small">score 0.34 | momentum +1.1 (6-1M +63.3%, 12-1M +77.5%, vol 42%) | kvalitet -0.8 (ROE -0%, margin -0%) | verdi +0.4</td></tr></tbody></table></div>
+          <div class="section-title">Faktor-scoring (hele universet)</div>
+          <div class="card"><table><thead><tr><th>Ticker</th><th class="r">Score</th>
+          <th class="r">Mom</th><th class="r">Kval</th><th class="r">Verdi</th>
+          <th class="r">ROE</th><th class="r">P/B</th></tr></thead>
+          <tbody><tr><td class="tk">MPCC.OL</td><td class="r">1.64</td><td class="r">1.3</td><td class="r">2.0</td><td class="r">2.0</td><td class="r">+24.4 %</td><td class="r">1.1</td></tr><tr><td class="tk">FRO.OL</td><td class="r">1.30</td><td class="r">1.0</td><td class="r">2.1</td><td class="r">0.3</td><td class="r">+35.0 %</td><td class="r">2.9</td></tr><tr><td class="tk">DNB.OL</td><td class="r">0.70</td><td class="r">0.3</td><td class="r">1.2</td><td class="r">0.6</td><td class="r">+14.3 %</td><td class="r">1.6</td></tr><tr><td class="tk">SUBC.OL</td><td class="r">0.55</td><td class="r">1.2</td><td class="r">-0.1</td><td class="r">-0.1</td><td class="r">+10.9 %</td><td class="r">2.2</td></tr><tr><td class="tk">HAFNI.OL</td><td class="r">0.46</td><td class="r">0.1</td><td class="r">0.7</td><td class="r">1.1</td><td class="r">+18.9 %</td><td class="r">1.4</td></tr><tr><td class="tk">NHY.OL</td><td class="r">0.44</td><td class="r">1.4</td><td class="r">-0.6</td><td class="r">-0.1</td><td class="r">+6.2 %</td><td class="r">1.6</td></tr><tr><td class="tk">VAR.OL</td><td class="r">0.39</td><td class="r">1.0</td><td class="r">-0.3</td><td class="r">-0.1</td><td class="r">+97.4 %</td><td class="r">-45.7</td></tr><tr><td class="tk">TGS.OL</td><td class="r">0.34</td><td class="r">1.1</td><td class="r">-0.8</td><td class="r">0.4</td><td class="r">-0.1 %</td><td class="r">1.4</td></tr><tr><td class="tk">YAR.OL</td><td class="r">0.18</td><td class="r">0.0</td><td class="r">0.0</td><td class="r">1.0</td><td class="r">+16.9 %</td><td class="r">1.3</td></tr><tr><td class="tk">GJF.OL</td><td class="r">0.11</td><td class="r">-0.1</td><td class="r">1.3</td><td class="r">-1.8</td><td class="r">+30.3 %</td><td class="r">7.1</td></tr><tr><td class="tk">TEL.OL</td><td class="r">0.02</td><td class="r">-0.0</td><td class="r">0.0</td><td class="r">0.1</td><td class="r">+22.5 %</td><td class="r">2.6</td></tr><tr><td class="tk">EQNR.OL</td><td class="r">-0.01</td><td class="r">0.4</td><td class="r">-0.6</td><td class="r">0.2</td><td class="r">+12.4 %</td><td class="r">1.9</td></tr><tr><td class="tk">MOWI.OL</td><td class="r">-0.05</td><td class="r">-0.4</td><td class="r">0.2</td><td class="r">0.6</td><td class="r">+19.5 %</td><td class="r">1.9</td></tr><tr><td class="tk">ORK.OL</td><td class="r">-0.08</td><td class="r">-0.4</td><td class="r">0.3</td><td class="r">-0.0</td><td class="r">+13.6 %</td><td class="r">2.2</td></tr><tr><td class="tk">AUTO.OL</td><td class="r">-0.08</td><td class="r">-0.3</td><td class="r">0.4</td><td class="r">-0.5</td><td class="r">+8.3 %</td><td class="r">2.5</td></tr><tr><td class="tk">AKRBP.OL</td><td class="r">-0.20</td><td class="r">0.5</td><td class="r">-1.2</td><td class="r">-0.2</td><td class="r">+4.8 %</td><td class="r">1.7</td></tr><tr><td class="tk">STB.OL</td><td class="r">-0.36</td><td class="r">0.5</td><td class="r">-1.7</td><td class="r">-0.1</td><td class="r">+13.9 %</td><td class="r">2.4</td></tr><tr><td class="tk">NOD.OL</td><td class="r">-0.47</td><td class="r">-0.0</td><td class="r">-0.7</td><td class="r">-1.5</td><td class="r">+4.2 %</td><td class="r">5.0</td></tr><tr><td class="tk">NAS.OL</td><td class="r">-0.52</td><td class="r">-1.4</td><td class="r">-0.3</td><td class="r">1.8</td><td class="r">+40.8 %</td><td class="r">1.6</td></tr><tr><td class="tk">BAKKA.OL</td><td class="r">-0.53</td><td class="r">-0.9</td><td class="r">-0.3</td><td class="r">0.2</td><td class="r">+7.4 %</td><td class="r">1.5</td></tr><tr><td class="tk">LSG.OL</td><td class="r">-0.56</td><td class="r">-0.5</td><td class="r">-1.0</td><td class="r">0.1</td><td class="r">+5.3 %</td><td class="r">1.2</td></tr><tr><td class="tk">SALM.OL</td><td class="r">-0.65</td><td class="r">-0.3</td><td class="r">-1.0</td><td class="r">-0.8</td><td class="r">+9.8 %</td><td class="r">3.4</td></tr><tr><td class="tk">KOG.OL</td><td class="r">-0.82</td><td class="r">-1.8</td><td class="r">1.2</td><td class="r">-2.2</td><td class="r">+20.8 %</td><td class="r">11.1</td></tr><tr><td class="tk">TOM.OL</td><td class="r">-1.81</td><td class="r">-2.7</td><td class="r">-0.9</td><td class="r">-1.1</td><td class="r">+13.8 %</td><td class="r">4.2</td></tr></tbody></table></div></div>
+<script>
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+      document.querySelectorAll('.page').forEach(function(x){x.classList.remove('active');});
+      t.classList.add('active');
+      document.getElementById(t.dataset.p).classList.add('active');
+    });
+  });
+</script></body></html>

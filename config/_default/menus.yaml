@@ -22,9 +22,12 @@ main:
   - name: Innsidehandel
     url: /innsidehandel/
     weight: 36
+  - name: AI-trading
+    url: /ai-trading/
+    weight: 37
   - name: Nyhetsbrev
     url: /nyhetsbrev/
-    weight: 37
+    weight: 38
   # - name: Courses
   #   url: courses/
   #   weight: 40
