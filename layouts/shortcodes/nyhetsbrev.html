@@ -132,12 +132,27 @@
       });
     }
 
+    // Lesetid: bruk readingTime-feltet fra JSON hvis det finnes, ellers regn det
+    // ut fra selve innholdet (~200 ord/min). Slik får ALLE utgaver vist lesetid —
+    // også de gamle som mangler feltet.
+    function lesetid(ed) {
+      if (ed.readingTime) return String(ed.readingTime);
+      var txt = String(ed.html || "")
+        .replace(/<(script|style|svg)[\s\S]*?<\/\1>/gi, " ")
+        .replace(/<[^>]+>/g, " ")
+        .replace(/&[a-z#0-9]+;/gi, " ");
+      var ord = (txt.match(/\S+/g) || []).length;
+      if (!ord) return "";
+      return "Cirka " + Math.max(1, Math.round(ord / 200)) + " minutter";
+    }
+
     function renderToday(ed) {
+      var lt = lesetid(ed);
       todayEl.innerHTML =
         '<span class="nb__edition-tag">Dagens utgave</span>' +
         '<h2 class="nb__edition-title">' + esc(ed.title) + "</h2>" +
         '<p class="nb__edition-meta">' + esc(ed.dateLabel || "") +
-          (ed.readingTime ? " · " + esc(ed.readingTime) : "") + "</p>" +
+          (lt ? " · " + esc(lt) : "") + "</p>" +
         '<div class="nb__body">' + (ed.html || "") + "</div>";
       harden(todayEl);
     }
@@ -145,9 +160,11 @@
     function renderArchive(eds) {
       if (!eds.length) { archiveEl.innerHTML = ""; return; }
       var items = eds.map(function (ed) {
+        var lt = lesetid(ed);
         return '<details class="nb__item">' +
           "<summary><span>" + esc(ed.title) + "</span>" +
-          '<span class="nb__item-date">' + esc(ed.dateLabel || ed.date) + "</span></summary>" +
+          '<span class="nb__item-date">' + esc(ed.dateLabel || ed.date) +
+            (lt ? " · " + esc(lt) : "") + "</span></summary>" +
           '<div class="nb__body">' + (ed.html || "") + "</div>" +
         "</details>";
       }).join("");
