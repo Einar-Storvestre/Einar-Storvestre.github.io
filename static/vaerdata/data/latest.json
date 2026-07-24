@@ -1,0 +1,55 @@
+{
+ "updated": "2026-07-23T08:49:44.066Z",
+ "locations": {
+  "bergen_gk": {
+   "forecast": {
+    "snapshots": 4,
+    "metModelRun": "2026-07-23T07:33:42Z",
+    "dailyDays": 10
+   },
+   "observations": {
+    "upToDate": true,
+    "days": 92
+   },
+   "accuracy": {
+    "pairs": 0,
+    "snapshots": 4
+   }
+  },
+  "vagslid": {
+   "forecast": {
+    "snapshots": 4,
+    "metModelRun": "2026-07-23T08:29:36Z",
+    "dailyDays": 10
+   },
+   "observations": {
+    "upToDate": true,
+    "days": 92
+   }
+  },
+  "haukeliseter": {
+   "forecast": {
+    "snapshots": 4,
+    "metModelRun": "2026-07-23T07:30:56Z",
+    "dailyDays": 10
+   },
+   "observations": {
+    "upToDate": true,
+    "days": 92
+   }
+  }
+ },
+ "sources": {
+  "forecast": {
+   "name": "MET Norway Locationforecast 2.0",
+   "url": "https://api.met.no/weatherapi/locationforecast/2.0/documentation",
+   "license": "NLOD/CC BY 4.0"
+  },
+  "observations": {
+   "name": "NVE GridTimeSeries (seNorge-grid 1×1 km)",
+   "url": "https://api.nve.no/doc/gridtimeseries-data-gts/",
+   "license": "NLOD (kompatibel med CC BY 3.0)"
+  }
+ },
+ "errors": []
+}

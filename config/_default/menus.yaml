@@ -28,6 +28,9 @@ main:
   - name: Nyhetsbrev
     url: /nyhetsbrev/
     weight: 38
+  - name: Værdata
+    url: /vaerdata/
+    weight: 39
   # - name: Courses
   #   url: courses/
   #   weight: 40

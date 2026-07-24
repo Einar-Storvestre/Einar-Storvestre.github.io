@@ -1,0 +1,34 @@
+{{- $cssV := os.ReadFile "static/vaerdata/app.css" | hash.FNV32a -}}
+{{- $jsV := os.ReadFile "static/vaerdata/app.js" | hash.FNV32a -}}
+{{- $modelsV := os.ReadFile "static/vaerdata/models.mjs" | hash.FNV32a -}}
+<link rel="stylesheet" href="{{ "vaerdata/app.css" | relURL }}?v={{ $cssV }}">
+
+<div class="vd" id="vaerdata-app">
+  <div class="vd__tabs" role="tablist" aria-label="Værdata-seksjoner">
+    <button class="vd__tab is-active" id="vd-tab-golf" role="tab" aria-selected="true" aria-controls="vd-panel-golf" data-tab="golfvaer">⛳ Golfvær</button>
+    <button class="vd__tab" id="vd-tab-ski" role="tab" aria-selected="false" aria-controls="vd-panel-ski" tabindex="-1" data-tab="skifore">🎿 Skiføre &amp; smøring</button>
+    <button class="vd__tab" id="vd-tab-acc" role="tab" aria-selected="false" aria-controls="vd-panel-acc" tabindex="-1" data-tab="varsel">🎯 Varseltreffsikkerhet</button>
+  </div>
+
+  <section class="vd__panel" id="vd-panel-golf" role="tabpanel" aria-labelledby="vd-tab-golf" tabindex="0">
+    <p class="vd__loading">Laster golfvær …</p>
+  </section>
+  <section class="vd__panel" id="vd-panel-ski" role="tabpanel" aria-labelledby="vd-tab-ski" tabindex="0" hidden>
+    <p class="vd__loading">Laster skiføre …</p>
+  </section>
+  <section class="vd__panel" id="vd-panel-acc" role="tabpanel" aria-labelledby="vd-tab-acc" tabindex="0" hidden>
+    <p class="vd__loading">Laster treffsikkerhet …</p>
+  </section>
+
+  <p class="vd__src">
+    Kilder: værvarsel fra <a href="https://api.met.no/weatherapi/locationforecast/2.0/documentation" rel="noopener" target="_blank">MET Norway Locationforecast 2.0</a> (NLOD/CC BY 4.0) ·
+    observasjoner fra <a href="https://api.nve.no/doc/gridtimeseries-data-gts/" rel="noopener" target="_blank">NVE GridTimeSeries / seNorge-grid 1×1 km</a> (NLOD).
+    Grid-verdier er modellerte/interpolerte, ikke punktmålinger. Bane- og førevurderinger er beregninger — ikke målinger.
+  </p>
+</div>
+
+<noscript><p>Værdata-appen krever JavaScript.</p></noscript>
+<script type="importmap">
+{ "imports": { "vd-models": "{{ "vaerdata/models.mjs" | relURL }}?v={{ $modelsV }}" } }
+</script>
+<script type="module" src="{{ "vaerdata/app.js" | relURL }}?v={{ $jsV }}"></script>

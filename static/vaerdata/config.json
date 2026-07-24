@@ -1,0 +1,68 @@
+{
+  "_kommentar": "Konfigurasjon for Værdata. Koordinater og modellparametere kan justeres fritt. UTM33-koordinater beregnes automatisk av innsamleren (scripts/fetch-vaerdata.mjs) hvis de mangler.",
+  "user_agent": "EinarStorvestre-Vaerdata/1.0 github.com/Einar-Storvestre/Einar-Storvestre.github.io",
+  "locations": [
+    {
+      "id": "bergen_gk",
+      "name": "Bergen Golfklubb",
+      "type": "golf",
+      "lat": 60.4039,
+      "lon": 5.3327,
+      "_koordinatkilde": "Samme koordinater som Einars golf-agent (Golf-agent/config.env). Juster her om banen ligger et annet sted.",
+      "gts_params": ["rr", "tm", "gwb_eva", "gwb_sssrel", "windSpeed10m24h06"]
+    },
+    {
+      "id": "vagslid",
+      "name": "Vågslid / Haukelifjell",
+      "type": "ski",
+      "lat": 59.76,
+      "lon": 7.65,
+      "_koordinatkilde": "Omtrentlig punkt i Vågslid-området (ca. 980 moh i seNorge-gridet). ANTATT plassering — juster mot løypenettet ditt.",
+      "loyper_url": "https://www.loyper.net/location/vaagslid?lat=59.775489226210794&lng=7.330537693700762&zoom=12.245718501980122",
+      "gts_params": ["rr", "tm", "sd", "fsw", "sdfsw3d", "lwc", "age", "qsw", "windSpeed10m24h06"]
+    },
+    {
+      "id": "haukeliseter",
+      "name": "Haukeliseter",
+      "type": "ski",
+      "lat": 59.81,
+      "lon": 7.21,
+      "_koordinatkilde": "Omtrentlig punkt ved Haukeliseter fjellstue. ANTATT plassering — juster ved behov.",
+      "loyper_url": "https://www.loyper.net/location/vaagslid?lat=59.81&lng=7.21&zoom=12",
+      "gts_params": ["rr", "tm", "sd", "fsw", "sdfsw3d", "lwc", "age", "qsw", "windSpeed10m24h06"]
+    }
+  ],
+  "golf_model": {
+    "_kommentar": "Vannbalanse/API-modell. drainage: retensjonsfaktor per døgn (høyere = dårligere drenert, vann blir liggende lenger). Kategorigrenser i mm-ekvivalent våthetsindeks er ANTAKELSER inntil kalibrert mot egne baneobservasjoner.",
+    "drainage_presets": { "godt_drenert": 0.80, "middels": 0.88, "daarlig": 0.94 },
+    "default_drainage": "middels",
+    "drying_factor": 0.8,
+    "_drying_factor_kilde": "HEURISTISK dempning (0.3–1.2) av NVEs grid-fordampning (gwb_eva) fordi grid-snittet kan overvurdere vanntapet fra en pleiet green. Research (FAO-56 / Allen m.fl. 1998; NC State Extension; Braun m.fl. 2022) støtter at cool-season turf bruker ~0,8–0,9 av REFERANSE-ET0 — men NVE gwb_eva sin definisjon (faktisk vs. referanse-ET) er IKKE verifisert i NVE-dok, så dette er en justerbar antakelse, ikke en streng FAO-56 Kc. Kalibrer mot egne baneobservasjoner.",
+    "eva_sensitivity": 0.025,
+    "retention_min": 0.55,
+    "retention_max": 0.97,
+    "category_thresholds_mm": { "torr": 8, "normal": 22, "myk": 45, "svaert_vaat": 80 },
+    "significant_rain_mm": 5,
+    "history_days": 60
+  },
+  "ski_model": {
+    "min_snow_depth_cm": 5,
+    "thaw_temp_c": 1.0,
+    "refreeze_temp_c": -1.0,
+    "fresh_snow_significant_mm_we": 3,
+    "near_zero_band_c": 1.0,
+    "old_snow_age_days": 7,
+    "cold_snow_temp_c": -5
+  },
+  "accuracy": {
+    "collection_started": "2026-07-22",
+    "precip_event_threshold_mm": 1.0,
+    "shrinkage_k": 50,
+    "evidence_levels": { "tidlig_tendens": 30, "mulig_skjevhet": 100, "dokumentert": 300 },
+    "backtest_holdout_fraction": 0.3
+  },
+  "sources": {
+    "forecast": { "name": "MET Norway Locationforecast 2.0", "url": "https://api.met.no/weatherapi/locationforecast/2.0/documentation", "license": "NLOD/CC BY 4.0" },
+    "observations": { "name": "NVE GridTimeSeries (seNorge-grid 1×1 km)", "url": "https://api.nve.no/doc/gridtimeseries-data-gts/", "license": "NLOD (kompatibel med CC BY 3.0)" }
+  }
+}

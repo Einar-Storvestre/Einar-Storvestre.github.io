@@ -1,0 +1,34 @@
+name: Update vaerdata
+
+on:
+  schedule:
+    # Holder avstand til update-innside (06:00/18:00) og update-prot-* — GitHub-cron
+    # forsinkes rutinemessig 10–30 min, og samtidige push gir non-fast-forward.
+    - cron: '0 5 * * *'   # morgen 05:00 UTC (< 06 UTC: gårsdagens NVE-vindu er siste komplette)
+    - cron: '0 17 * * *'  # kveld 17:00 UTC (dagens 06-vindu komplett → ferskere fasit + flere lead-tider)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-vaerdata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Collect forecasts + observations, compute accuracy
+        run: node scripts/fetch-vaerdata.mjs static
+
+      - name: Commit updated vaerdata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/vaerdata/data
+          git diff --staged --quiet || git commit -m "chore: vaerdata $(date -u +%Y-%m-%dT%H:%M) [skip ci]"
+          git pull --rebase origin main
+          git push || (git pull --rebase origin main && git push)
