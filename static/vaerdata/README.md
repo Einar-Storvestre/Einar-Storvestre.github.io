@@ -81,6 +81,13 @@ UI-et merker alt som [Observert]/[Varslet]/[Modellert]/[Registrert]/[Antatt]/[Ma
 
 - Første innsamling er kjørt lokalt (90 døgn observasjons-backfill). Workflowen aktiveres først
   når repoet pushes — ingen hemmeligheter kreves.
-- Koordinater: Bergen GK er arvet fra golf-agentens config; Vågslid/Haukeliseter er ANTATTE punkt
+- Koordinater: Bergen GK = **Åstveit 60.4484/5.3162** (60 moh), samme punkt som golf-agentens
+  `config.env`. **Rettet 2026-07-30:** appen brukte først `vaer.py` sine *fallback*-defaults
+  (60.4039/5.3327, 84 moh) — ~5 km sør av banen, en annen NVE grid-celle. Observasjonshistorikk og
+  varsel-snapshots for Bergen ble nullstilt og backfillet på nytt for riktig celle (ingen par var
+  dannet, så ingen statistikk gikk tapt). Vågslid/Haukeliseter er fortsatt ANTATTE punkt
   (grid-celler på 984/944 moh) — juster i `config.json` ved behov.
+- **Samme modell brukes av golf-agenten lokalt** (`Agenter_Claude/Golf-agent/banefuktighet.py`),
+  som setter forventet banefuktighet + greenspeed inn i booking-mailen. Endrer du `golf_model`-
+  parametrene her, endre `FUKT_*` i golf-agentens `config.env` også — ellers spriker mail og nettside.
 - Manuell kjøring: `node scripts/fetch-vaerdata.mjs static`
