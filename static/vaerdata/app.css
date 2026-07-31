@@ -42,6 +42,24 @@
 .vd__level--dokumentert { background:rgba(31,111,235,.16); color:var(--accent); }
 .vd__level--ingen-skjevhet { background:rgba(26,157,90,.14); color:var(--ok); }
 
+/* Fuktighetsskala — samme rekkefølge som golf-agentens e-post: grønn (tørr) →
+   lyseblå → mørkeblå → lilla → mørk lilla (vannmettet), «fra lite til mye vann».
+   E-postens opake lyse flater kan ikke gjenbrukes her: siten har både lyst og
+   mørkt tema, så skalaen er rgba-tint + mid-tone aksent som holder i begge.
+   Aksentfargene er ≥3:1 mot både hvit og mørk bakgrunn (AA for stor tekst, og
+   .vd__big er 1.5rem/800). I tabellen er det prikken som bærer fargen mens
+   teksten arver full kontrast — fargen er aldri eneste informasjonsbærer,
+   kategorinavnet står alltid ved siden av. */
+.vd__wet--torr        { --wet:#1a9d5a; --wet-bg:rgba(26,157,90,.12); }
+.vd__wet--normal      { --wet:#1795c9; --wet-bg:rgba(23,149,201,.13); }
+.vd__wet--myk         { --wet:#4a84ea; --wet-bg:rgba(74,132,234,.15); }
+.vd__wet--svaert_vaat { --wet:#9370da; --wet-bg:rgba(147,112,218,.17); }
+.vd__wet--vannmettet  { --wet:#b350c8; --wet-bg:rgba(179,80,200,.19); }
+.vd__card--hero.vd__wet { border-left-color:var(--wet); background:var(--wet-bg); }
+.vd__card--hero.vd__wet .vd__big { color:var(--wet); }
+.vd__dot { display:inline-block; width:.62rem; height:.62rem; border-radius:50%; background:var(--wet); margin-right:.42rem; }
+.vd td.vd__wetcell { background:var(--wet-bg); }
+
 /* Lister, tabeller, diverse */
 .vd__reasons { margin:.4rem 0 0; padding-left:1.15rem; }
 .vd__reasons li { margin:.22rem 0; }

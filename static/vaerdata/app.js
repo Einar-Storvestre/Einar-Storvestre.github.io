@@ -160,7 +160,7 @@ async function renderGolf(el) {
       </label>
     </div>
     <div class="vd__grid">
-      <div class="vd__card vd__card--hero">
+      <div class="vd__card vd__card--hero${wet ? ` vd__wet vd__wet--${wet.catKey}` : ''}">
         <h4>Banefuktighet ${wetTagBits}</h4>
         ${wet ? `<div class="vd__big">${esc(wet.category)}</div>
           <div class="vd__sub">Våthetsindeks ${wet.index} mm-ekv. · ${wet.dataDays} døgn historikk, ${obsFreshness} — regn ETTER det er ikke med ennå</div>`
@@ -196,7 +196,7 @@ async function renderGolf(el) {
         <h4>Utvikling fremover <span class="vd__tag vd__tag--fc">Varslet</span> <span class="vd__tag vd__tag--mod">Modellert</span></h4>
         ${outlook.length ? `<div class="vd__tablewrap"><table>
           <thead><tr><th>Dag</th><th>Varslet nedbør</th><th>Modellert banefuktighet</th></tr></thead>
-          <tbody>${outlook.map(o => `<tr><td title="${esc(fmtDate(o.date))} — vindu slutter kl. 06 UTC">${esc(weekdayLong(o.date))}</td><td>${fmtMm(o.precip)}</td><td>${esc(o.res.category)} (${o.res.index} mm-ekv.)</td></tr>`).join('')}</tbody>
+          <tbody>${outlook.map(o => `<tr><td title="${esc(fmtDate(o.date))} — vindu slutter kl. 06 UTC">${esc(weekdayLong(o.date))}</td><td>${fmtMm(o.precip)}</td><td class="vd__wetcell vd__wet--${esc(o.res.catKey)}"><span class="vd__dot"></span>${esc(o.res.category)} (${o.res.index} mm-ekv.)</td></tr>`).join('')}</tbody>
         </table></div><div class="vd__sub">Hver dag = døgnet som slutter kl. 06 UTC (08 norsk sommertid) — «Fredag» dekker altså torsdag dag + natt til fredag. Simuleringen starter fra siste observerte døgn (${obsFreshness}); fordampning fremover er antatt lik snittet siste 7 døgn (${round1(evaAssumed)} mm/døgn) <span class="vd__tag vd__tag--ant">Antatt</span></div>` : emptyInline('Krever både varsel og historikk.')}
       </div>
     </div>
