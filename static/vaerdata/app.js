@@ -147,7 +147,7 @@ function kalibreringsTekst(c, punkter) {
   const mangler = c.trengerFlere > 0
     ? `${c.trengerFlere} vurdering${c.trengerFlere === 1 ? '' : 'er'} til`
     : 'Flere vurderinger';
-  return `Din egen 1–10-skala (under 4 = Sakte, 4–6 = Normal, over 6 = Rask) — ikke Stimpmeter. Forankret i ${c.n} egen vurdering${c.n === 1 ? '' : 'er'}: <b>nivået</b> kommer fra deg, men <b>helningen er antatt — ikke målt</b>, så tallet blir mer usikkert jo lenger banen er fra fuktigheten du vurderte ved.${treff} ${mangler} ved tydelig annen fuktighet lar modellen regne ut helningen selv. Grunnlag: ${grunnlag}`;
+  return `Din egen 1–10-skala (under 4 = Sakte, 4–6 = Normal, over 6 = Rask) — ikke Stimpmeter. Forankret i ${c.n} ${c.n === 1 ? 'egen vurdering' : 'egne vurderinger'}: <b>nivået</b> kommer fra deg, men <b>helningen er antatt — ikke målt</b>, så tallet blir mer usikkert jo lenger banen er fra fuktigheten du vurderte ved.${treff} ${mangler} ved tydelig annen fuktighet lar modellen regne ut helningen selv. Grunnlag: ${grunnlag}`;
 }
 
 /* ================= GOLFVÆR ================= */
