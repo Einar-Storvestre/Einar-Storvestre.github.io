@@ -111,17 +111,19 @@ export function greenspeed(catKey, rainLastObsDayMm, daysSinceRain) {
 }
 
 /**
- * Kalibrert greenspeed i STIMPMETER-FOT, forankret i egne målinger på banen.
+ * Kalibrert greenspeed på EINARS EGEN 1–10-SKALA (1 = tregest, 10 = raskest),
+ * forankret i egne vurderinger på banen. Dette er IKKE Stimpmeter og ikke fot —
+ * tallet er kun sammenlignbart med Einars egne målinger på samme bane.
  *
- * points        [{ index, stimp }] — modellert våthetsindeks (mm-ekv.) på
- *               måletidspunktet, parret med den MÅLTE greenspeeden (fot).
+ * points        [{ index, verdi }] — modellert våthetsindeks (mm-ekv.) på
+ *               måletidspunktet, parret med den MÅLTE greenspeeden (1–10).
  * currentIndex  våthetsindeksen det skal predikeres for.
- * cfg           assumed_slope_ft_per_mm, min_points_for_fit,
- *               min_index_spread_mm, clamp_ft.
+ * cfg           assumed_slope_per_mm, min_points_for_fit,
+ *               min_index_spread_mm, clamp_skala.
  *
- * Sammenhengen modelleres som stimp = nivå − helning · indeks (våtere = tregere).
+ * Sammenhengen modelleres som verdi = nivå − helning · indeks (våtere = tregere).
  * Med få målinger kan bare NIVÅET bestemmes av data:
- *   'ingen'     ingen målinger → stimp = null (bruk kategorien Sakte/Normal/Rask)
+ *   'ingen'     ingen målinger → verdi = null (bruk kategorien Sakte/Normal/Rask)
  *   'forankret' for få målinger eller for lik fuktighet → helningen er en ANTAKELSE
  *               fra cfg, nivået legges gjennom snittet av målingene. Linja treffer
  *               målingene eksakt ved n = 1, men si ALDRI at prediksjonen er
@@ -130,16 +132,16 @@ export function greenspeed(catKey, rainLastObsDayMm, daysSinceRain) {
  *               er minste kvadraters tilpasning, og rmse er en ekte treffsikkerhet.
  */
 export function calibratedGreenspeed(points, currentIndex, cfg = {}) {
-  const slopeAssumed = cfg.assumed_slope_ft_per_mm ?? 0.04;
+  const slopeAssumed = cfg.assumed_slope_per_mm ?? 0.06;
   const minN = cfg.min_points_for_fit ?? 3;
   const minSpread = cfg.min_index_spread_mm ?? 15;
-  const lo = cfg.clamp_ft?.[0] ?? 4, hi = cfg.clamp_ft?.[1] ?? 14;
+  const lo = cfg.clamp_skala?.[0] ?? 1, hi = cfg.clamp_skala?.[1] ?? 10;
 
-  const pts = (points || []).filter(p => isNum(p.index) && isNum(p.stimp));
+  const pts = (points || []).filter(p => isNum(p.index) && isNum(p.verdi));
   const n = pts.length;
-  if (!n || !isNum(currentIndex)) return { stimp: null, n, mode: 'ingen', trengerFlere: minN };
+  if (!n || !isNum(currentIndex)) return { verdi: null, n, mode: 'ingen', trengerFlere: minN };
 
-  const xs = pts.map(p => p.index), ys = pts.map(p => p.stimp);
+  const xs = pts.map(p => p.index), ys = pts.map(p => p.verdi);
   const mean = a => a.reduce((s, v) => s + v, 0) / a.length;
   const mx = mean(xs), my = mean(ys);
   const spread = Math.max(...xs) - Math.min(...xs);
@@ -156,16 +158,16 @@ export function calibratedGreenspeed(points, currentIndex, cfg = {}) {
   }
   const level = my + slope * mx;              // linja gjennom snittet av målingene
   const raw = level - slope * currentIndex;
-  const stimp = clamp(raw, lo, hi);
+  const verdi = clamp(raw, lo, hi);
 
   let rmse = null;
   if (mode === 'tilpasset') {
-    const se = pts.reduce((s, p) => s + (p.stimp - (level - slope * p.index)) ** 2, 0);
+    const se = pts.reduce((s, p) => s + (p.verdi - (level - slope * p.index)) ** 2, 0);
     rmse = round1(Math.sqrt(se / n));
   }
   return {
-    stimp: round1(stimp),
-    klippet: raw !== stimp,
+    verdi: round1(verdi),
+    klippet: raw !== verdi,
     n, mode, rmse,
     helning: Math.round(slope * 1000) / 1000,
     helningKilde: mode === 'tilpasset' ? 'tilpasset egne målinger' : 'ANTATT — ikke målt',

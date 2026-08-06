@@ -80,14 +80,14 @@
     "significant_rain_mm": 5,
     "history_days": 60,
     "greenspeed_calibration": {
-      "_kommentar": "Oversetter våthetsindeks til Stimpmeter-fot ved hjelp av EGNE målinger i data/greenspeed-maalinger.json. Sammenheng: stimp = nivå − helning · indeks.",
-      "assumed_slope_ft_per_mm": 0.04,
-      "_assumed_slope_kilde": "ANTAKELSE UTEN KILDE. Brukes kun til at prediksjonen skal bevege seg i riktig retning (våtere bane = tregere greener) så lenge det er for få egne målinger til å estimere helningen. 0,04 ft per mm-ekv. gir ca. 3,2 fots spenn over hele indeksområdet 0–80. Tallet er IKKE målt og IKKE hentet fra litteratur — det erstattes automatisk av en tilpasset helning så snart min_points_for_fit målinger med min_index_spread_mm spredning finnes.",
+      "_kommentar": "Oversetter våthetsindeks til EINARS EGEN 1–10-skala for greenspeed (1 = tregest, 10 = raskest) ved hjelp av EGNE vurderinger i data/greenspeed-maalinger.json. Sammenheng: verdi = nivå − helning · indeks. IKKE Stimpmeter — tallet er kun sammenlignbart med Einars egne målinger på samme bane.",
+      "assumed_slope_per_mm": 0.06,
+      "_assumed_slope_kilde": "ANTAKELSE UTEN KILDE. Brukes kun til at prediksjonen skal bevege seg i riktig retning (våtere bane = lavere tall) så lenge det er for få egne målinger til å estimere helningen. 0,06 skalapoeng per mm-ekv. gjør at hele indeksområdet 0–80 spenner ca. 9,6 ned til 4,8 på skalaen — altså mesteparten av 1–10 uten å presse endepunktene. Tallet er IKKE målt og IKKE utledet fra noen kilde; det erstattes automatisk av en tilpasset helning så snart min_points_for_fit målinger med min_index_spread_mm spredning finnes.",
       "min_points_for_fit": 3,
       "min_index_spread_mm": 15,
       "_fit_krav_kilde": "ANTATT terskel: en rett linje har to frie parametre, så minst 3 punkter trengs for at det skal finnes en residual i det hele tatt, og punktene må spenne ulik fuktighet (15 mm-ekv.) for at helningen ikke skal være ren støy.",
-      "clamp_ft": [4, 14],
-      "_clamp_kilde": "ANTATT fysisk rimelig intervall for Stimpmeter-avlesninger, kun for å hindre absurde ekstrapolasjoner."
+      "clamp_skala": [1, 10],
+      "_clamp_kilde": "Skalaens egne endepunkter (1–10), kun for å hindre at ekstrapolasjon går utenfor skalaen."
     }
   },
   "ski_model": {

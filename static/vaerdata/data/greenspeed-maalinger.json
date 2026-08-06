@@ -1,15 +1,15 @@
 {
-  "_kommentar": "MÅLTE greenspeed-observasjoner fra banen — grunnsannheten som kalibrerer Stimpmeter-prediksjonen. Her lagres BARE det som faktisk er observert (dato, klokkeslett, sted, tall). Modellverdiene (våthetsindeks, kategori, nedbør) regnes ut på nytt fra observasjonshistorikken hver gang, slik at datasettet ikke blir foreldet hvis modellparametrene endres. Denne fila er ENESTE kilde: nettsiden leser den direkte, og golf-agenten henter den fra raw.githubusercontent (med lokal cache som reserve), så de to aldri kommer i utakt.",
-  "_enhet": "stimp_ft = Stimpmeter i FOT. Merk: verdien for 2026-08-04 ble oppgitt av Einar som «7» uten enhet; fot er antatt fordi Stimpmeter konvensjonelt oppgis i fot og 7 er en normal fot-verdi for en våt parkbane.",
-  "_slik_legger_du_til": "Legg til et objekt i «maalinger». Påkrevd: date (YYYY-MM-DD), location, stimp_ft. Anbefalt: time (HH:MM), kilde, kommentar. Modellen bruker det observerte 06–06-døgnet som SLUTTER på eller rett før måletidspunktet.",
+  "_kommentar": "MÅLTE greenspeed-observasjoner fra banen — grunnsannheten som kalibrerer greenspeed-prediksjonen. Her lagres BARE det som faktisk er observert (dato, klokkeslett, sted, tall). Modellverdiene (våthetsindeks, kategori, nedbør) regnes ut på nytt fra observasjonshistorikken hver gang, slik at datasettet ikke blir foreldet hvis modellparametrene endres. Denne fila er ENESTE kilde: nettsiden leser den direkte, og golf-agenten henter den fra raw.githubusercontent (med lokal cache som reserve), så de to aldri kommer i utakt.",
+  "_skala": "verdi_1_10 = EINARS EGEN 1–10-skala for greenspeed, der 1 = tregest og 10 = raskest. Dette er IKKE Stimpmeter og IKKE fot — det er en subjektiv vurdering gjort på banen, og tallene kan derfor ikke sammenlignes med Stimpmeter-verdier fra andre baner eller kilder.",
+  "_slik_legger_du_til": "Legg til et objekt i «maalinger». Påkrevd: date (YYYY-MM-DD), location, verdi_1_10. Anbefalt: time (HH:MM), kilde, kommentar. Modellen bruker det observerte 06–06-døgnet som SLUTTER på eller rett før måletidspunktet.",
   "maalinger": [
     {
       "date": "2026-08-04",
       "time": "10:00",
       "location": "bergen_gk",
-      "stimp_ft": 7.0,
-      "kilde": "Einars egen rapport fra runden (oppgitt som «greenspeed var 7»)",
-      "kommentar": "Uavklart om tallet er egen Stimpmeter-måling eller oppgitt av klubben — behandles som én observasjon uansett."
+      "verdi_1_10": 7.0,
+      "kilde": "Einars egen vurdering på runden",
+      "kommentar": "Første kalibreringspunkt. Einar presiserte 6. aug 2026 at tallet er på hans egen 1–10-skala, ikke Stimpmeter."
     }
   ]
 }

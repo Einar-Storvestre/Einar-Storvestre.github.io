@@ -116,7 +116,7 @@ function kalibreringspunkter(rows, maalinger, gm, drainage, locId) {
   const alle = rows.map(r => ({ date: r.date, rr: r.rr, eva: r.gwb_eva, tm: r.tm }));
   const punkter = [];
   for (const m of maalinger) {
-    if (!isNum(m?.stimp_ft)) continue;
+    if (!isNum(m?.verdi_1_10)) continue;
     if (m.location && m.location !== locId) continue;
     const tid = String(m.time || '12:00').slice(0, 5);
     let dato = m.date;
@@ -128,21 +128,21 @@ function kalibreringspunkter(rows, maalinger, gm, drainage, locId) {
     const i = alle.findIndex(d => d.date === dato);
     if (i < 0) continue; // måling utenfor observasjonshistorikken
     const w = golfMoisture(alle.slice(0, i + 1).slice(-gm.history_days), { drainage, ...gm });
-    punkter.push({ index: w.index, stimp: m.stimp_ft, date: m.date, time: tid, kategori: w.category });
+    punkter.push({ index: w.index, verdi: m.verdi_1_10, date: m.date, time: tid, kategori: w.category });
   }
   return punkter;
 }
 
-/* Én ærlig setning om hva Stimp-tallet faktisk hviler på. */
+/* Én ærlig setning om hva tallet faktisk hviler på. */
 function kalibreringsTekst(c, punkter) {
-  const grunnlag = punkter.map(p => `${fmtDate(p.date)} kl. ${esc(p.time)}: ${String(p.stimp).replace('.', ',')} ft ved ${p.index} mm-ekv. (${esc(p.kategori)})`).join(' · ');
+  const grunnlag = punkter.map(p => `${fmtDate(p.date)} kl. ${esc(p.time)}: ${String(p.verdi).replace('.', ',')} av 10 ved ${p.index} mm-ekv. (${esc(p.kategori)})`).join(' · ');
   if (c.mode === 'tilpasset') {
-    return `Tilpasset ${c.n} egne målinger som spenner ${c.spredning} mm-ekv. i fuktighet. Typisk avvik ±${c.rmse} ft. Grunnlag: ${grunnlag}`;
+    return `Tilpasset ${c.n} egne vurderinger som spenner ${c.spredning} mm-ekv. i fuktighet. Typisk avvik ±${c.rmse} poeng. Grunnlag: ${grunnlag}`;
   }
   const mangler = c.trengerFlere > 0
-    ? `${c.trengerFlere} måling${c.trengerFlere === 1 ? '' : 'er'} til`
-    : 'Målinger';
-  return `Forankret i ${c.n} egen måling${c.n === 1 ? '' : 'er'}: <b>nivået</b> kommer fra deg, men <b>helningen er antatt — ikke målt</b>, så tallet blir mer usikkert jo lenger banen er fra fuktigheten du målte ved. ${mangler} ved tydelig annen fuktighet lar modellen regne ut helningen selv. Grunnlag: ${grunnlag}`;
+    ? `${c.trengerFlere} vurdering${c.trengerFlere === 1 ? '' : 'er'} til`
+    : 'Flere vurderinger';
+  return `Din egen 1–10-skala (1 = tregest, 10 = raskest) — ikke Stimpmeter. Forankret i ${c.n} egen vurdering${c.n === 1 ? '' : 'er'}: <b>nivået</b> kommer fra deg, men <b>helningen er antatt — ikke målt</b>, så tallet blir mer usikkert jo lenger banen er fra fuktigheten du vurderte ved. ${mangler} ved tydelig annen fuktighet lar modellen regne ut helningen selv. Grunnlag: ${grunnlag}`;
 }
 
 /* ================= GOLFVÆR ================= */
@@ -172,7 +172,7 @@ async function renderGolf(el) {
   const sssrel = rows.length ? rows[rows.length - 1].gwb_sssrel : null;
   const gs = wet ? greenspeed(wet.catKey, rain.d1, rain.daysSinceSignificantRain) : null;
   const kalPunkter = kalibreringspunkter(rows, gsMaal?.maalinger, gm, drainage, loc.id);
-  const gsFot = wet ? calibratedGreenspeed(kalPunkter, wet.index, gm.greenspeed_calibration) : null;
+  const gsSkala = wet ? calibratedGreenspeed(kalPunkter, wet.index, gm.greenspeed_calibration) : null;
 
   // Live nå + utvikling fremover (varslet nedbør inn i samme modell)
   const nowH = met?.hours?.[0];
@@ -216,12 +216,12 @@ async function renderGolf(el) {
         : emptyInline('Mangler observasjonshistorikk — samles automatisk fremover.')}
       </div>
       <div class="vd__card vd__card--wide">
-        <h4>Greenspeed ${wet ? '<span class="vd__tag vd__tag--mod">Modellert</span>' : ''}${gsFot?.stimp != null ? ' <span class="vd__tag vd__tag--reg">Kalibrert mot egne målinger</span>' : ''}</h4>
-        ${gs ? (gsFot?.stimp != null
-          ? `<div class="vd__big">${String(gsFot.stimp).replace('.', ',')} ft <span class="vd__gscat">${esc(gs.speed)}</span></div>
-             <div class="vd__sub">${kalibreringsTekst(gsFot, kalPunkter)}${gsFot.klippet ? ' <b>Merk:</b> tallet er klippet til det fysisk rimelige intervallet.' : ''}</div>`
+        <h4>Greenspeed ${wet ? '<span class="vd__tag vd__tag--mod">Modellert</span>' : ''}${gsSkala?.verdi != null ? ' <span class="vd__tag vd__tag--reg">Din 1–10-skala</span>' : ''}</h4>
+        ${gs ? (gsSkala?.verdi != null
+          ? `<div class="vd__big">${String(gsSkala.verdi).replace('.', ',')} <span class="vd__gscat">av 10 · ${esc(gs.speed)}</span></div>
+             <div class="vd__sub">${kalibreringsTekst(gsSkala, kalPunkter)}${gsSkala.klippet ? ' <b>Merk:</b> tallet er klippet til skalaens endepunkt.' : ''}</div>`
           : `<div class="vd__big">${esc(gs.speed)}</div>
-             <div class="vd__sub">${esc(gs.why)} Kategori, ikke Stimpmeter — legg inn egne Stimp-målinger for å få tall.</div>`)
+             <div class="vd__sub">${esc(gs.why)} Kategori — legg inn egne vurderinger på 1–10-skalaen for å få tall.</div>`)
         : emptyInline('Krever fuktighetsmodellen.')}
       </div>
       <div class="vd__card">
@@ -265,12 +265,12 @@ async function renderGolf(el) {
     ${rows.length ? precipBars('Nedbør siste 30 døgn (mm/døgn, NVE-grid)', rows.slice(-30).map(r => r.rr ?? 0), rows.slice(-30).map(r => r.date)) : ''}
     <hr class="vd__hr">
     <h3>Registrer baneobservasjon <span class="vd__tag vd__tag--reg">Registrert</span></h3>
-    <p class="vd__sub">Lagres kun i din nettleser (localStorage) — de går <b>ikke</b> automatisk inn i modellen over. En <b>målt Stimp</b> du vil kalibrere med, må legges inn i <code>data/greenspeed-maalinger.json</code> (delt fil som både nettsiden og golf-agentens e-post leser), ellers ser bare denne nettleseren den.</p>
+    <p class="vd__sub">Lagres kun i din nettleser (localStorage) — de går <b>ikke</b> automatisk inn i modellen over. En <b>1–10-vurdering</b> du vil kalibrere med, må legges inn i <code>data/greenspeed-maalinger.json</code> (delt fil som både nettsiden og golf-agentens e-post leser), ellers ser bare denne nettleseren den.</p>
     <form class="vd__form" id="vd-golfform">
       <label>Dato/tid <input type="datetime-local" name="ts" value="${nowLocalInput()}" required></label>
       <label>Opplevd fuktighet <select name="felt">${['Tørr', 'Normal', 'Myk', 'Svært våt', 'Vannmettet'].map(o => `<option>${o}</option>`).join('')}</select></label>
       <label>Greenspeed <select name="speed">${['Sakte', 'Normal', 'Rask'].map(o => `<option>${o}</option>`).join('')}</select></label>
-      <label>Målt Stimp (ft, valgfritt) <input type="number" name="stimp" step="0.1" min="4" max="14" placeholder="f.eks. 7,0"></label>
+      <label>Greenspeed 1–10 (valgfritt) <input type="number" name="skala" step="0.5" min="1" max="10" placeholder="1 = tregest, 10 = raskest"></label>
       <label>Forhold <select name="extra">${['—', 'Dugg', 'Overvann', 'Myke områder', 'Nyklippet', 'Nylig vannet'].map(o => `<option>${o}</option>`).join('')}</select></label>
       <textarea name="kommentar" placeholder="Kommentar (valgfritt)"></textarea>
       <div class="vd__btnrow"><button class="vd__btn vd__btn--primary" type="submit">Lagre lokalt</button></div>
@@ -279,7 +279,7 @@ async function renderGolf(el) {
     ${meta(`Observasjoner: NVE seNorge-grid 1×1 km (${obs?.window || '06–06 UTC-døgn'}), oppdatert ${fmtTs(obs?.updated)} · Varsel: MET, modellkjøring ${fmtTs(met?.updatedAt)} · Innsamling: ${fmtTs(latest?.updated)}`)}
   `;
   q('#vd-drain').addEventListener('change', e => { LS.set('drainage', e.target.value); rerender(el, renderGolf); });
-  wireLog('golfobs', '#vd-golfform', '#vd-golflog', f => `${fmtTs(f.ts)} — ${esc(f.felt)}, greenspeed ${esc(f.speed)}${f.stimp ? ` (målt ${esc(String(f.stimp).replace('.', ','))} ft)` : ''}${f.extra && f.extra !== '—' ? ', ' + esc(f.extra) : ''}${f.kommentar ? ' — ' + esc(f.kommentar) : ''}`, 10);
+  wireLog('golfobs', '#vd-golfform', '#vd-golflog', f => `${fmtTs(f.ts)} — ${esc(f.felt)}, greenspeed ${esc(f.speed)}${f.skala ? ` (${esc(String(f.skala).replace('.', ','))} av 10)` : ''}${f.extra && f.extra !== '—' ? ', ' + esc(f.extra) : ''}${f.kommentar ? ' — ' + esc(f.kommentar) : ''}`, 10);
 }
 
 /* ================= SKIFØRE & SMØRING ================= */

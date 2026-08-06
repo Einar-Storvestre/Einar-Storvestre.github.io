@@ -61,29 +61,32 @@ UI-et merker alt som [Observert]/[Varslet]/[Modellert]/[Registrert]/[Antatt]/[Ma
   (~10–15 cm) og effektiv nedbør, og krever ≥1 sesong kalibrering (eller en billig jordfuktsensor) for
   å bli et faktisk fukttall. Jordtype og rotdybde er de største usikkerhetene. Mulig framtidig tillegg:
   PACE Turf «growth potential» GP = e^(−0.5·((T−20)/5.5)²) som separat vekst-/aktivitetsindikator.
-  Greenspeed er KATEGORI (sakte/normal/rask) — aldri Stimp-tall uten kalibreringsmålinger.
-- **Greenspeed i Stimpmeter-fot (kalibrert, `calibratedGreenspeed`):** oversetter våthetsindeksen til
-  et faktisk fot-tall, men KUN forankret i egne målinger i `data/greenspeed-maalinger.json`.
-  Sammenheng: `stimp = nivå − helning · indeks`. Fila lagrer bare selve observasjonen (dato, tid,
-  sted, fot) — indeksen på måletidspunktet regnes ut på nytt ved lesing, så datasettet ikke blir
+  Greenspeed er KATEGORI (sakte/normal/rask) — tall kommer kun fra egne vurderinger, se neste punkt.
+- **Greenspeed på Einars egen 1–10-skala (kalibrert, `calibratedGreenspeed`):** oversetter
+  våthetsindeksen til et tall på **Einars egen subjektive skala der 1 = tregest og 10 = raskest**.
+  Dette er **IKKE Stimpmeter og ikke fot** — tallet er kun sammenlignbart med Einars egne
+  vurderinger på samme bane, aldri med greenspeed oppgitt av andre baner eller kilder.
+  Forankres utelukkende i egne vurderinger i `data/greenspeed-maalinger.json` (felt `verdi_1_10`).
+  Sammenheng: `verdi = nivå − helning · indeks`. Fila lagrer bare selve observasjonen (dato, tid,
+  sted, tall) — indeksen på måletidspunktet regnes ut på nytt ved lesing, så datasettet ikke blir
   foreldet hvis modellparametrene endres. Måletidspunktet knyttes til 06–06-døgnet som SLUTTER
   før målingen (kl. 08 norsk sommertid), altså døgn D for målinger fra kl. 08 og utover.
   Tre moduser, og forskjellen er viktig:
-  - `ingen` — ingen målinger → intet tall, bare kategorien.
-  - `forankret` — færre enn `min_points_for_fit` målinger, eller for lik fuktighet
-    (`min_index_spread_mm`). Da bestemmer målingene **nivået**, mens **helningen er en ANTAKELSE
-    UTEN KILDE** (`assumed_slope_ft_per_mm`, se config.json). Linja treffer målingene eksakt ved
-    n = 1 — det er en identitet, ikke en validering. Ingen `rmse` oppgis, fordi én måling ikke kan
-    gi en ærlig treffsikkerhet. Tallet blir mer usikkert jo lenger banen er fra fuktigheten det ble
-    målt ved. **Ikke presenter dette som en validert prediksjon.**
-  - `tilpasset` — nok målinger med nok spredning → både nivå og helning er minste kvadraters
-    tilpasning til egne data, og `rmse` er et reelt typisk avvik.
-  Resultatet klippes til `clamp_ft` (antatt fysisk rimelig intervall) for å hindre absurde
-  ekstrapolasjoner. **Golf-agenten (`~/Agenter_Claude/golf/Golf-agent/banefuktighet.py`) leser SAMME
-  fil** over raw.githubusercontent med lokal cache som reserve, slik at e-posten og denne siden aldri
-  viser ulike tall. Merk at agenten henter NVE ferskere enn den committede observasjonsfila, så
-  indeksen for samme måledato kan avvike med noen tideler — det flytter Stimp-tallet under
-  avrundingsnivå (<0,01 ft), men forklarer at tallene ikke alltid er bit-identiske.
+  - `ingen` — ingen vurderinger → intet tall, bare kategorien.
+  - `forankret` — færre enn `min_points_for_fit` vurderinger, eller for lik fuktighet
+    (`min_index_spread_mm`). Da bestemmer vurderingene **nivået**, mens **helningen er en ANTAKELSE
+    UTEN KILDE** (`assumed_slope_per_mm`, se config.json). Linja treffer vurderingene eksakt ved
+    n = 1 — det er en identitet, ikke en validering. Ingen `rmse` oppgis, fordi én vurdering ikke
+    kan gi en ærlig treffsikkerhet. Tallet blir mer usikkert jo lenger banen er fra fuktigheten det
+    ble vurdert ved. **Ikke presenter dette som en validert prediksjon.**
+  - `tilpasset` — nok vurderinger med nok spredning → både nivå og helning er minste kvadraters
+    tilpasning til egne data, og `rmse` er et reelt typisk avvik (i skalapoeng).
+  Resultatet klippes til `clamp_skala` (1–10) for å hindre at ekstrapolasjon går utenfor skalaen.
+  **Golf-agenten (`~/Agenter_Claude/golf/Golf-agent/banefuktighet.py`) leser SAMME fil** over
+  raw.githubusercontent med lokal cache som reserve, slik at e-posten og denne siden aldri viser
+  ulike tall. Merk at agenten henter NVE ferskere enn den committede observasjonsfila, så indeksen
+  for samme måledato kan avvike med noen tideler — det flytter tallet under avrundingsnivå, men
+  forklarer at de ikke alltid er bit-identiske.
 - **Skiføre:** regelkjede over NVE-snøvariabler + temperaturforløp: regn-på-snø → våt; lwc>0 → fuktig/våt;
   mildvær/våt snø + frost nå → skare; prep på våt snø + frost → is; nysnø kald/mild → tørr/fuktig nysnø;
   alder+kulde → kald finkornet; gammel → omdannet. Nær 0 °C flagges alltid som svært usikkert.
