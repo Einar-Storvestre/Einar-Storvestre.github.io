@@ -92,8 +92,18 @@ UI-et merker alt som [Observert]/[Varslet]/[Modellert]/[Registrert]/[Antatt]/[Ma
   49,0) impliserer 0,317 poeng per mm-ekv. Det er IKKE brukt som helning, fordi spennet er bare
   6,3 mm-ekv. og fordi måledøgnet 6. aug hadde 19 mm nedbør mot 0,4 mm 4. aug — fallet skyldes
   trolig fersk nedbør like mye som indeksen. Bruker man 0,317 tilskrives regneffekten indeksen,
-  og modellen vil bomme grovt på en tørr dag med høy indeks. Neste naturlige forbedring er å ta
-  inn nedbør siste døgn som EGEN faktor, men det krever flere vurderinger før det er mer enn gjetning.
+  og modellen vil bomme grovt på en tørr dag med høy indeks.
+  **Viktigst av alt — indeksen beskriver BANEN, ikke GREENENE.** Einar observerte 6. aug 2026 at
+  banen var svært fuktig kl. 15, men at *banen* bar større preg av tidligere kraftig nedbør enn
+  *greenene* gjorde. Det er fysisk forventet: greener er typisk sandbaserte og drenerer langt
+  raskere enn fairway og råe. Våthetsindeksen her er bygget for banen som helhet, så den
+  **overvurderer systematisk hvor våte greenene er**, og jo lenger det er siden regnet, jo større
+  blir spriket. Dette er hovedgrunnen til at én enkelt indeks ikke kan drive både banefuktighet og
+  greenspeed godt. Neste modellsteg, når det finnes 4–5 vurderinger: gi greenspeed en EGEN,
+  raskere-drenerende indeks (lavere retensjon = kortere hukommelse for gammelt regn), i stedet for
+  å presse banens indeks gjennom en helning. Å legge til «nedbør siste døgn» som egen faktor peker
+  samme vei. Ingen av delene bør gjøres på to punkter — to frie parametre på to punkter er ren
+  kurvetilpasning uten validering.
   **Golf-agenten (`~/Agenter_Claude/golf/Golf-agent/banefuktighet.py`) leser SAMME fil** over
   raw.githubusercontent med lokal cache som reserve, slik at e-posten og denne siden aldri viser
   ulike tall. Merk at agenten henter NVE ferskere enn den committede observasjonsfila, så indeksen

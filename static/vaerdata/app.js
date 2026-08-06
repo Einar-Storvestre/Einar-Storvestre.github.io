@@ -211,6 +211,7 @@ async function renderGolf(el) {
 
   const wetTagBits = wet ? `${conf(wet.confidence)} <span class="vd__tag vd__tag--mod">Modellert</span>` : '';
   el.innerHTML = `
+    ${friskhetsstripe(lastObsDate, met?.updatedAt)}
     <div class="vd__seg">
       <strong>${esc(loc.name)}</strong>
       <label>Drenering <span class="vd__tag vd__tag--ant">Antatt</span>
@@ -226,7 +227,7 @@ async function renderGolf(el) {
           <div class="vd__sub">Våthetsindeks ${wet.index} mm-ekv. · ${wet.dataDays} døgn historikk, ${obsFreshness} — regn ETTER det er ikke med ennå</div>`
         : emptyInline('Mangler observasjonshistorikk — samles automatisk fremover.')}
       </div>
-      <div class="vd__card vd__card--wide">
+      <div class="vd__card vd__card--wide vd__card--gs">
         <h4>Greenspeed ${wet ? '<span class="vd__tag vd__tag--mod">Modellert</span>' : ''}${gsSkala?.verdi != null ? ' <span class="vd__tag vd__tag--reg">Din 1–10-skala</span>' : ''}</h4>
         ${gs ? (gsSkala?.verdi != null
           ? `<div class="vd__big">${String(gsSkala.verdi).replace('.', ',')} <span class="vd__gscat">av 10 · ${esc(gsOrd)}</span></div>
@@ -272,25 +273,11 @@ async function renderGolf(el) {
       <li>Drenering er en justerbar antakelse — endre den over hvis banen oppleves feil <span class="vd__tag vd__tag--ant">Antatt</span></li>
       ${wet.missing.length ? `<li><span class="vd__tag vd__tag--mangler">Mangler</span> ${wet.missing.length} datapunkter i perioden — konfidensen er justert ned.</li>` : ''}
     </ul>
-    <p class="vd__caveat">Modellen kjenner ikke klipping, valsing, vanning, dugg, gressart, jordtype eller andre greenkeeper-tiltak. Kategorigrensene er antakelser inntil de er kalibrert mot registreringene dine under.</p>` : ''}
+    <p class="vd__caveat">Modellen kjenner ikke klipping, valsing, vanning, dugg, gressart, jordtype eller andre greenkeeper-tiltak. Kategorigrensene er antakelser inntil de er kalibrert mot egne vurderinger i <code>data/greenspeed-maalinger.json</code>.</p>` : ''}
     ${rows.length ? precipBars('Nedbør siste 30 døgn (mm/døgn, NVE-grid)', rows.slice(-30).map(r => r.rr ?? 0), rows.slice(-30).map(r => r.date)) : ''}
-    <hr class="vd__hr">
-    <h3>Registrer baneobservasjon <span class="vd__tag vd__tag--reg">Registrert</span></h3>
-    <p class="vd__sub">Lagres kun i din nettleser (localStorage) — de går <b>ikke</b> automatisk inn i modellen over. En <b>1–10-vurdering</b> du vil kalibrere med, må legges inn i <code>data/greenspeed-maalinger.json</code> (delt fil som både nettsiden og golf-agentens e-post leser), ellers ser bare denne nettleseren den.</p>
-    <form class="vd__form" id="vd-golfform">
-      <label>Dato/tid <input type="datetime-local" name="ts" value="${nowLocalInput()}" required></label>
-      <label>Opplevd fuktighet <select name="felt">${['Tørr', 'Normal', 'Myk', 'Svært våt', 'Vannmettet'].map(o => `<option>${o}</option>`).join('')}</select></label>
-      <label>Greenspeed <select name="speed">${['Sakte', 'Normal', 'Rask'].map(o => `<option>${o}</option>`).join('')}</select></label>
-      <label>Greenspeed 1–10 (valgfritt) <input type="number" name="skala" step="0.5" min="1" max="10" placeholder="1 = tregest, 10 = raskest"></label>
-      <label>Forhold <select name="extra">${['—', 'Dugg', 'Overvann', 'Myke områder', 'Nyklippet', 'Nylig vannet'].map(o => `<option>${o}</option>`).join('')}</select></label>
-      <textarea name="kommentar" placeholder="Kommentar (valgfritt)"></textarea>
-      <div class="vd__btnrow"><button class="vd__btn vd__btn--primary" type="submit">Lagre lokalt</button></div>
-    </form>
-    <div id="vd-golflog"></div>
     ${meta(`Observasjoner: NVE seNorge-grid 1×1 km (${obs?.window || '06–06 UTC-døgn'}), oppdatert ${fmtTs(obs?.updated)} · Varsel: MET, modellkjøring ${fmtTs(met?.updatedAt)} · Innsamling: ${fmtTs(latest?.updated)}`)}
   `;
   q('#vd-drain').addEventListener('change', e => { LS.set('drainage', e.target.value); rerender(el, renderGolf); });
-  wireLog('golfobs', '#vd-golfform', '#vd-golflog', f => `${fmtTs(f.ts)} — ${esc(f.felt)}, greenspeed ${esc(f.speed)}${f.skala ? ` (${esc(String(f.skala).replace('.', ','))} av 10)` : ''}${f.extra && f.extra !== '—' ? ', ' + esc(f.extra) : ''}${f.kommentar ? ' — ' + esc(f.kommentar) : ''}`, 10);
 }
 
 /* ================= SKIFØRE & SMØRING ================= */
@@ -536,6 +523,54 @@ function fmtTs(ts) { if (!ts) return '—'; try { return new Date(ts).toLocaleSt
 function nowLocalInput() { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16); }
 function conf(c) { return c ? `<span class="vd__conf vd__conf--${c === 'høy' ? 'hoy' : c}">${c} konfidens</span>` : ''; }
 function meta(s) { return `<p class="vd__meta">${s}</p>`; }
+
+/** «3 t siden» / «2 døgn siden» — hvor gammelt noe er, i klartekst. */
+function siden(ms) {
+  if (!isNum(ms)) return '—';
+  const t = ms / 3600e3;
+  if (t < 1) return `${Math.max(1, Math.round(t * 60))} min siden`;
+  if (t < 48) return `${Math.round(t)} t siden`;
+  return `${Math.round(t / 24)} døgn siden`;
+}
+
+/**
+ * Friskhetsstripe: er analysen du ser på fersk, eller bygger den på gamle data?
+ *
+ * Selve modellen regnes ut i nettleseren ved hver sidelasting, så «modellert» er
+ * alltid nå — det som KAN være utdatert er datagrunnlaget:
+ *   • NVE-observasjonene, som oppdateres av en GitHub Action ~2×/døgn. Døgnet
+ *     merket D lukker D kl. 06 UTC, så alderen svinger normalt 0–24 t. Går den
+ *     forbi ~30 t har innsamlingen sviktet.
+ *   • MET-varselet, som hentes live her og nå (modellkjøring er typisk < 2 t gammel).
+ */
+function friskhet(lastObsDate, metUpdatedAt) {
+  const naa = new Date();
+  const obsMs = lastObsDate ? naa - new Date(`${lastObsDate}T06:00:00Z`) : null;
+  const metMs = metUpdatedAt ? naa - new Date(metUpdatedAt) : null;
+  const obsT = isNum(obsMs) ? obsMs / 3600e3 : null;
+  const metT = isNum(metMs) ? metMs / 3600e3 : null;
+
+  let niva = 'ok', melding = 'Fersk';
+  if (obsT == null) { niva = 'bad'; melding = 'Mangler observasjoner'; }
+  else if (obsT > 54) { niva = 'bad'; melding = 'Utdatert — innsamlingen har stanset'; }
+  else if (obsT > 30) { niva = 'warn'; melding = 'Kan være utdatert — siste innsamling uteble'; }
+  else if (metT == null) { niva = 'warn'; melding = 'Uten ferskt varsel'; }
+  else if (metT > 6) { niva = 'warn'; melding = 'Varselet er gammelt'; }
+
+  const klokke = naa.toLocaleTimeString('nb-NO', { hour: '2-digit', minute: '2-digit' });
+  return { niva, melding, klokke, obsT, metT, obsMs, metMs };
+}
+
+function friskhetsstripe(lastObsDate, metUpdatedAt) {
+  const f = friskhet(lastObsDate, metUpdatedAt);
+  const ikon = f.niva === 'ok' ? '✓' : f.niva === 'warn' ? '⚠️' : '⛔';
+  return `<div class="vd__fersk vd__fersk--${f.niva}">
+    <span class="vd__fersk-hode">${ikon} ${esc(f.melding)}</span>
+    <span class="vd__fersk-del"><b>Modellert:</b> nå, kl. ${esc(f.klokke)}</span>
+    <span class="vd__fersk-del"><b>Observasjoner (NVE):</b> t.o.m. ${fmtDate(lastObsDate)} kl. 06 UTC — ${esc(siden(f.obsMs))}</span>
+    <span class="vd__fersk-del"><b>Varsel (MET):</b> ${metUpdatedAt ? `kjøring ${fmtTs(metUpdatedAt)} — ${esc(siden(f.metMs))}` : 'ikke hentet'}</span>
+  </div>`;
+}
 function errBox(s) { return `<div class="vd__error">⚠️ ${s}</div>`; }
 function emptyBox(title, body) { return `<div class="vd__empty"><strong>${esc(title)}</strong><br>${esc(body)}</div>`; }
 function emptyInline(s) { return `<div class="vd__sub">${esc(s)}</div>`; }

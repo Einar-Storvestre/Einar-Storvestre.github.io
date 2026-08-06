@@ -17,7 +17,8 @@
       "location": "bergen_gk",
       "verdi_1_10": 5.0,
       "kilde": "Einars egen vurdering på banen",
-      "kommentar": "Andre kalibreringspunkt. NB: 06–06-døgnet som gjelder her hadde 19 mm nedbør, mot 0,4 mm for punktet 4. aug — fallet fra 7 til 5 skyldes derfor trolig FERSK nedbør like mye som den trege våthetsindeksen, som bare steg 6,3 mm-ekv. Ikke tolk de to punktene som en ren indeks-helning."
+      "kommentar": "Andre kalibreringspunkt. NB: 06–06-døgnet som gjelder her hadde 19 mm nedbør, mot 0,4 mm for punktet 4. aug — fallet fra 7 til 5 skyldes derfor trolig FERSK nedbør like mye som den trege våthetsindeksen, som bare steg 6,3 mm-ekv. Ikke tolk de to punktene som en ren indeks-helning.",
+      "einars_observasjon": "Einar 6. aug: banen var SVÆRT fuktig kl. 15, og banen bar større preg av tidligere kraftig nedbør enn greenene gjorde. Greenene tørker altså raskere enn resten av banen — våthetsindeksen beskriver banen, ikke greenene, og overvurderer derfor hvor våte greenene er."
     }
   ]
 }

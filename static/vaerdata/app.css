@@ -1,10 +1,10 @@
 /* Værdata — dashboardpreg, tema-nøytral (arver farger, rgba-flater som resten av siten) */
-.vd { margin: 1rem 0 2rem; font-size: .95rem; line-height: 1.5; --ok:#1a9d5a; --warn:#e0a010; --bad:#d23b3b; --accent:#1f6feb; --muted:rgba(125,125,125,.14); }
+.vd { margin: 1rem 0 2rem; font-size: 1.02rem; line-height: 1.55; --ok:#1a9d5a; --warn:#e0a010; --bad:#d23b3b; --accent:#1f6feb; --muted:rgba(125,125,125,.14); }
 
 /* Underfaner */
 .vd__tabs { display:flex; gap:.4rem; margin: .2rem 0 1rem; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:2px; }
 .vd__tabs::-webkit-scrollbar { display:none; }
-.vd__tab { appearance:none; cursor:pointer; white-space:nowrap; border:1px solid rgba(125,125,125,.32); background:transparent; color:inherit; padding:.55rem 1rem; border-radius:999px; font-weight:600; font-size:.92rem; transition:all .15s ease; }
+.vd__tab { appearance:none; cursor:pointer; white-space:nowrap; border:1px solid rgba(125,125,125,.4); background:transparent; color:inherit; padding:.58rem 1.05rem; border-radius:999px; font-weight:600; font-size:.98rem; transition:all .15s ease; }
 .vd__tab:hover { border-color: rgba(125,125,125,.6); }
 .vd__tab:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 .vd__tab.is-active { background:var(--accent); border-color:var(--accent); color:#fff; }
@@ -12,22 +12,28 @@
 
 /* Kort og grid */
 .vd__grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:.8rem; margin-bottom:.9rem; }
-.vd__card { border:1px solid rgba(125,125,125,.22); border-radius:12px; padding:.85rem .95rem; background:rgba(125,125,125,.05); min-width:0; }
+.vd__card { border:1px solid rgba(125,125,125,.30); border-radius:12px; padding:.9rem 1rem; background:rgba(125,125,125,.10); min-width:0; }
 .vd__card--hero { border-left:5px solid var(--accent); }
 /* Kort med tabell/bredt innhold skal spenne hele raden i ALLE bredder. Sto tidligere
    kun i 640px-mediaqueryen, så «Utvikling fremover» fikk én auto-fit-kolonne på
    desktop og tabellen måtte scrolles horisontalt. */
 .vd__card--wide { grid-column:1/-1; }
-.vd__card h4 { margin:0 0 .45rem; font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; opacity:.65; }
-.vd__big { font-size:1.5rem; font-weight:800; line-height:1.2; margin:.1rem 0; }
+.vd__card h4 { margin:0 0 .5rem; font-size:.86rem; text-transform:uppercase; letter-spacing:.05em; opacity:.8; }
+.vd__big { font-size:1.7rem; font-weight:800; line-height:1.2; margin:.1rem 0; }
 .vd__gscat { font-size:1rem; font-weight:700; opacity:.6; margin-left:.4rem; }
-.vd__sub { font-size:.84rem; opacity:.75; }
+/* Greenspeed-kortet er grønt (Einars valg). Bevisst IKKE med i fuktighetsskalaen
+   grønn→lilla: den måler vann, dette måler fart, og et fast grønt kort holder de to
+   dimensjonene fra hverandre. Samme mid-tone-grønn som skalaens tørre ende, så den
+   holder ≥3:1 mot både hvit og mørk bakgrunn. */
+.vd__card--gs { border-left:5px solid #1a9d5a; background:rgba(26,157,90,.12); }
+.vd__card--gs .vd__big { color:#1a9d5a; }
+.vd__sub { font-size:.92rem; opacity:.88; }
 .vd__kv { display:flex; justify-content:space-between; gap:.6rem; padding:.16rem 0; font-variant-numeric:tabular-nums; }
-.vd__kv dt { opacity:.75; } .vd__kv dd { margin:0; font-weight:600; text-align:right; }
+.vd__kv dt { opacity:.88; } .vd__kv dd { margin:0; font-weight:600; text-align:right; }
 .vd dl { margin:0; }
 
 /* Ærlighets-badges: hva slags verdi er dette? */
-.vd__tag { display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.04em; padding:.1rem .45rem; border-radius:5px; vertical-align:1px; margin-left:.35rem; }
+.vd__tag { display:inline-block; font-size:.74rem; font-weight:800; letter-spacing:.04em; padding:.1rem .45rem; border-radius:5px; vertical-align:1px; margin-left:.35rem; }
 .vd__tag--obs { background:rgba(26,157,90,.16); color:var(--ok); }
 .vd__tag--fc { background:rgba(31,111,235,.16); color:var(--accent); }
 .vd__tag--mod { background:rgba(224,160,16,.18); color:#a87908; }
@@ -37,12 +43,12 @@
 .vd__tag--delvis { background:rgba(224,160,16,.18); color:#a87908; }
 
 /* Konfidens + nivåbadges */
-.vd__conf { font-size:.78rem; font-weight:700; padding:.14rem .5rem; border-radius:999px; }
+.vd__conf { font-size:.84rem; font-weight:700; padding:.14rem .5rem; border-radius:999px; }
 .vd__conf--hoy { background:rgba(26,157,90,.16); color:var(--ok); }
 .vd__conf--middels { background:rgba(224,160,16,.18); color:#a87908; }
 .vd__conf--lav { background:rgba(210,59,59,.15); color:var(--bad); }
 
-.vd__level { display:inline-block; font-size:.74rem; font-weight:800; padding:.12rem .55rem; border-radius:6px; }
+.vd__level { display:inline-block; font-size:.8rem; font-weight:800; padding:.12rem .55rem; border-radius:6px; }
 .vd__level--for-lite-data, .vd__level--tidlig-tendens { background:rgba(125,125,125,.18); }
 .vd__level--mulig-skjevhet { background:rgba(224,160,16,.2); color:#a87908; }
 .vd__level--dokumentert { background:rgba(31,111,235,.16); color:var(--accent); }
@@ -69,26 +75,26 @@
 /* Lister, tabeller, diverse */
 .vd__reasons { margin:.4rem 0 0; padding-left:1.15rem; }
 .vd__reasons li { margin:.22rem 0; }
-.vd__caveat { font-size:.84rem; opacity:.8; border-left:3px solid var(--warn); padding:.15rem 0 .15rem .6rem; margin:.35rem 0; }
+.vd__caveat { font-size:.92rem; opacity:.9; border-left:3px solid var(--warn); padding:.15rem 0 .15rem .6rem; margin:.35rem 0; }
 .vd__tablewrap { overflow-x:auto; }
-.vd table { width:100%; border-collapse:collapse; font-size:.86rem; font-variant-numeric:tabular-nums; }
-.vd th, .vd td { text-align:right; padding:.4rem .55rem; border-bottom:1px solid rgba(125,125,125,.18); white-space:nowrap; }
+.vd table { width:100%; border-collapse:collapse; font-size:.93rem; font-variant-numeric:tabular-nums; }
+.vd th, .vd td { text-align:right; padding:.45rem .6rem; border-bottom:1px solid rgba(125,125,125,.26); white-space:nowrap; }
 .vd th:first-child, .vd td:first-child { text-align:left; }
-.vd th { font-size:.74rem; text-transform:uppercase; letter-spacing:.04em; opacity:.65; }
-.vd__empty { border:1.5px dashed rgba(125,125,125,.35); border-radius:12px; padding:1rem 1.1rem; opacity:.85; margin: .6rem 0; }
+.vd th { font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; opacity:.8; }
+.vd__empty { border:1.5px dashed rgba(125,125,125,.42); border-radius:12px; padding:1rem 1.1rem; opacity:.85; margin: .6rem 0; }
 .vd__error { border-left:4px solid var(--bad); background:rgba(210,59,59,.07); border-radius:8px; padding:.7rem .9rem; margin:.6rem 0; }
 .vd__loading { opacity:.7; padding:.6rem 0; }
-.vd__meta { font-size:.78rem; opacity:.65; margin-top:.5rem; }
-.vd__src { font-size:.76rem; opacity:.6; margin-top:1.1rem; }
-.vd__hr { border:0; border-top:1px solid rgba(125,125,125,.2); margin:1.2rem 0; }
+.vd__meta { font-size:.84rem; opacity:.78; margin-top:.5rem; }
+.vd__src { font-size:.82rem; opacity:.75; margin-top:1.1rem; }
+.vd__hr { border:0; border-top:1px solid rgba(125,125,125,.28); margin:1.2rem 0; }
 .vd h3 { margin:1.2rem 0 .5rem; font-size:1.05rem; }
 .vd__spark { width:100%; height:64px; display:block; margin-top:.3rem; }
 .vd__spark polyline { fill:none; stroke:var(--accent); stroke-width:2; }
 .vd__spark .vd__zero { stroke:rgba(125,125,125,.5); stroke-dasharray:3 3; stroke-width:1; }
 .vd__chart { width:100%; height:auto; display:block; margin-top:.35rem; max-width:640px; }
-.vd__chart .vd__gl { stroke:rgba(125,125,125,.20); stroke-width:1; }
+.vd__chart .vd__gl { stroke:rgba(125,125,125,.28); stroke-width:1; }
 .vd__chart .vd__zeroline { stroke:rgba(125,125,125,.6); stroke-width:1.4; stroke-dasharray:5 3; }
-.vd__chart .vd__axtext { fill:currentColor; opacity:.6; font-size:11px; font-variant-numeric:tabular-nums; }
+.vd__chart .vd__axtext { fill:currentColor; opacity:.78; font-size:11px; font-variant-numeric:tabular-nums; }
 .vd__bars rect { fill:var(--accent); opacity:.78; }
 
 /* Skjema (brukerregistreringer, localStorage) */
@@ -104,9 +110,25 @@
 .vd__btnrow { display:flex; gap:.5rem; flex-wrap:wrap; margin:.4rem 0; }
 .vd__log { font-size:.84rem; }
 .vd__log li { margin:.25rem 0; }
-.vd__seg { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin:.2rem 0 .8rem; font-size:.86rem; }
+.vd__seg { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin:.2rem 0 .8rem; font-size:.93rem; }
 
 @media (max-width: 640px) {
   .vd__grid { grid-template-columns:1fr 1fr; }
   .vd__card--hero, .vd__card--wide { grid-column:1/-1; }
 }
+
+/* Friskhetsstripe øverst i golffanen: er analysen fersk, eller bygger den på
+   gamle data? Modellen regnes ut i nettleseren ved hver lasting, så det som kan
+   bli utdatert er NVE-observasjonene (GitHub Action ~2×/døgn) og MET-varselet.
+   FARGEN ligger i venstrekanten og ikonet — teksten arver sidefargen og beholder
+   dermed full kontrast i både lyst og mørkt tema. Ingen enkelt aksentfarge klarer
+   AA mot både hvit og mørk bakgrunn for brødtekst, så den brukes ikke på tekst. */
+.vd__fersk { display:flex; flex-wrap:wrap; gap:.3rem 1.1rem; align-items:baseline;
+  border:1px solid rgba(125,125,125,.3); border-left-width:5px; border-radius:10px;
+  padding:.65rem .9rem; margin:0 0 1rem; font-size:.92rem; }
+.vd__fersk-hode { font-weight:800; }
+.vd__fersk-del { opacity:.9; }
+.vd__fersk-del b { font-weight:700; }
+.vd__fersk--ok   { border-left-color:#1a9d5a; background:rgba(26,157,90,.10); }
+.vd__fersk--warn { border-left-color:#e0a010; background:rgba(224,160,16,.13); }
+.vd__fersk--bad  { border-left-color:#d23b3b; background:rgba(210,59,59,.11); }
