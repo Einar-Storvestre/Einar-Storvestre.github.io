@@ -5,7 +5,7 @@
  * Merkelapper i UI: [Observert]=NVE-grid, [Varslet]=MET, [Modellert]=vår beregning,
  * [Registrert]=dine lokale registreringer (localStorage), [Antatt]=antakelse.
  */
-import { golfMoisture, rainSummary, greenspeed, calibratedGreenspeed, classifySnow, waxAdvice, evidenceLevel, isNum, round1, aggregateForecastDays } from 'vd-models';
+import { golfMoisture, rainSummary, greenspeed, calibratedGreenspeed, speedLabel, classifySnow, waxAdvice, evidenceLevel, isNum, round1, aggregateForecastDays } from 'vd-models';
 
 const ROOT = document.getElementById('vaerdata-app');
 
@@ -136,13 +136,18 @@ function kalibreringspunkter(rows, maalinger, gm, drainage, locId) {
 /* Én ærlig setning om hva tallet faktisk hviler på. */
 function kalibreringsTekst(c, punkter) {
   const grunnlag = punkter.map(p => `${fmtDate(p.date)} kl. ${esc(p.time)}: ${String(p.verdi).replace('.', ',')} av 10 ved ${p.index} mm-ekv. (${esc(p.kategori)})`).join(' · ');
+  // Vis hvor langt modellen bommer på Einars EGNE vurderinger — en for slak eller
+  // bratt antatt helning skal være synlig, ikke gjemt.
+  const treff = (c.avvik || []).length
+    ? ` Mot dine egne vurderinger bommer modellen ${c.avvik.map(a => `${a.diff > 0 ? '+' : ''}${String(a.diff).replace('.', ',')}`).join(' og ')} poeng.`
+    : '';
   if (c.mode === 'tilpasset') {
-    return `Tilpasset ${c.n} egne vurderinger som spenner ${c.spredning} mm-ekv. i fuktighet. Typisk avvik ±${c.rmse} poeng. Grunnlag: ${grunnlag}`;
+    return `Tilpasset ${c.n} egne vurderinger som spenner ${c.spredning} mm-ekv. i fuktighet. Typisk avvik ±${c.rmse} poeng.${treff} Grunnlag: ${grunnlag}`;
   }
   const mangler = c.trengerFlere > 0
     ? `${c.trengerFlere} vurdering${c.trengerFlere === 1 ? '' : 'er'} til`
     : 'Flere vurderinger';
-  return `Din egen 1–10-skala (1 = tregest, 10 = raskest) — ikke Stimpmeter. Forankret i ${c.n} egen vurdering${c.n === 1 ? '' : 'er'}: <b>nivået</b> kommer fra deg, men <b>helningen er antatt — ikke målt</b>, så tallet blir mer usikkert jo lenger banen er fra fuktigheten du vurderte ved. ${mangler} ved tydelig annen fuktighet lar modellen regne ut helningen selv. Grunnlag: ${grunnlag}`;
+  return `Din egen 1–10-skala (under 4 = Sakte, 4–6 = Normal, over 6 = Rask) — ikke Stimpmeter. Forankret i ${c.n} egen vurdering${c.n === 1 ? '' : 'er'}: <b>nivået</b> kommer fra deg, men <b>helningen er antatt — ikke målt</b>, så tallet blir mer usikkert jo lenger banen er fra fuktigheten du vurderte ved.${treff} ${mangler} ved tydelig annen fuktighet lar modellen regne ut helningen selv. Grunnlag: ${grunnlag}`;
 }
 
 /* ================= GOLFVÆR ================= */
@@ -173,6 +178,12 @@ async function renderGolf(el) {
   const gs = wet ? greenspeed(wet.catKey, rain.d1, rain.daysSinceSignificantRain) : null;
   const kalPunkter = kalibreringspunkter(rows, gsMaal?.maalinger, gm, drainage, loc.id);
   const gsSkala = wet ? calibratedGreenspeed(kalPunkter, wet.index, gm.greenspeed_calibration) : null;
+  // Finnes et tall, styrer TALLET ordet (Einars grenser: <4 Sakte, 4–6 Normal, >6 Rask).
+  // Ellers faller vi tilbake på den regelbaserte kategorien. Uten dette kunne de to
+  // si imot hverandre, siden `greenspeed()` reagerer på ferskt regn og tallet på indeksen.
+  const gsOrd = gsSkala?.verdi != null
+    ? speedLabel(gsSkala.verdi, gm.greenspeed_calibration)
+    : gs?.speed;
 
   // Live nå + utvikling fremover (varslet nedbør inn i samme modell)
   const nowH = met?.hours?.[0];
@@ -218,7 +229,7 @@ async function renderGolf(el) {
       <div class="vd__card vd__card--wide">
         <h4>Greenspeed ${wet ? '<span class="vd__tag vd__tag--mod">Modellert</span>' : ''}${gsSkala?.verdi != null ? ' <span class="vd__tag vd__tag--reg">Din 1–10-skala</span>' : ''}</h4>
         ${gs ? (gsSkala?.verdi != null
-          ? `<div class="vd__big">${String(gsSkala.verdi).replace('.', ',')} <span class="vd__gscat">av 10 · ${esc(gs.speed)}</span></div>
+          ? `<div class="vd__big">${String(gsSkala.verdi).replace('.', ',')} <span class="vd__gscat">av 10 · ${esc(gsOrd)}</span></div>
              <div class="vd__sub">${kalibreringsTekst(gsSkala, kalPunkter)}${gsSkala.klippet ? ' <b>Merk:</b> tallet er klippet til skalaens endepunkt.' : ''}</div>`
           : `<div class="vd__big">${esc(gs.speed)}</div>
              <div class="vd__sub">${esc(gs.why)} Kategori — legg inn egne vurderinger på 1–10-skalaen for å få tall.</div>`)

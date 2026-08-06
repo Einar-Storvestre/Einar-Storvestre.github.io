@@ -111,6 +111,22 @@ export function greenspeed(catKey, rainLastObsDayMm, daysSinceRain) {
 }
 
 /**
+ * Ord for et tall på Einars 1–10-skala. Grensene er EINARS EGNE (oppgitt 6. aug 2026):
+ * Sakte under 4, Normal 4–6 (5 er «normal greenspeed»), Rask over 6.
+ *
+ * Denne skal brukes så snart det finnes et tall, i stedet for den regelbaserte
+ * `greenspeed()`. Ellers kan de to si imot hverandre — «Sakte ≈ 7,6/10» oppsto
+ * fordi kategorien reagerte på ferskt regn mens tallet fulgte den trege indeksen.
+ */
+export function speedLabel(verdi, cfg = {}) {
+  if (!isNum(verdi)) return null;
+  const lo = cfg.label_bounds?.[0] ?? 4, hi = cfg.label_bounds?.[1] ?? 6;
+  if (verdi < lo) return 'Sakte';
+  if (verdi > hi) return 'Rask';
+  return 'Normal';
+}
+
+/**
  * Kalibrert greenspeed på EINARS EGEN 1–10-SKALA (1 = tregest, 10 = raskest),
  * forankret i egne vurderinger på banen. Dette er IKKE Stimpmeter og ikke fot —
  * tallet er kun sammenlignbart med Einars egne målinger på samme bane.
@@ -165,9 +181,17 @@ export function calibratedGreenspeed(points, currentIndex, cfg = {}) {
     const se = pts.reduce((s, p) => s + (p.verdi - (level - slope * p.index)) ** 2, 0);
     rmse = round1(Math.sqrt(se / n));
   }
+  // Avvik mot Einars EGNE vurderinger — vises i UI så en for slak/bratt antatt
+  // helning er synlig i stedet for skjult.
+  const avvik = pts.map(p => ({
+    dato: p.date, malt: p.verdi,
+    modell: round1(clamp(level - slope * p.index, lo, hi)),
+  })).map(a => ({ ...a, diff: round1(a.modell - a.malt) }));
+
   return {
     verdi: round1(verdi),
     klippet: raw !== verdi,
+    avvik,
     n, mode, rmse,
     helning: Math.round(slope * 1000) / 1000,
     helningKilde: mode === 'tilpasset' ? 'tilpasset egne målinger' : 'ANTATT — ikke målt',

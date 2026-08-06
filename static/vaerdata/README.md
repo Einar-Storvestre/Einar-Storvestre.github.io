@@ -81,7 +81,19 @@ UI-et merker alt som [Observert]/[Varslet]/[Modellert]/[Registrert]/[Antatt]/[Ma
     ble vurdert ved. **Ikke presenter dette som en validert prediksjon.**
   - `tilpasset` — nok vurderinger med nok spredning → både nivå og helning er minste kvadraters
     tilpasning til egne data, og `rmse` er et reelt typisk avvik (i skalapoeng).
+  **Ordene kommer fra tallet** (`speedLabel`), med Einars egne grenser: under 4 = Sakte,
+  4–6 = Normal (5 er «normal greenspeed»), over 6 = Rask. Så snart et tall finnes, brukes disse
+  i stedet for den regelbaserte `greenspeed()` — ellers kunne de si imot hverandre («Sakte ≈ 7,6/10»
+  oppsto fordi kategorien reagerte på ferskt regn mens tallet fulgte den trege indeksen).
   Resultatet klippes til `clamp_skala` (1–10) for å hindre at ekstrapolasjon går utenfor skalaen.
+  `avvik` viser hvor mye modellen bommer på hver av Einars egne vurderinger, og vises i UI —
+  en for slak eller bratt antatt helning skal være synlig, ikke skjult.
+  **Advarsel om overtolkning:** de to første vurderingene (7 av 10 ved indeks 42,7; 5 av 10 ved
+  49,0) impliserer 0,317 poeng per mm-ekv. Det er IKKE brukt som helning, fordi spennet er bare
+  6,3 mm-ekv. og fordi måledøgnet 6. aug hadde 19 mm nedbør mot 0,4 mm 4. aug — fallet skyldes
+  trolig fersk nedbør like mye som indeksen. Bruker man 0,317 tilskrives regneffekten indeksen,
+  og modellen vil bomme grovt på en tørr dag med høy indeks. Neste naturlige forbedring er å ta
+  inn nedbør siste døgn som EGEN faktor, men det krever flere vurderinger før det er mer enn gjetning.
   **Golf-agenten (`~/Agenter_Claude/golf/Golf-agent/banefuktighet.py`) leser SAMME fil** over
   raw.githubusercontent med lokal cache som reserve, slik at e-posten og denne siden aldri viser
   ulike tall. Merk at agenten henter NVE ferskere enn den committede observasjonsfila, så indeksen

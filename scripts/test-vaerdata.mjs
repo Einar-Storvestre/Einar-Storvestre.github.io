@@ -4,7 +4,7 @@
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { utm33, golfMoisture, rainSummary, greenspeed, calibratedGreenspeed, classifySnow, waxAdvice, accuracyStats, precipEvents, evidenceLevel, shrunkBias, walkForwardBacktest, aggregateForecastDays } from '../static/vaerdata/models.mjs';
+import { utm33, golfMoisture, rainSummary, greenspeed, calibratedGreenspeed, speedLabel, classifySnow, waxAdvice, accuracyStats, precipEvents, evidenceLevel, shrunkBias, walkForwardBacktest, aggregateForecastDays } from '../static/vaerdata/models.mjs';
 
 /* ---------- FIXTURES (syntetiske) ---------- */
 const day = (date, rr, eva = 1.5, tm = 12) => ({ date, rr, eva, tm });
@@ -61,7 +61,7 @@ test('calibratedGreenspeed uten målinger gir INGEN tall (kategorien må brukes)
 });
 
 test('calibratedGreenspeed med 1 måling treffer målingen eksakt, men merkes «forankret»', () => {
-  const cfg = { assumed_slope_per_mm: 0.06, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_skala: [1, 10] };
+  const cfg = { assumed_slope_per_mm: 0.15, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_skala: [1, 10] };
   const pts = [{ index: 42.7, verdi: 7.0 }];
   assert.equal(calibratedGreenspeed(pts, 42.7, cfg).verdi, 7);
   const r = calibratedGreenspeed(pts, 49, cfg);
@@ -73,7 +73,7 @@ test('calibratedGreenspeed med 1 måling treffer målingen eksakt, men merkes «
 });
 
 test('calibratedGreenspeed tilpasser helningen når nok målinger med nok spredning finnes', () => {
-  const cfg = { assumed_slope_per_mm: 0.06, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_skala: [1, 10] };
+  const cfg = { assumed_slope_per_mm: 0.15, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_skala: [1, 10] };
   // Syntetisk: eksakt verdi = 10 − 0.05·indeks
   const pts = [10, 30, 50, 70].map(index => ({ index, verdi: 10 - 0.05 * index }));
   const r = calibratedGreenspeed(pts, 40, cfg);
@@ -84,15 +84,15 @@ test('calibratedGreenspeed tilpasser helningen når nok målinger med nok spredn
 });
 
 test('calibratedGreenspeed faller tilbake til antatt helning når målingene har for lik fuktighet', () => {
-  const cfg = { assumed_slope_per_mm: 0.06, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_skala: [1, 10] };
+  const cfg = { assumed_slope_per_mm: 0.15, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_skala: [1, 10] };
   const pts = [{ index: 40, verdi: 7 }, { index: 42, verdi: 7.1 }, { index: 41, verdi: 6.9 }];
   const r = calibratedGreenspeed(pts, 40, cfg);
   assert.equal(r.mode, 'forankret', 'spredning 2 mm < kravet 15 mm');
-  assert.equal(r.helning, 0.06);
+  assert.equal(r.helning, 0.15);
 });
 
 test('calibratedGreenspeed klippes til skalaens endepunkter (1–10)', () => {
-  const cfg = { assumed_slope_per_mm: 0.06, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_skala: [1, 10] };
+  const cfg = { assumed_slope_per_mm: 0.15, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_skala: [1, 10] };
   const r = calibratedGreenspeed([{ index: 42.7, verdi: 7.0 }], 300, cfg);
   assert.equal(r.verdi, 1, 'ekstrem fuktighet skal klippes til skalaens bunn, ikke gå under 1');
   assert.equal(r.klippet, true);
@@ -100,6 +100,28 @@ test('calibratedGreenspeed klippes til skalaens endepunkter (1–10)', () => {
   const tort = calibratedGreenspeed([{ index: 42.7, verdi: 7.0 }], -200, cfg);
   assert.equal(tort.verdi, 10);
   assert.equal(tort.klippet, true);
+});
+
+test('speedLabel bruker Einars egne grenser: <4 Sakte, 4–6 Normal, >6 Rask', () => {
+  const cfg = { label_bounds: [4, 6] };
+  assert.equal(speedLabel(3.9, cfg), 'Sakte');
+  assert.equal(speedLabel(4, cfg), 'Normal', 'nøyaktig 4 er ikke «under 4»');
+  assert.equal(speedLabel(5, cfg), 'Normal', 'Einar: «normal greenspeed er 5/10»');
+  assert.equal(speedLabel(6, cfg), 'Normal', 'nøyaktig 6 er ikke «over 6»');
+  assert.equal(speedLabel(6.1, cfg), 'Rask');
+  assert.equal(speedLabel(null, cfg), null, 'uten tall finnes ingen etikett');
+});
+
+test('calibratedGreenspeed rapporterer avvik mot egne vurderinger', () => {
+  const cfg = { assumed_slope_per_mm: 0.15, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_skala: [1, 10] };
+  const pts = [{ index: 42.7, verdi: 7.0, date: 'a' }, { index: 49, verdi: 5.0, date: 'b' }];
+  const r = calibratedGreenspeed(pts, 49, cfg);
+  assert.equal(r.n, 2);
+  assert.equal(r.mode, 'forankret', 'spredning 6,3 mm < kravet 15 mm');
+  assert.equal(r.avvik.length, 2);
+  // Linja gjennom snittet med for slak helning bommer symmetrisk på begge punkter
+  assert.ok(Math.abs(r.avvik[0].diff + r.avvik[1].diff) < 1e-9, 'avvikene skal summere til null');
+  assert.ok(r.avvik.every(a => Math.abs(a.diff) < 1), `avvik for stort: ${JSON.stringify(r.avvik)}`);
 });
 
 test('greenspeed er kategori, ikke tall — våt bane gir Sakte, tørket bane Rask', () => {

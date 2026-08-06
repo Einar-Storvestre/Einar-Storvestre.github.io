@@ -10,6 +10,14 @@
       "verdi_1_10": 7.0,
       "kilde": "Einars egen vurdering på runden",
       "kommentar": "Første kalibreringspunkt. Einar presiserte 6. aug 2026 at tallet er på hans egen 1–10-skala, ikke Stimpmeter."
+    },
+    {
+      "date": "2026-08-06",
+      "time": "15:00",
+      "location": "bergen_gk",
+      "verdi_1_10": 5.0,
+      "kilde": "Einars egen vurdering på banen",
+      "kommentar": "Andre kalibreringspunkt. NB: 06–06-døgnet som gjelder her hadde 19 mm nedbør, mot 0,4 mm for punktet 4. aug — fallet fra 7 til 5 skyldes derfor trolig FERSK nedbør like mye som den trege våthetsindeksen, som bare steg 6,3 mm-ekv. Ikke tolk de to punktene som en ren indeks-helning."
     }
   ]
 }

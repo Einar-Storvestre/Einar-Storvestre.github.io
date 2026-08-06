@@ -81,8 +81,10 @@
     "history_days": 60,
     "greenspeed_calibration": {
       "_kommentar": "Oversetter våthetsindeks til EINARS EGEN 1–10-skala for greenspeed (1 = tregest, 10 = raskest) ved hjelp av EGNE vurderinger i data/greenspeed-maalinger.json. Sammenheng: verdi = nivå − helning · indeks. IKKE Stimpmeter — tallet er kun sammenlignbart med Einars egne målinger på samme bane.",
-      "assumed_slope_per_mm": 0.06,
-      "_assumed_slope_kilde": "ANTAKELSE UTEN KILDE. Brukes kun til at prediksjonen skal bevege seg i riktig retning (våtere bane = lavere tall) så lenge det er for få egne målinger til å estimere helningen. 0,06 skalapoeng per mm-ekv. gjør at hele indeksområdet 0–80 spenner ca. 9,6 ned til 4,8 på skalaen — altså mesteparten av 1–10 uten å presse endepunktene. Tallet er IKKE målt og IKKE utledet fra noen kilde; det erstattes automatisk av en tilpasset helning så snart min_points_for_fit målinger med min_index_spread_mm spredning finnes.",
+      "assumed_slope_per_mm": 0.15,
+      "_assumed_slope_kilde": "ANTAKELSE, ikke en tilpasning. Oppjustert 6. aug 2026 fra 0,06 fordi Einars to første vurderinger viste at 0,06 var altfor slak: 7 av 10 ved indeks 42,7 (4. aug) og 5 av 10 ved indeks 49,0 (6. aug) impliserer 0,317 poeng per mm-ekv. Den impliserte helningen brukes IKKE direkte, av to grunner: (1) spennet er bare 6,3 mm-ekv., altfor kort til å bestemme en helning over hele området 0–80; (2) døgnet 6. aug hadde 19 mm nedbør mot 0,4 mm 4. aug, så fallet skyldes trolig FERSK nedbør like mye som den trege indeksen — bruker man 0,317 tilskriver man regneffekten indeksen, og modellen vil bomme grovt på en tørr dag med høy indeks. 0,15 er valgt som et bevisst konservativt kompromiss: det halverer omtrent avstanden til Einars egne tall (avvik ca. ±0,5 poeng mot ±1,0 med 0,06) uten at skalaen metter over det meste av indeksområdet. Erstattes automatisk av en ekte tilpasning så snart min_points_for_fit vurderinger med min_index_spread_mm spredning finnes.",
+      "label_bounds": [4, 6],
+      "_label_bounds_kilde": "EINARS EGNE grenser, oppgitt 6. aug 2026: «Normal greenspeed er 5/10, sakte er under 4 og rask er over 6.» Brukes til å utlede ordet fra tallet når et tall finnes, så kategori og tall aldri kan si imot hverandre.",
       "min_points_for_fit": 3,
       "min_index_spread_mm": 15,
       "_fit_krav_kilde": "ANTATT terskel: en rett linje har to frie parametre, så minst 3 punkter trengs for at det skal finnes en residual i det hele tatt, og punktene må spenne ulik fuktighet (15 mm-ekv.) for at helningen ikke skal være ren støy.",
