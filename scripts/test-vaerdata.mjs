@@ -4,7 +4,7 @@
  */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { utm33, golfMoisture, rainSummary, greenspeed, classifySnow, waxAdvice, accuracyStats, precipEvents, evidenceLevel, shrunkBias, walkForwardBacktest, aggregateForecastDays } from '../static/vaerdata/models.mjs';
+import { utm33, golfMoisture, rainSummary, greenspeed, calibratedGreenspeed, classifySnow, waxAdvice, accuracyStats, precipEvents, evidenceLevel, shrunkBias, walkForwardBacktest, aggregateForecastDays } from '../static/vaerdata/models.mjs';
 
 /* ---------- FIXTURES (syntetiske) ---------- */
 const day = (date, rr, eva = 1.5, tm = 12) => ({ date, rr, eva, tm });
@@ -50,6 +50,52 @@ test('rainSummary: summer og dager siden betydelig regn', () => {
   assert.equal(s.d1, 0.4);
   assert.equal(s.d3, 12.4);
   assert.equal(s.daysSinceSignificantRain, 2);
+});
+
+test('calibratedGreenspeed uten målinger gir INGEN tall (kategorien må brukes)', () => {
+  const r = calibratedGreenspeed([], 40, {});
+  assert.equal(r.stimp, null);
+  assert.equal(r.mode, 'ingen');
+  // Manglende indeks skal heller ikke gi et tall
+  assert.equal(calibratedGreenspeed([{ index: 40, stimp: 7 }], null, {}).stimp, null);
+});
+
+test('calibratedGreenspeed med 1 måling treffer målingen eksakt, men merkes «forankret»', () => {
+  const cfg = { assumed_slope_ft_per_mm: 0.04, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_ft: [4, 14] };
+  const pts = [{ index: 42.7, stimp: 7.0 }];
+  assert.equal(calibratedGreenspeed(pts, 42.7, cfg).stimp, 7);
+  const r = calibratedGreenspeed(pts, 49, cfg);
+  assert.equal(r.mode, 'forankret');
+  assert.equal(r.helningKilde, 'ANTATT — ikke målt');
+  assert.equal(r.rmse, null, 'én måling kan ikke gi en ekte treffsikkerhet');
+  assert.equal(r.trengerFlere, 2);
+  assert.ok(r.stimp < 7, 'våtere bane skal gi lavere Stimp');
+});
+
+test('calibratedGreenspeed tilpasser helningen når nok målinger med nok spredning finnes', () => {
+  const cfg = { assumed_slope_ft_per_mm: 0.04, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_ft: [4, 14] };
+  // Syntetisk: eksakt stimp = 10 − 0.05·indeks
+  const pts = [10, 30, 50, 70].map(index => ({ index, stimp: 10 - 0.05 * index }));
+  const r = calibratedGreenspeed(pts, 40, cfg);
+  assert.equal(r.mode, 'tilpasset');
+  assert.ok(Math.abs(r.helning - 0.05) < 1e-6, `helning ${r.helning}`);
+  assert.ok(Math.abs(r.stimp - 8) < 0.05, `stimp ${r.stimp}`);
+  assert.equal(r.rmse, 0, 'perfekt lineære punkter gir null residual');
+});
+
+test('calibratedGreenspeed faller tilbake til antatt helning når målingene har for lik fuktighet', () => {
+  const cfg = { assumed_slope_ft_per_mm: 0.04, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_ft: [4, 14] };
+  const pts = [{ index: 40, stimp: 7 }, { index: 42, stimp: 7.1 }, { index: 41, stimp: 6.9 }];
+  const r = calibratedGreenspeed(pts, 40, cfg);
+  assert.equal(r.mode, 'forankret', 'spredning 2 mm < kravet 15 mm');
+  assert.equal(r.helning, 0.04);
+});
+
+test('calibratedGreenspeed klippes til fysisk rimelig intervall', () => {
+  const cfg = { assumed_slope_ft_per_mm: 0.04, min_points_for_fit: 3, min_index_spread_mm: 15, clamp_ft: [4, 14] };
+  const r = calibratedGreenspeed([{ index: 42.7, stimp: 7.0 }], 300, cfg);
+  assert.equal(r.stimp, 4);
+  assert.equal(r.klippet, true);
 });
 
 test('greenspeed er kategori, ikke tall — våt bane gir Sakte, tørket bane Rask', () => {

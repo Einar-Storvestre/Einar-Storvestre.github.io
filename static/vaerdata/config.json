@@ -78,7 +78,17 @@
       "svaert_vaat": 80
     },
     "significant_rain_mm": 5,
-    "history_days": 60
+    "history_days": 60,
+    "greenspeed_calibration": {
+      "_kommentar": "Oversetter våthetsindeks til Stimpmeter-fot ved hjelp av EGNE målinger i data/greenspeed-maalinger.json. Sammenheng: stimp = nivå − helning · indeks.",
+      "assumed_slope_ft_per_mm": 0.04,
+      "_assumed_slope_kilde": "ANTAKELSE UTEN KILDE. Brukes kun til at prediksjonen skal bevege seg i riktig retning (våtere bane = tregere greener) så lenge det er for få egne målinger til å estimere helningen. 0,04 ft per mm-ekv. gir ca. 3,2 fots spenn over hele indeksområdet 0–80. Tallet er IKKE målt og IKKE hentet fra litteratur — det erstattes automatisk av en tilpasset helning så snart min_points_for_fit målinger med min_index_spread_mm spredning finnes.",
+      "min_points_for_fit": 3,
+      "min_index_spread_mm": 15,
+      "_fit_krav_kilde": "ANTATT terskel: en rett linje har to frie parametre, så minst 3 punkter trengs for at det skal finnes en residual i det hele tatt, og punktene må spenne ulik fuktighet (15 mm-ekv.) for at helningen ikke skal være ren støy.",
+      "clamp_ft": [4, 14],
+      "_clamp_kilde": "ANTATT fysisk rimelig intervall for Stimpmeter-avlesninger, kun for å hindre absurde ekstrapolasjoner."
+    }
   },
   "ski_model": {
     "min_snow_depth_cm": 5,

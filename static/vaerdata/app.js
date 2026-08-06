@@ -5,7 +5,7 @@
  * Merkelapper i UI: [Observert]=NVE-grid, [Varslet]=MET, [Modellert]=vår beregning,
  * [Registrert]=dine lokale registreringer (localStorage), [Antatt]=antakelse.
  */
-import { golfMoisture, rainSummary, greenspeed, classifySnow, waxAdvice, evidenceLevel, isNum, round1, aggregateForecastDays } from 'vd-models';
+import { golfMoisture, rainSummary, greenspeed, calibratedGreenspeed, classifySnow, waxAdvice, evidenceLevel, isNum, round1, aggregateForecastDays } from 'vd-models';
 
 const ROOT = document.getElementById('vaerdata-app');
 
@@ -106,16 +106,56 @@ async function init() {
   activate(location.hash.slice(1) || 'golfvaer', false);
 }
 
+/* Parer hver MÅLTE greenspeed med den modellerte våthetsindeksen på måletidspunktet.
+   Døgnet merket D slutter D kl. 06 UTC = 08 norsk sommertid, så en måling fra kl. 08
+   og utover hører til døgn D; er den tidligere, er D−1 siste komplette døgn.
+   Indeksen regnes ut på nytt her — måledatafila lagrer bare selve observasjonen,
+   så datasettet ikke blir foreldet om modellparametrene endres. */
+function kalibreringspunkter(rows, maalinger, gm, drainage, locId) {
+  if (!rows?.length || !Array.isArray(maalinger)) return [];
+  const alle = rows.map(r => ({ date: r.date, rr: r.rr, eva: r.gwb_eva, tm: r.tm }));
+  const punkter = [];
+  for (const m of maalinger) {
+    if (!isNum(m?.stimp_ft)) continue;
+    if (m.location && m.location !== locId) continue;
+    const tid = String(m.time || '12:00').slice(0, 5);
+    let dato = m.date;
+    if (tid < '08:00') {
+      const d = new Date(m.date + 'T00:00:00Z');
+      d.setUTCDate(d.getUTCDate() - 1);
+      dato = d.toISOString().slice(0, 10);
+    }
+    const i = alle.findIndex(d => d.date === dato);
+    if (i < 0) continue; // måling utenfor observasjonshistorikken
+    const w = golfMoisture(alle.slice(0, i + 1).slice(-gm.history_days), { drainage, ...gm });
+    punkter.push({ index: w.index, stimp: m.stimp_ft, date: m.date, time: tid, kategori: w.category });
+  }
+  return punkter;
+}
+
+/* Én ærlig setning om hva Stimp-tallet faktisk hviler på. */
+function kalibreringsTekst(c, punkter) {
+  const grunnlag = punkter.map(p => `${fmtDate(p.date)} kl. ${esc(p.time)}: ${String(p.stimp).replace('.', ',')} ft ved ${p.index} mm-ekv. (${esc(p.kategori)})`).join(' · ');
+  if (c.mode === 'tilpasset') {
+    return `Tilpasset ${c.n} egne målinger som spenner ${c.spredning} mm-ekv. i fuktighet. Typisk avvik ±${c.rmse} ft. Grunnlag: ${grunnlag}`;
+  }
+  const mangler = c.trengerFlere > 0
+    ? `${c.trengerFlere} måling${c.trengerFlere === 1 ? '' : 'er'} til`
+    : 'Målinger';
+  return `Forankret i ${c.n} egen måling${c.n === 1 ? '' : 'er'}: <b>nivået</b> kommer fra deg, men <b>helningen er antatt — ikke målt</b>, så tallet blir mer usikkert jo lenger banen er fra fuktigheten du målte ved. ${mangler} ved tydelig annen fuktighet lar modellen regne ut helningen selv. Grunnlag: ${grunnlag}`;
+}
+
 /* ================= GOLFVÆR ================= */
 async function renderGolf(el) {
   const locs = CFG.locations.filter(l => l.type === 'golf');
   const loc = locs[0];
   el.innerHTML = '<p class="vd__loading">Henter observasjoner (NVE) og varsel (MET) …</p>';
 
-  const [obs, met, latest] = await Promise.all([
+  const [obs, met, latest, gsMaal] = await Promise.all([
     loadData(`observations/${loc.id}.json`),
     metForecast(loc).catch(() => null),
     loadData('latest.json'),
+    loadData('greenspeed-maalinger.json'),
   ]);
   const rows = obsRows(obs);
   const gm = CFG.golf_model;
@@ -131,6 +171,8 @@ async function renderGolf(el) {
   const rain = rainSummary(days.map(d => ({ ...d, rr: d.rr })), gm.significant_rain_mm);
   const sssrel = rows.length ? rows[rows.length - 1].gwb_sssrel : null;
   const gs = wet ? greenspeed(wet.catKey, rain.d1, rain.daysSinceSignificantRain) : null;
+  const kalPunkter = kalibreringspunkter(rows, gsMaal?.maalinger, gm, drainage, loc.id);
+  const gsFot = wet ? calibratedGreenspeed(kalPunkter, wet.index, gm.greenspeed_calibration) : null;
 
   // Live nå + utvikling fremover (varslet nedbør inn i samme modell)
   const nowH = met?.hours?.[0];
@@ -138,14 +180,21 @@ async function renderGolf(el) {
   const evaAssumed = evaRecent.length ? evaRecent.reduce((a, b) => a + b, 0) / evaRecent.length : 1.5;
   let outlook = [];
   if (met && wet) {
-    // Kun tilnærmet komplette 06–06-varselvinduer (nHours ≥ 22) — et partielt
-    // første vindu ville gitt kunstig lav «varslet nedbør» i tabellen.
-    const fcDaily = aggregateForecastDays(met.hours.filter(h => h.span === 1 || (h.span === 6 && [0, 6, 12, 18].includes(new Date(h.time).getUTCHours()))).map(h => ({ time: h.time, temp: h.temp, precip: h.precip, wind: h.wind, spanH: h.span })), 6).filter(d => d.covH >= 22).slice(0, 5);
+    const fcAll = aggregateForecastDays(met.hours.filter(h => h.span === 1 || (h.span === 6 && [0, 6, 12, 18].includes(new Date(h.time).getUTCHours()))).map(h => ({ time: h.time, temp: h.temp, precip: h.precip, wind: h.wind, spanH: h.span })), 6);
+    // Komplette 06–06-vinduer (covH ≥ 22) PLUSS det inneværende vinduet, som alltid
+    // er delvis passert: varselet dekker bare timene som gjenstår, så nedbør og
+    // fuktighet er NEDRE grenser der. Uten det ville døgnet vi står midt i mangle
+    // helt fra tabellen — det er nettopp det døgnet man lurer på. Merkes «delvis».
+    const erObservert = d => days.some(o => o.date === d.date);
+    const komplette = fcAll.filter(d => d.covH >= 22 && !erObservert(d));
+    const inneverende = fcAll.find(d => d.covH < 22 && !erObservert(d));
+    const fcDaily = (inneverende ? [inneverende, ...komplette] : komplette)
+      .sort((a, b) => a.date < b.date ? -1 : 1).slice(0, 6);
     let sim = days.map(d => ({ ...d }));
     for (const fd of fcDaily) {
       if (sim.some(s => s.date === fd.date)) continue;
       sim.push({ date: fd.date, rr: fd.precip, eva: evaAssumed, tm: fd.tmean });
-      outlook.push({ date: fd.date, precip: fd.precip, res: golfMoisture(sim, { drainage, ...gm }) });
+      outlook.push({ date: fd.date, precip: fd.precip, covH: fd.covH, delvis: fd.covH < 22, res: golfMoisture(sim, { drainage, ...gm }) });
     }
   }
 
@@ -166,9 +215,14 @@ async function renderGolf(el) {
           <div class="vd__sub">Våthetsindeks ${wet.index} mm-ekv. · ${wet.dataDays} døgn historikk, ${obsFreshness} — regn ETTER det er ikke med ennå</div>`
         : emptyInline('Mangler observasjonshistorikk — samles automatisk fremover.')}
       </div>
-      <div class="vd__card">
-        <h4>Relativ greenspeed ${wet ? '<span class="vd__tag vd__tag--mod">Modellert</span>' : ''}</h4>
-        ${gs ? `<div class="vd__big">${esc(gs.speed)}</div><div class="vd__sub">${esc(gs.why)} Kategori, ikke Stimpmeter — krever kalibrering med målinger for tall.</div>` : emptyInline('Krever fuktighetsmodellen.')}
+      <div class="vd__card vd__card--wide">
+        <h4>Greenspeed ${wet ? '<span class="vd__tag vd__tag--mod">Modellert</span>' : ''}${gsFot?.stimp != null ? ' <span class="vd__tag vd__tag--reg">Kalibrert mot egne målinger</span>' : ''}</h4>
+        ${gs ? (gsFot?.stimp != null
+          ? `<div class="vd__big">${String(gsFot.stimp).replace('.', ',')} ft <span class="vd__gscat">${esc(gs.speed)}</span></div>
+             <div class="vd__sub">${kalibreringsTekst(gsFot, kalPunkter)}${gsFot.klippet ? ' <b>Merk:</b> tallet er klippet til det fysisk rimelige intervallet.' : ''}</div>`
+          : `<div class="vd__big">${esc(gs.speed)}</div>
+             <div class="vd__sub">${esc(gs.why)} Kategori, ikke Stimpmeter — legg inn egne Stimp-målinger for å få tall.</div>`)
+        : emptyInline('Krever fuktighetsmodellen.')}
       </div>
       <div class="vd__card">
         <h4>Nedbør <span class="vd__tag vd__tag--obs">Observert</span></h4>
@@ -196,8 +250,8 @@ async function renderGolf(el) {
         <h4>Utvikling fremover <span class="vd__tag vd__tag--fc">Varslet</span> <span class="vd__tag vd__tag--mod">Modellert</span></h4>
         ${outlook.length ? `<div class="vd__tablewrap"><table>
           <thead><tr><th>Dag</th><th>Varslet nedbør</th><th>Modellert banefuktighet</th></tr></thead>
-          <tbody>${outlook.map(o => `<tr><td title="${esc(fmtDate(o.date))} — vindu slutter kl. 06 UTC">${esc(weekdayLong(o.date))}</td><td>${fmtMm(o.precip)}</td><td class="vd__wetcell vd__wet--${esc(o.res.catKey)}"><span class="vd__dot"></span>${esc(o.res.category)} (${o.res.index} mm-ekv.)</td></tr>`).join('')}</tbody>
-        </table></div><div class="vd__sub">Hver dag = døgnet som slutter kl. 06 UTC (08 norsk sommertid) — «Fredag» dekker altså torsdag dag + natt til fredag. Simuleringen starter fra siste observerte døgn (${obsFreshness}); fordampning fremover er antatt lik snittet siste 7 døgn (${round1(evaAssumed)} mm/døgn) <span class="vd__tag vd__tag--ant">Antatt</span></div>` : emptyInline('Krever både varsel og historikk.')}
+          <tbody>${outlook.map(o => `<tr><td title="${esc(fmtDate(o.date))} — vindu slutter kl. 06 UTC">${esc(weekdayLong(o.date))}${o.delvis ? ` <span class="vd__tag vd__tag--delvis">${o.covH} av 24 t</span>` : ''}</td><td>${o.delvis ? '≥ ' : ''}${fmtMm(o.precip)}</td><td class="vd__wetcell vd__wet--${esc(o.res.catKey)}"><span class="vd__dot"></span>${esc(o.res.category)} (${o.delvis ? '≥ ' : ''}${o.res.index} mm-ekv.)</td></tr>`).join('')}</tbody>
+        </table></div><div class="vd__sub">Hver dag = døgnet som slutter kl. 06 UTC (08 norsk sommertid) — «Fredag» dekker altså torsdag dag + natt til fredag. Simuleringen starter fra siste observerte døgn (${obsFreshness}); fordampning fremover er antatt lik snittet siste 7 døgn (${round1(evaAssumed)} mm/døgn) <span class="vd__tag vd__tag--ant">Antatt</span>${outlook.some(o => o.delvis) ? ' · Døgnet merket <b>«N av 24 t»</b> er det du står midt i: timene som allerede har gått ligger ikke i varselet, så både nedbør og fuktighet der er <b>nedre grenser</b> (≥) — det kan ha kommet mer.' : ''}</div>` : emptyInline('Krever både varsel og historikk.')}
       </div>
     </div>
     ${wet ? `<h3>Hva påvirket vurderingen?</h3>
@@ -211,11 +265,12 @@ async function renderGolf(el) {
     ${rows.length ? precipBars('Nedbør siste 30 døgn (mm/døgn, NVE-grid)', rows.slice(-30).map(r => r.rr ?? 0), rows.slice(-30).map(r => r.date)) : ''}
     <hr class="vd__hr">
     <h3>Registrer baneobservasjon <span class="vd__tag vd__tag--reg">Registrert</span></h3>
-    <p class="vd__sub">Lagres kun i din nettleser (localStorage). Brukes til personlig kalibrering når det finnes minst 10 registreringer — frem til da vises de bare som observasjoner.</p>
+    <p class="vd__sub">Lagres kun i din nettleser (localStorage) — de går <b>ikke</b> automatisk inn i modellen over. En <b>målt Stimp</b> du vil kalibrere med, må legges inn i <code>data/greenspeed-maalinger.json</code> (delt fil som både nettsiden og golf-agentens e-post leser), ellers ser bare denne nettleseren den.</p>
     <form class="vd__form" id="vd-golfform">
       <label>Dato/tid <input type="datetime-local" name="ts" value="${nowLocalInput()}" required></label>
       <label>Opplevd fuktighet <select name="felt">${['Tørr', 'Normal', 'Myk', 'Svært våt', 'Vannmettet'].map(o => `<option>${o}</option>`).join('')}</select></label>
-      <label>Greenspeed <select name="speed">${['Sakte', 'Normal', 'Rask', 'Målt Stimp (skriv i kommentar)'].map(o => `<option>${o}</option>`).join('')}</select></label>
+      <label>Greenspeed <select name="speed">${['Sakte', 'Normal', 'Rask'].map(o => `<option>${o}</option>`).join('')}</select></label>
+      <label>Målt Stimp (ft, valgfritt) <input type="number" name="stimp" step="0.1" min="4" max="14" placeholder="f.eks. 7,0"></label>
       <label>Forhold <select name="extra">${['—', 'Dugg', 'Overvann', 'Myke områder', 'Nyklippet', 'Nylig vannet'].map(o => `<option>${o}</option>`).join('')}</select></label>
       <textarea name="kommentar" placeholder="Kommentar (valgfritt)"></textarea>
       <div class="vd__btnrow"><button class="vd__btn vd__btn--primary" type="submit">Lagre lokalt</button></div>
@@ -224,7 +279,7 @@ async function renderGolf(el) {
     ${meta(`Observasjoner: NVE seNorge-grid 1×1 km (${obs?.window || '06–06 UTC-døgn'}), oppdatert ${fmtTs(obs?.updated)} · Varsel: MET, modellkjøring ${fmtTs(met?.updatedAt)} · Innsamling: ${fmtTs(latest?.updated)}`)}
   `;
   q('#vd-drain').addEventListener('change', e => { LS.set('drainage', e.target.value); rerender(el, renderGolf); });
-  wireLog('golfobs', '#vd-golfform', '#vd-golflog', f => `${fmtTs(f.ts)} — ${esc(f.felt)}, greenspeed ${esc(f.speed)}${f.extra && f.extra !== '—' ? ', ' + esc(f.extra) : ''}${f.kommentar ? ' — ' + esc(f.kommentar) : ''}`, 10);
+  wireLog('golfobs', '#vd-golfform', '#vd-golflog', f => `${fmtTs(f.ts)} — ${esc(f.felt)}, greenspeed ${esc(f.speed)}${f.stimp ? ` (målt ${esc(String(f.stimp).replace('.', ','))} ft)` : ''}${f.extra && f.extra !== '—' ? ', ' + esc(f.extra) : ''}${f.kommentar ? ' — ' + esc(f.kommentar) : ''}`, 10);
 }
 
 /* ================= SKIFØRE & SMØRING ================= */

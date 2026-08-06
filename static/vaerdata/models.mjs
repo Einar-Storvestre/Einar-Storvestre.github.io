@@ -110,6 +110,71 @@ export function greenspeed(catKey, rainLastObsDayMm, daysSinceRain) {
   return { speed: 'Normal', why: 'Verken markert opptørking eller ny fukting.' };
 }
 
+/**
+ * Kalibrert greenspeed i STIMPMETER-FOT, forankret i egne målinger på banen.
+ *
+ * points        [{ index, stimp }] — modellert våthetsindeks (mm-ekv.) på
+ *               måletidspunktet, parret med den MÅLTE greenspeeden (fot).
+ * currentIndex  våthetsindeksen det skal predikeres for.
+ * cfg           assumed_slope_ft_per_mm, min_points_for_fit,
+ *               min_index_spread_mm, clamp_ft.
+ *
+ * Sammenhengen modelleres som stimp = nivå − helning · indeks (våtere = tregere).
+ * Med få målinger kan bare NIVÅET bestemmes av data:
+ *   'ingen'     ingen målinger → stimp = null (bruk kategorien Sakte/Normal/Rask)
+ *   'forankret' for få målinger eller for lik fuktighet → helningen er en ANTAKELSE
+ *               fra cfg, nivået legges gjennom snittet av målingene. Linja treffer
+ *               målingene eksakt ved n = 1, men si ALDRI at prediksjonen er
+ *               validert: én måling kan ikke skille nivå fra helning.
+ *   'tilpasset' nok målinger med nok spredning i fuktighet → både nivå og helning
+ *               er minste kvadraters tilpasning, og rmse er en ekte treffsikkerhet.
+ */
+export function calibratedGreenspeed(points, currentIndex, cfg = {}) {
+  const slopeAssumed = cfg.assumed_slope_ft_per_mm ?? 0.04;
+  const minN = cfg.min_points_for_fit ?? 3;
+  const minSpread = cfg.min_index_spread_mm ?? 15;
+  const lo = cfg.clamp_ft?.[0] ?? 4, hi = cfg.clamp_ft?.[1] ?? 14;
+
+  const pts = (points || []).filter(p => isNum(p.index) && isNum(p.stimp));
+  const n = pts.length;
+  if (!n || !isNum(currentIndex)) return { stimp: null, n, mode: 'ingen', trengerFlere: minN };
+
+  const xs = pts.map(p => p.index), ys = pts.map(p => p.stimp);
+  const mean = a => a.reduce((s, v) => s + v, 0) / a.length;
+  const mx = mean(xs), my = mean(ys);
+  const spread = Math.max(...xs) - Math.min(...xs);
+
+  let slope, mode;
+  if (n >= minN && spread >= minSpread) {
+    const sxx = xs.reduce((s, x) => s + (x - mx) ** 2, 0);
+    const sxy = xs.reduce((s, x, i) => s + (x - mx) * (ys[i] - my), 0);
+    slope = sxx > 0 ? -(sxy / sxx) : slopeAssumed; // positiv = tregere når våtere
+    mode = 'tilpasset';
+  } else {
+    slope = slopeAssumed;
+    mode = 'forankret';
+  }
+  const level = my + slope * mx;              // linja gjennom snittet av målingene
+  const raw = level - slope * currentIndex;
+  const stimp = clamp(raw, lo, hi);
+
+  let rmse = null;
+  if (mode === 'tilpasset') {
+    const se = pts.reduce((s, p) => s + (p.stimp - (level - slope * p.index)) ** 2, 0);
+    rmse = round1(Math.sqrt(se / n));
+  }
+  return {
+    stimp: round1(stimp),
+    klippet: raw !== stimp,
+    n, mode, rmse,
+    helning: Math.round(slope * 1000) / 1000,
+    helningKilde: mode === 'tilpasset' ? 'tilpasset egne målinger' : 'ANTATT — ikke målt',
+    spredning: round1(spread),
+    trengerFlere: mode === 'tilpasset' ? 0 : Math.max(0, minN - n),
+    trengerSpredning: mode === 'tilpasset' ? 0 : round1(Math.max(0, minSpread - spread)),
+  };
+}
+
 /* ============================================================
  * SKI: regelbasert føreklassifisering
  * obs: { sd, fsw, sdfsw3d, lwc, age, tmSeries:[{date,tm}], qsw, rrToday }
