@@ -1,0 +1,118 @@
+name: Dødmannsknapp vaktmester
+
+# Ekstern dødmannsknapp for Mac-en. Leser static/vaktmester/status.json, som
+# vaktmester-agenten pusher 11:30 og 21:30 norsk tid. Denne jobben kjører hos
+# GitHub og overlever derfor at Mac-en er død — i motsetning til vaktmesterens
+# egen varselmail, som sendes FRA maskinen den overvåker.
+#
+# Varsler på to ting:
+#   1. Livstegnet er for gammelt  → Mac-en er nede.
+#   2. avvik > 0                  → vaktmesteren fant noe. Dette lukker iCloud-hullet:
+#      skriv_livstegn() kjører selv når SMTP feiler, så avvikstallet når GitHub
+#      også når varselmailen ikke kommer fram.
+#
+# INSTALLERES SOM: .github/workflows/dodmannsknapp.yml i nettside-repoet.
+# KILDE: Agenter_Claude/Vaktmester-agent/nettside/dodmannsknapp.yml — rediger DER.
+
+on:
+  schedule:
+    - cron: '20 */2 * * *'   # hver 2. time. GitHub kan droppe køede cron-kjøringer
+                             # ved høy last (observert ~30 min forsinkelse i dette
+                             # repoet), så én daglig kjøring ville vært for skjørt.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  MAKS_TIMER: '16'           # normalt maksgap mellom slag er 14 t (21:30 → 11:30)
+  EIER: Einar-Storvestre
+
+jobs:
+  sjekk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: status
+        name: Hvor gammelt er livstegnet?
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import datetime, json, os
+
+          NAA = datetime.datetime.now(datetime.timezone.utc)
+
+          def tid(s):
+              t = datetime.datetime.fromisoformat(s)
+              return t if t.tzinfo else t.replace(tzinfo=datetime.timezone.utc)
+
+          j = json.load(open("static/vaktmester/status.json"))
+          timer = (NAA - tid(j["sist"])).total_seconds() / 3600
+          avvik = int(j.get("avvik", 0))
+
+          # Eksamensmodus: jobbene er stoppet med vilje, ikke døde.
+          if j.get("pause_til") and tid(j["pause_til"]) > NAA:
+              timer, avvik = 0.0, 0
+
+          gammelt = timer > float(os.environ["MAKS_TIMER"])
+          if gammelt:
+              grunn = f"Mac-en har ikke gitt livstegn på {timer:.0f} timer"
+          elif avvik:
+              grunn = f"Vaktmesteren melder {avvik} avvik"
+          else:
+              grunn = "alt friskt"
+
+          print(f"timer={timer:.1f}")
+          print(f"sist={j['sist']}")
+          print(f"avvik={avvik}")
+          print(f"grunn={grunn}")
+          print(f"alarm={'ja' if (gammelt or avvik) else 'nei'}")
+          PY
+
+      - name: Slå alarm
+        if: steps.status.outputs.alarm == 'ja'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GRUNN: ${{ steps.status.outputs.grunn }}
+          SIST: ${{ steps.status.outputs.sist }}
+          TIMER: ${{ steps.status.outputs.timer }}
+          AVVIK: ${{ steps.status.outputs.avvik }}
+        run: |
+          set -euo pipefail
+          gh label create dodmannsknapp --color B60205 \
+            --description "Vaktmesteren svarer ikke" --force
+          apne=$(gh issue list --label dodmannsknapp --state open --json number --jq 'length')
+          if [ "$apne" != "0" ]; then
+            echo "Sak allerede åpen – varsler ikke på nytt."
+            exit 0
+          fi
+          cat > body.md <<EOF
+          @${EIER} – dødmannsknappen slo ut.
+
+          | | |
+          |---|---|
+          | Grunn | ${GRUNN} |
+          | Siste livstegn | ${SIST} (${TIMER} t siden) |
+          | Avvik i status.json | ${AVVIK} |
+
+          Vaktmesteren på Mac-en skal pushe \`static/vaktmester/status.json\`
+          11:30 og 21:30 norsk tid. Enten har den sluttet med det (Mac-en er
+          nede), eller så melder den avvik den kanskje ikke fikk mailet om —
+          varsel-e-posten går via iCloud-SMTP fra den samme maskinen.
+
+          Saken lukkes automatisk når livstegnet er ferskt igjen.
+          EOF
+          gh issue create --label dodmannsknapp --title "ALARM: ${GRUNN}" --body-file body.md
+          exit 1   # rød workflow = ekstra e-postvarsel fra GitHub
+
+      - name: Friskmeld
+        if: steps.status.outputs.alarm == 'nei'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SIST: ${{ steps.status.outputs.sist }}
+        run: |
+          set -euo pipefail
+          for n in $(gh issue list --label dodmannsknapp --state open --json number --jq '.[].number'); do
+            gh issue close "$n" --comment "Livstegn ferskt igjen (${SIST}) – lukker automatisk."
+          done
