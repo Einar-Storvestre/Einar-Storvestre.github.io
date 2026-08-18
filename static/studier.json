@@ -1,0 +1,35 @@
+{
+ "kurs": [
+  {
+   "kode": "BUD2",
+   "antall_filer": 7,
+   "nyeste": [
+    {"navn": "carlsberg-group_2025-annual-report.pdf", "dato": "2026-08-18"},
+    {"navn": "Workshop1_Exercises.pdf", "dato": "2026-08-18"},
+    {"navn": "Workshop1_template-1.xlsx", "dato": "2026-08-18"},
+    {"navn": "Lecture 1 - Introduction to Financial Accounting_NOTES.pdf", "dato": "2026-08-17"},
+    {"navn": "Lecture 1 - Game.html", "dato": "2026-08-17"}
+   ]
+  },
+  {
+   "kode": "EBO2",
+   "antall_filer": 26,
+   "nyeste": [
+    {"navn": "EBO2_Lecture 1_complete.pdf", "dato": "2026-08-17"},
+    {"navn": "EBO2_Lecture 1_Part II.pdf", "dato": "2026-08-17"},
+    {"navn": "EBO2_Lecture 1_Part I.pdf", "dato": "2026-08-17"},
+    {"navn": "Coase (1937)_The Nature of the Firm.pdf", "dato": "2026-08-17"},
+    {"navn": "EBO2_Syllabus_2026.pdf", "dato": "2026-08-16"}
+   ]
+  },
+  {
+   "kode": "TECH4",
+   "antall_filer": 3,
+   "nyeste": [
+    {"navn": "01_Introduction.pdf", "dato": "2026-08-18"},
+    {"navn": "TECH4-PreliminaryPlan2026.jpg", "dato": "2026-08-12"}
+   ]
+  }
+ ],
+ "oppdatert": "2026-08-18 14:45 (første crawl, manuell via Claude)"
+}

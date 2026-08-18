@@ -1,0 +1,119 @@
+{{- /* Studier: BEDS-semesterdashboard H2026 — frister med nedtelling (statisk
+       her) + Canvas-speilstatus fra static/studier.json, hentet live fra main
+       (samme mønster som nyhetsbrev/innsidehandel) så canvas-syncen kan
+       oppdatere uten ny bygg. */ -}}
+{{- $src := .Get "src" | default "https://raw.githubusercontent.com/Einar-Storvestre/Einar-Storvestre.github.io/main/static/studier.json" -}}
+
+<div class="std" id="studier-dash" data-src="{{ $src }}">
+
+  <div class="std__grid" id="std-frister"></div>
+
+  <h2 class="std__h">Fagene</h2>
+  <div class="std__courses" id="std-kurs"></div>
+
+  <h2 class="std__h">Canvas-speilet</h2>
+  <p class="std__sub">Alt kursmateriell speiles automatisk fra NHHs Canvas til kunnskapsbasen min
+  (én mappe per fag med notater, læringsark og feilbank). Tallene under viser hva speilet ser.</p>
+  <div class="std__mirror" id="std-canvas"><p class="std__loading">Henter status …</p></div>
+
+  <p class="std__fineprint">Kilder: NHH-emnesider, TimeEdit og Canvas per 18.08.2026 (BUD3-frister ikke publisert ennå).
+  Speilstatus oppdateres automatisk av canvas-syncen på hverdager.</p>
+</div>
+
+<style>
+  .std { margin: 1rem 0; line-height: 1.55; }
+  .std__h { margin: 2rem 0 .4rem; font-size: 1.25rem; font-weight: 800; }
+  .std__sub { margin: 0 0 .9rem; opacity: .8; font-size: .93rem; }
+  .std__grid { display: grid; gap: .55rem; }
+  .std__frist { display: flex; align-items: baseline; gap: .7rem; padding: .55rem .8rem;
+    border: 1px solid rgba(125,125,125,.22); border-radius: 12px; }
+  .std__frist--past { opacity: .45; text-decoration: line-through; }
+  .std__badge { flex: 0 0 auto; min-width: 4.6rem; text-align: center; font-weight: 800;
+    font-size: .82rem; padding: .18rem .5rem; border-radius: 999px;
+    background: rgba(125,125,125,.14); }
+  .std__badge--soon { background: rgba(220,80,60,.18); color: #d0452c; }
+  .std__badge--near { background: rgba(230,160,40,.18); color: #b57d14; }
+  @media (prefers-color-scheme: dark) {
+    .std__badge--soon { color: #ff9b85; } .std__badge--near { color: #f2c14e; }
+  }
+  .std__frist-txt b { font-weight: 700; }
+  .std__frist-sub { opacity: .68; font-size: .86rem; }
+  .std__courses { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .7rem; }
+  .std__card { border: 1px solid rgba(125,125,125,.22); border-radius: 14px; padding: .85rem 1rem; }
+  .std__card h3 { margin: 0 0 .2rem; font-size: 1.02rem; font-weight: 800; }
+  .std__card p { margin: .15rem 0; font-size: .88rem; opacity: .85; }
+  .std__mirror table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  .std__mirror td, .std__mirror th { padding: .45rem .6rem; text-align: left;
+    border-bottom: 1px solid rgba(125,125,125,.18); vertical-align: top; }
+  .std__mirror th { font-weight: 700; }
+  .std__new { opacity: .75; font-size: .84rem; }
+  .std__loading, .std__fineprint { opacity: .6; font-size: .85rem; }
+  .std__fineprint { margin-top: 1.6rem; }
+</style>
+
+<script>
+(function () {
+  var rot = document.getElementById('studier-dash');
+
+  // ── Statiske fakta (kilder: NHH-emnesider/TimeEdit/Canvas per 18.08.2026) ──
+  var KURS = [
+    { kode: 'TECH4', navn: 'Mathematics for Decisions', stp: 10,
+      info: 'Optimering, nettverk, dynamisk programmering, nevrale nett — og Python. Semesterets tyngste fag.' },
+    { kode: 'BUD2', navn: 'Financial Accounting', stp: 5,
+      info: 'Regnskapets språk: balanse, resultat, kontantstrøm, analyse.' },
+    { kode: 'EBO2', navn: 'Micro 2: Incentives & Organization', stp: 5,
+      info: 'Organisasjonsarkitektur, beslutningsrettigheter, insentiver.' },
+    { kode: 'BUD3', navn: 'Finance 1', stp: 5, info: 'Første finansfag. Frister ikke publisert ennå.' },
+    { kode: 'MAB3', navn: 'Technology Management', stp: 5, info: 'Teknologiledelse.' }
+  ];
+  var FRISTER = [
+    { t: '2026-09-17T23:59', hva: 'BUD2 gruppeprosjekt — egen frist', sub: 'offisiell frist søn 20.09 12:00, men da er jeg i København (VM halvmaraton)' },
+    { t: '2026-09-21T14:00', hva: 'TECH4 course approval #1', sub: 'obligatorisk · publiseres 15.09' },
+    { t: '2026-09-29T09:00', hva: 'BUD2-eksamen', sub: '09:00–13:00, digital skoleeksamen' },
+    { t: '2026-10-01T09:00', hva: 'EBO2-eksamen', sub: '09:00–12:00, hybrid digital/penn' },
+    { t: '2026-10-21T14:00', hva: 'TECH4 course approval #2', sub: 'obligatorisk · publiseres 15.10' },
+    { t: '2026-11-20T12:00', hva: 'TECH4 assignment (20 % av karakteren)', sub: 'publiseres 13.11 — én ukes hjemmeoppgave' },
+    { t: '2026-11-26T09:00', hva: 'TECH4-eksamen', sub: '09:00–13:00, digital, 80 % av karakteren' },
+    { t: '2026-12-03T09:00', hva: 'MAB3-eksamen', sub: 'dato fra eksamensplanen' }
+  ];
+
+  function dager(t) { return Math.ceil((new Date(t) - new Date()) / 864e5); }
+  function badge(d) {
+    if (d < 0) return '<span class="std__badge">ferdig</span>';
+    if (d === 0) return '<span class="std__badge std__badge--soon">i dag</span>';
+    var kl = d <= 7 ? ' std__badge--soon' : (d <= 21 ? ' std__badge--near' : '');
+    return '<span class="std__badge' + kl + '">' + d + ' d.</span>';
+  }
+  document.getElementById('std-frister').innerHTML = FRISTER.map(function (f) {
+    var d = dager(f.t);
+    return '<div class="std__frist' + (d < 0 ? ' std__frist--past' : '') + '">' + badge(d) +
+      '<div class="std__frist-txt"><b>' + f.hva + '</b><div class="std__frist-sub">' +
+      new Date(f.t).toLocaleDateString('nb-NO', { weekday: 'short', day: 'numeric', month: 'long' }) +
+      ' · ' + f.sub + '</div></div></div>';
+  }).join('');
+
+  document.getElementById('std-kurs').innerHTML = KURS.map(function (k) {
+    return '<div class="std__card"><h3>' + k.kode + ' <span style="font-weight:400;opacity:.7">· ' +
+      k.stp + ' stp</span></h3><p><b>' + k.navn + '</b></p><p>' + k.info + '</p></div>';
+  }).join('');
+
+  // ── Canvas-speilet (live JSON fra main) ──
+  fetch(rot.dataset.src, { cache: 'no-store' }).then(function (r) { return r.json(); })
+    .then(function (d) {
+      var rader = (d.kurs || []).map(function (k) {
+        var nye = (k.nyeste || []).slice(0, 3).map(function (f) {
+          return f.navn + ' <span style="opacity:.55">(' + f.dato + ')</span>';
+        }).join('<br>');
+        return '<tr><th>' + k.kode + '</th><td>' + k.antall_filer + ' filer</td>' +
+               '<td class="std__new">' + (nye || '—') + '</td></tr>';
+      }).join('');
+      document.getElementById('std-canvas').innerHTML =
+        '<table><tr><th></th><th>I speilet</th><th>Sist inn</th></tr>' + rader + '</table>' +
+        '<p class="std__fineprint">Sist oppdatert: ' + (d.oppdatert || 'ukjent') + '</p>';
+    })
+    .catch(function () {
+      document.getElementById('std-canvas').innerHTML =
+        '<p class="std__loading">Fikk ikke hentet status akkurat nå.</p>';
+    });
+})();
+</script>

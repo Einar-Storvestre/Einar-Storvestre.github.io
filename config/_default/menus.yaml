@@ -31,6 +31,9 @@ main:
   - name: Værdata
     url: /vaerdata/
     weight: 39
+  - name: Studier
+    url: /studier/
+    weight: 40
   # - name: Courses
   #   url: courses/
   #   weight: 40
