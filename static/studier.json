@@ -2,60 +2,72 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 11,
+   "antall_filer": 14,
    "nyeste": [
     {
+     "navn": "Additional_Exercises_Lectures 1 and 2_Solutions.pdf",
+     "dato": "2026-08-20"
+    },
+    {
+     "navn": "Additional Exercises_Lectures 1 and 2_text.pdf",
+     "dato": "2026-08-20"
+    },
+    {
      "navn": "Lecture 2 - Key concepts and Regulation_NOTES.pdf",
-     "dato": "2026-08-19"
+     "dato": "2026-08-20"
+    },
+    {
+     "navn": "Lecture 2 - Game.html",
+     "dato": "2026-08-20"
     },
     {
      "navn": "Workshop1_Solutions.pdf",
      "dato": "2026-08-19"
-    },
-    {
-     "navn": "carlsberg-group_2025-annual-report.pdf",
-     "dato": "2026-08-19"
-    },
-    {
-     "navn": "Lecture 2 - Key concepts and Regulation.pdf",
-     "dato": "2026-08-19"
-    },
-    {
-     "navn": "Workshop1_Exercises.pdf",
-     "dato": "2026-08-18"
     }
    ]
   },
   {
    "kode": "EBO2",
-   "antall_filer": 28,
+   "antall_filer": 29,
    "nyeste": [
     {
-     "navn": "EBO2_Lecture 2_Part I.pdf",
+     "navn": "BSM Chapter 15.pdf",
      "dato": "2026-08-20"
     },
     {
-     "navn": "Jensen & Meckling 1992_Specific and general knowledge, and organizational structure.pdf",
-     "dato": "2026-08-19"
+     "navn": "BSM Chapter 13.pdf",
+     "dato": "2026-08-20"
     },
     {
-     "navn": "BSM Chapter 12.pdf",
-     "dato": "2026-08-19"
+     "navn": "Lazear (2000)_Performance pay and productivity.pdf",
+     "dato": "2026-08-20"
     },
     {
-     "navn": "EBO2_Lecture 1_complete.pdf",
-     "dato": "2026-08-17"
+     "navn": "EBO2_Lecture 2_Part II.pdf",
+     "dato": "2026-08-20"
     },
     {
-     "navn": "EBO2_Lecture 1_Part II.pdf",
-     "dato": "2026-08-17"
+     "navn": "EBO2_Lecture 1_Part I.pdf",
+     "dato": "2026-08-20"
     }
    ]
   },
   {
    "kode": "TECH4",
-   "antall_filer": 3,
+   "antall_filer": 6,
    "nyeste": [
+    {
+     "navn": "02a_WyndorGlass_model.xlsx",
+     "dato": "2026-08-20"
+    },
+    {
+     "navn": "02b_WyndorGlass_model_w_RangeNames.xlsx",
+     "dato": "2026-08-20"
+    },
+    {
+     "navn": "02_LinearProgramming.pdf",
+     "dato": "2026-08-20"
+    },
     {
      "navn": "01_Introduction.pdf",
      "dato": "2026-08-18"
@@ -63,13 +75,9 @@
     {
      "navn": "TECH4-PreliminaryPlan2026.jpg",
      "dato": "2026-08-12"
-    },
-    {
-     "navn": "nhh-canvas.jpg",
-     "dato": "2026-04-15"
     }
    ]
   }
  ],
- "oppdatert": "2026-08-20 10:07"
+ "oppdatert": "2026-08-20 23:42"
 }
