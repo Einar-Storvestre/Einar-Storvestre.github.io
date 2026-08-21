@@ -68,6 +68,12 @@ jobs:
           print(f"avvik={avvik}")
           print(f"grunn={grunn}")
           print(f"alarm={'ja' if (gammelt or avvik) else 'nei'}")
+          # «rod» skiller de to alarmtypene. Gammelt livstegn = Mac-en er nede og
+          # kan ikke maile → rød workflow, som gir e-post fra GitHub. Avvik med
+          # FERSKT livstegn betyr at Mac-en lever og alt har sendt sin egen
+          # varselmail — da er rød kjøring bare et tredje varsel om samme sak,
+          # og et rødt kryss i repoet ser ut som om nettsiden er ødelagt.
+          print(f"rod={'ja' if gammelt else 'nei'}")
           PY
 
       - name: Slå alarm
@@ -78,6 +84,7 @@ jobs:
           SIST: ${{ steps.status.outputs.sist }}
           TIMER: ${{ steps.status.outputs.timer }}
           AVVIK: ${{ steps.status.outputs.avvik }}
+          ROD: ${{ steps.status.outputs.rod }}
         run: |
           set -euo pipefail
           gh label create dodmannsknapp --color B60205 \
@@ -104,7 +111,11 @@ jobs:
           Saken lukkes automatisk når livstegnet er ferskt igjen.
           EOF
           gh issue create --label dodmannsknapp --title "ALARM: ${GRUNN}" --body-file body.md
-          exit 1   # rød workflow = ekstra e-postvarsel fra GitHub
+          if [ "${ROD}" = "ja" ]; then
+            exit 1   # Mac-en er nede: rød workflow gir e-post fra GitHub
+          fi
+          echo "Mac-en lever (ferskt livstegn) — sak opprettet, men workflowen"
+          echo "holdes grønn: vaktmesteren har alt sendt e-post om avviket."
 
       - name: Friskmeld
         if: steps.status.outputs.alarm == 'nei'
