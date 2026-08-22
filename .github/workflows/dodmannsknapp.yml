@@ -62,10 +62,16 @@ jobs:
               timer, avvik = 0.0, 0
 
           gammelt = timer > float(os.environ["MAKS_TIMER"])
+          # Rop om avvik KUN når vaktmesterens egen varselmail ikke kom ut. Ellers
+          # har Einar alt fått e-posten, og en GitHub-sak blir bare et andre varsel
+          # om samme sak. Eldre status.json mangler feltet — da antar vi at mailen
+          # gikk (det var oppførselen før), så vi ikke roper på gammel historikk.
+          mail_ok = bool(j.get("mail_ok", True))
+          stille_avvik = avvik and not mail_ok
           if gammelt:
               grunn = f"Mac-en har ikke gitt livstegn på {timer:.0f} timer"
-          elif avvik:
-              grunn = f"Vaktmesteren melder {avvik} avvik"
+          elif stille_avvik:
+              grunn = f"Vaktmesteren melder {avvik} avvik OG fikk ikke sendt e-post"
           else:
               grunn = "alt friskt"
 
@@ -73,7 +79,7 @@ jobs:
           print(f"sist={j['sist']}")
           print(f"avvik={avvik}")
           print(f"grunn={grunn}")
-          print(f"alarm={'ja' if (gammelt or avvik) else 'nei'}")
+          print(f"alarm={'ja' if (gammelt or stille_avvik) else 'nei'}")
           # «rod» skiller de to alarmtypene. Gammelt livstegn = Mac-en er nede og
           # kan ikke maile → rød workflow, som gir e-post fra GitHub. Avvik med
           # FERSKT livstegn betyr at Mac-en lever og alt har sendt sin egen
