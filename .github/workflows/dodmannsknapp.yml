@@ -26,7 +26,13 @@ permissions:
   issues: write
 
 env:
-  MAKS_TIMER: '16'           # normalt maksgap mellom slag er 14 t (21:30 → 11:30)
+  # Normalt maksgap mellom hjerteslag er 14 t (21:30 → 11:30). 16 t ga bare 2 t
+  # margin: ETT mislykket hjerteslag — iCloud-lås på status.json 20./21. aug, eller
+  # DNS-brudd under push — ga alarm på en Mac som levde helt fint. 26 t betyr at
+  # ett tapt slag tolereres, og at alarmen først går når TO på rad uteblir. Det er
+  # riktig terskel for en dødmannsknapp: den skal fange «Mac-en er borte», ikke
+  # «Mac-en bommet på ett skriv».
+  MAKS_TIMER: '26'
   EIER: Einar-Storvestre
 
 jobs:
