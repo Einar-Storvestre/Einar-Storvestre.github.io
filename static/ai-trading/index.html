@@ -151,39 +151,100 @@
     .bar-lab .firma { display:none; }
   }
 
-  /* --------------------------------------------- dokumentasjon (langlesing) */
-  .dok-nav { display:flex; flex-wrap:wrap; gap:6px; margin:0 2px 12px; }
-  .dok-lenke { background:var(--card); border:1px solid var(--line2); border-radius:20px;
-               color:var(--dim); padding:5px 13px; font-size:12px; font-weight:600;
-               text-decoration:none; transition:all .12s; }
-  .dok-lenke:hover { color:var(--tx); border-color:var(--acc); }
-  .dok { max-width:76ch; line-height:1.7; padding:22px 26px 28px; }
-  .dok h1 { font-size:21px; margin:6px 0 12px; letter-spacing:-.015em; }
-  .dok h2 { font-size:17px; margin:36px 0 10px; padding-top:16px;
-            border-top:1px solid var(--line); scroll-margin-top:60px; letter-spacing:-.01em; }
-  .dok h2:first-of-type { border-top:none; padding-top:0; }
-  .dok h3 { font-size:14px; margin:22px 0 6px; color:var(--acc); }
-  .dok h4 { font-size:13px; margin:15px 0 4px; color:var(--dim); }
-  .dok p { margin:0 0 12px; }
-  .dok ul, .dok ol { margin:0 0 13px 21px; }
+  /* -------------------------------- dokumentlayout (rapport + dokumentasjon) */
+  .dok-skille { margin:44px 2px 16px; padding-top:26px; border-top:1px solid var(--line); }
+  .dok-skille h2 { font-size:19px; letter-spacing:-.015em; }
+  .dok-skille p { font-size:13.5px; color:var(--dim); margin-top:6px; max-width:64ch; }
+
+  .docgrid { display:grid; grid-template-columns:228px minmax(0,1fr); gap:36px;
+             align-items:start; margin-top:18px; }
+  .side { position:sticky; top:64px; display:flex; flex-direction:column; gap:2px;
+          max-height:calc(100vh - 90px); overflow-y:auto; padding:4px 2px 12px;
+          scrollbar-width:thin; }
+  .side-tittel { font-size:11px; font-weight:700; color:var(--mut); text-transform:uppercase;
+                 letter-spacing:.7px; margin:2px 10px 8px; }
+  .side-lenke { display:flex; align-items:baseline; gap:9px; padding:7px 10px;
+                border-radius:8px; color:var(--dim); font-size:13px; font-weight:550;
+                text-decoration:none; line-height:1.35; border-left:2px solid transparent;
+                transition:all .1s; }
+  .side-lenke:hover { color:var(--tx); background:#ffffff07; }
+  .side-lenke.aktiv { color:var(--tx); background:#58a6ff14; border-left-color:var(--acc); }
+  .side-nr { font-size:11px; font-weight:700; color:var(--mut); min-width:15px;
+             font-variant-numeric:tabular-nums; }
+  .side-lenke.aktiv .side-nr { color:var(--acc); }
+  .side-fot { margin:14px 10px 0; padding-top:12px; border-top:1px solid var(--line);
+              font-size:11.5px; color:var(--mut); line-height:1.6; }
+  .docmain { min-width:0; }
+
+  /* rapport-hode */
+  .rap-hode { background:linear-gradient(150deg, var(--card) 0%, #131a26 55%, #14202e 100%);
+              border:1px solid var(--line); border-radius:16px; padding:26px 30px 24px;
+              margin-bottom:22px; }
+  .rap-pill { display:inline-block; background:#2a2013; border:1px solid #3d2f17;
+              color:var(--warn); font-size:11px; font-weight:700; letter-spacing:.5px;
+              text-transform:uppercase; padding:4px 11px; border-radius:20px; }
+  .rap-hode h1 { font-size:30px; font-weight:750; letter-spacing:-.02em; margin:12px 0 4px; }
+  .rap-sub { font-size:14.5px; color:var(--dim); }
+  .rap-meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+              gap:14px 22px; margin-top:20px; padding-top:18px;
+              border-top:1px solid var(--line2); }
+  .rap-meta-l { font-size:11px; font-weight:650; color:var(--mut); text-transform:uppercase;
+                letter-spacing:.5px; }
+  .rap-meta-v { font-size:13.5px; font-weight:600; margin-top:3px; }
+
+  .rap-h2 { display:flex; align-items:center; gap:12px; }
+  .rap-num { display:inline-flex; align-items:center; justify-content:center;
+             min-width:26px; height:26px; border-radius:8px; background:#58a6ff1c;
+             color:var(--acc); font-size:13px; font-weight:700;
+             font-variant-numeric:tabular-nums; }
+
+  /* callouts */
+  .dok blockquote.co { border-left:3px solid var(--acc); background:#101a2a;
+                       color:var(--tx); }
+  .dok blockquote.co.warn { border-left-color:var(--warn); background:#20180d;
+                            color:#e8d9b5; }
+
+  /* selve leseflaten */
+  .dok { line-height:1.72; font-size:14.5px; background:var(--card);
+         border:1px solid var(--line); border-radius:16px; padding:28px 34px 34px; }
+  .dok h1 { font-size:22px; margin:6px 0 14px; letter-spacing:-.015em; }
+  .dok h2 { font-size:18px; margin:38px 0 12px; padding-top:20px;
+            border-top:1px solid var(--line); scroll-margin-top:72px; letter-spacing:-.012em; }
+  .dok h2:first-of-type { border-top:none; padding-top:0; margin-top:4px; }
+  .dok h3 { font-size:14.5px; margin:24px 0 7px; color:var(--acc); }
+  .dok h4 { font-size:13px; margin:16px 0 4px; color:var(--dim); }
+  .dok p { margin:0 0 12px; max-width:74ch; }
+  .dok ul, .dok ol { margin:0 0 14px 22px; max-width:72ch; }
   .dok li { margin-bottom:5px; }
-  .dok blockquote { border-left:3px solid var(--acc); background:#111826; padding:10px 15px;
-                    margin:0 0 13px; border-radius:0 8px 8px 0; color:var(--dim); }
-  .dok table { margin:4px 0 15px; }
+  .dok blockquote { border-left:3px solid var(--acc); background:#111826; padding:11px 16px;
+                    margin:0 0 14px; border-radius:0 9px 9px 0; color:var(--dim);
+                    max-width:74ch; }
+  .dok table { margin:4px 0 16px; }
   .dok .card { padding:0; background:none; border:none; overflow-x:auto; }
   .dok code { background:#1a212c; border:1px solid var(--line); border-radius:4px;
-              padding:1px 5px; font-size:12px;
+              padding:1px 5px; font-size:12.5px;
               font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
   .dok pre.kode { background:#0e131b; border:1px solid var(--line); border-radius:9px;
-                  padding:13px 15px; overflow-x:auto; margin:0 0 14px; }
-  .dok pre.kode code { background:none; border:none; padding:0; font-size:12px;
+                  padding:13px 15px; overflow-x:auto; margin:0 0 14px; max-width:74ch; }
+  .dok pre.kode code { background:none; border:none; padding:0; font-size:12.5px;
                        line-height:1.55; white-space:pre; }
-  .dok hr { border:none; border-top:1px solid var(--line); margin:22px 0; }
-  @media (max-width:640px) { .dok { padding:15px 16px 22px; } }
+  .dok hr { border:none; border-top:1px solid var(--line); margin:24px 0; }
 
+  @media (max-width:860px) {
+    .docgrid { grid-template-columns:1fr; gap:14px; }
+    .side { position:static; max-height:none; flex-direction:row; flex-wrap:wrap; gap:6px;
+            padding:0 0 4px; }
+    .side-tittel, .side-fot { display:none; }
+    .side-lenke { border:1px solid var(--line2); border-radius:20px; padding:5px 12px;
+                  border-left-width:1px; }
+    .side-lenke.aktiv { border-color:var(--acc); }
+    .rap-hode { padding:20px 18px 18px; }
+    .rap-hode h1 { font-size:24px; }
+    .dok { padding:16px 17px 22px; font-size:14px; }
+  }
 </style></head><body>
 <div class="wrap header"><h1>AI-trading — Oslo Børs<span class="lek">LEKEPENGER</span></h1>
-  <p>Oppdatert 2026-08-23 02:45 &middot; fiktiv portefølje, ekte forsinkede kurser &middot; ikke finansiell rådgivning</p></div>
+  <p>Oppdatert 2026-08-23 09:11 &middot; fiktiv portefølje, ekte forsinkede kurser &middot; ikke finansiell rådgivning</p></div>
 <div class="tabs-bg"><div class="wrap"><div class="tabs">
   <div class="tab active" data-p="p1">Oversikt</div>
   <div class="tab" data-p="p2">Posisjoner</div>
@@ -340,44 +401,54 @@
           <th class="r">ROE</th><th class="r">ROA</th><th class="r">FCF-yield</th>
           <th class="r">Datadekning</th></tr></thead>
           <tbody><tr><td><span class="tk">AKER.OL</span> <i class="firma">(Aker)</i></td><td class="r">1,57</td><td class="r">1,5</td><td class="r">1,1</td><td class="r">2,4</td><td class="r">+45,1 %</td><td class="r">+15,9 %</td><td class="r">+11,0 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">VAR.OL</span> <i class="firma">(Vår Energi)</i></td><td class="r">1,37</td><td class="r">1,3</td><td class="r">1,5</td><td class="r">1,2</td><td class="r">+94,0 %</td><td class="r">+13,4 %</td><td class="r">+4,0 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">MPCC.OL</span> <i class="firma">(MPC Container Ships)</i></td><td class="r">1,04</td><td class="r">0,8</td><td class="r">1,0</td><td class="r">1,3</td><td class="r">+24,4 %</td><td class="r">+9,1 %</td><td class="r">+0,1 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">EQNR.OL</span> <i class="firma">(Equinor)</i></td><td class="r">0,97</td><td class="r">1,4</td><td class="r">1,2</td><td class="r">0,4</td><td class="r">+21,3 %</td><td class="r">+14,5 %</td><td class="r">+3,1 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">BOUV.OL</span> <i class="firma">(Bouvet)</i></td><td class="r">0,85</td><td class="r">-1,6</td><td class="r">1,1</td><td class="r">1,6</td><td class="r">+114,4 %</td><td class="r">+18,0 %</td><td class="r">+3,3 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">VEI.OL</span> <i class="firma">(Veidekke)</i></td><td class="r">0,85</td><td class="r">0,5</td><td class="r">1,0</td><td class="r">0,8</td><td class="r">+68,5 %</td><td class="r">+6,8 %</td><td class="r">+14,8 %</td><td class="r">+82,3 %</td></tr><tr><td><span class="tk">PROT.OL</span> <i class="firma">(Protector Forsikring)</i></td><td class="r">0,78</td><td class="r">-0,3</td><td class="r">1,5</td><td class="r">0,1</td><td class="r">+30,6 %</td><td class="r">+6,5 %</td><td class="r">+4,5 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">AKSO.OL</span> <i class="firma">(Aker Solutions)</i></td><td class="r">0,76</td><td class="r">1,5</td><td class="r">0,0</td><td class="r">1,8</td><td class="r">+35,6 %</td><td class="r">+4,9 %</td><td class="r">+13,2 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">HAUTO.OL</span> <i class="firma">(Hoegh Autoliners)</i></td><td class="r">0,74</td><td class="r">1,1</td><td class="r">1,0</td><td class="r">0,1</td><td class="r">+34,2 %</td><td class="r">+11,9 %</td><td class="r">+0,4 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">AKRBP.OL</span> <i class="firma">(Aker BP)</i></td><td class="r">0,71</td><td class="r">1,1</td><td class="r">1,2</td><td class="r">-0,5</td><td class="r">+12,1 %</td><td class="r">+10,8 %</td><td class="r">-0,2 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">NHY.OL</span> <i class="firma">(Norsk Hydro)</i></td><td class="r">0,69</td><td class="r">0,2</td><td class="r">1,2</td><td class="r">-0,0</td><td class="r">+9,4 %</td><td class="r">+12,7 %</td><td class="r">+11,3 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">MOWI.OL</span> <i class="firma">(Mowi)</i></td><td class="r">0,67</td><td class="r">-0,4</td><td class="r">1,1</td><td class="r">0,4</td><td class="r">+15,5 %</td><td class="r">+5,1 %</td><td class="r">+0,0 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">NORBT.OL</span> <i class="firma">(NORBIT)</i></td><td class="r">0,66</td><td class="r">-0,9</td><td class="r">1,2</td><td class="r">0,4</td><td class="r">+38,2 %</td><td class="r">+15,0 %</td><td class="r">+3,0 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">OET.OL</span> <i class="firma">(Okeanis Eco Tankers)</i></td><td class="r">0,42</td><td class="r">1,5</td><td class="r">0,2</td><td class="r">0,2</td><td class="r">n/a</td><td class="r">n/a</td><td class="r">n/a</td><td class="r">+76,5 %</td></tr><tr><td><span class="tk">NONG.OL</span> <i class="firma">(SpareBank 1 Nord-Norge)</i></td><td class="r">0,37</td><td class="r">0,3</td><td class="r">1,6</td><td class="r">-1,8</td><td class="r">+16,4 %</td><td class="r">+2,2 %</td><td class="r">n/a</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">NAS.OL</span> <i class="firma">(Norwegian Air Shuttle)</i></td><td class="r">0,36</td><td class="r">-1,8</td><td class="r">0,4</td><td class="r">1,4</td><td class="r">+25,7 %</td><td class="r">+2,3 %</td><td class="r">+8,8 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">MING.OL</span> <i class="firma">(SpareBank 1 SMN)</i></td><td class="r">0,34</td><td class="r">0,1</td><td class="r">-0,2</td><td class="r">1,4</td><td class="r">+14,1 %</td><td class="r">+1,7 %</td><td class="r">n/a</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">EPR.OL</span> <i class="firma">(Europris)</i></td><td class="r">0,29</td><td class="r">-0,2</td><td class="r">0,5</td><td class="r">0,2</td><td class="r">+22,4 %</td><td class="r">+7,5 %</td><td class="r">+11,2 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">AFG.OL</span> <i class="firma">(AF Gruppen)</i></td><td class="r">0,28</td><td class="r">0,6</td><td class="r">0,1</td><td class="r">0,4</td><td class="r">+33,6 %</td><td class="r">+6,0 %</td><td class="r">+11,1 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">OKEA.OL</span> <i class="firma">(OKEA)</i></td><td class="r">0,25</td><td class="r">1,4</td><td class="r">-0,4</td><td class="r">0,8</td><td class="r">-4,2 %</td><td class="r">+4,7 %</td><td class="r">+1,8 %</td><td class="r">+94,1 %</td></tr><tr><td><span class="tk">YAR.OL</span> <i class="firma">(Yara)</i></td><td class="r">0,21</td><td class="r">-0,1</td><td class="r">0,4</td><td class="r">-0,1</td><td class="r">+17,9 %</td><td class="r">+7,5 %</td><td class="r">+1,9 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">PEN.OL</span> <i class="firma">(Panoro Energy)</i></td><td class="r">0,10</td><td class="r">0,7</td><td class="r">0,3</td><td class="r">-0,5</td><td class="r">-31,4 %</td><td class="r">-1,6 %</td><td class="r">-0,2 %</td><td class="r">+94,1 %</td></tr><tr><td><span class="tk">SATS.OL</span> <i class="firma">(SATS)</i></td><td class="r">0,08</td><td class="r">-0,4</td><td class="r">0,7</td><td class="r">-0,7</td><td class="r">+36,1 %</td><td class="r">+6,5 %</td><td class="r">+16,0 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">DNO.OL</span> <i class="firma">(DNO)</i></td><td class="r">0,06</td><td class="r">0,6</td><td class="r">0,1</td><td class="r">-0,2</td><td class="r">+8,6 %</td><td class="r">+10,8 %</td><td class="r">+4,8 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">TEL.OL</span> <i class="firma">(Telenor)</i></td><td class="r">0,01</td><td class="r">-1,2</td><td class="r">0,2</td><td class="r">0,3</td><td class="r">+25,0 %</td><td class="r">+5,2 %</td><td class="r">+5,2 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">SALM.OL</span> <i class="firma">(SalMar)</i></td><td class="r">-0,01</td><td class="r">-0,6</td><td class="r">0,7</td><td class="r">-1,1</td><td class="r">+9,8 %</td><td class="r">+4,8 %</td><td class="r">+3,5 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">STB.OL</span> <i class="firma">(Storebrand)</i></td><td class="r">-0,04</td><td class="r">0,9</td><td class="r">-0,8</td><td class="r">0,9</td><td class="r">+15,2 %</td><td class="r">+5,6 %</td><td class="r">+49,1 %</td><td class="r">+90,0 %</td></tr><tr><td><span class="tk">BAKKA.OL</span> <i class="firma">(Bakkafrost)</i></td><td class="r">-0,08</td><td class="r">-0,5</td><td class="r">0,2</td><td class="r">-0,5</td><td class="r">+7,4 %</td><td class="r">+4,2 %</td><td class="r">-2,0 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">GSF.OL</span> <i class="firma">(Grieg Seafood)</i></td><td class="r">-0,09</td><td class="r">-0,7</td><td class="r">-0,9</td><td class="r">1,7</td><td class="r">+2,2 %</td><td class="r">+1,4 %</td><td class="r">+87,5 %</td><td class="r">+94,1 %</td></tr><tr><td><span class="tk">SUBC.OL</span> <i class="firma">(Subsea 7)</i></td><td class="r">-0,11</td><td class="r">1,2</td><td class="r">-0,1</td><td class="r">-0,8</td><td class="r">+14,2 %</td><td class="r">+8,0 %</td><td class="r">+1,5 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">TGS.OL</span> <i class="firma">(TGS)</i></td><td class="r">-0,14</td><td class="r">0,9</td><td class="r">0,1</td><td class="r">-1,1</td><td class="r">+5,0 %</td><td class="r">+6,3 %</td><td class="r">+0,5 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">HAFNI.OL</span> <i class="firma">(Hafnia)</i></td><td class="r">-0,14</td><td class="r">0,1</td><td class="r">-0,1</td><td class="r">-0,2</td><td class="r">+18,9 %</td><td class="r">+7,0 %</td><td class="r">+0,3 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">SPOL.OL</span> <i class="firma">(SpareBank 1 Ostlandet)</i></td><td class="r">-0,16</td><td class="r">0,1</td><td class="r">-1,0</td><td class="r">1,2</td><td class="r">+12,8 %</td><td class="r">+1,6 %</td><td class="r">n/a</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">FRO.OL</span> <i class="firma">(Frontline)</i></td><td class="r">-0,19</td><td class="r">0,9</td><td class="r">-0,2</td><td class="r">-0,8</td><td class="r">+35,0 %</td><td class="r">+9,2 %</td><td class="r">n/a</td><td class="r">+94,1 %</td></tr><tr><td><span class="tk">ATEA.OL</span> <i class="firma">(Atea)</i></td><td class="r">-0,20</td><td class="r">0,5</td><td class="r">-0,9</td><td class="r">0,8</td><td class="r">+29,1 %</td><td class="r">+4,3 %</td><td class="r">+1,6 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">VEND.OL</span> <i class="firma">(Vend Marketplaces)</i></td><td class="r">-0,25</td><td class="r">-1,2</td><td class="r">-0,4</td><td class="r">0,5</td><td class="r">-37,7 %</td><td class="r">+3,9 %</td><td class="r">+4,4 %</td><td class="r">+94,1 %</td></tr><tr><td><span class="tk">KOG.OL</span> <i class="firma">(Kongsberg Gruppen)</i></td><td class="r">-0,29</td><td class="r">-1,4</td><td class="r">0,5</td><td class="r">-1,2</td><td class="r">+32,6 %</td><td class="r">+5,4 %</td><td class="r">+0,8 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">BWLPG.OL</span> <i class="firma">(BW LPG)</i></td><td class="r">-0,30</td><td class="r">0,3</td><td class="r">-0,8</td><td class="r">0,3</td><td class="r">+20,9 %</td><td class="r">+8,7 %</td><td class="r">+1,1 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">AUSS.OL</span> <i class="firma">(Austevoll Seafood)</i></td><td class="r">-0,32</td><td class="r">-0,3</td><td class="r">-0,6</td><td class="r">0,1</td><td class="r">+4,4 %</td><td class="r">+3,1 %</td><td class="r">+14,4 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">KIT.OL</span> <i class="firma">(Kitron)</i></td><td class="r">-0,38</td><td class="r">-0,2</td><td class="r">-0,0</td><td class="r">-1,1</td><td class="r">+23,8 %</td><td class="r">+7,5 %</td><td class="r">+0,5 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">DNB.OL</span> <i class="firma">(DNB Bank)</i></td><td class="r">-0,40</td><td class="r">0,7</td><td class="r">-0,4</td><td class="r">-0,9</td><td class="r">+15,1 %</td><td class="r">+1,1 %</td><td class="r">n/a</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">GJF.OL</span> <i class="firma">(Gjensidige)</i></td><td class="r">-0,46</td><td class="r">0,3</td><td class="r">-0,3</td><td class="r">-1,1</td><td class="r">+27,3 %</td><td class="r">+3,0 %</td><td class="r">n/a</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">AUTO.OL</span> <i class="firma">(AutoStore)</i></td><td class="r">-0,46</td><td class="r">-1,4</td><td class="r">0,3</td><td class="r">-1,4</td><td class="r">+10,6 %</td><td class="r">+6,6 %</td><td class="r">+0,3 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">ENTRA.OL</span> <i class="firma">(Entra)</i></td><td class="r">-0,55</td><td class="r">-0,2</td><td class="r">-1,3</td><td class="r">0,6</td><td class="r">-0,1 %</td><td class="r">+2,5 %</td><td class="r">+26,2 %</td><td class="r">+94,1 %</td></tr><tr><td><span class="tk">ORK.OL</span> <i class="firma">(Orkla)</i></td><td class="r">-0,56</td><td class="r">-0,5</td><td class="r">-1,1</td><td class="r">0,4</td><td class="r">+15,1 %</td><td class="r">+5,2 %</td><td class="r">+4,1 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">TOM.OL</span> <i class="firma">(Tomra)</i></td><td class="r">-0,56</td><td class="r">-1,5</td><td class="r">0,1</td><td class="r">-1,3</td><td class="r">+14,8 %</td><td class="r">+5,6 %</td><td class="r">+0,8 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">LSG.OL</span> <i class="firma">(Lerøy Seafood)</i></td><td class="r">-0,70</td><td class="r">-0,6</td><td class="r">-0,6</td><td class="r">-0,9</td><td class="r">+4,0 %</td><td class="r">+3,1 %</td><td class="r">+7,1 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">WAWI.OL</span> <i class="firma">(Wallenius Wilhelmsen)</i></td><td class="r">-0,82</td><td class="r">0,8</td><td class="r">-1,0</td><td class="r">-1,2</td><td class="r">+21,9 %</td><td class="r">+7,4 %</td><td class="r">-0,3 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">SCATC.OL</span> <i class="firma">(Scatec)</i></td><td class="r">-0,90</td><td class="r">-0,6</td><td class="r">-0,9</td><td class="r">-1,1</td><td class="r">-3,7 %</td><td class="r">+1,8 %</td><td class="r">-35,8 %</td><td class="r">+94,1 %</td></tr><tr><td><span class="tk">ELK.OL</span> <i class="firma">(Elkem)</i></td><td class="r">-0,91</td><td class="r">-0,0</td><td class="r">-1,6</td><td class="r">-0,1</td><td class="r">+1,9 %</td><td class="r">+1,0 %</td><td class="r">+121,1 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">NOD.OL</span> <i class="firma">(Nordic Semiconductor)</i></td><td class="r">-1,44</td><td class="r">-0,6</td><td class="r">-1,3</td><td class="r">-2,1</td><td class="r">+5,0 %</td><td class="r">+2,7 %</td><td class="r">-0,1 %</td><td class="r">+100,0 %</td></tr><tr><td><span class="tk">NEL.OL</span> <i class="firma">(Nel)</i></td><td class="r">-1,96</td><td class="r">-1,3</td><td class="r">-2,9</td><td class="r">-0,5</td><td class="r">-30,3 %</td><td class="r">-7,0 %</td><td class="r">-15,3 %</td><td class="r">+88,2 %</td></tr><tr><td><span class="tk">HEX.OL</span> <i class="firma">(Hexagon Composites)</i></td><td class="r">-2,04</td><td class="r">-2,9</td><td class="r">-2,8</td><td class="r">-0,2</td><td class="r">-23,6 %</td><td class="r">-0,4 %</td><td class="r">n/a</td><td class="r">+88,2 %</td></tr></tbody></table></div></div>
-<div id="p5" class="page"><div class="small nt" style="margin:14px 2px 4px">Kilde: <code>reports/weekly_2026-34.md</code> · genereres automatisk hver fredag 16:40.</div><h1>AI-TRADING · UKESRAPPORT</h1>
-<h3>Uke 34/2026 · per 21.08.2026</h3>
-<div class="card"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><strong>Mandat</strong></td><td>Long-only aksjer, Oslo Børs</td></tr><tr><td><strong>Referanseindeks</strong></td><td>OSEBX</td></tr><tr><td><strong>Startkapital</strong></td><td>NOK 100 000</td></tr><tr><td><strong>Strategi</strong></td><td>Multifaktor (QARP): kvalitet, verdi, momentum</td></tr><tr><td><strong>Rapportdato</strong></td><td>2026-08-21 20:00 (Europe/Oslo)</td></tr><tr><td><strong>Status</strong></td><td><strong>SIMULERT PORTEFØLJE — LEKEPENGER</strong></td></tr></tbody></table></div>
-<h2>1 · SAMMENDRAG</h2>
+<div id="p5" class="page"><div class="docgrid">
+      <aside class="side"><div class="side-tittel">Innhold</div><a class="side-lenke" href="#rap-1"><span class="side-nr">1</span>Sammendrag</a><a class="side-lenke" href="#rap-2"><span class="side-nr">2</span>Avkastning</a><a class="side-lenke" href="#rap-3"><span class="side-nr">3</span>Bidragsanalyse</a><a class="side-lenke" href="#rap-4"><span class="side-nr">4</span>Markedskommentar</a><a class="side-lenke" href="#rap-5"><span class="side-nr">5</span>Beholdninger</a><a class="side-lenke" href="#rap-6"><span class="side-nr">6</span>Sektorallokering</a><a class="side-lenke" href="#rap-7"><span class="side-nr">7</span>Transaksjoner</a><a class="side-lenke" href="#rap-8"><span class="side-nr">8</span>Risiko &amp; etterlevelse</a><a class="side-lenke" href="#rap-9"><span class="side-nr">9</span>Risikostatistikk</a><a class="side-lenke" href="#rap-10"><span class="side-nr">10</span>Metode &amp; forbehold</a>
+        <div class="side-fot">Kilde: <code>reports/weekly_2026-34.md</code><br>
+        Genereres automatisk hver fredag.</div></aside>
+      <div class="docmain">
+        <div class="rap-hode">
+          <div class="rap-pill">Simulert portefølje · lekepenger</div>
+          <h1>Ukesrapport</h1>
+          <div class="rap-sub">Uke 34/2026 &middot; per 21.08.2026</div>
+          <div class="rap-meta"><div class="rap-meta-i"><div class="rap-meta-l">Mandat</div><div class="rap-meta-v">Long-only aksjer, Oslo Børs</div></div><div class="rap-meta-i"><div class="rap-meta-l">Referanseindeks</div><div class="rap-meta-v">OSEBX</div></div><div class="rap-meta-i"><div class="rap-meta-l">Startkapital</div><div class="rap-meta-v">NOK 100 000</div></div><div class="rap-meta-i"><div class="rap-meta-l">Strategi</div><div class="rap-meta-v">Multifaktor (QARP): kvalitet, verdi, momentum</div></div><div class="rap-meta-i"><div class="rap-meta-l">Rapportdato</div><div class="rap-meta-v">2026-08-21 20:00 (Europe/Oslo)</div></div></div>
+        </div>
+        <div class="dok rapport"><h2 class="rap-h2" id="rap-1"><span class="rap-num">1</span>Sammendrag</h2>
 <p><strong>Porteføljen står i NOK 106 873</strong> — +6,87 % siden oppstart mot OSEBX +8,46 %, altså <strong>1,59 pp bak indeks</strong>.</p>
 <p>I uke 34 ga porteføljen +1,83 % mot indeks +0,37 % (+1,46 pp).</p>
 <p><strong>Drivere i perioden:</strong> VAR.OL bidro mest (+0,47 pp på +5,09 %), mens NONG.OL trakk mest ned (-0,13 pp på -0,73 %).</p>
 <p><strong>Posisjonering:</strong> 8 posisjoner, største sektor industri (28,5 % av NAV), kontantandel 1,4 %. Modus <strong>normal</strong>.</p>
-<blockquote>⚠️ <strong>DRIFTSAVVIK:</strong> analysen kjørte ikke på 1 handledag(er) i perioden (2026-08-14). Rebalansering som falt på disse dagene ble ikke utført. Avkastningstall fra perioden måler derfor ikke strategien slik den er ment å kjøre.</blockquote>
+<blockquote class="co warn">⚠️ <strong>DRIFTSAVVIK:</strong> analysen kjørte ikke på 1 handledag(er) i perioden (2026-08-14). Rebalansering som falt på disse dagene ble ikke utført. Avkastningstall fra perioden måler derfor ikke strategien slik den er ment å kjøre.</blockquote>
 <p><strong>Neste rebalansering:</strong> førstkommende mandag (kadens: ukentlig). Risikoregler — stop-loss, eksponering, regimefilter — kjører uansett daglig.</p>
-<h2>2 · AVKASTNING</h2>
+<h2 class="rap-h2" id="rap-2"><span class="rap-num">2</span>Avkastning</h2>
 <div class="card"><table><thead><tr><th>Periode</th><th>Portefølje</th><th>OSEBX</th><th>Differanse</th></tr></thead><tbody><tr><td>Uke 34</td><td>+1,83 %</td><td>+0,37 %</td><td>+1,46 pp</td></tr><tr><td>Siden oppstart</td><td>+6,87 %</td><td>+8,46 %</td><td>-1,59 pp</td></tr></tbody></table></div>
 <p><em>Annualisert avkastning er utelatt: serien er 42 dager, terskelen er 90. Å annualisere en så kort serie ville overdrevet både avkastning og risiko.</em></p>
-<h2>3 · BIDRAGSANALYSE · 2026-08-14 → 2026-08-21</h2>
+<h2 class="rap-h2" id="rap-3"><span class="rap-num">3</span>Bidragsanalyse · 2026-08-14 → 2026-08-21</h2>
 <div class="card"><table><thead><tr><th>Ticker</th><th>Sektor</th><th>Vekt</th><th>Avkastning</th><th>Bidrag</th></tr></thead><tbody><tr><td><strong>VAR.OL</strong></td><td>energi</td><td>9,3 %</td><td>+5,09 %</td><td>+0,47 pp</td></tr><tr><td><strong>MPCC.OL</strong></td><td>shipping</td><td>9,3 %</td><td>+4,45 %</td><td>+0,41 pp</td></tr><tr><td><strong>VEI.OL</strong></td><td>industri</td><td>20,1 %</td><td>+1,91 %</td><td>+0,38 pp</td></tr><tr><td><strong>AKRBP.OL</strong></td><td>energi</td><td>10,6 %</td><td>+2,66 %</td><td>+0,28 pp</td></tr><tr><td><strong>AKER.OL</strong></td><td>industri</td><td>8,4 %</td><td>+3,33 %</td><td>+0,28 pp</td></tr><tr><td><strong>EQNR.OL</strong></td><td>energi</td><td>7,8 %</td><td>+3,45 %</td><td>+0,27 pp</td></tr><tr><td><strong>MOWI.OL</strong></td><td>sjomat</td><td>15,2 %</td><td>+0,69 %</td><td>+0,11 pp</td></tr><tr><td><strong>NONG.OL</strong></td><td>finans</td><td>17,8 %</td><td>-0,73 %</td><td>-0,13 pp</td></tr><tr><td></td><td></td><td></td><td><strong>Sum</strong></td><td><strong>+2,08 pp</strong></td></tr></tbody></table></div>
 <p><em>Tilnærmet attribusjon: dagens vekt × posisjonens avkastning i perioden, målt fra samme periodestart som avkastningstabellen. Ignorerer vektdrift og handler inne i perioden, så summen avviker noe fra faktisk porteføljeavkastning. Full Brinson-attribusjon (allokering vs. seleksjon) krever OSEBX-vekter per selskap, som vi ikke har lisens til — den er derfor bevisst utelatt framfor estimert.</em></p>
-<h2>4 · MARKEDSKOMMENTAR</h2>
+<h2 class="rap-h2" id="rap-4"><span class="rap-num">4</span>Markedskommentar</h2>
 <p>OSEBX økte marginalt 0,37 %, men porteføljen avkastet 1,83 % og nådde 1,46 pp meravkastning. Gevinsten var konsentrert i energi, shipping og industri, der høyere Brent-nivå (93,13 USD/fat, 7,9 % over 63-dagers snitt) trolig understøttet energiposisjonene VAR, AKRBP og EQNR. Finanssektoren (NONG) var eneste negative bidragsyter.</p>
 <p><strong>Bevegelser og mulige forklaringer</strong></p>
 <ul><li><strong>VAR.OL</strong> — Økning på 5,09 % (største bidrag på 0,47 pp). Materialet viser utbyttemeldinger (ex dividend Q2) og ekstraordinær generalforsamling, men ingen fundamental-drivende nyhet. Sterk kursstigning er trolig konsistent med høyere oljepriser.</li><li><strong>MPCC.OL</strong> — Økning på 4,45 % (0,41 pp bidrag). Materialet inneholder kun invitasjon til resultatsamtale; ingen selskapsspesifikk nyhet som forklarer styrken.</li><li><strong>VEI.OL</strong> — Økning på 1,91 % (0,38 pp bidrag). Meldinger om to nye boligprosjekter for K2 Bolig og logistikkbygg på Gardermoen indikerer ordreinngang, men avkastningen er beskjeden givet nyhetene.</li><li><strong>AKRBP.OL</strong> — Økning på 2,66 % (0,28 pp bidrag). Oppkjøp av interesser i Losgann/Froskelår og Slagugle-funn. Økningen kan forklares av eksplorerings-momentum kombinert med høyere oljepris.</li><li><strong>AKER.OL</strong> — Økning på 3,33 % (0,28 pp bidrag). Scope Ratings oppgraderte outlook til Positive (bekreftet BBB-rating). Rating-oppgradering kan forklare deler av kursstigningen.</li><li><strong>EQNR.OL</strong> — Økning på 3,45 % (0,27 pp bidrag). Utbyttemeldinger (Q1 2026: NOK 3,6882 per aksje) og aksjetilbakekjøp (tredje transje 2026). Økningen er trolig drevet av høyere oljepriser snarere enn kapitalforvaltnings-meldingene.</li><li><strong>MOWI.OL</strong> — Økning på 0,69 % (0,11 pp bidrag). Rekordhøy inntekter og volumer i Q2 og kvartalsutbytte, men kursstigning er dempet. Kunne indikere at resultatet allerede var priset inn eller at markedet fokuserer på andre faktorer.</li><li><strong>NONG.OL</strong> — Fall på 0,73 % (-0,13 pp bidrag). Fem rentefastsettelser er registrert, men ingen kontekst eller forklaring på prisfall i materialet.</li></ul>
 <p><strong>Observasjon.</strong> Porteføljens meravkastning på 1,46 pp drevet primært av høy eksponering mot energi (VAR, AKRBP, EQNR samlet 1,02 pp bidrag) under stimulus fra høyere Brent-priser. Eneste betydelig motbør var finanssektoren (NONG), som falt uten forklaring i materialet. Sektorkonsentrasjon — energi utgjør 28 % av porteføljens vekter — var avgjørende.</p>
 <p><em>Generert av Claude på grunnlag av 24 overskrift(er) for beholdningene i perioden — kilde: offisielle børsmeldinger fra Oslo Børs NewsWeb, samt kursbevegelsene i tabellen over. Årsakssammenhenger er <strong>tolkning</strong>, ikke konstaterte fakta — modellen får kun lov å resonnere fra det oppgitte materialet og skal merke usikkerhet. Kommentaren er beskrivende og inneholder ingen kjøps- eller salgsanbefaling.</em></p>
-<h2>5 · BEHOLDNINGER</h2>
+<h2 class="rap-h2" id="rap-5"><span class="rap-num">5</span>Beholdninger</h2>
 <div class="card"><table><thead><tr><th>Ticker</th><th>Sektor</th><th>Antall</th><th>Snittkurs</th><th>Kurs</th><th>Markedsverdi</th><th>Vekt</th><th>Urealisert</th></tr></thead><tbody><tr><td><strong>VEI.OL</strong></td><td>industri</td><td>106</td><td>187,07</td><td>203,00</td><td>21 518</td><td>20,1 %</td><td>+8,5 %</td></tr><tr><td><strong>NONG.OL</strong></td><td>finans</td><td>115</td><td>157,50</td><td>165,84</td><td>19 072</td><td>17,8 %</td><td>+5,3 %</td></tr><tr><td><strong>MOWI.OL</strong></td><td>sjomat</td><td>80</td><td>197,11</td><td>203,40</td><td>16 272</td><td>15,2 %</td><td>+3,2 %</td></tr><tr><td><strong>AKRBP.OL</strong></td><td>energi</td><td>32</td><td>326,02</td><td>354,80</td><td>11 354</td><td>10,6 %</td><td>+8,8 %</td></tr><tr><td><strong>VAR.OL</strong></td><td>energi</td><td>200</td><td>43,89</td><td>49,69</td><td>9 938</td><td>9,3 %</td><td>+13,2 %</td></tr><tr><td><strong>MPCC.OL</strong></td><td>shipping</td><td>370</td><td>24,27</td><td>26,77</td><td>9 905</td><td>9,3 %</td><td>+10,3 %</td></tr><tr><td><strong>AKER.OL</strong></td><td>industri</td><td>6</td><td>1 272,00</td><td>1 488,00</td><td>8 928</td><td>8,4 %</td><td>+17,0 %</td></tr><tr><td><strong>EQNR.OL</strong></td><td>energi</td><td>21</td><td>350,40</td><td>399,10</td><td>8 381</td><td>7,8 %</td><td>+13,9 %</td></tr><tr><td><em>Kontanter</em></td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 506</td><td>1,4 %</td><td>—</td></tr></tbody></table></div>
-<h2>6 · SEKTORALLOKERING</h2>
+<h2 class="rap-h2" id="rap-6"><span class="rap-num">6</span>Sektorallokering</h2>
 <div class="card"><table><thead><tr><th>Sektor</th><th>Markedsverdi</th><th>Vekt</th><th>Grense</th></tr></thead><tbody><tr><td>industri</td><td>30 446</td><td>28,5 %</td><td>40 %</td></tr><tr><td>energi</td><td>29 673</td><td>27,8 %</td><td>40 %</td></tr><tr><td>finans</td><td>19 072</td><td>17,8 %</td><td>40 %</td></tr><tr><td>sjomat</td><td>16 272</td><td>15,2 %</td><td>40 %</td></tr><tr><td>shipping</td><td>9 905</td><td>9,3 %</td><td>40 %</td></tr></tbody></table></div>
-<h2>7 · TRANSAKSJONER</h2>
+<h2 class="rap-h2" id="rap-7"><span class="rap-num">7</span>Transaksjoner</h2>
 <div class="card"><table><thead><tr><th>Dato/tid</th><th>Ticker</th><th>Side</th><th>Antall</th><th>Kurs</th><th>Verdi</th><th>Kurtasje</th><th>Begrunnelse</th></tr></thead><tbody><tr><td>2026-08-17 09:25</td><td>MOWI.OL</td><td>KJØP</td><td>15</td><td>199,30</td><td>2989,50</td><td>1,46</td><td>score 0,83 / momentum -0,4 (6-1M -12,3%, 12-1M -0,4%, vol 22%) / kvalitet +1,3 (ROA 5%, driftsmargin 14%, FCF-margin 2%, gjeld/EK 75%) / verdi +0,5 (E/P 9%, FCF-yield 0%, EBITDA-yield 1%) / fundamental dekning 100% [ordre_id=0:KJØP:MOWI.OL:15]</td></tr></tbody></table></div>
-<h2>8 · RISIKO &amp; ETTERLEVELSE</h2>
+<h2 class="rap-h2" id="rap-8"><span class="rap-num">8</span>Risiko &amp; etterlevelse</h2>
 <div class="card"><table><thead><tr><th>Kontroll</th><th>Måling</th><th>Grense</th><th>Status</th></tr></thead><tbody><tr><td>Største posisjon (VEI.OL)</td><td>20,1 %</td><td>20 %</td><td>❌ BRUDD</td></tr><tr><td>Største sektor (industri)</td><td>28,5 %</td><td>40 %</td><td>✅ innenfor</td></tr><tr><td>Antall posisjoner</td><td>8</td><td>5–20</td><td>✅ innenfor</td></tr><tr><td>Drawdown fra topp</td><td>0,0 %</td><td>25 %</td><td>✅ innenfor</td></tr><tr><td>Modus</td><td>normal</td><td>normal</td><td>✅</td></tr></tbody></table></div>
-<h2>9 · RISIKOSTATISTIKK</h2>
+<h2 class="rap-h2" id="rap-9"><span class="rap-num">9</span>Risikostatistikk</h2>
 <div class="card"><table><thead><tr><th>Nøkkeltall</th><th>Portefølje</th><th>OSEBX</th></tr></thead><tbody><tr><td>Volatilitet (ann.)</td><td>12,51 %</td><td>9,12 %</td></tr><tr><td>Maks. drawdown</td><td>-2,40 %</td><td>—</td></tr><tr><td>Beta vs. OSEBX</td><td>1,02</td><td>1,00</td></tr><tr><td>Tracking error</td><td>8,41 %</td><td>—</td></tr><tr><td>Sharpe-rate</td><td>4,67</td><td>—</td></tr><tr><td>Informasjonsrate</td><td>-1,22</td><td>—</td></tr><tr><td>Treffrate vs. indeks</td><td>40 %</td><td>—</td></tr></tbody></table></div>
 <p><em>n = 30 daglige observasjoner over 42 kalenderdager. Sharpe/IR bruker risikofri rente 0.00 % p.a. (config <code>rapport.risikofri_rente_aar</code>; 0 = ingen antakelse, dokumentert framfor gjettet).</em></p>
 <hr>
-<h2>10 · METODE &amp; FORBEHOLD</h2>
+<h2 class="rap-h2" id="rap-10"><span class="rap-num">10</span>Metode &amp; forbehold</h2>
 <p><strong>Dette er ikke finansiell rådgivning.</strong> Porteføljen er simulert med fiktiv kapital; ingen ekte ordre er lagt. Kurser er fra yfinance (~15 min forsinket) og fylles til den kursen — faktiske fills ville avviket.</p>
 <p>Kort horisont er støy-dominert. Base rate: ~65–79 % av profesjonelle forvaltere slår ikke indeks årlig, ~94 % over 20 år (SPIVA). Døm strategien på <strong>meravkastning mot OSEBX over rullerende 12–24 måneder</strong>, ikke på enkeltuker.</p>
 <p><em>Generert automatisk av run_weekly_report.py 2026-08-21 20:01.</em></p></div>
+      </div>
+    </div></div>
 <div id="p6" class="page">
       <div class="section-title">Kort fortalt</div>
       <div class="card small">Boten gir hver aksje en <b>totalscore</b> som rangerer hele universet.
@@ -438,18 +509,17 @@
       slår ikke indeks (SPIVA). Døm strategien på avkastning <b>netto mot OSEBX</b> over tid —
       ikke på enkeltdager. Alt er lekepenger.</div>
 
-      <hr style="margin:28px 2px 0;border:none;border-top:1px solid var(--line)">
-      <div class="dok-intro">
-        <h2 style="font-size:17px;margin:22px 2px 6px">Fullstendig dokumentasjon</h2>
-        <p class="small nt" style="margin:0 2px 4px">Alt om hvordan boten er bygget og hvorfor,
-        forklart fra grunnen av. Ingen forkunnskaper i finans nødvendig: hvert fagbegrep
-        forklares første gang det brukes, og kapittel 10 er en ordliste.</p>
+      <div class="dok-skille">
+        <h2>Fullstendig dokumentasjon</h2>
+        <p>Alt om hvordan boten er bygget og hvorfor, forklart fra grunnen av. Ingen
+        forkunnskaper i finans nødvendig: hvert fagbegrep forklares første gang det brukes,
+        og kapittel 10 er en ordliste.</p>
       </div>
-      <div class="dok-topp">
-        <div class="section-title" style="margin-top:14px">Innhold</div>
-        <div class="dok-nav"><a class="dok-lenke" href="#dok-1-hva-dette-er">1. Hva dette er</a><a class="dok-lenke" href="#dok-2-hvordan-den-fungerer-i-praksis">2. Hvordan den fungerer i praksis</a><a class="dok-lenke" href="#dok-3-investeringsfilosofien">3. Investeringsfilosofien</a><a class="dok-lenke" href="#dok-4-hvordan-aksjer-velges">4. Hvordan aksjer velges</a><a class="dok-lenke" href="#dok-5-hvordan-porteføljen-settes-sammen">5. Hvordan porteføljen settes sammen</a><a class="dok-lenke" href="#dok-6-risikostyring">6. Risikostyring</a><a class="dok-lenke" href="#dok-7-hva-bevisene-faktisk-sier">7. Hva bevisene faktisk sier</a><a class="dok-lenke" href="#dok-8-driftsarkitektur">8. Driftsarkitektur</a><a class="dok-lenke" href="#dok-9-kjente-svakheter-og-hva-som-gjenstår">9. Kjente svakheter og hva som gjenstår</a><a class="dok-lenke" href="#dok-10-ordliste">10. Ordliste</a></div>
-      </div>
-      <div class="card dok"><h1>AI-trading-bot: fullstendig dokumentasjon</h1>
+      <div class="docgrid">
+      <aside class="side"><div class="side-tittel">Kapitler</div><a class="side-lenke" href="#dok-1-hva-dette-er"><span class="side-nr">1</span>Hva dette er</a><a class="side-lenke" href="#dok-2-hvordan-den-fungerer-i-praksis"><span class="side-nr">2</span>Hvordan den fungerer i praksis</a><a class="side-lenke" href="#dok-3-investeringsfilosofien"><span class="side-nr">3</span>Investeringsfilosofien</a><a class="side-lenke" href="#dok-4-hvordan-aksjer-velges"><span class="side-nr">4</span>Hvordan aksjer velges</a><a class="side-lenke" href="#dok-5-hvordan-porteføljen-settes-sammen"><span class="side-nr">5</span>Hvordan porteføljen settes sammen</a><a class="side-lenke" href="#dok-6-risikostyring"><span class="side-nr">6</span>Risikostyring</a><a class="side-lenke" href="#dok-7-hva-bevisene-faktisk-sier"><span class="side-nr">7</span>Hva bevisene faktisk sier</a><a class="side-lenke" href="#dok-8-driftsarkitektur"><span class="side-nr">8</span>Driftsarkitektur</a><a class="side-lenke" href="#dok-9-kjente-svakheter-og-hva-som-gjenstår"><span class="side-nr">9</span>Kjente svakheter og hva som gjenstår</a><a class="side-lenke" href="#dok-10-ordliste"><span class="side-nr">10</span>Ordliste</a>
+        <div class="side-fot">Skrevet for lesere uten finansbakgrunn.<br>
+        Kapittel 10 er ordlisten.</div></aside>
+      <div class="docmain"><div class="dok"><h1>AI-trading-bot: fullstendig dokumentasjon</h1>
 <p><strong>Versjon:</strong> 19. august 2026. Alle tall i dette dokumentet er hentet fra kildene som</p>
 <p>oppgis i samme avsnitt. Ingenting her er finansiell rådgivning.</p>
 <p>Dokumentet er skrevet for å kunne leses av noen uten finansbakgrunn. Hvert fagbegrep</p>
@@ -1313,6 +1383,7 @@
 <p>kildene som oppgis i samme avsnitt. Kapittel 7 er den delen som betyr noe: den sier at</p>
 <p>strategiens meravkastning ikke er statistisk signifikant, og at 85 prosent av</p>
 <p>faktormodellen aldri er testet.*</p></div></div>
+    </div></div>
 </div>
 <script>
 (function () {
@@ -1326,6 +1397,30 @@
       t.classList.add("active");
       var side = document.getElementById(t.dataset.p);
       if (side) { side.classList.add("active"); }
+    });
+  });
+
+  /* ---------------------------------------------- scrollspy for sidemenyer
+     Markerer kapittelet leseren faktisk står i. Observeren trigges først når
+     fanen blir synlig, så skjulte faner koster ingenting. */
+  document.querySelectorAll(".docgrid").forEach(function (dg) {
+    var lenker = dg.querySelectorAll(".side-lenke");
+    if (!lenker.length || !("IntersectionObserver" in window)) { return; }
+    var kart = {};
+    lenker.forEach(function (l) { kart[l.getAttribute("href").slice(1)] = l; });
+    var aktiv = null;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && kart[e.target.id]) {
+          if (aktiv) { aktiv.classList.remove("aktiv"); }
+          aktiv = kart[e.target.id];
+          aktiv.classList.add("aktiv");
+        }
+      });
+    }, { rootMargin: "-12% 0px -76% 0px" });
+    Object.keys(kart).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) { obs.observe(el); }
     });
   });
 
