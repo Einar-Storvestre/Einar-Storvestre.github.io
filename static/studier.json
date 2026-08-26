@@ -2,27 +2,27 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 17,
+   "antall_filer": 22,
    "nyeste": [
     {
-     "navn": "Lecture 3 - Balance Sheet_NOTES-1.pdf",
-     "dato": "2026-08-24"
+     "navn": "Workshop2_Solutions_NOTES.pdf",
+     "dato": "2026-08-26"
     },
     {
-     "navn": "Lecture 3  Game.html",
-     "dato": "2026-08-24"
+     "navn": "Lecture 4 - Income Statement_Part1_NOTES-1.pdf",
+     "dato": "2026-08-26"
     },
     {
-     "navn": "Lecture 3 - Balance Sheet-1.pdf",
-     "dato": "2026-08-24"
+     "navn": "Workshop2_Exercises.pdf",
+     "dato": "2026-08-26"
     },
     {
-     "navn": "Additional_Exercises_Lectures 1 and 2_Solutions.pdf",
-     "dato": "2026-08-21"
+     "navn": "Workshop2_template-1.xlsx",
+     "dato": "2026-08-26"
     },
     {
-     "navn": "Additional Exercises_Lectures 1 and 2_text.pdf",
-     "dato": "2026-08-20"
+     "navn": "Lecture 4 - Income Statement_Part1-1.pdf",
+     "dato": "2026-08-26"
     }
    ]
   },
@@ -79,5 +79,5 @@
    ]
   }
  ],
- "oppdatert": "2026-08-26 08:35"
+ "oppdatert": "2026-08-26 15:05"
 }
