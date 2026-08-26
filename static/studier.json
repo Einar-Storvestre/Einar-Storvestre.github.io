@@ -2,8 +2,20 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 14,
+   "antall_filer": 17,
    "nyeste": [
+    {
+     "navn": "Lecture 3 - Balance Sheet_NOTES-1.pdf",
+     "dato": "2026-08-24"
+    },
+    {
+     "navn": "Lecture 3  Game.html",
+     "dato": "2026-08-24"
+    },
+    {
+     "navn": "Lecture 3 - Balance Sheet-1.pdf",
+     "dato": "2026-08-24"
+    },
     {
      "navn": "Additional_Exercises_Lectures 1 and 2_Solutions.pdf",
      "dato": "2026-08-21"
@@ -11,25 +23,25 @@
     {
      "navn": "Additional Exercises_Lectures 1 and 2_text.pdf",
      "dato": "2026-08-20"
-    },
-    {
-     "navn": "Lecture 2 - Key concepts and Regulation_NOTES.pdf",
-     "dato": "2026-08-20"
-    },
-    {
-     "navn": "Lecture 2 - Game.html",
-     "dato": "2026-08-20"
-    },
-    {
-     "navn": "Workshop1_Solutions.pdf",
-     "dato": "2026-08-19"
     }
    ]
   },
   {
    "kode": "EBO2",
-   "antall_filer": 32,
+   "antall_filer": 34,
    "nyeste": [
+    {
+     "navn": "BSM Chapter 18 (selected pages).pdf",
+     "dato": "2026-08-25"
+    },
+    {
+     "navn": "EBO2_Lecture 3_Part II.pdf",
+     "dato": "2026-08-24"
+    },
+    {
+     "navn": "EBO2_Lecture 3_Part I.pdf",
+     "dato": "2026-08-24"
+    },
     {
      "navn": "EBO2_Lecture 3_Part I.pdf",
      "dato": "2026-08-23"
@@ -37,47 +49,35 @@
     {
      "navn": "EBO2_Lecture 1_Part I.pdf",
      "dato": "2026-08-23"
-    },
-    {
-     "navn": "EBO2_Lecture 2_Part III.pdf",
-     "dato": "2026-08-23"
-    },
-    {
-     "navn": "EBO2_Lecture 2_complete.pdf",
-     "dato": "2026-08-22"
-    },
-    {
-     "navn": "BSM Chapter 15.pdf",
-     "dato": "2026-08-20"
     }
    ]
   },
   {
    "kode": "TECH4",
-   "antall_filer": 6,
+   "antall_filer": 11,
    "nyeste": [
     {
-     "navn": "02a_WyndorGlass_model.xlsx",
-     "dato": "2026-08-20"
+     "navn": "03_BoardNotes.pdf",
+     "dato": "2026-08-26"
     },
     {
-     "navn": "02b_WyndorGlass_model_w_RangeNames.xlsx",
-     "dato": "2026-08-20"
+     "navn": "03b_DISTRIBUTION.xlsx",
+     "dato": "2026-08-25"
     },
     {
-     "navn": "02_LinearProgramming.pdf",
-     "dato": "2026-08-20"
+     "navn": "03c_Cost-Benefit-Trade-off_AirPollution.xlsx",
+     "dato": "2026-08-25"
     },
     {
-     "navn": "01_Introduction.pdf",
-     "dato": "2026-08-18"
+     "navn": "03a_TransportationProblem_P&T.xlsx",
+     "dato": "2026-08-25"
     },
     {
-     "navn": "TECH4-PreliminaryPlan2026.jpg",
-     "dato": "2026-08-12"
+     "navn": "03_LinearProgramming_II.pdf",
+     "dato": "2026-08-25"
     }
    ]
   }
  ],
- "oppdatert": "2026-08-24 09:44"
+ "oppdatert": "2026-08-26 08:35"
 }
