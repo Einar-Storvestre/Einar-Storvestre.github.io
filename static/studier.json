@@ -77,7 +77,17 @@
      "dato": "2026-08-26"
     }
    ]
+  },
+  {
+   "kode": "MAB3",
+   "antall_filer": 1,
+   "nyeste": [
+    {
+     "navn": "nhh-canvas.jpg",
+     "dato": "2026-04-15"
+    }
+   ]
   }
  ],
- "oppdatert": "2026-08-28 13:13"
+ "oppdatert": "2026-08-28 13:51"
 }
