@@ -2,34 +2,46 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 22,
+   "antall_filer": 27,
    "nyeste": [
+    {
+     "navn": "Lecture 4 - Income Statement_Part1_NOTES-1.pdf",
+     "dato": "2026-08-28"
+    },
+    {
+     "navn": "Week2_additional_excercises_solution.pdf",
+     "dato": "2026-08-27"
+    },
+    {
+     "navn": "Week2_additional_excercises_text.pdf",
+     "dato": "2026-08-27"
+    },
     {
      "navn": "Workshop2_Solutions_NOTES.pdf",
      "dato": "2026-08-26"
     },
     {
-     "navn": "Lecture 4 - Income Statement_Part1_NOTES-1.pdf",
-     "dato": "2026-08-26"
-    },
-    {
-     "navn": "Workshop2_Exercises.pdf",
-     "dato": "2026-08-26"
-    },
-    {
-     "navn": "Workshop2_template-1.xlsx",
-     "dato": "2026-08-26"
-    },
-    {
-     "navn": "Lecture 4 - Income Statement_Part1-1.pdf",
+     "navn": "Lecture 3  Game_2.html",
      "dato": "2026-08-26"
     }
    ]
   },
   {
    "kode": "EBO2",
-   "antall_filer": 34,
+   "antall_filer": 36,
    "nyeste": [
+    {
+     "navn": "EBO2_Lecture 4_complete.pdf",
+     "dato": "2026-08-27"
+    },
+    {
+     "navn": "EBO2_Lecture 3_complete.pdf",
+     "dato": "2026-08-27"
+    },
+    {
+     "navn": "Garvin 2013 HBR_How Google sold its engineers on management.pdf",
+     "dato": "2026-08-27"
+    },
     {
      "navn": "BSM Chapter 18 (selected pages).pdf",
      "dato": "2026-08-25"
@@ -37,47 +49,35 @@
     {
      "navn": "EBO2_Lecture 3_Part II.pdf",
      "dato": "2026-08-24"
-    },
-    {
-     "navn": "EBO2_Lecture 3_Part I.pdf",
-     "dato": "2026-08-24"
-    },
-    {
-     "navn": "EBO2_Lecture 3_Part I.pdf",
-     "dato": "2026-08-23"
-    },
-    {
-     "navn": "EBO2_Lecture 1_Part I.pdf",
-     "dato": "2026-08-23"
     }
    ]
   },
   {
    "kode": "TECH4",
-   "antall_filer": 11,
+   "antall_filer": 15,
    "nyeste": [
+    {
+     "navn": "transportation.py",
+     "dato": "2026-08-28"
+    },
+    {
+     "navn": "distnet.py",
+     "dato": "2026-08-27"
+    },
+    {
+     "navn": "04_LPCoding.pdf",
+     "dato": "2026-08-27"
+    },
+    {
+     "navn": "wyndor.py",
+     "dato": "2026-08-27"
+    },
     {
      "navn": "03_BoardNotes.pdf",
      "dato": "2026-08-26"
-    },
-    {
-     "navn": "03b_DISTRIBUTION.xlsx",
-     "dato": "2026-08-25"
-    },
-    {
-     "navn": "03c_Cost-Benefit-Trade-off_AirPollution.xlsx",
-     "dato": "2026-08-25"
-    },
-    {
-     "navn": "03a_TransportationProblem_P&T.xlsx",
-     "dato": "2026-08-25"
-    },
-    {
-     "navn": "03_LinearProgramming_II.pdf",
-     "dato": "2026-08-25"
     }
    ]
   }
  ],
- "oppdatert": "2026-08-26 15:05"
+ "oppdatert": "2026-08-28 13:13"
 }
