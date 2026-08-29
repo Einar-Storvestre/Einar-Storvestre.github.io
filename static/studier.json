@@ -5,6 +5,10 @@
    "antall_filer": 27,
    "nyeste": [
     {
+     "navn": "Textbook questions and exercises.pdf",
+     "dato": "2026-08-28"
+    },
+    {
      "navn": "Lecture 4 - Income Statement_Part1_NOTES-1.pdf",
      "dato": "2026-08-28"
     },
@@ -18,10 +22,6 @@
     },
     {
      "navn": "Workshop2_Solutions_NOTES.pdf",
-     "dato": "2026-08-26"
-    },
-    {
-     "navn": "Lecture 3  Game_2.html",
      "dato": "2026-08-26"
     }
    ]
@@ -89,5 +89,5 @@
    ]
   }
  ],
- "oppdatert": "2026-08-28 13:51"
+ "oppdatert": "2026-08-29 22:37"
 }
