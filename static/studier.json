@@ -2,8 +2,12 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 28,
+   "antall_filer": 30,
    "nyeste": [
+    {
+     "navn": "Lecture 5 - Income Statement_Part2_NOTES-1.pdf",
+     "dato": "2026-08-31"
+    },
     {
      "navn": "Lecture 5 - Income Statement_Part2-2.pdf",
      "dato": "2026-08-31"
@@ -13,42 +17,38 @@
      "dato": "2026-08-28"
     },
     {
-     "navn": "Lecture 4 - Income Statement_Part1_NOTES-1.pdf",
+     "navn": "Lecture_5_Game.html",
      "dato": "2026-08-28"
     },
     {
-     "navn": "Week2_additional_excercises_solution.pdf",
-     "dato": "2026-08-27"
-    },
-    {
-     "navn": "Week2_additional_excercises_text.pdf",
-     "dato": "2026-08-27"
+     "navn": "Lecture 4 - Income Statement_Part1_NOTES-1.pdf",
+     "dato": "2026-08-28"
     }
    ]
   },
   {
    "kode": "EBO2",
-   "antall_filer": 38,
+   "antall_filer": 39,
    "nyeste": [
     {
+     "navn": "EBO2_Lecture 5_complete.pdf",
+     "dato": "2026-08-31"
+    },
+    {
      "navn": "HBR_How Apple is organized for innovation.pdf",
-     "dato": "2026-08-30"
+     "dato": "2026-08-31"
     },
     {
-     "navn": "EBO2_Lecture 5_Part I.pdf",
-     "dato": "2026-08-30"
+     "navn": "Acemoglu et al 2007 QJE_Technology, information and the decentralization of the firm.pdf",
+     "dato": "2026-08-31"
     },
     {
-     "navn": "EBO2_Lecture 4_complete.pdf",
-     "dato": "2026-08-27"
+     "navn": "Wulf_2012_CMR_The flattened firm not as advertised.pdf",
+     "dato": "2026-08-31"
     },
     {
-     "navn": "EBO2_Lecture 3_complete.pdf",
-     "dato": "2026-08-27"
-    },
-    {
-     "navn": "Garvin 2013 HBR_How Google sold its engineers on management.pdf",
-     "dato": "2026-08-27"
+     "navn": "Rajan and Wulf ReStat 2006 The flattening firm.pdf",
+     "dato": "2026-08-31"
     }
    ]
   },
@@ -89,5 +89,5 @@
    ]
   }
  ],
- "oppdatert": "2026-08-31 09:05"
+ "oppdatert": "2026-08-31 15:05"
 }
