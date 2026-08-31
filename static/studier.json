@@ -2,8 +2,12 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 27,
+   "antall_filer": 28,
    "nyeste": [
+    {
+     "navn": "Lecture 5 - Income Statement_Part2-2.pdf",
+     "dato": "2026-08-31"
+    },
     {
      "navn": "Textbook questions and exercises.pdf",
      "dato": "2026-08-28"
@@ -19,17 +23,21 @@
     {
      "navn": "Week2_additional_excercises_text.pdf",
      "dato": "2026-08-27"
-    },
-    {
-     "navn": "Workshop2_Solutions_NOTES.pdf",
-     "dato": "2026-08-26"
     }
    ]
   },
   {
    "kode": "EBO2",
-   "antall_filer": 36,
+   "antall_filer": 38,
    "nyeste": [
+    {
+     "navn": "HBR_How Apple is organized for innovation.pdf",
+     "dato": "2026-08-30"
+    },
+    {
+     "navn": "EBO2_Lecture 5_Part I.pdf",
+     "dato": "2026-08-30"
+    },
     {
      "navn": "EBO2_Lecture 4_complete.pdf",
      "dato": "2026-08-27"
@@ -41,14 +49,6 @@
     {
      "navn": "Garvin 2013 HBR_How Google sold its engineers on management.pdf",
      "dato": "2026-08-27"
-    },
-    {
-     "navn": "BSM Chapter 18 (selected pages).pdf",
-     "dato": "2026-08-25"
-    },
-    {
-     "navn": "EBO2_Lecture 3_Part II.pdf",
-     "dato": "2026-08-24"
     }
    ]
   },
@@ -56,6 +56,10 @@
    "kode": "TECH4",
    "antall_filer": 15,
    "nyeste": [
+    {
+     "navn": "wyndor.py",
+     "dato": "2026-08-30"
+    },
     {
      "navn": "transportation.py",
      "dato": "2026-08-28"
@@ -66,10 +70,6 @@
     },
     {
      "navn": "04_LPCoding.pdf",
-     "dato": "2026-08-27"
-    },
-    {
-     "navn": "wyndor.py",
      "dato": "2026-08-27"
     },
     {
@@ -89,5 +89,5 @@
    ]
   }
  ],
- "oppdatert": "2026-08-29 22:37"
+ "oppdatert": "2026-08-31 09:05"
 }
