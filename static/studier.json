@@ -6,7 +6,7 @@
    "nyeste": [
     {
      "navn": "Lecture 5 - Income Statement_Part2_NOTES-1.pdf",
-     "dato": "2026-08-31"
+     "dato": "2026-09-01"
     },
     {
      "navn": "Lecture 5 - Income Statement_Part2-2.pdf",
@@ -54,27 +54,27 @@
   },
   {
    "kode": "TECH4",
-   "antall_filer": 19,
+   "antall_filer": 20,
    "nyeste": [
     {
-     "navn": "05_Linear-Integer_Programming.pdf",
+     "navn": "05_BoardNotes.pdf",
      "dato": "2026-09-01"
     },
     {
      "navn": "05c_Southwestern_Airways.xlsx",
-     "dato": "2026-08-31"
+     "dato": "2026-09-01"
     },
     {
      "navn": "05b_California_Mfg.xlsx",
-     "dato": "2026-08-31"
+     "dato": "2026-09-01"
     },
     {
      "navn": "05a_Matching.xlsx",
-     "dato": "2026-08-31"
+     "dato": "2026-09-01"
     },
     {
-     "navn": "wyndor.py",
-     "dato": "2026-08-30"
+     "navn": "05_Linear-Integer_Programming.pdf",
+     "dato": "2026-09-01"
     }
    ]
   },
@@ -89,5 +89,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-01 09:05"
+ "oppdatert": "2026-09-01 15:05"
 }
