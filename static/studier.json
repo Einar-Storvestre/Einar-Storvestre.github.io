@@ -28,53 +28,53 @@
   },
   {
    "kode": "EBO2",
-   "antall_filer": 39,
+   "antall_filer": 44,
    "nyeste": [
     {
+     "navn": "Relevant practice questions from BSM.pdf",
+     "dato": "2026-09-03"
+    },
+    {
+     "navn": "Relevant practice questions from BSM.pdf",
+     "dato": "2026-09-03"
+    },
+    {
+     "navn": "EBO2_Lecture 6_complete.pdf",
+     "dato": "2026-09-03"
+    },
+    {
      "navn": "EBO2_Lecture 5_complete.pdf",
-     "dato": "2026-08-31"
+     "dato": "2026-09-03"
     },
     {
-     "navn": "HBR_How Apple is organized for innovation.pdf",
-     "dato": "2026-08-31"
-    },
-    {
-     "navn": "Acemoglu et al 2007 QJE_Technology, information and the decentralization of the firm.pdf",
-     "dato": "2026-08-31"
-    },
-    {
-     "navn": "Wulf_2012_CMR_The flattened firm not as advertised.pdf",
-     "dato": "2026-08-31"
-    },
-    {
-     "navn": "Rajan and Wulf ReStat 2006 The flattening firm.pdf",
-     "dato": "2026-08-31"
+     "navn": "EBO2_Lecture 4_complete.pdf",
+     "dato": "2026-09-03"
     }
    ]
   },
   {
    "kode": "TECH4",
-   "antall_filer": 20,
+   "antall_filer": 26,
    "nyeste": [
     {
+     "navn": "06_BoardNotes.pdf",
+     "dato": "2026-09-03"
+    },
+    {
+     "navn": "06c_CapitalBudgeting_v2.xlsx",
+     "dato": "2026-09-03"
+    },
+    {
      "navn": "05_BoardNotes.pdf",
-     "dato": "2026-09-01"
+     "dato": "2026-09-03"
     },
     {
-     "navn": "05c_Southwestern_Airways.xlsx",
-     "dato": "2026-09-01"
+     "navn": "06c_CapitalBudgeting_v1.xlsx",
+     "dato": "2026-09-03"
     },
     {
-     "navn": "05b_California_Mfg.xlsx",
-     "dato": "2026-09-01"
-    },
-    {
-     "navn": "05a_Matching.xlsx",
-     "dato": "2026-09-01"
-    },
-    {
-     "navn": "05_Linear-Integer_Programming.pdf",
-     "dato": "2026-09-01"
+     "navn": "06b_P&T_REV.xlsx",
+     "dato": "2026-09-03"
     }
    ]
   },
@@ -89,5 +89,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-02 15:05"
+ "oppdatert": "2026-09-04 09:06"
 }
