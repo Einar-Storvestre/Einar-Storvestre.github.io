@@ -28,11 +28,19 @@
   },
   {
    "kode": "EBO2",
-   "antall_filer": 44,
+   "antall_filer": 45,
    "nyeste": [
     {
+     "navn": "Freeland1996_The myth of the M-form.pdf",
+     "dato": "2026-09-05"
+    },
+    {
+     "navn": "Wulf_2012_CMR_The flattened firm not as advertised.pdf",
+     "dato": "2026-09-05"
+    },
+    {
      "navn": "Relevant practice questions from BSM.pdf",
-     "dato": "2026-09-03"
+     "dato": "2026-09-04"
     },
     {
      "navn": "Relevant practice questions from BSM.pdf",
@@ -40,14 +48,6 @@
     },
     {
      "navn": "EBO2_Lecture 6_complete.pdf",
-     "dato": "2026-09-03"
-    },
-    {
-     "navn": "EBO2_Lecture 5_complete.pdf",
-     "dato": "2026-09-03"
-    },
-    {
-     "navn": "EBO2_Lecture 4_complete.pdf",
      "dato": "2026-09-03"
     }
    ]
@@ -58,7 +58,7 @@
    "nyeste": [
     {
      "navn": "06_BoardNotes.pdf",
-     "dato": "2026-09-04"
+     "dato": "2026-09-05"
     },
     {
      "navn": "06c_CapitalBudgeting_v2.xlsx",
@@ -80,8 +80,12 @@
   },
   {
    "kode": "MAB3",
-   "antall_filer": 1,
+   "antall_filer": 2,
    "nyeste": [
+    {
+     "navn": "image-1.png",
+     "dato": "2026-08-27"
+    },
     {
      "navn": "nhh-canvas.jpg",
      "dato": "2026-04-15"
@@ -89,5 +93,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-04 15:05"
+ "oppdatert": "2026-09-06 10:12"
 }
