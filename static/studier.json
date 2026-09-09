@@ -2,27 +2,27 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 37,
+   "antall_filer": 43,
    "nyeste": [
     {
-     "navn": "Week3_additional_excercises_solutions.pdf",
-     "dato": "2026-09-02"
+     "navn": "norwegian_annual_report_2024.pdf",
+     "dato": "2026-09-09"
     },
     {
-     "navn": "Week3_additional_excercises_text.pdf",
-     "dato": "2026-09-02"
+     "navn": "norwegian-annual-report-2023.pdf",
+     "dato": "2026-09-09"
     },
     {
-     "navn": "Workshop3_solutions.pdf",
-     "dato": "2026-09-02"
+     "navn": "norwegian-annual-report-2022.pdf",
+     "dato": "2026-09-09"
     },
     {
-     "navn": "Workshop3_exercise_text.pdf",
-     "dato": "2026-09-02"
+     "navn": "nas-annual-report-2021.pdf",
+     "dato": "2026-09-09"
     },
     {
-     "navn": "Workshop3_text-1.pdf",
-     "dato": "2026-09-02"
+     "navn": "Group project - Instructions.pdf",
+     "dato": "2026-09-09"
     }
    ]
   },
@@ -57,12 +57,12 @@
    "antall_filer": 29,
    "nyeste": [
     {
-     "navn": "07_BoardNotes.pdf",
+     "navn": "countries_capitals.txt",
      "dato": "2026-09-09"
     },
     {
-     "navn": "countries_capitals.txt",
-     "dato": "2026-09-08"
+     "navn": "07_BoardNotes.pdf",
+     "dato": "2026-09-09"
     },
     {
      "navn": "07_Integer_Programming_iii.pdf",
@@ -93,5 +93,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-09 09:05"
+ "oppdatert": "2026-09-09 15:05"
 }
