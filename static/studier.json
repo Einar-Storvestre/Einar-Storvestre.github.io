@@ -5,76 +5,76 @@
    "antall_filer": 43,
    "nyeste": [
     {
-     "navn": "norwegian_annual_report_2024.pdf",
-     "dato": "2026-09-09"
+     "navn": "carlsberg-group_2025-annual-report.pdf",
+     "dato": "2026-09-11"
     },
     {
      "navn": "norwegian-annual-report-2023.pdf",
-     "dato": "2026-09-09"
+     "dato": "2026-09-10"
     },
     {
      "navn": "norwegian-annual-report-2022.pdf",
      "dato": "2026-09-09"
     },
     {
-     "navn": "nas-annual-report-2021.pdf",
+     "navn": "norwegian-annual-report-2025.pdf",
      "dato": "2026-09-09"
     },
     {
-     "navn": "Group project - Instructions.pdf",
+     "navn": "norwegian_annual_report_2024.pdf",
      "dato": "2026-09-09"
     }
    ]
   },
   {
    "kode": "EBO2",
-   "antall_filer": 47,
+   "antall_filer": 50,
    "nyeste": [
     {
+     "navn": "Relevant practice questions from BSM.pdf",
+     "dato": "2026-09-10"
+    },
+    {
+     "navn": "EBO2_Lecture 8_complete BUT PRELIMIMARY (last slide incomplete due to homework).pdf",
+     "dato": "2026-09-10"
+    },
+    {
+     "navn": "EBO2_Lecture 8_complete BUT PRELIMIMARY (last slide incomplete due to homework).pdf",
+     "dato": "2026-09-10"
+    },
+    {
+     "navn": "EBO2_Lecture 8_Part I.pdf",
+     "dato": "2026-09-10"
+    },
+    {
      "navn": "EBO2_Lecture 7_complete.pdf",
-     "dato": "2026-09-07"
-    },
-    {
-     "navn": "Brynjolfsson et al. 2025 QJE_Generative AI at work.pdf",
-     "dato": "2026-09-07"
-    },
-    {
-     "navn": "Bloom et al 2013 MS impact of info technology and comm tech on organization.pdf",
-     "dato": "2026-09-07"
-    },
-    {
-     "navn": "EBO2_Lecture 7_Part I.pdf",
-     "dato": "2026-09-07"
-    },
-    {
-     "navn": "EBO2_Syllabus_2026 (updated sep3).pdf",
      "dato": "2026-09-07"
     }
    ]
   },
   {
    "kode": "TECH4",
-   "antall_filer": 29,
+   "antall_filer": 34,
    "nyeste": [
     {
+     "navn": "08_BoardNotes.pdf",
+     "dato": "2026-09-11"
+    },
+    {
+     "navn": "TECH4-PreliminaryPlan2026.jpg",
+     "dato": "2026-09-11"
+    },
+    {
+     "navn": "CourseApproval_T4_2025.pdf",
+     "dato": "2026-09-11"
+    },
+    {
+     "navn": "DistanceMatrix.xlsx",
+     "dato": "2026-09-10"
+    },
+    {
      "navn": "countries_capitals.txt",
-     "dato": "2026-09-09"
-    },
-    {
-     "navn": "07_BoardNotes.pdf",
-     "dato": "2026-09-09"
-    },
-    {
-     "navn": "07_Integer_Programming_iii.pdf",
-     "dato": "2026-09-08"
-    },
-    {
-     "navn": "03a_TransportationProblem_P&T.xlsx",
-     "dato": "2026-09-08"
-    },
-    {
-     "navn": "06_BoardNotes.pdf",
-     "dato": "2026-09-05"
+     "dato": "2026-09-10"
     }
    ]
   },
@@ -93,5 +93,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-09 15:05"
+ "oppdatert": "2026-09-11 15:06"
 }
