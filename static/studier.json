@@ -2,27 +2,27 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 43,
+   "antall_filer": 53,
    "nyeste": [
     {
      "navn": "carlsberg-group_2025-annual-report.pdf",
      "dato": "2026-09-11"
     },
     {
-     "navn": "norwegian-annual-report-2023.pdf",
+     "navn": "FSA with Python - variable definitions-1.pdf",
+     "dato": "2026-09-11"
+    },
+    {
+     "navn": "Workshop on Using Python in Financial Statement Analysis.pdf",
+     "dato": "2026-09-11"
+    },
+    {
+     "navn": "bud2_python_templates.zip",
      "dato": "2026-09-10"
     },
     {
-     "navn": "norwegian-annual-report-2022.pdf",
-     "dato": "2026-09-09"
-    },
-    {
-     "navn": "norwegian-annual-report-2025.pdf",
-     "dato": "2026-09-09"
-    },
-    {
-     "navn": "norwegian_annual_report_2024.pdf",
-     "dato": "2026-09-09"
+     "navn": "norwegian-annual-report-2023.pdf",
+     "dato": "2026-09-10"
     }
    ]
   },
@@ -93,5 +93,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-11 15:06"
+ "oppdatert": "2026-09-11 15:40"
 }
