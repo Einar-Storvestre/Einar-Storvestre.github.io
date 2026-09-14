@@ -2,27 +2,53 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 53,
+   "antall_filer": 57,
    "nyeste": [
+    {
+     "navn": "bud2_solution_canvas.py",
+     "dato": "2026-09-13"
+    },
+    {
+     "navn": "2026_BUD2_Python_Workshop.pdf",
+     "dato": "2026-09-13"
+    },
+    {
+     "navn": "fx_yearly_usd.dta",
+     "dato": "2026-09-11"
+    },
+    {
+     "navn": "CompustatGlobal_Airline industry-1.dta",
+     "dato": "2026-09-11"
+    },
     {
      "navn": "carlsberg-group_2025-annual-report.pdf",
      "dato": "2026-09-11"
+    }
+   ]
+  },
+  {
+   "kode": "BUD3",
+   "antall_filer": 12,
+   "nyeste": [
+    {
+     "navn": "Lecture 10 - Cost of capital and WACC.pptx",
+     "dato": "2026-09-13"
     },
     {
-     "navn": "FSA with Python - variable definitions-1.pdf",
+     "navn": "Lecture 5 - Stock valuation.pptx",
+     "dato": "2026-09-13"
+    },
+    {
+     "navn": "Lecture 4 - Interest rates and bond valuation.pptx",
+     "dato": "2026-09-13"
+    },
+    {
+     "navn": "Syllabus2026.xlsx",
      "dato": "2026-09-11"
     },
     {
-     "navn": "Workshop on Using Python in Financial Statement Analysis.pdf",
+     "navn": "Lecture 1 - Introduction.pptx",
      "dato": "2026-09-11"
-    },
-    {
-     "navn": "bud2_python_templates.zip",
-     "dato": "2026-09-10"
-    },
-    {
-     "navn": "norwegian-annual-report-2023.pdf",
-     "dato": "2026-09-10"
     }
    ]
   },
@@ -30,6 +56,14 @@
    "kode": "EBO2",
    "antall_filer": 50,
    "nyeste": [
+    {
+     "navn": "Rajan and Wulf ReStat 2006 The flattening firm.pdf",
+     "dato": "2026-09-13"
+    },
+    {
+     "navn": "Brynjolfsson et al. 2025 QJE_Generative AI at work.pdf",
+     "dato": "2026-09-12"
+    },
     {
      "navn": "Relevant practice questions from BSM.pdf",
      "dato": "2026-09-10"
@@ -41,14 +75,6 @@
     {
      "navn": "EBO2_Lecture 8_complete BUT PRELIMIMARY (last slide incomplete due to homework).pdf",
      "dato": "2026-09-10"
-    },
-    {
-     "navn": "EBO2_Lecture 8_Part I.pdf",
-     "dato": "2026-09-10"
-    },
-    {
-     "navn": "EBO2_Lecture 7_complete.pdf",
-     "dato": "2026-09-07"
     }
    ]
   },
@@ -58,7 +84,7 @@
    "nyeste": [
     {
      "navn": "08_BoardNotes.pdf",
-     "dato": "2026-09-11"
+     "dato": "2026-09-12"
     },
     {
      "navn": "TECH4-PreliminaryPlan2026.jpg",
@@ -93,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-11 15:40"
+ "oppdatert": "2026-09-14 08:32"
 }
