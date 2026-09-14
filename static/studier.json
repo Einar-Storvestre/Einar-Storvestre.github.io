@@ -2,27 +2,27 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 57,
+   "antall_filer": 62,
    "nyeste": [
     {
-     "navn": "bud2_solution_canvas.py",
-     "dato": "2026-09-13"
+     "navn": "Workshop 4 - Solutions_NOTES.pdf",
+     "dato": "2026-09-14"
     },
     {
-     "navn": "2026_BUD2_Python_Workshop.pdf",
-     "dato": "2026-09-13"
+     "navn": "BUD2_Fall2025_Suggested Solutions.pdf",
+     "dato": "2026-09-14"
     },
     {
-     "navn": "fx_yearly_usd.dta",
-     "dato": "2026-09-11"
+     "navn": "BUD2 Exam Final.pdf",
+     "dato": "2026-09-14"
     },
     {
-     "navn": "CompustatGlobal_Airline industry-1.dta",
-     "dato": "2026-09-11"
+     "navn": "Workshop4_Exercise 3_text.pdf",
+     "dato": "2026-09-14"
     },
     {
-     "navn": "carlsberg-group_2025-annual-report.pdf",
-     "dato": "2026-09-11"
+     "navn": "Workshop 4 - Text.pdf",
+     "dato": "2026-09-14"
     }
    ]
   },
@@ -30,6 +30,10 @@
    "kode": "BUD3",
    "antall_filer": 12,
    "nyeste": [
+    {
+     "navn": "Lecture 2 - Time value of money I.pptx",
+     "dato": "2026-09-14"
+    },
     {
      "navn": "Lecture 10 - Cost of capital and WACC.pptx",
      "dato": "2026-09-13"
@@ -44,10 +48,6 @@
     },
     {
      "navn": "Syllabus2026.xlsx",
-     "dato": "2026-09-11"
-    },
-    {
-     "navn": "Lecture 1 - Introduction.pptx",
      "dato": "2026-09-11"
     }
    ]
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-14 08:32"
+ "oppdatert": "2026-09-14 15:06"
 }
