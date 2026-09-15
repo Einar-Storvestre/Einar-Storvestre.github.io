@@ -32,7 +32,8 @@ Det gir ca. 4 dl kokt ris per boks.
 - 1 boks ananas — silt, saften tas vare på
 - 600–700 g gulrot, i 1 cm biter
 - 900 g squash i halvmåner (valgfritt — mer gulrot hvis du dropper den)
-- 1 boks hakkede tomater (400 g)
+- 1 boks hakkede tomater (400 g) — bare én, se notatet
+- 280 g spinat
 - 2 store løk · 5 fedd hvitløk · 25 g revet ingefær
 - 2,5 ss rød karripasta
 - 2 dl ananassaft + 2 dl kyllingkraft
@@ -50,6 +51,7 @@ Rekkefølgen er det som avgjør resultatet — grønnsakene har helt ulik koketi
 5. Kyllingen tilbake — 10 min.
 6. Squash — 6 min.
 7. Ananas helt til slutt — 2 min. Den er myk fra boksen og blir grøt av lang koking.
+   Spinaten i det siste minuttet; den faller sammen med en gang.
 8. Smak til med salt og limesaft. Koriander rett før servering.
 9. Kok risen: 14 dl ris, 21 dl vann, 2 ts salt. Kok opp, lokk på, trekk 12 min på
    lavest varme. La stå 5 min med lokket på før du rører.
@@ -60,6 +62,11 @@ Rekkefølgen er det som avgjør resultatet — grønnsakene har helt ulik koketi
 - 14 dl ris trenger en 6-liters gryte — risen tredobler seg. Har du ikke så stor,
   kok to omganger à 7 dl ris og 10,5 dl vann.
 - Står det et annet vannforhold på rispakken, følg pakken.
+- Bruk bare én tomatboks. Med 650 ml kokosmelk er kokosen allerede i mindretall,
+  og 800 g tomat tipper retten over til å bli en tomatgryte. Boks nummer to går til
+  to porsjoner pastasaus før økt (200 g per porsjon).
+- Limesaften rett etter spinaten er ikke tilfeldig: C-vitaminet gjør at jernet i
+  spinaten tas opp. Lav ferritin er en vanlig bremsekloss for løpere.
 - Maks 2 dl ananassaft. Hele boksen gjør retten klissen søt, og det lar seg ikke rette opp.
 - Hermetisk ananas er riktig valg: fersk ananas inneholder bromelain, som bryter ned
   protein og gjør kyllingen melen. Hermetisk er varmebehandlet, så enzymet er inaktivt.
