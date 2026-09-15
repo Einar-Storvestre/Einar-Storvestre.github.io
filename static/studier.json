@@ -5,19 +5,19 @@
    "antall_filer": 64,
    "nyeste": [
     {
+     "navn": "Week4_additional_exercises_solution.pdf",
+     "dato": "2026-09-15"
+    },
+    {
+     "navn": "Week4_additional_exercises_text.pdf",
+     "dato": "2026-09-15"
+    },
+    {
      "navn": "2026_BUD2_Python_Workshop.pdf",
      "dato": "2026-09-14"
     },
     {
-     "navn": "Week4_additional_exercises_text.pdf",
-     "dato": "2026-09-14"
-    },
-    {
      "navn": "Workshop 4 - Solutions_NOTES.pdf",
-     "dato": "2026-09-14"
-    },
-    {
-     "navn": "Week4_additional_exercises_solution.pdf",
      "dato": "2026-09-14"
     },
     {
@@ -57,20 +57,20 @@
    "antall_filer": 54,
    "nyeste": [
     {
+     "navn": "BSM Chapter 18 (selected pages).pdf",
+     "dato": "2026-09-15"
+    },
+    {
+     "navn": "BSM Chapter 14 (selected pages).pdf",
+     "dato": "2026-09-15"
+    },
+    {
+     "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
+     "dato": "2026-09-15"
+    },
+    {
      "navn": "EBO2_Lecture 8_complete.pdf",
-     "dato": "2026-09-14"
-    },
-    {
-     "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
-     "dato": "2026-09-14"
-    },
-    {
-     "navn": "Relevant practice questions from BSM.pdf",
-     "dato": "2026-09-14"
-    },
-    {
-     "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
-     "dato": "2026-09-14"
+     "dato": "2026-09-15"
     },
     {
      "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
@@ -80,27 +80,27 @@
   },
   {
    "kode": "TECH4",
-   "antall_filer": 34,
+   "antall_filer": 42,
    "nyeste": [
     {
-     "navn": "08_BoardNotes.pdf",
-     "dato": "2026-09-12"
+     "navn": "solution-transportation-v2.py",
+     "dato": "2026-09-15"
     },
     {
-     "navn": "TECH4-PreliminaryPlan2026.jpg",
-     "dato": "2026-09-11"
+     "navn": "solution-california-manufacturing.py",
+     "dato": "2026-09-15"
     },
     {
-     "navn": "CourseApproval_T4_2025.pdf",
-     "dato": "2026-09-11"
+     "navn": "solution-childfare.py",
+     "dato": "2026-09-15"
+    },
+    {
+     "navn": "solution-transportation.py",
+     "dato": "2026-09-15"
     },
     {
      "navn": "DistanceMatrix.xlsx",
-     "dato": "2026-09-10"
-    },
-    {
-     "navn": "countries_capitals.txt",
-     "dato": "2026-09-10"
+     "dato": "2026-09-15"
     }
    ]
   },
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-15 09:06"
+ "oppdatert": "2026-09-15 15:06"
 }
