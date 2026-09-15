@@ -17,8 +17,13 @@ Med $K$ = karbomål per porsjon = 100 g og $c$ = karbohydrat per 100 g tørr ris
 
 $$m = \frac{K - 15}{c/100} = \frac{85}{0{,}78} \approx 109 \rightarrow 110 \text{ g tørr ris}$$
 
-**Eksempel (11 porsjoner):** $M = 11 \times 110 = 1210$ g $\approx 1{,}2$ kg tørr ris,
-ca. 330 g kokt ris per boks.
+Målt i dl, med $\rho$ = tetthet tørr ris = 85 g/dl:
+
+$$V = \frac{m}{\rho} = \frac{110}{85} \approx 1{,}3 \text{ dl per porsjon}$$
+
+**Eksempel (11 porsjoner):** $V_{tot} = 11 \times 1{,}3 \approx 14$ dl tørr ris,
+og vann er 1,5 ganger risvolumet: $V_{vann} = 1{,}5 \times 14 = 21$ dl.
+Det gir ca. 4 dl kokt ris per boks.
 
 ## Ingredienser
 
@@ -32,7 +37,7 @@ ca. 330 g kokt ris per boks.
 - 2,5 ss rød karripasta
 - 2 dl ananassaft + 2 dl kyllingkraft
 - 3 ss olje · salt · saft av 1–2 lime · fersk koriander
-- 1,2 kg tørr ris
+- 14 dl tørr ris (1,2 kg) + 21 dl vann til kokingen
 
 ## Framgangsmåte
 
@@ -46,15 +51,19 @@ Rekkefølgen er det som avgjør resultatet — grønnsakene har helt ulik koketi
 6. Squash — 6 min.
 7. Ananas helt til slutt — 2 min. Den er myk fra boksen og blir grøt av lang koking.
 8. Smak til med salt og limesaft. Koriander rett før servering.
-9. Kok risen separat. 330 g ris + ca. 400 g gryte per boks.
+9. Kok risen: 14 dl ris, 21 dl vann, 2 ts salt. Kok opp, lokk på, trekk 12 min på
+   lavest varme. La stå 5 min med lokket på før du rører.
+10. Fordel 4 dl ris og 4 dl gryte i 11 bokser, på hver sin halvdel.
 
 ## Notater
 
+- 14 dl ris trenger en 6-liters gryte — risen tredobler seg. Har du ikke så stor,
+  kok to omganger à 7 dl ris og 10,5 dl vann.
+- Står det et annet vannforhold på rispakken, følg pakken.
 - Maks 2 dl ananassaft. Hele boksen gjør retten klissen søt, og det lar seg ikke rette opp.
 - Hermetisk ananas er riktig valg: fersk ananas inneholder bromelain, som bryter ned
   protein og gjør kyllingen melen. Hermetisk er varmebehandlet, så enzymet er inaktivt.
 - Squashen slipper vann ved oppvarming. Derfor kort koketid i punkt 6.
-- Ris og gryte i samme boks, hver sin halvdel.
 - Kjøleskap 3–4 dager. 4 i kjøleskap, 7 i fryser.
 
 ## Næring per porsjon (estimat)

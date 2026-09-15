@@ -43,15 +43,19 @@ Dette er lavfett-versjonen. Kokosgryta er et annet måltid, til andre dager.
 
 $$m = \frac{100}{0{,}78} \approx 128 \text{ g} \rightarrow 125 \text{ g tørr ris}$$
 
+Målt i dl, med $\rho$ = tetthet tørr ris = 85 g/dl:
+
+$$V = \frac{m}{\rho} = \frac{125}{85} \approx 1{,}5 \text{ dl tørr ris} \rightarrow 2{,}2 \text{ dl vann}$$
+
 **Ingredienser**
-- 125 g tørr ris
+- 1,5 dl tørr ris (125 g) + 2,2 dl vann
 - 150 g kyllingfilet, i strimler
 - 1 ts olje
 - 1 gulrot eller 1/2 paprika, i tynne strimler
 - Salt, 1 ss soyasaus
 
 **Slik**
-1. Kok risen.
+1. Kok 1,5 dl ris i 2,2 dl vann med 1/4 ts salt: kok opp, lokk på, 12 min på lavest varme, 5 min hvile.
 2. Stek kyllingen i oljen på god varme, 5–6 min. Salt.
 3. Grønnsakene i de siste 2 min — de skal ha litt biss.
 4. Soyasaus over, bland med risen.
