@@ -5,6 +5,10 @@
    "antall_filer": 64,
    "nyeste": [
     {
+     "navn": "2026_BUD2_Python_Workshop.pdf",
+     "dato": "2026-09-14"
+    },
+    {
      "navn": "Week4_additional_exercises_text.pdf",
      "dato": "2026-09-14"
     },
@@ -18,10 +22,6 @@
     },
     {
      "navn": "BUD2_Fall2025_Suggested Solutions.pdf",
-     "dato": "2026-09-14"
-    },
-    {
-     "navn": "BUD2 Exam Final.pdf",
      "dato": "2026-09-14"
     }
    ]
@@ -57,6 +57,14 @@
    "antall_filer": 54,
    "nyeste": [
     {
+     "navn": "EBO2_Lecture 8_complete.pdf",
+     "dato": "2026-09-14"
+    },
+    {
+     "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
+     "dato": "2026-09-14"
+    },
+    {
      "navn": "Relevant practice questions from BSM.pdf",
      "dato": "2026-09-14"
     },
@@ -66,14 +74,6 @@
     },
     {
      "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
-     "dato": "2026-09-14"
-    },
-    {
-     "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
-     "dato": "2026-09-14"
-    },
-    {
-     "navn": "EBO2_Lecture 8_complete.pdf",
      "dato": "2026-09-14"
     }
    ]
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-14 18:05"
+ "oppdatert": "2026-09-15 09:06"
 }
