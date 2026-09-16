@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Handleliste, kjoereplan og oppskrift for 11 porsjoner kokosgryte med kylling, ananas og gulrot.">
+<style>
+  :root {
+    color-scheme: light dark;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<title>Kokosgryte med ananas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Karla:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --paper:   #EFF2EC;
+    --surface: #FFFFFF;
+    --sunk:    #E4E9E0;
+    --ink:     #16211A;
+    --soft:    #5C6B61;
+    --accent:  #3F6B2E;
+    --qty:     #B3541E;
+    --rice:    #2B6B7A;
+    --line:    #D6DCD2;
+    --done:    #8C9A90;
+    --shadow:  0 1px 2px rgba(22,33,26,.06), 0 4px 14px rgba(22,33,26,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:   #131714;
+      --surface: #1B211D;
+      --sunk:    #232A25;
+      --ink:     #E8EDE6;
+      --soft:    #96A398;
+      --accent:  #8DBE6E;
+      --qty:     #E8944F;
+      --rice:    #6FB6C6;
+      --line:    #2C342E;
+      --done:    #6B776F;
+      --shadow:  0 1px 2px rgba(0,0,0,.35), 0 4px 14px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:   #131714;
+    --surface: #1B211D;
+    --sunk:    #232A25;
+    --ink:     #E8EDE6;
+    --soft:    #96A398;
+    --accent:  #8DBE6E;
+    --qty:     #E8944F;
+    --rice:    #6FB6C6;
+    --line:    #2C342E;
+    --done:    #6B776F;
+    --shadow:  0 1px 2px rgba(0,0,0,.35), 0 4px 14px rgba(0,0,0,.28);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Karla", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 0 56px;
+  }
+
+  /* ---- masthead ---- */
+  .masthead { padding-block: 28px 18px; }
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 8px;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .facts {
+    display: flex; flex-wrap: wrap; gap: 6px 18px;
+    margin-top: 14px; padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px; color: var(--soft);
+  }
+  .facts b {
+    color: var(--ink); font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- tabs ---- */
+  .tabs {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 5;
+    display: flex; gap: 4px;
+    padding: 10px 0;
+    background: var(--paper);
+  }
+  .tabs::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 1px; background: var(--line);
+  }
+  .tab {
+    flex: 1;
+    font-family: inherit; font-size: 14px; font-weight: 700;
+    color: var(--soft); background: var(--sunk);
+    border: 1px solid transparent; border-radius: 9px;
+    padding: 10px 4px; cursor: pointer; white-space: nowrap;
+    transition: color .15s, background .15s;
+  }
+  .tab[aria-selected="true"] {
+    background: var(--surface); color: var(--ink);
+    border-color: var(--line); box-shadow: var(--shadow);
+  }
+  .tab:focus-visible, .ghost:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+
+  /* ---- progress ---- */
+  .bar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin: 18px 0 10px;
+  }
+  .count {
+    font-size: 13px; font-weight: 700; color: var(--soft);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .03em; text-transform: uppercase;
+  }
+  .ghost {
+    font-family: inherit; font-size: 13px; font-weight: 700;
+    color: var(--soft); background: none;
+    border: 1px solid var(--line); border-radius: 7px;
+    padding: 5px 11px; cursor: pointer;
+  }
+  .ghost:hover { color: var(--ink); border-color: var(--soft); }
+
+  /* ---- groups ---- */
+  .group { margin-top: 22px; }
+  .group h2 {
+    font-family: inherit;
+    font-size: 11px; font-weight: 700; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--accent);
+    margin: 0 0 8px;
+  }
+  .list {
+    display: flex; flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  /* ---- checkable row ---- */
+  .row {
+    display: flex; align-items: flex-start; gap: 13px;
+    padding: 14px 15px;
+    border-top: 1px solid var(--line);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .row:first-child { border-top: none; }
+  .row input {
+    appearance: none; -webkit-appearance: none;
+    flex: none; width: 23px; height: 23px; margin: 0;
+    border: 2px solid var(--line); border-radius: 50%;
+    background: var(--surface); cursor: pointer;
+    transition: background .12s, border-color .12s;
+  }
+  .row input:checked {
+    background: var(--accent); border-color: var(--accent);
+  }
+  .row input:checked::after {
+    content: ""; display: block;
+    width: 5px; height: 10px; margin: 2.5px auto 0;
+    border: solid var(--surface);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(43deg);
+  }
+  .row input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .row .body { flex: 1; min-width: 0; }
+  .row .name { font-weight: 500; }
+  .row .hint { display: block; font-size: 12.5px; color: var(--soft); margin-top: 1px; }
+  .row .amt {
+    flex: none; font-weight: 700; color: var(--qty);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+    padding-top: 1px;
+  }
+  .row.off .name, .row.off .amt, .row.off .hint, .row.off .n { color: var(--done); }
+  .row.off .name, .row.off .amt { text-decoration: line-through; }
+
+  /* ---- numbered steps ---- */
+  .row .n {
+    flex: none; width: 23px; padding-top: 1px;
+    font-size: 13px; font-weight: 700; color: var(--accent);
+    font-variant-numeric: tabular-nums; text-align: center;
+  }
+  .step { align-items: flex-start; }
+  .step .body { line-height: 1.5; }
+  .q {
+    font-weight: 700; color: var(--qty);
+    font-variant-numeric: tabular-nums;
+  }
+  .row.off .q { color: var(--done); }
+
+  /* ---- kjøreplan ---- */
+  .meta {
+    flex: none; width: 52px; padding-top: 1px;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .time {
+    font-size: 14px; font-weight: 700; color: var(--ink);
+    font-variant-numeric: tabular-nums; letter-spacing: -.01em;
+  }
+  .st {
+    font-size: 9.5px; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; line-height: 1.3;
+  }
+  .st-k1 { color: var(--rice); }
+  .st-k2 { color: var(--accent); }
+  .st-p  { color: var(--qty); }
+  .st-kn { color: var(--soft); }
+  .row.off .time, .row.off .st { color: var(--done); }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 6px 16px;
+    margin: 0 0 12px; font-size: 12.5px; color: var(--soft);
+  }
+  .legend span { display: flex; align-items: center; gap: 6px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+
+  /* ---- note ---- */
+  .note {
+    margin-top: 22px; padding: 15px 17px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--qty);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+  }
+  .note h3 {
+    font-family: "Fraunces", Georgia, serif; font-weight: 600;
+    font-size: 17px; margin: 0 0 8px;
+  }
+  .note p { margin: 0 0 8px; font-size: 14.5px; color: var(--soft); }
+  .note p:last-child { margin-bottom: 0; }
+  .note strong { color: var(--ink); font-weight: 700; }
+
+  .sync {
+    margin-top: 20px; font-size: 12.5px; color: var(--soft);
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">Mealprep · 2 kg kylling</p>
+    <h1>Kokosgryte med ananas</h1>
+    <div class="facts">
+      <span><b>11</b> porsjoner</span>
+      <span><b>50</b> min</span>
+      <span>Per porsjon: <b>100 g</b> karbo · <b>50 g</b> protein · <b>19 g</b> fett · <b>815</b> kcal</span>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tab-handle" role="tab" aria-selected="true" aria-controls="panel-handle">Handleliste</button>
+    <button class="tab" id="tab-plan" role="tab" aria-selected="false" aria-controls="panel-plan">Kjøreplan</button>
+    <button class="tab" id="tab-lag" role="tab" aria-selected="false" aria-controls="panel-lag">Oppskrift</button>
+  </div>
+
+  <section id="panel-handle" role="tabpanel" aria-labelledby="tab-handle">
+    <div class="bar">
+      <span class="count" id="count-handle">0 av 16 i kurven</span>
+      <button class="ghost" id="reset-handle">Nullstill</button>
+    </div>
+    <div id="groups-handle"></div>
+  </section>
+
+  <section id="panel-plan" role="tabpanel" aria-labelledby="tab-plan" hidden>
+    <div class="bar">
+      <span class="count" id="count-plan">0 av 21 gjort</span>
+      <button class="ghost" id="reset-plan">Nullstill</button>
+    </div>
+
+    <div class="note" style="border-left-color: var(--rice); margin-top: 0;">
+      <h3>Flaskehalsen er hendene, ikke platene</h3>
+      <p>Kniven går <strong>28 minutter</strong> her. Gryta og risen passer stort sett seg selv. Planen er lagt slik at ingenting står kaldt mens du skjærer — ikke slik at du skal rekke mest mulig samtidig.</p>
+      <p><strong>Ferdig på ca. 46 min.</strong> Gjør du det steg for steg i oppskriftsrekkefølge, tar det rundt 75.</p>
+    </div>
+
+    <div class="legend">
+      <span><i class="dot" style="background: var(--rice);"></i>Kasserolle 1 — ris</span>
+      <span><i class="dot" style="background: var(--accent);"></i>Kasserolle 2 — gryta</span>
+      <span><i class="dot" style="background: var(--qty);"></i>Begge panner — kylling</span>
+      <span><i class="dot" style="background: var(--soft);"></i>Skjærefjøl</span>
+    </div>
+
+    <div class="list" id="plan"></div>
+
+    <div class="note">
+      <h3>Det ene grepet som sparer mest</h3>
+      <p><strong>Kjøp kyllingen ferdig i biter.</strong> Å skjære 2 kg tar 12 minutter, og de ligger rett på den kritiske veien — gryta venter på at kyllingen skal bli brunet. Ferdigskåret kylling tar deg fra <strong>46 til ca. 34 min</strong>. Ingen annen endring er i nærheten.</p>
+    </div>
+
+    <div class="note" style="border-left-color: var(--rice);">
+      <h3>Hvis kasserollene er små</h3>
+      <p>Gryta blir ca. <strong>4,5 liter</strong> og risen ca. <strong>4,2 liter</strong>. Gryta skal i den største du har. Er risekasserollen under 5 liter, kok risen i <strong>to omganger à 7 dl ris og 10,5 dl vann</strong>: start den andre rett etter den første, så er begge ferdige før gryta uansett.</p>
+    </div>
+  </section>
+
+  <section id="panel-lag" role="tabpanel" aria-labelledby="tab-lag" hidden>
+    <div class="bar">
+      <span class="count" id="count-lag">0 av 11 steg</span>
+      <button class="ghost" id="reset-lag">Nullstill</button>
+    </div>
+    <div class="list" id="steps"></div>
+
+    <div class="note">
+      <h3>Risen — mål i dl</h3>
+      <p><strong>1,3 dl tørr ris per porsjon</strong>, altså <strong>14 dl</strong> for alle 11. Vann er <strong>1,5 ganger</strong> risvolumet: <strong>21 dl</strong>. Står det et annet forhold på pakken, følg pakken.</p>
+      <p><strong>14 dl ris trenger en 6-liters gryte.</strong> Risen tredobler seg. Har du ikke så stor, kok to omganger à <strong>7 dl ris og 10,5 dl vann</strong> — det går fortere enn å redde en gryte som koker over.</p>
+    </div>
+
+    <div class="note">
+      <h3>Spinaten inn, andre tomatboks ut</h3>
+      <p><strong>280 g spinat</strong> går i helt til slutt, sammen med ananasen. Den faller sammen på under ett minutt og trenger ingenting mer. Limesaften rett etterpå er ikke tilfeldig: C-vitaminet gjør at jernet i spinaten faktisk tas opp, og lav ferritin er en vanlig og undervurdert bremsekloss for løpere.</p>
+      <p><strong>Bruk bare den ene tomatboksen.</strong> Med <strong>650 ml kokosmelk</strong> er kokosen allerede i mindretall — <strong>800 g tomat</strong> tipper retten over til å bli en tomatgryte med et snev av kokos. Den andre boksen går til to porsjoner pastasaus før økt (200 g per porsjon).</p>
+    </div>
+
+    <div class="note">
+      <h3>Tre ting som avgjør retten</h3>
+      <p><strong>Maks 2 dl ananassaft.</strong> Hele boksen gjør gryta klissen søt, og det lar seg ikke rette opp etterpå.</p>
+      <p><strong>Ananasen helt til slutt, 2 minutter.</strong> Den er allerede myk fra boksen — lengre koking gjør den til grøt.</p>
+      <p><strong>Hermetisk ananas er riktig her.</strong> Fersk ananas inneholder bromelain, som bryter ned protein og gjør kyllingen melen. Hermetisk er varmebehandlet, så enzymet er inaktivt.</p>
+    </div>
+
+    <div class="note" style="border-left-color: var(--accent);">
+      <h3>Ikke måltidet før harde økter</h3>
+      <p>Med <strong>19 g fett</strong> per porsjon bryter gryta med «lett å fordøye» 2–3 t før kvalitetsøkt. Bruk den som hverdags- og restitusjonsmat.</p>
+    </div>
+
+    <p class="sync" id="sync">Avkryssingen lagres på denne enheten.</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var SHOP = [
+    { group: "Kjøtt", items: [
+      { id: "kylling", name: "Kyllingfilet", amt: "2 kg" }
+    ]},
+    { group: "Grønt", items: [
+      { id: "gulrot",    name: "Gulrot",    amt: "650 g" },
+      { id: "squash",    name: "Squash",    amt: "900 g", hint: "2 store" },
+      { id: "lok",       name: "Løk",       amt: "400 g", hint: "2 store" },
+      { id: "hvitlok",   name: "Hvitløk",   amt: "5 fedd" },
+      { id: "ingefaer",  name: "Ingefær",   amt: "25 g" },
+      { id: "lime",      name: "Lime",      amt: "1 stk" },
+      { id: "koriander", name: "Koriander", amt: "1 potte" },
+      { id: "spinat",    name: "Spinat",    amt: "280 g", hint: "har du allerede" }
+    ]},
+    { group: "Hermetikk og tørrvarer", items: [
+      { id: "kokosmelk", name: "Kokosmelk",        amt: "650 ml", hint: "har du allerede" },
+      { id: "ananas",    name: "Ananas i biter",   amt: "1 boks", hint: "ca. 425 g" },
+      { id: "tomater",   name: "Hakkede tomater",  amt: "1 boks", hint: "400 g — bare én, se notatet" },
+      { id: "ris",       name: "Ris",              amt: "14 dl", hint: "1,2 kg" },
+      { id: "kraft",     name: "Kyllingbuljong",   amt: "2 dl" }
+    ]},
+    { group: "Krydder og olje", items: [
+      { id: "karripasta", name: "Rød karripasta", amt: "2,5 ss" },
+      { id: "olje",       name: "Olje",           amt: "3 ss" },
+      { id: "salt",       name: "Salt",           amt: "3–4 ts" }
+    ]}
+  ];
+
+  var STEPS = [
+    'Skjær <b class="q">2 kg kyllingfilet</b> i biter på <b class="q">3 cm</b>. Strø over <b class="q">2 ts salt</b>.',
+    'Varm <b class="q">3 ss olje</b> i en vid gryte på høy varme. Brun kyllingen i <b class="q">3 omganger</b> à ca. <b class="q">670 g</b>, <b class="q">3–4 min</b> per omgang. Legg over på et fat.',
+    'Skru ned til middels varme. Ha <b class="q">400 g løk</b> (2 store), finhakket, i gryta. Stek <b class="q">5 min</b> til de er blanke.',
+    'Ha i <b class="q">5 fedd hvitløk</b>, <b class="q">25 g revet ingefær</b> og <b class="q">2,5 ss rød karripasta</b>. Rør <b class="q">1 min</b>.',
+    'Hell i <b class="q">650 ml kokosmelk</b>, <b class="q">400 g hakkede tomater</b>, <b class="q">2 dl ananassaft</b> fra boksen og <b class="q">2 dl kyllingkraft</b>. Kok opp.',
+    'Ha i <b class="q">650 g gulrot</b> i <b class="q">1 cm</b> biter. Småkok <b class="q">5 min</b> uten lokk — gulroten er hardest og trenger forsprang.',
+    'Ha kyllingen tilbake sammen med all kraften på fatet. Småkok <b class="q">10 min</b>.',
+    'Ha i <b class="q">900 g squash</b> i <b class="q">1 cm</b> halvmåner. Småkok <b class="q">6 min</b>.',
+    'Ha i <b class="q">250 g silt ananas</b>. Småkok <b class="q">2 min</b> — ikke lenger. Rør inn <b class="q">280 g spinat</b> det siste minuttet; den faller sammen med en gang.',
+    'Smak til med <b class="q">1–2 ts salt</b> og saften av <b class="q">1 lime</b>. Rør inn <b class="q">1 potte koriander</b>, grovhakket.',
+    'Kok risen: <b class="q">14 dl ris</b>, <b class="q">21 dl vann</b>, <b class="q">2 ts salt</b>. Kok opp, legg på lokk, trekk <b class="q">12 min</b> på lavest varme. La stå <b class="q">5 min</b> med lokket på før du rører.',
+    'Fordel <b class="q">4 dl ris</b> og <b class="q">4 dl gryte</b> i <b class="q">11 bokser</b>. Hold dem på hver sin halvdel av boksen.'
+  ];
+
+  // Kjøreplan. st: k1 = risekasserolle, k2 = gryta, p = begge panner, kn = kniv.
+  var PLAN = [
+    { t: "0:00", st: "k1", lab: "Ris",    html: 'Fyll <b class="q">21 dl vann</b> og <b class="q">2 ts salt</b> i kasserollen. Lokk på, full varme. Den koker om ca. <b class="q">10 min</b> helt av seg selv — derfor står den først.' },
+    { t: "0:01", st: "kn", lab: "Kniv",   html: 'Hakk <b class="q">400 g løk</b> (2 store). <b class="q">3 min</b>.' },
+    { t: "0:04", st: "k2", lab: "Gryta",  html: '<b class="q">2 ss olje</b> i den største kasserollen, middels varme. Løken i. Rør hvert minutt — ellers passer den seg selv.' },
+    { t: "0:04", st: "kn", lab: "Kniv",   html: 'Riv <b class="q">25 g ingefær</b> og skjær <b class="q">5 fedd hvitløk</b>. <b class="q">2 min</b>.' },
+    { t: "0:06", st: "kn", lab: "Kniv",   html: 'Skjær <b class="q">650 g gulrot</b> i <b class="q">1 cm</b> biter. <b class="q">6 min</b>.' },
+    { t: "0:09", st: "k2", lab: "Gryta",  html: 'Hvitløk, ingefær og <b class="q">2,5 ss karripasta</b> i. Rør <b class="q">1 min</b>.' },
+    { t: "0:10", st: "k2", lab: "Gryta",  html: '<b class="q">6,5 dl kokosmelk</b>, <b class="q">400 g hakkede tomater</b>, <b class="q">2 dl ananassaft</b> og <b class="q">2 dl kraft</b> i. Lokk på, kok opp.' },
+    { t: "0:10", st: "k1", lab: "Ris",    html: 'Vannet koker. <b class="q">14 dl ris</b> i, rør én gang, lokk på, lavest varme. <b class="q">Timer 12 min</b> — og la lokket ligge.' },
+    { t: "0:12", st: "p",  lab: "Panner", html: '<b class="q">1,5 ss olje</b> i hver panne, høy varme. De varmes mens du skjærer kyllingen.' },
+    { t: "0:12", st: "kn", lab: "Kniv",   html: 'Skjær <b class="q">2 kg kyllingfilet</b> i <b class="q">3 cm</b> biter, salt med <b class="q">2 ts</b>. <b class="q">12 min</b> — dagens lengste jobb. Ta <b class="q">1 kg</b> først, så er den klar til panna.' },
+    { t: "0:14", st: "k2", lab: "Gryta",  html: 'Gulroten i. Småkok <b class="q">5 min</b> uten lokk.' },
+    { t: "0:18", st: "p",  lab: "Panner", html: 'Første omgang: <b class="q">500 g</b> kylling i hver panne. <b class="q">4 min</b>, ikke rør. Skjær videre mens den bruner.' },
+    { t: "0:22", st: "k1", lab: "Ris",    html: 'Risen er ferdig. Av platen, lokket blir på — den holder seg varm til du skal porsjonere.' },
+    { t: "0:23", st: "p",  lab: "Panner", html: 'Omgang 1 over på et fat. Omgang 2 inn, <b class="q">500 g</b> i hver. <b class="q">4 min</b>.' },
+    { t: "0:24", st: "kn", lab: "Kniv",   html: 'Skjær <b class="q">900 g squash</b> i <b class="q">1 cm</b> halvmåner. <b class="q">5 min</b>.' },
+    { t: "0:27", st: "p",  lab: "Panner", html: 'All kyllingen er brunet. Hell <b class="q">1 dl ananassaft</b> i hver varme panne, skrap løs stekeskorpen og hell alt i gryta. Der ligger smaken.' },
+    { t: "0:28", st: "k2", lab: "Gryta",  html: 'Kyllingen i, med all kraften fra fatet. Småkok <b class="q">10 min</b>.' },
+    { t: "0:30", st: "kn", lab: "Kniv",   html: 'Sil <b class="q">250 g ananas</b>, grovhakk <b class="q">1 potte koriander</b>, del <b class="q">1 lime</b>. <b class="q">2 min</b> — og da er all kniv ferdig.' },
+    { t: "0:38", st: "k2", lab: "Gryta",  html: 'Squashen i. Småkok <b class="q">6 min</b>.' },
+    { t: "0:44", st: "k2", lab: "Gryta",  html: 'Ananasen i. Småkok <b class="q">2 min</b> — ikke lenger. <b class="q">280 g spinat</b> i det siste minuttet, rør til den faller sammen.' },
+    { t: "0:46", st: "k2", lab: "Gryta",  html: 'Smak til med <b class="q">1–2 ts salt</b> og saften av <b class="q">1 lime</b>. Rør inn korianderen. Fordel <b class="q">4 dl ris</b> og <b class="q">4 dl gryte</b> i <b class="q">11 bokser</b>.' }
+  ];
+
+  var KEY = "kokosgryte.v1";
+  var DOC = "mealprep/kokosgryte";
+  var checked = {};
+  var db = null;
+  var timer = null;
+
+  function readLocal() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) { var p = JSON.parse(raw); if (p && typeof p === "object") checked = p; }
+    } catch (e) { /* private window, blocked storage */ }
+  }
+  function writeLocal() {
+    try { localStorage.setItem(KEY, JSON.stringify(checked)); } catch (e) {}
+  }
+  function writeRemote() {
+    if (!db) return;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      try {
+        db.doc(DOC).set({ checked: checked }).catch(function () {});
+      } catch (e) {}
+    }, 400);
+  }
+
+  function row(opts) {
+    var label = document.createElement("label");
+    label.className = "row" + (opts.step ? " step" : "");
+
+    var box = document.createElement("input");
+    box.type = "checkbox";
+    box.id = "chk-" + opts.id;
+    label.appendChild(box);
+
+    if (opts.n) {
+      var n = document.createElement("span");
+      n.className = "n";
+      n.textContent = opts.n;
+      label.appendChild(n);
+    }
+
+    if (opts.time) {
+      var meta = document.createElement("span");
+      meta.className = "meta";
+      var t = document.createElement("span");
+      t.className = "time";
+      t.textContent = opts.time;
+      var st = document.createElement("span");
+      st.className = "st st-" + opts.st;
+      st.textContent = opts.lab;
+      meta.appendChild(t);
+      meta.appendChild(st);
+      label.appendChild(meta);
+    }
+
+    var body = document.createElement("span");
+    body.className = "body";
+    if (opts.html) {
+      body.innerHTML = opts.html;
+    } else {
+      var name = document.createElement("span");
+      name.className = "name";
+      name.textContent = opts.name;
+      body.appendChild(name);
+      if (opts.hint) {
+        var hint = document.createElement("span");
+        hint.className = "hint";
+        hint.textContent = opts.hint;
+        body.appendChild(hint);
+      }
+    }
+    label.appendChild(body);
+
+    if (opts.amt) {
+      var amt = document.createElement("span");
+      amt.className = "amt";
+      amt.textContent = opts.amt;
+      label.appendChild(amt);
+    }
+
+    box.addEventListener("change", function () {
+      if (box.checked) checked[opts.id] = true;
+      else delete checked[opts.id];
+      writeLocal();
+      writeRemote();
+      paint();
+    });
+
+    label._id = opts.id;
+    label._box = box;
+    return label;
+  }
+
+  var rows = [];
+  var shopTotal = SHOP.reduce(function (n, sec) { return n + sec.items.length; }, 0);
+
+  function build() {
+    var host = document.getElementById("groups-handle");
+    SHOP.forEach(function (sec) {
+      var g = document.createElement("div");
+      g.className = "group";
+      var h = document.createElement("h2");
+      h.textContent = sec.group;
+      g.appendChild(h);
+      var list = document.createElement("div");
+      list.className = "list";
+      sec.items.forEach(function (it) {
+        var r = row({ id: "s-" + it.id, name: it.name, amt: it.amt, hint: it.hint });
+        rows.push(r);
+        list.appendChild(r);
+      });
+      g.appendChild(list);
+      host.appendChild(g);
+    });
+
+    var steps = document.getElementById("steps");
+    STEPS.forEach(function (html, i) {
+      var r = row({ id: "t-" + (i + 1), html: html, n: i + 1, step: true });
+      rows.push(r);
+      steps.appendChild(r);
+    });
+
+    var plan = document.getElementById("plan");
+    PLAN.forEach(function (p, i) {
+      var r = row({
+        id: "p-" + (i + 1), html: p.html, step: true,
+        time: p.t, st: p.st, lab: p.lab
+      });
+      rows.push(r);
+      plan.appendChild(r);
+    });
+  }
+
+  function paint() {
+    var n = { s: 0, t: 0, p: 0 };
+    rows.forEach(function (r) {
+      var on = !!checked[r._id];
+      r._box.checked = on;
+      r.classList.toggle("off", on);
+      if (on) n[r._id.charAt(0)]++;
+    });
+    document.getElementById("count-handle").textContent =
+      n.s + " av " + shopTotal + " i kurven";
+    document.getElementById("count-lag").textContent =
+      n.t + " av " + STEPS.length + " steg";
+    document.getElementById("count-plan").textContent =
+      n.p + " av " + PLAN.length + " gjort";
+  }
+
+  function reset(prefix) {
+    Object.keys(checked).forEach(function (k) {
+      if (k.charAt(0) === prefix) delete checked[k];
+    });
+    writeLocal();
+    writeRemote();
+    paint();
+  }
+
+  var PANELS = ["handle", "plan", "lag"];
+
+  function show(which) {
+    PANELS.forEach(function (name) {
+      var on = name === which;
+      document.getElementById("panel-" + name).hidden = !on;
+      document.getElementById("tab-" + name)
+        .setAttribute("aria-selected", on ? "true" : "false");
+    });
+    window.scrollTo(0, 0);
+  }
+
+  readLocal();
+  build();
+  paint();
+
+  PANELS.forEach(function (name) {
+    document.getElementById("tab-" + name)
+      .addEventListener("click", function () { show(name); });
+  });
+  document.getElementById("reset-handle").addEventListener("click", function () { reset("s"); });
+  document.getElementById("reset-lag").addEventListener("click", function () { reset("t"); });
+  document.getElementById("reset-plan").addEventListener("click", function () { reset("p"); });
+
+  // Cross-device sync, when the viewer can run it. The page is fully
+  // usable before this resolves, and stays usable if it resolves null.
+  (function () {
+    var c = window.claude;
+    if (!c || typeof c.use !== "function") return;
+    c.use("db").then(function (store) {
+      if (!store) return;
+      db = store;
+      document.getElementById("sync").textContent =
+        "Avkryssingen synker mellom enhetene dine.";
+      store.doc(DOC).onSnapshot(function (snap) {
+        if (!snap.exists) return;
+        if (snap.metadata.hasPendingWrites) return;
+        var d = snap.data();
+        if (!d || !d.checked || typeof d.checked !== "object") return;
+        checked = Object.assign({}, d.checked);
+        writeLocal();
+        paint();
+      }, function () {
+        db = null;
+        document.getElementById("sync").textContent =
+          "Avkryssingen lagres på denne enheten.";
+      });
+    }, function () { /* unavailable — local storage carries it */ });
+  })();
+})();
+</script>
+</body>
+</html>

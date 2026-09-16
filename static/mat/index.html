@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Oppskrifter og mealprep.">
+<title>Mat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Karla:wght@400;500;700&display=swap">
+<style>
+  :root {
+    color-scheme: light dark;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    --paper:   #EFF2EC;
+    --surface: #FFFFFF;
+    --ink:     #16211A;
+    --soft:    #5C6B61;
+    --accent:  #3F6B2E;
+    --qty:     #B3541E;
+    --line:    #D6DCD2;
+    --shadow:  0 1px 2px rgba(22,33,26,.06), 0 4px 14px rgba(22,33,26,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:   #131714;
+      --surface: #1B211D;
+      --ink:     #E8EDE6;
+      --soft:    #96A398;
+      --accent:  #8DBE6E;
+      --qty:     #E8944F;
+      --line:    #2C342E;
+      --shadow:  0 1px 2px rgba(0,0,0,.35), 0 4px 14px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:   #131714;
+    --surface: #1B211D;
+    --ink:     #E8EDE6;
+    --soft:    #96A398;
+    --accent:  #8DBE6E;
+    --qty:     #E8944F;
+    --line:    #2C342E;
+    --shadow:  0 1px 2px rgba(0,0,0,.35), 0 4px 14px rgba(0,0,0,.28);
+  }
+
+  * { box-sizing: border-box; }
+  img { max-width: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Karla", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 32px 56px;
+  }
+
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 8px;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-optical-sizing: auto; font-weight: 600;
+    font-size: clamp(32px, 9vw, 46px); line-height: 1.05;
+    letter-spacing: -.01em; margin: 0; text-wrap: balance;
+  }
+  .lede {
+    margin: 12px 0 0; color: var(--soft);
+    max-width: 52ch; font-size: 15.5px;
+  }
+
+  h2 {
+    font-family: inherit;
+    font-size: 11px; font-weight: 700; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--accent);
+    margin: 36px 0 10px;
+  }
+
+  .card {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 18px 19px;
+    transition: border-color .15s, transform .15s;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card:active { transform: translateY(1px); }
+  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .card h3 {
+    font-family: "Fraunces", Georgia, serif; font-weight: 600;
+    font-size: 22px; line-height: 1.15; margin: 0;
+    letter-spacing: -.01em;
+  }
+  .card p { margin: 7px 0 0; font-size: 14.5px; color: var(--soft); }
+  .tags {
+    display: flex; flex-wrap: wrap; gap: 5px 14px;
+    margin-top: 12px; padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--soft);
+  }
+  .tags b {
+    color: var(--qty); font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  footer {
+    margin-top: 40px; padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--soft);
+  }
+  footer a { color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Einar Storvestre</p>
+  <h1>Mat</h1>
+  <p class="lede">Oppskrifter som er skrevet for å lages, ikke leses. Mengder i hvert steg, og en kjøreplan når rekkefølgen faktisk betyr noe.</p>
+
+  <h2>Mealprep</h2>
+  <a class="card" href="kokosgryte/">
+    <h3>Kokosgryte med ananas</h3>
+    <p>Kylling, gulrot, squash og spinat i kokos og karri. Handleliste, kjøreplan for to panner og to kasseroller, og oppskriften — alt avkryssbart.</p>
+    <div class="tags">
+      <span><b>11</b> porsjoner</span>
+      <span><b>46</b> min</span>
+      <span><b>100 g</b> karbo</span>
+      <span><b>50 g</b> protein</span>
+    </div>
+  </a>
+
+  <footer>
+    Se også <a href="/trening-r9q4w/">Treningsøkter</a> for fueling før og etter økt.
+  </footer>
+</div>
+</body>
+</html>
