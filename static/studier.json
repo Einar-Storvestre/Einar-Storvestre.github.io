@@ -54,8 +54,20 @@
   },
   {
    "kode": "EBO2",
-   "antall_filer": 54,
+   "antall_filer": 55,
    "nyeste": [
+    {
+     "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
+     "dato": "2026-09-17"
+    },
+    {
+     "navn": "EBO2_Lecture 8_complete BUT PRELIMIMARY (last slide incomplete due to homework).pdf",
+     "dato": "2026-09-17"
+    },
+    {
+     "navn": "EBO2_Lecture 10_Part I.pdf",
+     "dato": "2026-09-17"
+    },
     {
      "navn": "BSM Chapter 18 (selected pages).pdf",
      "dato": "2026-09-15"
@@ -63,18 +75,6 @@
     {
      "navn": "BSM Chapter 14 (selected pages).pdf",
      "dato": "2026-09-15"
-    },
-    {
-     "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
-     "dato": "2026-09-15"
-    },
-    {
-     "navn": "EBO2_Lecture 8_complete.pdf",
-     "dato": "2026-09-15"
-    },
-    {
-     "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
-     "dato": "2026-09-14"
     }
    ]
   },
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-16 15:05"
+ "oppdatert": "2026-09-17 15:06"
 }
