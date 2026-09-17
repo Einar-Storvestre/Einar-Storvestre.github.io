@@ -258,7 +258,7 @@
   }
 </style></head><body>
 <div class="wrap header"><h1>AI-trading — Oslo Børs<span class="lek">LEKEPENGER</span></h1>
-  <p>Oppdatert 2026-09-17 02:45 &middot; fiktiv portefølje, ekte forsinkede kurser &middot; ikke finansiell rådgivning</p></div>
+  <p>Oppdatert 2026-09-17 11:43 &middot; fiktiv portefølje, ekte forsinkede kurser &middot; ikke finansiell rådgivning</p></div>
 <div class="tabs-bg"><div class="wrap"><div class="tabs">
   <div class="tab active" data-p="p1">Oversikt</div>
   <div class="tab" data-p="p2">Posisjoner</div>
@@ -534,8 +534,10 @@
         <div class="side-fot">Skrevet for lesere uten finansbakgrunn.<br>
         Kapittel 10 er ordlisten.</div></aside>
       <div class="docmain"><div class="dok"><h1>AI-trading-bot: fullstendig dokumentasjon</h1>
-<p><strong>Versjon:</strong> 19. august 2026. Alle tall i dette dokumentet er hentet fra kildene som</p>
-<p>oppgis i samme avsnitt. Ingenting her er finansiell rådgivning.</p>
+<p><strong>Analyserevisjon:</strong> 17. september 2026, basert på prosjektets backtestaudit.</p>
+<p>Kapittel 7 og 9, ordlisten og tilhørende konklusjoner er oppdatert. Øvrige</p>
+<p>driftsbeskrivelser viderefører tidligere dokumentasjon og er ikke en ny full</p>
+<p>driftsrevisjon. Daterte driftseksempler er historikk. Ingenting her er finansiell rådgivning.</p>
 <p>Dokumentet er skrevet for å kunne leses av noen uten finansbakgrunn. Hvert fagbegrep</p>
 <p>forklares første gang det brukes, og alle begrepene er samlet i ordlisten i kapittel 10.</p>
 <p>En leser som kan finans fra før kan hoppe over forklaringene og lese tallene.</p>
@@ -574,8 +576,9 @@
 <p>som søker internship i finans. Poenget med å vise det fram er ikke kapitalkurven. Det</p>
 <p>er å vise at man vet forskjellen på et resultat og et bevis, og at man selv leter etter</p>
 <p>hullene i sitt eget arbeid før noen andre gjør det. Kapittel 7 er skrevet med det for</p>
-<p>øye, og konkluderer med at strategiens meravkastning <strong>ikke</strong> er statistisk</p>
-<p>signifikant.</p>
+<p>øye. Den oppdaterte analysen skiller mellom observerte resultater, usikkerhet og</p>
+<p>datafeil. Den dokumenterer ikke en varig fordel for den komplette boten</p>
+<p>(kilde: backtestauditen omtalt i kapittel 7).</p>
 <h3>Hva boten konkret gjør</h3>
 <p>Kort fortalt: hver natt leser den kurser, regnskapstall og børsmeldinger for 53 av de</p>
 <p>mest omsatte selskapene på Oslo Børs, gir hvert selskap en poengsum, velger de åtte</p>
@@ -721,13 +724,11 @@
 <p>Målet i <code>spec.md</code> er å måle avkastning over <strong>to år</strong> mot OSEBX. Begrunnelsen står</p>
 <p>samme sted: en strategi som er 55 prosent kvalitet trenger år, ikke kvartaler, på å</p>
 <p>skille dyktighet fra støy.</p>
-<p>Regnestykket bak: en portefølje som svinger 16 til 17 prosent i året (botens</p>
-<p>realiserte volatilitet i backtesten er 16,5 prosent, kilde:</p>
-<p><code>reports/backtest_2026-08-19.md</code>) har en usikkerhet på omtrent 16 prosent delt på</p>
-<p>kvadratroten av antall år. Over ett år er usikkerheten altså rundt 16 prosentpoeng.</p>
-<p>Skal man kunne skille en meravkastning på 3 prosentpoeng fra ren flaks, trenger man</p>
-<p>mange år med data. To år er ikke nok til å bevise noe, men det er nok til å slutte å</p>
-<p>reagere på støy.</p>
+<p>Dette er en evalueringshorisont, ikke en garanti for et sikkert statistisk svar.</p>
+<p>Usikkerheten i meravkastning må vurderes ut fra forskjellen mot referansen, ikke</p>
+<p>bare porteføljens egne svingninger. Den nye auditen bruker parvise sammenligninger</p>
+<p>og intervaller beskrevet i kapittel 7; den gamle volatiliteten fra augusttesten</p>
+<p>brukes ikke som bevis for dagens komplette strategi.</p>
 <h3>Den innebygde påminnelsen</h3>
 <p>Øverst i <code>analyze/rules.py</code> ligger en tekstkonstant som heter <code>PAAMINNELSE</code>, og den</p>
 <p>trykkes i hver eneste dagsplan:</p>
@@ -835,12 +836,10 @@
 <p>en nyhetstekst skulle bli fulgt (kilde: <code>analyze/llm.py</code>).</p>
 <p><strong>Oljeoverlegg (maks ±8 prosent).</strong> Er Brent-oljen over sitt eget 63-dagers snitt,</p>
 <p>får energi og energiservice et lite påslag. Er den under, et lite fradrag</p>
-<p>(<code>config.yaml</code>, seksjonen <code>makro</code>). Overlegget ble backtestet før det ble bygget: i</p>
-<p>oljeopptrend slo energikurven OSEBX med omtrent 20 prosentpoeng annualisert, i</p>
-<p>nedtrend lå den omtrent 9 prosentpoeng bak (kilde: <code>PROGRESS.md</code>, posten</p>
-<p>2026-07-22). Overlegget rører <strong>bare</strong> de to energisektorene, fordi det bare er de</p>
-<p>en lookahead-fri test dekket. Shipping, materialer og sjømat drives av andre råvarer</p>
-<p>og røres ikke.</p>
+<p>(<code>config.yaml</code>, seksjonen <code>makro</code>). Overlegget rører <strong>bare</strong> de to energisektorene.</p>
+<p>Utviklingsforsøket i <code>PROGRESS.md</code> fra 22. juli 2026 er historikk, ikke en ny</p>
+<p>validering av oljeoverlegget. Det er ikke gjenskapt i forskningsmodellen i kapittel 7,</p>
+<p>og dokumentasjonen påstår derfor ikke at effekten er historisk bekreftet.</p>
 <hr>
 <h2 id="dok-5-hvordan-porteføljen-settes-sammen">5. Hvordan porteføljen settes sammen</h2>
 <h3>Åtte posisjoner</h3>
@@ -873,9 +872,10 @@
 <p>bidragsyterne (Equinor +10,1 %, Vår Energi +7,4 %) hadde de laveste vektene fordi de</p>
 <p>svinger mest (kilde: <code>PROGRESS.md</code>, posten 2026-07-31). Det er ikke en feil. Det er</p>
 <p>den bevisste prisen for lavere svingninger.</p>
-<p>I backtesten er forskjellen liten: risk parity ga Sharpe 1,45 mot likevekts 1,39, men</p>
-<p>likevekt ga litt høyere avkastning (kilde: <code>reports/backtest_2026-08-19.md</code>). Det er</p>
-<p>ingen sterk evidens for at risk parity tilfører noe her.</p>
+<p>Den eldre sammenligningen av Sharpe-tall fra augusttesten brukes ikke som</p>
+<p>oppdatert evidens for vektingsmetoden. Den nye auditen skiller mellom aksjevalg,</p>
+<p>vekting og eksponeringsstyring, uten å dokumentere at produksjonens vekting i seg</p>
+<p>selv skaper meravkastning. Kilde: auditrapportens metodeavsnitt og kapittel 7.</p>
 <h3>Posisjonstak og sektortak</h3>
 <p>To harde grenser gjelder alltid (<code>config.yaml</code>, seksjonen <code>risiko</code>):</p>
 <ul><li><strong>Maksimalt 20 prosent av porteføljen i ett selskap.</strong> Går et selskap konkurs,</li></ul>
@@ -914,7 +914,9 @@
 <ol><li><strong>Spread.</strong> Forskjellen mellom det du må betale for å kjøpe og det du får for å</li></ol>
 <p>   selge. Den betaler du hver gang, i begge retninger.</p>
 <ol><li><strong>Markedspåvirkning.</strong> Store ordre flytter kursen mot deg.</li></ol>
-<p>Punkt 2 og 3 er ikke med i backtestens grunnkjøring. Kapittel 7 viser hva de koster.</p>
+<p>Den nye forskningsmotoren inkluderer et eksplisitt anslag for ekstra kostnad per</p>
+<p>kjøp og salg, med følsomhetstester. Dette er ikke en direkte måling av spread eller</p>
+<p>markedspåvirkning. Forutsetninger og resultater står i kapittel 7.</p>
 <p>Boten bremser turnover på fire måter samtidig: ukentlig rebalansering,</p>
 <p>rangeringsbuffer, terskel for småhandler, og en kvalitetsvekt som er langt mer stabil</p>
 <p>over tid enn momentum ville vært alene.</p>
@@ -969,14 +971,12 @@
 <p><strong>Hvorfor 40 prosent og ikke null?</strong> Fordi et filter som slår helt av og helt på, gir</p>
 <p><strong>whipsaw</strong>: markedet krysser snittet fram og tilbake, og man selger lavt og kjøper</p>
 <p>høyt gjentatte ganger. 40 prosent er en mildere brems.</p>
-<p><strong>Hva de to sammen koster, målt.</strong> Dette er dokumentert. I backtesten ga risk parity</p>
-<p><strong>uten</strong> vol-target og regimefilter en årlig avkastning på <strong>29,6 prosent</strong> med Sharpe</p>
-<p>1,48. <strong>Med</strong> dem ble det <strong>25,3 prosent</strong> og Sharpe 1,45. Crash-beskyttelsen kostet</p>
-<p>altså omtrent <strong>4,3 prosentpoeng i året</strong> og 0,03 lavere Sharpe, mot at det verste</p>
-<p>fallet ble 2,4 prosentpoeng mindre, fra -15,7 til -13,3 prosent (kilde:</p>
-<p><code>reports/backtest_2026-08-19.md</code>, tabellen «Resultater»).</p>
-<p>Det er en reell avveining, ikke en gratis forbedring, og den er nå målt i stedet for</p>
-<p>antatt.</p>
+<p><strong>Avveiningen er periode- og modellavhengig.</strong> I den nye lange Yahoo-testen</p>
+<p>reduserer eksponeringsstyringen både avkastningen og største historiske fall for</p>
+<p>momentum. Den månedlige Amadeus-proxyen har et annet mønster. Derfor oppgis ikke en</p>
+<p>fast årlig «pris» for beskyttelsen. Dette er simuleringer, ikke en garanti for at</p>
+<p>reglene beskytter ved neste fall. Kilder: auditens <code>results/yahoo_long_summary.csv</code>,</p>
+<p><code>results/amadeus_main_summary.csv</code> og kapittel 7.</p>
 <h3>5. Kill-switch</h3>
 <p><strong>Hva den gjør.</strong> Oppdager systemet noe det ikke forstår, skriver det en fil</p>
 <p>(<code>logs/kill_switch.json</code>), og <strong>alle fire jobber nekter å kjøre</strong> til problemet er</p>
@@ -1001,174 +1001,51 @@
 <p>faller systemet tilbake på manuell port. Alle seks grener er testet.</p>
 <hr>
 <h2 id="dok-7-hva-bevisene-faktisk-sier">7. Hva bevisene faktisk sier</h2>
-<p>Dette kapittelet er skrevet for å være ubehagelig å lese. Konklusjonen er at</p>
-<p>strategiens meravkastning <strong>ikke er statistisk signifikant</strong>, og at 85 prosent av</p>
-<p>faktormodellen aldri er testet.</p>
-<p>Alle tall i dette kapittelet kommer fra <code>reports/backtest_2026-08-19.md</code>, kjørt</p>
-<ol><li>august 2026 på data fra 11. mai 2020 til 17. august 2026, 53 selskaper.</li></ol>
-<h3>7.1 Det store forbeholdet: hva som ikke er testet</h3>
-<p><strong>Kvalitet og verdi, altså 85 prosent av faktorvekten, er aldri backtestet.</strong> Dette er</p>
-<p>ikke en forglemmelse, det er et bevisst valg, og grunnen er viktig.</p>
-<p>Datakilden <code>yfinance</code> gir bare <strong>nåværende</strong> regnskapstall: dagens</p>
-<p>egenkapitalavkastning, dagens P/E. Den gir ikke <strong>punkt-i-tid</strong>-data, altså hva som var</p>
-<p>kjent da. Skal man teste hvordan kvalitetsfaktoren ville prestert i 2022, må man vite</p>
-<p>hva regnskapstallene så ut som i 2022, med de tallene som faktisk var publisert da.</p>
-<p>Bruker man dagens tall til å score en portefølje i 2022, får man <strong>lookahead-bias</strong>:</p>
-<p>man vet allerede hvem som overlevde, hvem som vokste og hvem som gikk konkurs. En slik</p>
-<p>test ville sett fantastisk ut og vært fullstendig verdiløs. Den er derfor ikke kjørt.</p>
-<p><strong>Hva som skal til for å teste den.</strong> Man trenger en punkt-i-tid-database over</p>
-<p>regnskapstall for Oslo Børs, der hvert tall er tidsstemplet med når det ble publisert,</p>
-<p>og der senere korreksjoner er holdt utenfor. Kommersielle leverandører som</p>
-<p>Compustat Point-in-Time, Refinitiv eller FactSet har dette. Alle koster penger, og</p>
-<p>ingen av dem er tilgjengelig i dette prosjektet i dag. Uten en slik kilde er kvalitets-</p>
-<p>og verdifaktorene begrunnet i akademisk litteratur og i <code>investeringsraad.md</code>, men</p>
-<p><strong>ikke</strong> testet på norske data av dette systemet.</p>
-<p>Det som <strong>er</strong> testet er momentum-sleeven (15 prosent av faktorvekten) og **hele</p>
-<p>porteføljemaskineriet**: risk parity, posisjons- og sektortak, vol-target,</p>
-<p>regimefilter, ukentlig rebalansering, rangeringsbuffer og kurtasje. Testen er</p>
-<p>walk-forward, altså at hver beslutning bare bruker data som var kjent på</p>
-<p>beslutningstidspunktet.</p>
-<h3>7.2 Det første tallet, og hvorfor det er misvisende</h3>
-<div class="card"><table><thead><tr><th></th><th>Årlig avkastning</th><th>Sharpe</th><th>Verste fall</th></tr></thead><tbody><tr><td>Bot</td><td>+25,3 %</td><td>1,45</td><td>-13,3 %</td></tr><tr><td>OSEBX</td><td>+13,1 %</td><td>0,93</td><td>-16,1 %</td></tr></tbody></table></div>
-<p><strong>Sharpe-tallet</strong> er avkastning delt på svingning, altså hvor mye avkastning man får</p>
-<p>per enhet risiko. Høyere er bedre. Her er det regnet uten fradrag for risikofri rente</p>
-<p>(<code>config.yaml: rapport.risikofri_rente_aar: 0.0</code>), noe som gjør det høyere enn det</p>
-<p>ville vært med en realistisk rente.</p>
-<p>Differansen ser ut som <strong>+12,2 prosentpoeng i året</strong>. Den er ikke ekte, og det er tre</p>
-<p>grunner til det.</p>
-<h3>7.3 Den avgjørende kontrollen</h3>
-<p>Å sammenligne mot OSEBX er feil av tre grunner:</p>
-<p><strong>Grunn 1: OSEBX er en prisindeks.</strong> Den måler bare kursutviklingen, ikke utbyttene.</p>
-<p>Porteføljen handles derimot på utbyttejusterte kurser, altså med utbyttene</p>
-<p>reinvestert. Sammenligningen gir dermed boten hele utbytteavkastningen gratis.</p>
-<p><strong>Grunn 2: survivorship bias.</strong> Universet er dagens 53 selskaper. Selskaper som gikk</p>
-<p>konkurs eller ble strøket fra børsen underveis, finnes ikke i datasettet.</p>
-<p><strong>Grunn 3: perioden starter nær bunnen etter koronakrakket</strong> i april 2020.</p>
-<p>Derfor er den viktigste tabellen i hele rapporten denne. Kontrollen er **kjøp og hold</p>
-<p>av likevektet portefølje av nøyaktig samme 53 selskaper**, uten noen seleksjon i det</p>
-<p>hele tatt. Den har samme utbyttebehandling, samme survivorship bias og samme periode.</p>
-<p>Den er til og med kurtasjefri, altså en fordel strategien ikke får.</p>
-<div class="card"><table><thead><tr><th></th><th>Årlig avkastning</th><th>Sharpe</th><th>Verste fall</th></tr></thead><tbody><tr><td>Bot</td><td>+25,3 %</td><td>1,45</td><td>-13,3 %</td></tr><tr><td><strong>Kjøp og hold, samme univers</strong></td><td><strong>+21,5 %</strong></td><td><strong>1,39</strong></td><td>-17,5 %</td></tr><tr><td>OSEBX</td><td>+13,1 %</td><td>0,93</td><td>-16,1 %</td></tr></tbody></table></div>
-<p><strong>+12,2 prosentpoeng mot indeksen krymper til +3,8 prosentpoeng mot riktig kontroll.</strong></p>
-<p>Det er dette tallet som må forsvares statistisk, ikke det første.</p>
-<h3>7.4 Er de 3,8 prosentpoengene ekte?</h3>
-<p>Fire tester. Alle fire er designet for å kunne gi negativt svar.</p>
-<p><strong>Test 1: konfidensintervall med blokk-bootstrap.</strong></p>
-<p>En bootstrap trekker nye «alternative historier» ved å stokke om de faktiske daglige</p>
-<p>avkastningene, og ser hvor mye resultatet varierer. Fordi aksjeavkastninger ikke er</p>
-<p>uavhengige fra dag til dag (rolige og urolige perioder klumper seg sammen), trekkes de</p>
-<p>i <strong>blokker på 20 handledager</strong>, altså omtrent en måned av gangen, slik at strukturen</p>
-<p>innen blokken bevares. Strategien og kontrollen resamples parvis med samme</p>
-<p>blokkindekser, siden de eier mange av de samme aksjene.</p>
-<p>Resultat etter 2 000 resamplinger over 1 298 dager:</p>
-<blockquote>Meravkastning <strong>+3,9 prosentpoeng i året</strong>, med 95 prosent konfidensintervall fra</blockquote>
-<blockquote><strong>-8,9 til +16,9 prosentpoeng</strong>.</blockquote>
-<p><strong>Intervallet inneholder null.</strong> Meravkastningen er ikke statistisk skillbar fra null.</p>
-<p>Andelen resamplinger med positiv meravkastning var 74 prosent, altså ikke nok.</p>
-<p><strong>Test 2: t-test med Newey-West-justering.</strong></p>
-<p>En t-test spør om et gjennomsnitt er stort nok til at det neppe skyldes tilfeldigheter.</p>
-<p>Standardversjonen antar uavhengige observasjoner, noe daglige avkastninger ikke er.</p>
-<p>Newey-West-justeringen (lag 5) korrigerer for dette, og gjør normalt t-verdien lavere.</p>
-<blockquote>Gjennomsnittlig aktiv avkastning <strong>+3,4 prosentpoeng i året</strong>, standardfeil</blockquote>
-<blockquote><strong>5,3 prosentpoeng</strong>, <strong>t = 0,64</strong>, <strong>p = 0,521</strong>.</blockquote>
-<p>En p-verdi på 0,52 betyr at man ville sett et like stort utslag i omtrent halvparten av</p>
-<p>tilfellene selv om strategien ikke tilførte noe som helst. **Ikke i nærheten av</p>
-<p>signifikant.**</p>
-<p><strong>Test 3: Deflated Sharpe Ratio.</strong></p>
-<p>Denne testen (Bailey og López de Prado, Journal of Portfolio Management, 2014) svarer</p>
-<p>på et spørsmål de fleste backtester ignorerer: **hvor mange varianter prøvde du før du</p>
-<p>fant denne?** Tester man nok konfigurasjoner, finner man en pen Sharpe uansett, helt</p>
-<p>uten at det ligger noe reelt bak.</p>
-<p>Denne rapporten kjører <strong>20 konfigurasjoner</strong> (fire hovedvarianter, parametergrid og</p>
-<p>kostnadsgrid). Tallet er oppgitt i rapporten selv, slik at leseren kan vurdere det.</p>
-<ul><li>På botens egen Sharpe: DSR = <strong>0,995</strong>. Den overlever terskelen på 0,95, men tallet</li></ul>
-<p>  måler i stor grad markedets risikopremie i en sterk periode, ikke strategien.</p>
-<ul><li>På den <strong>aktive</strong> avkastningen, altså bot minus kontrollen: informasjonsratio 0,27</li></ul>
-<p>  mot en terskel på 0,27, og <strong>DSR = 0,498</strong>.</p>
-<p><strong>0,498 er myntkast.</strong> Dette er det strengeste og mest relevante tallet i hele</p>
-<p>prosjektet, og det sier at strategien like gjerne kan tilføre ingenting.</p>
-<p><strong>Test 4: stabilitet over tid.</strong></p>
-<p>Over 1 047 overlappende 12-månedersvinduer mot kontrollen:</p>
-<div class="card"><table><thead><tr><th>Måltall</th><th>Verdi</th></tr></thead><tbody><tr><td>Andel vinduer med positiv meravkastning</td><td>55 %</td></tr><tr><td>Median meravkastning</td><td>+1,5 pp</td></tr><tr><td>Svakeste vindu</td><td>-19,7 pp</td></tr><tr><td>Sterkeste vindu</td><td>+36,8 pp</td></tr></tbody></table></div>
-<p><strong>55 prosent er nesten myntkast.</strong> En kant som virker litt over halvparten av tiden, og</p>
-<p>som i verste tolvmånedersperiode ligger 19,7 prosentpoeng bak, er ikke en kant man kan</p>
-<p>stole på.</p>
-<p>Kalenderårstabellen viser hvorfor: bot mot OSEBX var <strong>+8,6 mot +24,6 prosent i 2021</strong></p>
-<p>og <strong>+36,1 mot +9,0 prosent i 2024</strong>. To sterke år bærer nesten hele perioden.</p>
-<h3>7.5 Er parametrene tilpasset i etterkant?</h3>
-<p>Sensitivitetsanalysen varierer ett parameter av gangen over samme periode. Spørsmålet</p>
-<p>er ikke hvilket sett som gir best tall, det er om resultatet er et <strong>platå</strong> (robust)</p>
-<p>eller en <strong>spiss topp</strong> (tilpasset).</p>
-<p>Rapporten dømmer hver parametergruppe automatisk. Resultatet:</p>
-<div class="card"><table><thead><tr><th>Parameter</th><th>Spenn i meravkastning</th><th>Dom</th></tr></thead><tbody><tr><td>Momentum-vindu</td><td>9,0 pp</td><td><strong>Basis er best i gruppa, nest beste ligger 7,2 pp lavere</strong></td></tr><tr><td>Antall posisjoner</td><td>8,1 pp</td><td>Basis ligger 0,8 pp under gruppas beste</td></tr><tr><td>Vol-target</td><td>1,7 pp</td><td>Basis ligger 0,1 pp under gruppas beste</td></tr><tr><td>Rebalanseringsdag</td><td>2,4 pp</td><td><strong>Basis er best i gruppa, nest beste 1,1 pp lavere</strong></td></tr></tbody></table></div>
-<p><strong>Dette er det mest ubehagelige funnet i rapporten.</strong> Momentum-vinduet på 126 og 252</p>
-<p>dager gir +4,2 prosentpoeng meravkastning. Endrer man vinduet 20 prosent i noen av</p>
-<p>retningene, blir resultatet <strong>negativt</strong>: -2,9 prosentpoeng med kortere vindu, -4,8</p>
-<p>prosentpoeng med lengre.</p>
-<p>Det er en spiss topp, ikke et platå. Verdiene 126 og 252 er valgt fordi de er</p>
-<p>konvensjonelle i litteraturen (6 og 12 måneder), ikke fordi noen optimerte dem mot</p>
-<p>disse dataene. Men resultatet oppfører seg <strong>som om</strong> de var optimert, og det er</p>
-<p>akkurat like farlig for konklusjonen. Vol-target ser derimot ut som et ekte platå: hele</p>
-<p>gruppen ligger innenfor 1,7 prosentpoeng.</p>
-<p>At rebalanseringsdagen mandag også er best i sin gruppe, er et lite men reelt</p>
-<p>faresignal. Ukedagen bør ikke ha noen økonomisk betydning i det hele tatt.</p>
-<h3>7.6 Hva koster handelen?</h3>
-<p>Backtesten fyller til sluttkurs uten spread. Med slippage lagt til per handel:</p>
-<div class="card"><table><thead><tr><th>Slippage</th><th>Årlig avkastning</th><th>Meravkastning mot kontrollen</th></tr></thead><tbody><tr><td>0 bp</td><td>+25,3 %</td><td>+3,8 pp</td></tr><tr><td>10 bp</td><td>+23,8 %</td><td>+2,4 pp</td></tr><tr><td>25 bp</td><td>+22,0 %</td><td><strong>+0,5 pp</strong></td></tr><tr><td>50 bp</td><td>+18,5 %</td><td><strong>-3,0 pp</strong></td></tr></tbody></table></div>
-<p>Ett basispunkt (bp) er en hundredels prosent. **Ved 25 basispunkter er hele</p>
-<p>meravkastningen borte.** For likvide Oslo Børs-aksjer er 10 til 25 basispunkter et</p>
-<p>rimelig anslag på spread pluss markedspåvirkning. Anslaget bygger på vurdering, ikke</p>
-<p>på ordrebokdata, og er merket som anslag også i selve rapporten.</p>
-<p>Merk at kontrollen fortsatt er både kurtasje- og slippagefri i denne tabellen. Målt</p>
-<p>mot en kontroll med realistiske kostnader ville strategien kommet noe bedre ut. Vi har</p>
-<p>valgt den strengeste sammenligningen.</p>
-<h3>7.7 Skjevhetene, kvantifisert</h3>
-<p><strong>Utbytte-mismatch: omtrent 6,3 prosentpoeng i året.</strong></p>
-<p>Metode: samme univers hentet både utbyttejustert og ujustert fra yfinance (Yahoo</p>
-<p>justerer sluttkursen for aksjesplitter, men ikke for utbytte), likevektet årlig</p>
-<p>avkastning regnet for begge, differansen tatt. Over 53 selskaper og 1 576 handledager</p>
-<p>gir det <strong>+27,2 prosent justert mot +20,9 prosent ujustert</strong>, altså en utbytteeffekt</p>
-<p>på <strong>6,29 prosentpoeng i året</strong>.</p>
-<p>Forbehold som hører med: estimatet gjelder likevekt av <strong>vårt</strong> univers, ikke OSEBX&#x27;</p>
-<p>faktiske kapitalvektede utbytte. Kildeskatt er ikke modellert. Yahoos justeringsserie</p>
-<p>er ikke revidert kildedata. Tallet skal leses som en størrelsesorden.</p>
-<p>Med dette estimatet krymper meravkastningen mot OSEBX fra +12,2 til **omtrent +5,9</p>
-<p>prosentpoeng i året**, før man i det hele tatt har begynt å korrigere for survivorship</p>
-<p>bias.</p>
-<p><strong>Survivorship bias: retning kjent, størrelse ukjent.</strong></p>
-<p>Universet består kun av selskaper som fortsatt er notert i dag. Av de 53 hadde 50</p>
-<p>(94 prosent) kursdata allerede ved simuleringsstart. Selskaper som gikk konkurs, ble</p>
-<p>strøket eller kjøpt opp på svake nivåer i perioden, finnes ikke i datasettet.</p>
-<p><strong>Retningen er oppover.</strong> Størrelsen kan ikke måles uten historiske</p>
-<p>indeksmedlemslister, altså lister over hvilke selskaper som var notert og likvide på</p>
-<p>hver enkelt dato. Slike lister finnes ikke i gratiskilder.</p>
-<p>Vi oppgir derfor <strong>ikke</strong> noe tall. Et anslag uten datagrunnlag ville vært et gjettet</p>
-<p>tall med tilsynelatende presisjon, og det er verre enn å si at man ikke vet.</p>
-<p>Merk likevel at kontroll-sammenligningen er <strong>immun</strong> mot denne skjevheten: kjøp og</p>
-<p>hold av samme univers arver nøyaktig samme bias, så differansen mellom dem er</p>
-<p>upåvirket. Skjevheten rammer bare sammenligningen mot OSEBX.</p>
-<h3>7.8 Live-resultater</h3>
-<p>Boten har handlet med fiktive penger siden 10. juli 2026. Per 18. august 2026 sto</p>
-<p>porteføljen i <strong>105 820 kroner</strong>, altså <strong>+5,82 prosent</strong> siden oppstart, mot OSEBX</p>
-<p><strong>+7,83 prosent</strong>, som er <strong>2,01 prosentpoeng bak indeks</strong> (kilde:</p>
-<p><code>reports/weekly_2026-34.md</code>).</p>
-<p>Dette tallet betyr ingenting. 28 handledager (antall rader i</p>
-<p><code>reports/nav_historikk.csv</code> per 19. august 2026) er ren støy for en strategi med to års</p>
-<p>horisont. Perioden er dessuten kontaminert: boten lå nede omtrent 15 av de første 60</p>
-<p>døgnene på grunn av datafeil, og flere rebalanseringsmandager gikk tapt (kilde:</p>
-<p><code>PROGRESS.md</code>, postene 2026-07-31 og 2026-08-16). Vi måler altså en delvis frossen</p>
-<p>portefølje pluss nedetid, ikke strategien.</p>
-<p>Ukesrapporten skriver dette eksplisitt, og teller opp hvor mange handledager boten lå</p>
-<p>nede i perioden. En rapport som skjuler nedetid, ser mer troverdig ut enn den er.</p>
-<h3>7.9 Hva rapporten samlet sier</h3>
-<ol><li>Meravkastning mot riktig kontroll: <strong>+3,9 prosentpoeng i året</strong>, 95 prosent</li></ol>
-<p>   konfidensintervall <strong>-8,9 til +16,9 prosentpoeng</strong>. Intervallet inneholder null.</p>
-<ol><li>Aktiv avkastning: <strong>t = 0,64, p = 0,521</strong>. Ikke signifikant.</li><li>Deflated Sharpe på aktiv avkastning: <strong>0,498</strong> etter 20 testede konfigurasjoner.</li><li>Positiv meravkastning i <strong>55 prosent</strong> av rullerende tolvmånedersvinduer.</li><li>Meravkastningen forsvinner ved <strong>25 basispunkter</strong> i handelskostnad.</li><li>Momentum-vinduet oppfører seg som en <strong>spiss topp</strong>, ikke et platå.</li><li><strong>85 prosent av faktormodellen er fortsatt utestet.</strong></li></ol>
-<p>Den ærlige konklusjonen er: dette er ikke bevis på en varig kant. Det eneste</p>
-<p>strategien kan sies å ha vist i perioden, er <strong>lavere fall</strong> (-13,3 mot -17,5 prosent</p>
-<p>mot kontrollen), og den egenskapen kostet omtrent 4,3 prosentpoeng i årlig avkastning.</p>
-<p>Det er en annen påstand enn «slår markedet», og det er den påstanden dataene faktisk</p>
-<p>støtter.</p>
+<p><strong>Status etter backtestauditen 17. september 2026:</strong> Kvalitet, verdi og momentum er undersøkt med forenklede modeller. Resultatene dokumenterer ikke at dagens komplette bot har en varig fordel. De gir heller ikke grunnlag for å si at kvalitet ikke virker på Oslo Børs. Dette kapittelet erstatter augustanalysens konklusjoner. Kilde: prosjektets <code>analyser/backtest_2026_09_17/RAPPORT.md</code>.</p>
+<p>En <strong>proxy</strong> er en forenklet tilnærming, ikke en full kopi. Tabellene nedenfor gjelder en separat forskningsmotor, ikke faktisk handel og ikke en historisk kopi av alle produksjonsreglene. Alle årsavkastninger er geometriske vekstrater etter modellerte handelskostnader, før skatt. «pp» betyr prosentpoeng. Forskjellen mellom to årsavkastninger er ikke risikojustert alfa.</p>
+<h3>7.1 Rettelser til den tidligere dokumentasjonen</h3>
+<p><strong>OSEBX inkluderer utbytte.</strong> OSEBX er brutto totalavkastning, der utbytter reinvesteres før kildeskatt. OSEBN er nettovarianten og OSEBP er prisindeksen. Den tidligere påstanden om at OSEBX mangler utbytte var feil, og det gamle utbyttefratrekket skal ikke brukes. Kilde: <a href="https://live.euronext.com/sites/default/files/documentation/index-rules2/OB_Benchmark_and_Mutual_Fund_Index_Family_Rulebook.pdf" style="color:var(--acc);text-underline-offset:3px">Euronexts indeksregelverk, referansetabellen</a>. NHH- og Yahoo-seriene er også kontrollert mot hverandre i <code>results/benchmark_full_overlap.csv</code> i auditmappen.</p>
+<p><strong>Yahoo har historiske regnskap.</strong> Biblioteket gir tilgang til års- og kvartalsregnskap, ikke bare dagens nøkkeltall. Begrensningen er at regnskap hentet nå ikke nødvendigvis er identiske med tallene som var publisert på en tidligere beslutningsdato. Kilder: <a href="https://ranaroussi.github.io/yfinance/reference/yfinance.financials.html" style="color:var(--acc);text-underline-offset:3px">yfinance-dokumentasjonen</a> og auditens <code>results/yahoo_historical_accounts.csv</code>.</p>
+<p><strong>Seks måneders regnskapsetterslep er en antakelse, ikke en garanti for punkt-i-tid-data.</strong> Testen bruker dette som hovedregel, men faktiske publiseringsdatoer og senere regnskapskorreksjoner er ikke fullt verifisert. Kilde: auditens <code>research.py:known_accounts</code> og rapportens metodeavsnitt.</p>
+<p><strong>Den gamle Amadeus-testen hadde data- og beregningsfeil.</strong> Kursfeltet AdjLast alene manglet ordinære utbytter i de kontrollerte seriene. Den nye beregningen bruker <code>AdjLast * CumDivFactor</code>. Det gamle uttrekket for verdsettelse sluttet dessuten for tidlig, slik at QARP-testens porteføljeverdi frøs fra februar til desember 2012. De gamle resultatene er derfor ikke et gyldig grunnlag for faktorkonklusjoner. Kilder: <code>results/dividend_crosscheck.csv</code> og <code>results/legacy_reproduction_nav.csv</code>.</p>
+<p><strong>Verdipapirer er ikke det samme som selskaper.</strong> Det gamle utvalget for 1997 til 2012 hadde 577 ISIN-koder, men 538 CompanyId. ISIN identifiserer et verdipapir; flere aksjeklasser eller identifikatorbytter kan tilhøre samme selskap. At en kursserie slutter, beviser heller ikke at selskapet ble avnotert eller gikk konkurs. Kilde: <code>results/data_audit.json</code>.</p>
+<h3>7.2 Hva den nye testen faktisk dekker</h3>
+<p>Kvalitetsmodellen bruker egenkapitalavkastning, totalkapitalavkastning, driftsmargin og gjeld. Verdimodellen bruker inntjening og bokført egenkapital i forhold til markedsverdi. Momentum bruker kurshistorikk med siste måned utelatt. Faktorvektene i QARP-proxyen er 55 prosent kvalitet, 30 prosent verdi og 15 prosent momentum. Kilde: auditens <code>research.py</code> og lagrede kjørespesifikasjoner.</p>
+<p>Dette er ikke alle produksjonsmodellens mål på kontantstrøm, stabilitet eller bransjetilpasset kvalitet. Testen gjenskaper heller ikke nyhetssentiment, oljeoverlegg, hendelsesdrevet stop-loss, kontoens drawdown-port eller faktisk intradagshandel. Ingen produksjonsstrategi ble endret som følge av analysen. Kilde: auditrapportens avsnitt «Hva som er simulert, og hva som ikke er det».</p>
+<p>Hovedantakelsene er åtte posisjoner, maksimum 20 prosent målvekt per aksje og 40 prosent per sektor. Uinvesterbar rest blir kontanter. Kurtasje er 0,049 prosent, minimum NOK 1, pluss 10 basispunkter ekstra kostnad per kjøp eller salg <strong>(antakelse, ikke målt fra ordreboken)</strong>. Et basispunkt er 0,01 prosentpoeng. Kontantrenten er satt til null, aksjeantall kan være brøker, og skatt er ikke modellert. Kilde: <code>research.py:Spec</code>, <code>cap_weights</code>, <code>rebalance_cost</code> og <code>run</code>.</p>
+<p>Amadeus bruker månedlige observasjoner og antar handel til signalmånedens sluttkurs, en optimistisk forutsetning som er undersøkt med ekstra forsinkelse. Yahoo bruker daglige priser og handel tidligst ved sluttkurs etter signaldagen. Begge bruker modellerte risikoregler, men ikke hele den løpende boten. Kilde: <code>research.py:run</code>.</p>
+<h3>7.3 Amadeus: historiske selskaper, men fortsatt dataforbehold</h3>
+<p><strong>Foreløpige forskningsresultater.</strong> Enkelte utbyttemåneder avviker fortsatt mellom korrigert Amadeus og Yahoo. Publiseringshistorikk og faktiske oppgjør ved avnotering er ikke fullt verifisert. Historiske ikke-overlevende verdipapirer er inkludert, men testen skal ikke kalles fri for overlevelsesskjevhet. Kilder: <code>results/dividend_crosscheck.csv</code> og auditrapportens datakontroll.</p>
+<p>Perioden er juli 1997 til desember 2012, avgrenset til OSE. Kilde for perioden og hele tabellen: <code>results/amadeus_main_summary.csv</code>.</p>
+<div class="card"><table><thead><tr><th>Modell</th><th>Årlig avkastning</th><th>Mot OSEBX</th><th>Største fall fra topp</th></tr></thead><tbody><tr><td>OSEBX brutto</td><td>6,65 %</td><td>0,00 pp</td><td>Ikke vist her</td></tr><tr><td>QARP-proxy</td><td>12,50 %</td><td>+5,84 pp</td><td>-43,92 %</td></tr><tr><td>Kvalitet</td><td>11,72 %</td><td>+5,07 pp</td><td>-44,06 %</td></tr><tr><td>Verdi</td><td>6,56 %</td><td>-0,09 pp</td><td>-44,80 %</td></tr><tr><td>Momentum</td><td>15,14 %</td><td>+8,49 pp</td><td>-33,80 %</td></tr><tr><td>Likevekt med samme type risikoregler</td><td>7,56 %</td><td>+0,90 pp</td><td>-40,65 %</td></tr></tbody></table></div>
+<p>QARP-proxyens betingede 95-prosentintervall for meravkastning mot indeksen er omtrent -3,44 til +14,62 prosentpoeng årlig. Intervallet inkluderer null og gjelder usikkerhet i de observerte avkastningene, ikke feil i datagrunnlaget. Kilde: <code>results/amadeus_main_summary.csv</code>.</p>
+<p>Resultatet er følsomt for forutsetningene: én ekstra måneds forsinkelse reduserer QARP-avkastningen til 8,36 prosent, og et strengere likviditetskrav på NOK 10 millioner per dag gir 6,75 prosent. Dette er alternative simuleringer, ikke forslag til nye produksjonsparametere. Kilde: <code>results/amadeus_sensitivity_summary.csv</code>.</p>
+<p>Den lengre momentumtesten dekker juli 1997 til oktober 2020, med 12,17 prosent årlig mot indeksens 7,11. I delperioden 2013 til oktober 2020 ligger den derimot 1,03 prosentpoeng bak indeksen årlig. Den tidlige perioden betyr mye for totalresultatet. Kilder: <code>results/amadeus_long_summary.csv</code> og <code>results/subperiods.csv</code>.</p>
+<h3>7.4 Yahoo: lang pristest med dagens aksjeutvalg</h3>
+<p>Perioden er 3. januar 2005 til 16. september 2026. Testen bruker dagens konfigurerte aksjeutvalg og sektorer bakover i tid. Dette gir utvalgs- og overlevelsesskjevhet. OSEBX-serien er supplert med samme bruttoindeks fra Amadeus før Yahoos tilgjengelige indeksserie starter. Kilder: <code>results/yahoo_long_summary.csv</code>, <code>results/benchmark_full_overlap.csv</code> og <code>research.py:Yahoo</code>.</p>
+<div class="card"><table><thead><tr><th>Modell</th><th>Årlig avkastning</th><th>Største fall fra topp</th></tr></thead><tbody><tr><td>OSEBX brutto</td><td>10,72 %</td><td>Ikke vist her</td></tr><tr><td>Momentum med eksponeringsstyring</td><td>16,42 %</td><td>-30,91 %</td></tr><tr><td>Likevekt med eksponeringsstyring</td><td>13,00 %</td><td>-34,96 %</td></tr><tr><td>Momentum uten eksponeringsstyring</td><td>18,12 %</td><td>-64,20 %</td></tr><tr><td>Likevekt uten eksponeringsstyring</td><td>18,01 %</td><td>-65,18 %</td></tr></tbody></table></div>
+<p>Kilde for hele tabellen: <code>results/yahoo_long_summary.csv</code>. Eksponeringsstyring betyr at deler av kapitalen holdes i kontanter når risikoreglene slår inn.</p>
+<p>Kontrollporteføljene er <strong>rebalansert likevekt</strong>, ikke bokstavelig kjøp-og-hold. Uten eksponeringsstyring er momentummodellens fordel mot kontrollen bare 0,11 prosentpoeng årlig. Med eksponeringsstyring er forskjellen 3,42 prosentpoeng, men usikkerhetsintervallet inkluderer også negativ meravkastning. Begge kontrollene betaler modellerte handelskostnader. Kilder: <code>results/paired_controls.csv</code> og <code>research.py:run</code>.</p>
+<p><strong>Samme aksjeutvalg opphever ikke overlevelsesskjevheten.</strong> Strategiene vekter og velger forskjellig, så utvalgsskjevheten trenger ikke ramme dem likt. Kontrollen er nyttig, men forskjellen er ikke automatisk skjevhetsfri. OSEBX er fortsatt en relevant referanse, og sammenligningen må også ta hensyn til ulik risiko og kontantandel. Kilde: auditrapportens Yahoo-analyse.</p>
+<h3>7.5 Yahoo: kort test med historiske årsregnskap</h3>
+<p>Den regnskapsbaserte proxytesten dekker 3. juli 2023 til 16. september 2026. Hovedvarianten bruker månedlig handel og antatt seks måneders regnskapsetterslep. Dagens selskapsutvalg, manglende historiske publiseringsversjoner og valuta-/aksjeantallsbehandling begrenser tolkningen. Kilder: <code>results/yahoo_fundamental_summary.csv</code> og <code>research.py:Yahoo.build_accounts</code>.</p>
+<div class="card"><table><thead><tr><th>Modell</th><th>Årlig avkastning</th><th>Mot OSEBX</th></tr></thead><tbody><tr><td>OSEBX brutto</td><td>19,15 %</td><td>0,00 pp</td></tr><tr><td>QARP-proxy, månedlig</td><td>22,10 %</td><td>+2,95 pp</td></tr><tr><td>Kvalitet</td><td>17,74 %</td><td>-1,41 pp</td></tr><tr><td>Verdi</td><td>23,73 %</td><td>+4,58 pp</td></tr><tr><td>Momentum</td><td>30,79 %</td><td>+11,64 pp</td></tr><tr><td>Likevektskontroll</td><td>21,58 %</td><td>+2,43 pp</td></tr><tr><td>QARP-proxy, ukentlig</td><td>18,02 %</td><td>-1,13 pp</td></tr></tbody></table></div>
+<p>Kilde for hele tabellen: <code>results/yahoo_fundamental_summary.csv</code>. QARP-proxyens fordel mot likevekt er omtrent 0,52 prosentpoeng årlig. Endring fra månedlig til ukentlig handel snur forskjellen mot indeks fra positiv til negativ. De fire hovedmodellene har alle betingede 95-prosentintervaller mot indeks som inkluderer null. Kilder: samme resultatfil og <code>results/paired_controls.csv</code>.</p>
+<h3>7.6 Hva statistikken kan og ikke kan si</h3>
+<p><strong>Manglende statistisk signifikans er ikke bevis på null effekt.</strong> Et intervall som omfatter både tap og gevinst betyr at testen ikke gir et tydelig svar. En p-verdi er heller ikke sannsynligheten for at en strategi virker.</p>
+<p>Testene bruker gjennomsnittlig aritmetisk meravkastning med standardfeil justert for tidsavhengighet, og en paret blokk-bootstrap som trekker sammenhengende avkastningsblokker for strategi og referanse samtidig. En positiv forskjell i geometrisk årsavkastning kan derfor eksistere samtidig med en negativ t-verdi for aritmetisk meravkastning. Det er ulike måltall, ikke i seg selv en selvmotsigelse. Kilde: <code>research.py:stats</code>.</p>
+<p>Auditen dokumenterer 70 simuleringer, inkludert fire bevisste utbyttediagnoser. Mange varianter gir flere muligheter til å finne gode resultater ved tilfeldighet. Korreksjonen for mange tester dekker bare de registrerte indeks-sammenligningene, ikke alle tidligere og etterfølgende modellvalg. Kilde: <code>results/all_runs_summary.csv</code>.</p>
+<p>En bredere sortering etter faktorscore viser dessuten positiv sammenheng mellom kvalitet og neste måneds avkastning i Amadeus-utvalget. Den sjekken er uten handelskostnader, arver dataforbeholdene og er ikke en gjennomførbar kjøps-/shortstrategi. Den støtter ikke formuleringen «ingen målbar kvalitetseffekt», men beviser heller ikke lønnsomhet. Kilde: <code>results/factor_breadth_summary.csv</code>.</p>
+<h3>7.7 Handelskostnader og risikoregler</h3>
+<p>Ekstra handelskostnad er en antakelse, ikke en kjent markedspris. I den lange Yahoo-testen faller momentummodellens årsavkastning fra 16,42 prosent ved 10 basispunkter per side til 14,87 ved 25 og 12,31 ved 50, i tillegg til kurtasje. Kilde: <code>results/yahoo_sensitivity_summary.csv</code>.</p>
+<p>Den gamle generelle formuleringen om at meravkastningen «forsvinner ved 25 basispunkter» er trukket tilbake. Effekten avhenger av strategi, periode, kontroll og modellert handel. Heller ikke et positivt resultat ved høy antatt kostnad dokumenterer faktisk gjennomførbarhet. Ordrebok, markedspåvirkning og skatt er ikke fullt modellert.</p>
+<p>Risikoregler endrer både avkastning og kapitalens deltakelse i markedet. Like risikoregler gir ikke nødvendigvis lik kontantandel, siden porteføljene svinger forskjellig. Lavere historiske fall skal derfor ikke omtales som en garantert fremtidig beskyttelse. Kilde: auditrapportens metodeavsnitt og <code>results/paired_controls.csv</code>.</p>
+<h3>7.8 Løpende paper trading</h3>
+<p>Oversiktsfanen og den daterte ukesrapporten viser den løpende fiktive porteføljen. Disse må holdes atskilt fra historiske simuleringer. Dokumentasjonen gjentar ikke et gammelt saldoøyeblikksbilde som om det var dagens resultat.</p>
+<p>Løpende avkastning påvirkes også av driftsstans, manglende fyllinger og endringer i programvaren. Den må leses sammen med driftsloggen, ikke som en ren måling av en uforandret modell. Kilder: <code>reports/nav_historikk.csv</code>, <code>reports/weekly_*.md</code> og <code>PROGRESS.md</code>.</p>
+<h3>7.9 Samlet vurdering og kildegrunnlag</h3>
+<p><strong>Prosjektet er en arbeidsprøve i systembygging og kritisk analyse, ikke dokumentasjon på bevist meravkastning.</strong> Kvalitet og verdi er nå undersøkt med forenklede modeller, men den komplette produksjonsstrategien er fortsatt ikke historisk validert. De viktigste neste stegene er å avklare dataavvik og evaluere en fast modell på nye data.</p>
+<p>Prosjektets auditmappe er <code>analyser/backtest_2026_09_17/</code>. Henvisningene til <code>results/</code> og <code>research.py</code> i dette kapittelet gjelder denne mappen. <code>RAPPORT.md</code> beskriver metode og begrensninger, og <code>MANIFEST.json</code> registrerer kildefiler og kontrollsummer. Dette er lokale prosjektreferanser, ikke nedlastingslenker på nettsiden. Rådata publiseres ikke; retten til videre deling er ikke avklart.</p>
 <hr>
 <h2 id="dok-8-driftsarkitektur">8. Driftsarkitektur</h2>
 <p>Et system som handler penger må kunne krasje trygt. Det betyr at et avbrudd når som</p>
@@ -1190,7 +1067,8 @@
 <p>Dette gjelder tilstandsfilen, dagsplanen, NAV-historikken, rapportene, kill-switchen og</p>
 <p>listen over gjennomførte ordre.</p>
 <h3>Prosesslås</h3>
-<p>Handelen kjøres tre ganger daglig av <code>launchd</code>. Skulle to kjøringer overlappe, ville de</p>
+<p>Handelen kan forsøkes på flere tidspunkter hver handledag, som beskrevet i kapittel 2</p>
+<p>(kilde: plist-filene i <code>scheduling/</code>). Skulle to kjøringer overlappe, ville de</p>
 <p>kunne lese samme tilstand, begge bestemme seg for å kjøpe, og skrive over hverandre.</p>
 <p>En eksklusiv fillås (<code>common.py: eksklusiv_laas</code>) sørger for at bare én kjøring holder</p>
 <p>på om gangen.</p>
@@ -1265,66 +1143,17 @@
 <p>hopper begge funksjonene over uten å feile, og rapporten sier det rett ut.</p>
 <hr>
 <h2 id="dok-9-kjente-svakheter-og-hva-som-gjenstår">9. Kjente svakheter og hva som gjenstår</h2>
-<p>Listen er sortert etter hvor mye den påvirker konklusjonene.</p>
-<ol><li><strong>Kvalitet og verdi, 85 prosent av faktormodellen, er aldri testet.</strong> Krever en</li></ol>
-<p>   punkt-i-tid-database over regnskapstall for Oslo Børs. Alle kjente kilder er</p>
-<p>   kommersielle. Uten dette hviler hovedtesen på litteratur, ikke på egne data.</p>
-<ol><li><strong>Meravkastningen er ikke statistisk signifikant.</strong> t = 0,64, p = 0,521,</li></ol>
-<p>   konfidensintervall fra -8,9 til +16,9 prosentpoeng, Deflated Sharpe på aktiv</p>
-<p>   avkastning 0,498. Det som er testet, er ikke bevist.</p>
-<ol><li><strong>Momentum-vinduet er en spiss topp, ikke et platå.</strong> Endres vinduet 20 prosent i</li></ol>
-<p>   noen av retningene, blir meravkastningen negativ. Vinduene er valgt fra</p>
-<p>   litteraturen, ikke optimert, men resultatet oppfører seg som om de var det.</p>
-<ol><li><strong>Meravkastningen overlever ikke realistiske handelskostnader.</strong> Ved 25</li></ol>
-<p>   basispunkter er den 0,5 prosentpoeng, altså i praksis borte.</p>
-<ol><li><strong>Survivorship bias er ukorrigert og størrelsen er ukjent.</strong> Universet er dagens 53</li></ol>
-<p>   selskaper. Krever historiske indeksmedlemslister.</p>
-<ol><li><strong>Universet er manuelt vedlikeholdt.</strong> De 53 selskapene er valgt én gang og</li></ol>
-<p>   oppdateres ikke automatisk. Nye noteringer kommer ikke inn av seg selv, og</p>
-<p>   strykninger fjernes ikke automatisk. Dette er også kilden til punkt 5.</p>
-<ol><li><strong>Perioden er kort og skjevfordelt.</strong> 5,2 år som starter nær koronabunnen, med to</li></ol>
-<p>   år (2024 og 2025) som bærer nesten hele resultatet.</p>
-<ol><li><strong>Små bransjegrupper på tre til fire selskaper gir støyete z-scorer.</strong> Terskelen på</li></ol>
-<p>   tre er binær. En bedre løsning ville vært krymping mot det globale snittet, slik at</p>
-<p>   overgangen blir glidende i stedet for et hopp (notert som åpent i <code>PROGRESS.md</code>,</p>
-<p>   2026-07-31).</p>
-<ol><li><strong>Momentum måles globalt, mens kvalitet og verdi måles sektorrelativt.</strong> Det er</li></ol>
-<p>   inkonsistent. Konsekvensen er at momentum indirekte kan gi en sektorvekting som</p>
-<p>   ingen har bestemt.</p>
-<ol><li><strong>Ren sektorrelativ scoring kan aldri overvekte en billig sektor.</strong> Er hele</li></ol>
-<p>    energisektoren historisk billig, ser boten det ikke, fordi hvert energiselskap bare</p>
-<p>    sammenlignes med andre energiselskaper.</p>
-<ol><li><strong>Eksponeringsstyringen koster mer enn den er verdt i denne perioden.</strong> 4,3</li></ol>
-<p>    prosentpoeng i årlig avkastning for 2,4 prosentpoeng bedre verste fall. Om det er</p>
-<p>    en god avveining, avhenger av om man tror perioden er representativ. Nå er valget</p>
-<p>    i det minste dokumentert i stedet for antatt.</p>
-<ol><li><strong>Nedetid har vært det største praktiske problemet.</strong> Omtrent 15 av de første 60</li></ol>
-<p>    døgnene var boten død på grunn av feil hos datakilden. Den selvhelbredende</p>
-<p>    kill-switchen og dekningsterskelen skal ha løst dette, men fiksen fra 16. august</p>
-<p>    2026 har ennå ikke stått gjennom et nytt reelt utfall.</p>
-<ol><li><strong>Kurtasjen er én sats.</strong> Ekte kurtasje varierer med handelsstørrelse, marked og</li></ol>
-<p>    avtale. Boten bruker Einars Nordnet-studentklasse, som er svært lav.</p>
-<ol><li><strong>Ingen skatt er modellert.</strong> For en portefølje med fiktive penger er det greit, men</li></ol>
-<p>    det gjør ikke tallene direkte sammenlignbare med avkastning etter skatt.</p>
-<ol><li><strong>Ukesrapportens markedskommentar er ikke kildekritisk validert automatisk.</strong></li></ol>
-<p>    Systemprompten krever kildehenvisning per påstand, men ingen kode sjekker at</p>
-<p>    modellen faktisk gjorde det. Det er en menneskelig kontroll.</p>
-<h3>Hva som ville forbedret prosjektet mest, i rekkefølge</h3>
-<ol><li><strong>Punkt-i-tid regnskapsdata.</strong> Uten dette kan hovedtesen ikke testes, og alt annet</li></ol>
-<p>   arbeid på faktormodellen er bygget på antakelser.</p>
-<ol><li><strong>Historiske indeksmedlemslister.</strong> Fjerner survivorship bias og gjør</li></ol>
-<p>   OSEBX-sammenligningen meningsfull.</p>
-<ol><li><strong>Ordrebokdata for realistisk slippage.</strong> Punkt 4 over er det som avgjør om</li></ol>
-<p>   strategien er brukbar i praksis, og anslaget er i dag en vurdering.</p>
-<ol><li><strong>Lengre historikk, helst gjennom finanskrisen 2008.</strong> Perioden som er testet,</li></ol>
-<p>   inneholder ingen skikkelig langvarig nedtur, og regimefilteret er derfor knapt</p>
-<p>   testet i det scenariet det finnes for.</p>
+<p>Forskningsbegrensningene nedenfor er dokumentert i auditens <code>RAPPORT.md</code>, datakontroller og resultatfiler. Driftsbegrensningene bygger på <code>config.yaml</code>, <code>analyze/rules.py</code> og <code>PROGRESS.md</code>.</p>
+<ol><li><strong>Utbytteavvik er ikke endelig avklart.</strong> Korrigert Amadeus og Yahoo avviker i enkelte måneder. Før tallene brukes som dokumentert meravkastning må avvikene avstemmes mot selskapsmeldinger og datadefinisjoner</li><li><strong>Publiseringstidspunkt og regnskapsversjoner mangler.</strong> Et fast etterslep fjerner ikke automatisk senere korreksjoner eller opplysninger som først ble kjent senere</li><li><strong>Avnoteringer og identifikatorbytter er ikke fullt rekonstruert.</strong> Historiske selskaper i panelet hjelper, men manglende sluttkurs er ikke det samme som en kjent sluttavkastning</li><li><strong>Yahoo-testene bruker dagens utvalg og sektorer bakover.</strong> Dette påvirker både strategi og kontroll, uten at skjevheten nødvendigvis oppheves i differansen</li><li><strong>Proxyen er ikke hele produksjonsstrategien.</strong> Flere kvalitets-/verdikomponenter, nyhets- og oljeoverlegg, daglige stop-loss-regler og faktisk utførelse er ikke gjenskapt</li><li><strong>Resultatene avhenger av periode, utvalg og antakelser.</strong> Følsomhetstestene er ikke uavhengige forsøk, og beste variant skal ikke velges i etterkant og omtales som bevist</li><li><strong>Kostnader og handel er forenklet.</strong> Ekstra kostnad er et anslag, aksjeantall kan være brøker, og kontantavkastning, skatt og faktisk markedspåvirkning er ikke fullt modellert</li><li><strong>Produksjonsuniverset vedlikeholdes manuelt.</strong> Nye noteringer kommer ikke automatisk inn. Små bransjegrupper gir dessuten støyete sammenligninger, og sektorrelativ scoring kan overse at en hel sektor er billig</li><li><strong>Driftsavvik påvirker paper trading.</strong> Driftsstans og manglende fyllinger må vises sammen med resultatene. En historisk testsuite er ikke bevis på at nye leverandørfeil håndteres</li><li><strong>Språkmodellens markedskommentar krever kildekontroll.</strong> Systemprompten krever kilder, men dokumentasjonen påstår ikke at alle formuleringer er automatisk verifisert</li></ol>
+<h3>Hva som ville forbedret prosjektet mest</h3>
+<ol><li>Avstem dokumenterte utbyttemåneder mot primærkildene</li><li>Skaff faktiske publiseringsdatoer, regnskapsversjoner og oppgjør ved avnotering, og knytt verdipapirendringer til selskapene</li><li>Kontroller handelsforutsetninger mot observerbare kostnader og gjennomførbare fyllinger</li><li>Skill rene faktortester fra konsentrerte porteføljer med risikoregler</li><li>Frys en konkret modell og vurder nye, urørte data før eventuell strategiendring</li></ol>
+<p>Lengre historikk gjennom finanskrisen er nå undersøkt. Det som gjenstår er ikke bare flere år eller flere parameterkombinasjoner, men bedre kvalitet på data og en tydeligere kobling mellom forskningsmodellen og den faktiske boten. Kilde: auditrapportens Amadeus- og Yahoo-analyser.</p>
 <hr>
 <h2 id="dok-10-ordliste">10. Ordliste</h2>
-<p><strong>Aktiv avkastning.</strong> Porteføljens avkastning minus referansens. Det som er igjen når</p>
-<p>markedet er trukket fra.</p>
-<p><strong>Alfa.</strong> Meravkastning som ikke kan forklares av kjent risiko. Målet for de fleste</p>
-<p>aktive forvaltere, og noe de færreste oppnår varig.</p>
+<p><strong>Aktiv avkastning.</strong> Porteføljens avkastning minus referansens over samme periode.</p>
+<p>Dette er en differanse, ikke automatisk risikojustert alfa.</p>
+<p><strong>Alfa.</strong> Avkastning utover det en bestemt risikomodell forklarer. Avhenger av valgt</p>
+<p>modell og estimeringsusikkerhet; forskjell i årsavkastning mot OSEBX er ikke i seg selv alfa.</p>
 <p><strong>Annualisert.</strong> Omregnet til årlig nivå, slik at perioder av ulik lengde kan</p>
 <p>sammenlignes.</p>
 <p><strong>Backtest.</strong> Simulering av hvordan en strategi ville prestert på historiske data.</p>
@@ -1332,9 +1161,10 @@
 <p><strong>Blokk-bootstrap.</strong> Statistisk metode som trekker nye utvalg i sammenhengende blokker</p>
 <p>i stedet for enkeltdager, slik at avhengigheten mellom nabodager bevares.</p>
 <p><strong>CAGR.</strong> Gjennomsnittlig årlig vekstrate, geometrisk regnet.</p>
-<p><strong>Deflated Sharpe Ratio (DSR).</strong> Sannsynligheten for at en observert Sharpe er ekte når</p>
-<p>man korrigerer for hvor mange varianter som ble prøvd, for skjeve avkastninger og for</p>
-<p>seriens lengde.</p>
+<p><strong>Deflated Sharpe Ratio (DSR).</strong> Statistisk mål som justerer vurderingen av et</p>
+<p>Sharpe-tall for blant annet mange forsøk og avkastningsfordelingen. Ikke en direkte</p>
+<p>sannsynlighet for at strategien har en varig fordel; den nye auditen bruker ikke</p>
+<p>augusttestens DSR som oppdatert bevis.</p>
 <p><strong>Diversifisering.</strong> Å spre kapital på flere ukorrelerte plasseringer for å redusere</p>
 <p>samlet risiko.</p>
 <p><strong>Drawdown.</strong> Hvor langt en portefølje har falt fra sitt høyeste nivå.</p>
@@ -1352,8 +1182,9 @@
 <p>motstykke for aktiv forvaltning.</p>
 <p><strong>Kill-switch.</strong> Hard stopp som nekter all automatikk å kjøre til problemet er</p>
 <p>håndtert.</p>
-<p><strong>Konfidensintervall.</strong> Intervallet der den sanne verdien ligger med oppgitt</p>
-<p>sannsynlighet, typisk 95 prosent.</p>
+<p><strong>Konfidensintervall.</strong> Et intervall laget med en metode som, under sine</p>
+<p>forutsetninger, dekker den sanne parameteren med oppgitt frekvens ved gjentatte</p>
+<p>utvalg. Det beskytter ikke mot feil i data eller etterfølgende modellvalg.</p>
 <p><strong>Kurtasje.</strong> Meglerens gebyr per handel.</p>
 <p><strong>Likviditet.</strong> Hvor lett en aksje kan kjøpes og selges uten å flytte kursen.</p>
 <p><strong>Lookahead-bias.</strong> Å bruke informasjon i en test som ikke var kjent på</p>
@@ -1364,28 +1195,35 @@
 <p><strong>NAV.</strong> Netto andelsverdi, altså kontanter pluss markedsverdien av alle posisjoner.</p>
 <p><strong>Newey-West.</strong> Metode for å korrigere standardfeil når observasjoner er avhengige av</p>
 <p>hverandre over tid.</p>
-<p><strong>OSEBX.</strong> Oslo Børs Benchmark Index, hovedindeksen på Oslo Børs.</p>
+<p><strong>OSEBX.</strong> Oslo Børs Benchmark Index, brutto totalavkastning med reinvesterte</p>
+<p>utbytter før kildeskatt. Prisvarianten heter OSEBP. Kilde: Euronext-regelverket i kapittel 7.1.</p>
 <p><strong>Paper trading.</strong> Handel med fiktive penger til ekte kurser.</p>
 <p><strong>Peer-gruppe.</strong> Gruppen av sammenlignbare selskaper, typisk innen samme bransje.</p>
 <p><strong>Prisindeks.</strong> Indeks som måler kursutvikling uten utbytte. Motsatsen er en</p>
 <p>totalavkastningsindeks.</p>
 <p><strong>Punkt-i-tid-data.</strong> Data slik de faktisk var kjent på en gitt dato, uten senere</p>
 <p>korreksjoner. Nødvendig for ærlig backtesting av regnskapstall.</p>
-<p><strong>p-verdi.</strong> Sannsynligheten for å se et minst like stort utslag hvis det egentlig</p>
-<p>ikke er noen effekt. Lav p-verdi betyr sterk evidens.</p>
+<p><strong>p-verdi.</strong> Sannsynligheten, under nullhypotesen og testens øvrige forutsetninger,</p>
+<p>for et minst like ekstremt testutslag. Ikke sannsynligheten for at nullhypotesen er</p>
+<p>sann. Mange forsøk og datafeil begrenser hva en lav verdi kan fortelle.</p>
 <p><strong>Regimefilter.</strong> Regel som reduserer eksponering når markedet er i langvarig nedtrend.</p>
 <p><strong>Rebalansering.</strong> Å justere porteføljen tilbake til ønskede vekter.</p>
 <p><strong>Risk parity.</strong> Vekting der hver posisjon bidrar med omtrent like mye risiko, i stedet</p>
 <p>for like mange kroner.</p>
-<p><strong>Sharpe-tall.</strong> Avkastning delt på volatilitet. Avkastning per enhet risiko.</p>
+<p><strong>Sharpe-tall.</strong> Gjennomsnittlig avkastning utover risikofri rente delt på</p>
+<p>standardavviket til denne meravkastningen, med konsistent tidsenhet. Geometrisk</p>
+<p>årsavkastning delt på volatilitet er ikke den vanlige Sharpe-beregningen.</p>
+<p>Null risikofri rente er en antakelse, ikke en målt rente.</p>
 <p><strong>Sektorrelativ.</strong> Sammenlignet mot egen bransje i stedet for mot hele markedet.</p>
 <p><strong>Slippage.</strong> Forskjellen mellom kursen man forventet og kursen man faktisk fikk.</p>
 <p><strong>Spread.</strong> Forskjellen mellom kjøps- og salgskurs.</p>
 <p><strong>Standardavvik.</strong> Mål på hvor mye en tallrekke svinger rundt gjennomsnittet.</p>
 <p><strong>Stop-loss.</strong> Regel som selger automatisk når tapet på en posisjon overstiger en</p>
 <p>grense.</p>
-<p><strong>Survivorship bias.</strong> Skjevhet som oppstår når man bare studerer det som overlevde.</p>
-<p>Trekker resultatet systematisk oppover.</p>
+<p><strong>Survivorship bias.</strong> Overlevelsesskjevhet: historien undersøkes med et utvalg</p>
+<p>valgt ut fra hvem som finnes senere. Kan overvurdere resultater, men fortegn og</p>
+<p>størrelse for forskjellen mellom to strategier er ikke gitt. Samme utvalg gjør</p>
+<p>ikke automatisk en sammenligning skjevhetsfri.</p>
 <p><strong>Tracking error.</strong> Standardavviket til den aktive avkastningen. Hvor mye porteføljen</p>
 <p>avviker fra referansen.</p>
 <p><strong>Turnover.</strong> Hvor stor del av porteføljen som byttes ut i løpet av en periode.</p>
@@ -1395,16 +1233,17 @@
 <p><strong>Vol-target.</strong> Regel som skalerer eksponeringen slik at porteføljens svingning holder</p>
 <p>seg nær et mål.</p>
 <p><strong>Volatilitet.</strong> Hvor mye en kurs svinger, målt som annualisert standardavvik.</p>
-<p><strong>Walk-forward.</strong> Simulering der hver beslutning bare bruker data som var kjent på</p>
-<p>beslutningstidspunktet.</p>
+<p><strong>Walk-forward.</strong> Simulering som beveger seg fremover i tid og beregner signaler fra</p>
+<p>tidligere observasjoner. Dette alene garanterer ikke punkt-i-tid-korrekte regnskap,</p>
+<p>historisk riktig selskapsutvalg eller realistisk handel.</p>
 <p><strong>Whipsaw.</strong> Når et signal veksler fram og tilbake og man taper på begge sider.</p>
 <p><strong>z-score.</strong> Hvor mange standardavvik en verdi ligger over eller under gjennomsnittet i</p>
 <p>sin gruppe.</p>
 <hr>
-<p>*Dokumentet beskriver systemet slik det står 19. august 2026. Alle tall er hentet fra</p>
-<p>kildene som oppgis i samme avsnitt. Kapittel 7 er den delen som betyr noe: den sier at</p>
-<p>strategiens meravkastning ikke er statistisk signifikant, og at 85 prosent av</p>
-<p>faktormodellen aldri er testet.*</p></div></div>
+<p>*Analyserevisjonen bygger på backtestauditen 17. september 2026. Kvalitet og verdi</p>
+<p>er undersøkt med forenklede modeller; dagens komplette bot er fortsatt ikke historisk</p>
+<p>validert. Øvrige driftsbeskrivelser er videreført med sine daterte kilder.</p>
+<p>Dokumentasjonsrettelsen endrer ikke tradingstrategien.*</p></div></div>
     </div></div>
 </div>
 <script>
