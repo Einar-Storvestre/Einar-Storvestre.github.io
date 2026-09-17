@@ -2,8 +2,16 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 66,
+   "antall_filer": 68,
    "nyeste": [
+    {
+     "navn": "Guess lecture slides.pdf",
+     "dato": "2026-09-17"
+    },
+    {
+     "navn": "Retake_22Jan26_SOLUTIONS.pdf",
+     "dato": "2026-09-17"
+    },
     {
      "navn": "Retake_22Jan26_TEXT_FINAL.pdf",
      "dato": "2026-09-17"
@@ -15,14 +23,6 @@
     {
      "navn": "Week4_additional_exercises_solution.pdf",
      "dato": "2026-09-15"
-    },
-    {
-     "navn": "Week4_additional_exercises_text.pdf",
-     "dato": "2026-09-15"
-    },
-    {
-     "navn": "2026_BUD2_Python_Workshop.pdf",
-     "dato": "2026-09-14"
     }
    ]
   },
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-17 18:06"
+ "oppdatert": "2026-09-17 18:10"
 }
