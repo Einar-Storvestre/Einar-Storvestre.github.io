@@ -5,15 +5,15 @@
    "antall_filer": 68,
    "nyeste": [
     {
+     "navn": "Guess lecture slides.pdf",
+     "dato": "2026-09-19"
+    },
+    {
      "navn": "Retake_22Jan26_SOLUTIONS.pdf",
      "dato": "2026-09-18"
     },
     {
      "navn": "Retake_22Jan26_TEXT_FINAL.pdf",
-     "dato": "2026-09-18"
-    },
-    {
-     "navn": "Guess lecture slides.pdf",
      "dato": "2026-09-18"
     },
     {
@@ -31,24 +31,24 @@
    "antall_filer": 12,
    "nyeste": [
     {
-     "navn": "Lecture 2 - Time value of money I.pptx",
-     "dato": "2026-09-14"
+     "navn": "Lecture 4 - Interest rates and bond valuation.pptx",
+     "dato": "2026-09-20"
+    },
+    {
+     "navn": "Lecture 8 - Risk and return.pptx",
+     "dato": "2026-09-20"
+    },
+    {
+     "navn": "Lecture 6 - Investment decision rules.pptx",
+     "dato": "2026-09-19"
     },
     {
      "navn": "Lecture 10 - Cost of capital and WACC.pptx",
-     "dato": "2026-09-13"
+     "dato": "2026-09-19"
     },
     {
-     "navn": "Lecture 5 - Stock valuation.pptx",
-     "dato": "2026-09-13"
-    },
-    {
-     "navn": "Lecture 4 - Interest rates and bond valuation.pptx",
-     "dato": "2026-09-13"
-    },
-    {
-     "navn": "Syllabus2026.xlsx",
-     "dato": "2026-09-11"
+     "navn": "Lecture 2 - Time value of money I.pptx",
+     "dato": "2026-09-14"
     }
    ]
   },
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-18 18:11"
+ "oppdatert": "2026-09-21 09:06"
 }
