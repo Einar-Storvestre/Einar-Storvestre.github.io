@@ -2,8 +2,12 @@
  "kurs": [
   {
    "kode": "BUD2",
-   "antall_filer": 68,
+   "antall_filer": 69,
    "nyeste": [
+    {
+     "navn": "BUD2 - Course Overview & Mock Exam - Part 1.pdf",
+     "dato": "2026-09-21"
+    },
     {
      "navn": "Guess lecture slides.pdf",
      "dato": "2026-09-19"
@@ -19,10 +23,6 @@
     {
      "navn": "Guess lecture slides.pdf",
      "dato": "2026-09-16"
-    },
-    {
-     "navn": "Week4_additional_exercises_solution.pdf",
-     "dato": "2026-09-15"
     }
    ]
   },
@@ -54,27 +54,27 @@
   },
   {
    "kode": "EBO2",
-   "antall_filer": 56,
+   "antall_filer": 62,
    "nyeste": [
     {
-     "navn": "EBO2_Lecture 10_complete.pdf",
-     "dato": "2026-09-18"
+     "navn": "Stanford Closer Look_Boeing 737 MAX.pdf",
+     "dato": "2026-09-21"
     },
     {
-     "navn": "EBO2_Lecture 9_complete (incl HOMEWORK on last slide).pdf",
-     "dato": "2026-09-17"
+     "navn": "EBO2_Lecture 11_complete.pdf",
+     "dato": "2026-09-21"
     },
     {
-     "navn": "EBO2_Lecture 8_complete BUT PRELIMIMARY (last slide incomplete due to homework).pdf",
-     "dato": "2026-09-17"
+     "navn": "EBO2_Lecture 11_Part I.pdf",
+     "dato": "2026-09-21"
     },
     {
-     "navn": "EBO2_Lecture 10_Part I.pdf",
-     "dato": "2026-09-17"
+     "navn": "EBO2_Syllabus_2026 (updated sep3).pdf",
+     "dato": "2026-09-21"
     },
     {
-     "navn": "BSM Chapter 18 (selected pages).pdf",
-     "dato": "2026-09-15"
+     "navn": "EBO2_Lecture 10_complete (UPDATED 21092026).pdf",
+     "dato": "2026-09-21"
     }
    ]
   },
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-21 09:06"
+ "oppdatert": "2026-09-21 15:06"
 }
