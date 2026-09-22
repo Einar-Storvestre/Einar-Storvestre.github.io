@@ -57,6 +57,14 @@
    "antall_filer": 62,
    "nyeste": [
     {
+     "navn": "EBO2_Lecture 10_complete (UPDATED 21092026).pdf",
+     "dato": "2026-09-22"
+    },
+    {
+     "navn": "EBO2_Lecture 10_complete.pdf",
+     "dato": "2026-09-22"
+    },
+    {
      "navn": "Stanford Closer Look_Boeing 737 MAX.pdf",
      "dato": "2026-09-21"
     },
@@ -67,40 +75,32 @@
     {
      "navn": "EBO2_Lecture 11_Part I.pdf",
      "dato": "2026-09-21"
-    },
-    {
-     "navn": "EBO2_Syllabus_2026 (updated sep3).pdf",
-     "dato": "2026-09-21"
-    },
-    {
-     "navn": "EBO2_Lecture 10_complete (UPDATED 21092026).pdf",
-     "dato": "2026-09-21"
     }
    ]
   },
   {
    "kode": "TECH4",
-   "antall_filer": 42,
+   "antall_filer": 47,
    "nyeste": [
     {
-     "navn": "solution-transportation.py",
-     "dato": "2026-09-16"
+     "navn": "10_BoardNotes.pdf",
+     "dato": "2026-09-22"
     },
     {
-     "navn": "solution-transportation-v2.py",
-     "dato": "2026-09-15"
+     "navn": "10_WyndorGlass_sensistivity_analysis.xlsx",
+     "dato": "2026-09-22"
     },
     {
-     "navn": "solution-childfare.py",
-     "dato": "2026-09-15"
+     "navn": "10_Sensitivity_Uncertainty.pdf",
+     "dato": "2026-09-22"
     },
     {
-     "navn": "solution-california-manufacturing.py",
-     "dato": "2026-09-15"
+     "navn": "10_WyndorGlass_STOCHASTIC.xlsx",
+     "dato": "2026-09-22"
     },
     {
-     "navn": "DistanceMatrix.xlsx",
-     "dato": "2026-09-15"
+     "navn": "10_WyndorGlass_ROBUST.xlsx",
+     "dato": "2026-09-22"
     }
    ]
   },
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-22 09:05"
+ "oppdatert": "2026-09-22 15:06"
 }
