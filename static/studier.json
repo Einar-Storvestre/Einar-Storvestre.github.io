@@ -54,8 +54,16 @@
   },
   {
    "kode": "EBO2",
-   "antall_filer": 62,
+   "antall_filer": 64,
    "nyeste": [
+    {
+     "navn": "EBO2_Q&A session.pdf",
+     "dato": "2026-09-24"
+    },
+    {
+     "navn": "EBO2_Lecture 11_complete (including slides from Sep24).pdf",
+     "dato": "2026-09-24"
+    },
     {
      "navn": "EBO2_Lecture 11_complete.pdf",
      "dato": "2026-09-23"
@@ -67,14 +75,6 @@
     {
      "navn": "EBO2_Lecture 10_complete (UPDATED 21092026).pdf",
      "dato": "2026-09-22"
-    },
-    {
-     "navn": "EBO2_Lecture 10_complete.pdf",
-     "dato": "2026-09-22"
-    },
-    {
-     "navn": "EBO2_Lecture 11_Part I.pdf",
-     "dato": "2026-09-21"
     }
    ]
   },
@@ -83,8 +83,12 @@
    "antall_filer": 51,
    "nyeste": [
     {
+     "navn": "11_NonLinearProgramming_Forecasting.pdf",
+     "dato": "2026-09-24"
+    },
+    {
      "navn": "11_Forecast_FourMethods.xlsx",
-     "dato": "2026-09-23"
+     "dato": "2026-09-24"
     },
     {
      "navn": "11_OptimalAlpha_ExponentialSmoothing.xlsx",
@@ -92,10 +96,6 @@
     },
     {
      "navn": "11_LeastSquares.xlsx",
-     "dato": "2026-09-23"
-    },
-    {
-     "navn": "11_NonLinearProgramming_Forecasting.pdf",
      "dato": "2026-09-23"
     },
     {
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-24 09:06"
+ "oppdatert": "2026-09-24 15:06"
 }
