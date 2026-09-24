@@ -57,6 +57,10 @@
    "antall_filer": 62,
    "nyeste": [
     {
+     "navn": "EBO2_Lecture 11_complete.pdf",
+     "dato": "2026-09-23"
+    },
+    {
      "navn": "Stanford Closer Look_Boeing 737 MAX.pdf",
      "dato": "2026-09-23"
     },
@@ -69,10 +73,6 @@
      "dato": "2026-09-22"
     },
     {
-     "navn": "EBO2_Lecture 11_complete.pdf",
-     "dato": "2026-09-21"
-    },
-    {
      "navn": "EBO2_Lecture 11_Part I.pdf",
      "dato": "2026-09-21"
     }
@@ -80,26 +80,26 @@
   },
   {
    "kode": "TECH4",
-   "antall_filer": 47,
+   "antall_filer": 51,
    "nyeste": [
     {
+     "navn": "11_Forecast_FourMethods.xlsx",
+     "dato": "2026-09-23"
+    },
+    {
+     "navn": "11_OptimalAlpha_ExponentialSmoothing.xlsx",
+     "dato": "2026-09-23"
+    },
+    {
+     "navn": "11_LeastSquares.xlsx",
+     "dato": "2026-09-23"
+    },
+    {
+     "navn": "11_NonLinearProgramming_Forecasting.pdf",
+     "dato": "2026-09-23"
+    },
+    {
      "navn": "10_BoardNotes.pdf",
-     "dato": "2026-09-22"
-    },
-    {
-     "navn": "10_WyndorGlass_sensistivity_analysis.xlsx",
-     "dato": "2026-09-22"
-    },
-    {
-     "navn": "10_Sensitivity_Uncertainty.pdf",
-     "dato": "2026-09-22"
-    },
-    {
-     "navn": "10_WyndorGlass_STOCHASTIC.xlsx",
-     "dato": "2026-09-22"
-    },
-    {
-     "navn": "10_WyndorGlass_ROBUST.xlsx",
      "dato": "2026-09-22"
     }
    ]
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-09-23 15:06"
+ "oppdatert": "2026-09-24 09:06"
 }
