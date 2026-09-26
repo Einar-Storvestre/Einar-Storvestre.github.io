@@ -1,41 +1,38 @@
 {
- "updated": "2026-09-25T20:19:26.125Z",
+ "updated": "2026-09-26T09:36:55.270Z",
  "locations": {
   "bergen_gk": {
    "forecast": {
-    "snapshots": 50,
-    "metModelRun": "2026-09-25T19:33:35Z",
+    "snapshots": 51,
+    "metModelRun": "2026-09-26T09:29:43Z",
     "dailyDays": 10
    },
    "observations": {
-    "upToDate": true,
-    "days": 148
+    "error": "fetch failed"
    },
    "accuracy": {
     "pairs": 1872,
-    "snapshots": 115
+    "snapshots": 116
    }
   },
   "vagslid": {
    "forecast": {
-    "snapshots": 50,
-    "metModelRun": "2026-09-25T19:35:30Z",
+    "snapshots": 51,
+    "metModelRun": "2026-09-26T09:29:43Z",
     "dailyDays": 10
    },
    "observations": {
-    "upToDate": true,
-    "days": 156
+    "error": "fetch failed"
    }
   },
   "haukeliseter": {
    "forecast": {
-    "snapshots": 50,
-    "metModelRun": "2026-09-25T19:33:35Z",
+    "snapshots": 51,
+    "metModelRun": "2026-09-26T09:29:43Z",
     "dailyDays": 10
    },
    "observations": {
-    "upToDate": true,
-    "days": 156
+    "error": "fetch failed"
    }
   }
  },
@@ -51,5 +48,9 @@
    "license": "NLOD (kompatibel med CC BY 3.0)"
   }
  },
- "errors": []
+ "errors": [
+  "OBS bergen_gk: fetch failed",
+  "OBS vagslid: fetch failed",
+  "OBS haukeliseter: fetch failed"
+ ]
 }
