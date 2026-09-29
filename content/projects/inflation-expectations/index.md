@@ -1,6 +1,7 @@
 ---
 title: "Survey Signals: Inflasjonsforventninger"
 date: 2025-12-12
+weight: 90
 summary: "Tech2-termpaper om hvordan kjønn, utdanning og tallforståelse former inflasjonsforventninger (2015–2025), med full kode og resultater."
 tags:
   - Research

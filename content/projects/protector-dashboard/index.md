@@ -1,6 +1,7 @@
 ---
 title: "Protector Forsikring Dashboard"
 date: 2026-04-13
+weight: 80
 summary: "Interaktiv investoranalyse av Protector Forsikring (OSE: PROT) — bygget som en innkapslet dashboard-app integrert i nettsiden."
 tags:
   - Finance

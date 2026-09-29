@@ -1,6 +1,7 @@
 ---
 title: "Vosso – risikoanalyse"
 date: 2025-12-12
+weight: 110
 summary: "Risikoanalyse som kartlegger naturfare, samfunnssårbarhet og tiltak for Vosso-vassdraget."
 tags:
   - Risiko

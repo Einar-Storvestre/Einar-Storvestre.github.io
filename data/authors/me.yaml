@@ -5,106 +5,11 @@ name:
   display: "Einar Storvestre"
   given: "Einar"
   family: "Storvestre"
-  alternate: ""
-  pronunciation: ""
-  pronouns: "he/him"
-postnominals:
-  - "Bsc in Business, Economics and Data Science"
 status:
   icon: ""
-role: "Student"
-bio: "I'm a Business, Economics and Data Science student at NHH with a background in elite sports. 
-      I'm curious about how data and technology influence real-world decisions, and I'm motivated by solving real-world problems. 
-      I have a special interest for early-stage problem solving and startups - breaking down complex problems and testing ideas.\n"
-affiliations:
-  - name: "NHH"
-    url: "https://www.youtube.com/watch?v=xvFZjo5PgG0"
-links:
-  - icon: "at-symbol"
-    url: "mailto:einargaard@icloud.com"
-    label: "E-mail me"
-  - icon: "brands/github"
-    url: "https://github.com/Einar-Storvestre"
-  - icon: "brands/linkedin"
-    url: "https://www.linkedin.com/in/einar-storvestre-668924202/"
-  - icon: "brands/instagram"
-    url: "https://www.instagram.com/einarstorvestre/"
-interests:
-  - "AI"
-  - "Entrepreneurship"
-  - "Global Challanges"
-  - "Economics"
-  - "Sports"
-  - "Finance"
-education:
-  - degree: "Bsc Business, Economics and Data Science"
-    institution: "NHH"
-    start: "2025-08-10"
-    end: "2028-06-30"
-    button:
-      text: "View program"
-      url: "https://www.nhh.no/en/study-programmes/bsc-in-business-economics-and-data-science/"
-      icon: "hero/arrow-down-tray"
-  - degree: "Norwegian High School of Elite Sports"
-    institution: "NTG Geilo"
-    start: "2021-08-05"
-    end: "2024-06-15"
-    summary: ""
-experience:
-  - role: "Math and Norwegian Tutor"
-    org: "Freelance"
-    start: "2024-08-10"
-    summary: |
-      - Tutor Mathematics and Norwegian, customizing lessons to fit individual academic levels.
-      - Strengthened communication skills and problem-solving through one-on-one teaching.
-      - Manage operations end-to-end (scheduling, communication, billing).
-      - Students report improved results.
-  - role: "Substitue Teacher and teaching assistant"
-    org: "Drøbak Primary School"
-    start: "2024-09-01"
-    end: "2024-11-01"
-    summary: "Assisted teachers in daily classroom activities and led sessions independently when needed 
-      Worked with students with disabilities and supported tailored learning plans\n"
-skills:
-  - name: "Technical Skills"
-    items:
-      - label: "Python"
-        level: 3
-      - label: "Data Analysis"
-        level: 3
-  - name: "Communication"
-    items:
-      - label: "Academic Writing"
-        level: 3
-      - label: "Conference Presentations"
-        level: 3
-  - name: "Hobbies"
-    items:
-      - label: "Cross-country skiing"
-  
-      - label: "Running"
-
-      - label: "Golf"
-
-      - label: "Padel"
-
-languages:
-  - name: "English"
-    level: 4.5
-    label: "Fluent"
-  - name: "Norwegian"
-    level: 5
-    label: "Native"
-  - name: "German"
-    level: 1
-    label: "Beginner"
-  - name: "French"
-    level: 0.5
-    label: "Beginner"
-awards:
-  - title: "Best Individual Athlete"
-    awarder: "TIF Viking"
-    date: "2021-12-01"
-    summary: "Awarded for sports performance"
-    icon: "hero/trophy"
-weight: null
+role: "Business, Economics and Data Science at NHH"
+bio: >-
+  I build websites, data tools and automations, and study Business, Economics
+  and Data Science at the Norwegian School of Economics. This is a collection
+  of my projects, experiments and analyses.
+links: []

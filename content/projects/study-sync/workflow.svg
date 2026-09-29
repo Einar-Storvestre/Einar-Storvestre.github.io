@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img">
+<title>Study knowledge sync workflow</title>
+<rect width="1600" height="900" fill="#101c2d"/>
+<text x="90" y="97" font-family="Arial, sans-serif" font-size="22" fill="#f3c875" font-weight="700">DATA INTEGRATION</text>
+<text x="90" y="203" font-family="Arial, sans-serif" font-size="66" fill="#f6f8fb" font-weight="700">Study knowledge sync</text>
+<text x="90" y="274" font-family="Arial, sans-serif" font-size="31" fill="#bac8da" font-weight="400">Different sources, one organised workspace</text>
+<rect x="90" y="386" width="314" height="221" rx="20" fill="#1a2a40" stroke="#334861" stroke-width="2"/>
+<text x="116" y="431" font-family="Arial, sans-serif" font-size="21" fill="#f3c875" font-weight="700">01</text>
+<text x="116" y="499" font-family="Arial, sans-serif" font-size="34" fill="#f6f8fb" font-weight="700">Sources</text>
+<text x="116" y="549" font-family="Arial, sans-serif" font-size="23" fill="#bac8da" font-weight="400">Canvas and notes</text>
+<path d="M418 495h24m-2-9 10 9-10 9" fill="none" stroke="#f3c875" stroke-width="3"/>
+<rect x="458" y="386" width="314" height="221" rx="20" fill="#1a2a40" stroke="#334861" stroke-width="2"/>
+<text x="484" y="431" font-family="Arial, sans-serif" font-size="21" fill="#f3c875" font-weight="700">02</text>
+<text x="484" y="499" font-family="Arial, sans-serif" font-size="34" fill="#f6f8fb" font-weight="700">Collect</text>
+<text x="484" y="549" font-family="Arial, sans-serif" font-size="23" fill="#bac8da" font-weight="400">Source-specific sync</text>
+<path d="M786 495h24m-2-9 10 9-10 9" fill="none" stroke="#f3c875" stroke-width="3"/>
+<rect x="826" y="386" width="314" height="221" rx="20" fill="#1a2a40" stroke="#334861" stroke-width="2"/>
+<text x="852" y="431" font-family="Arial, sans-serif" font-size="21" fill="#f3c875" font-weight="700">03</text>
+<text x="852" y="499" font-family="Arial, sans-serif" font-size="34" fill="#f6f8fb" font-weight="700">Organise</text>
+<text x="852" y="549" font-family="Arial, sans-serif" font-size="23" fill="#bac8da" font-weight="400">Course folders</text>
+<path d="M1154 495h24m-2-9 10 9-10 9" fill="none" stroke="#f3c875" stroke-width="3"/>
+<rect x="1194" y="386" width="314" height="221" rx="20" fill="#1a2a40" stroke="#334861" stroke-width="2"/>
+<text x="1220" y="431" font-family="Arial, sans-serif" font-size="21" fill="#f3c875" font-weight="700">04</text>
+<text x="1220" y="499" font-family="Arial, sans-serif" font-size="34" fill="#f6f8fb" font-weight="700">Monitor</text>
+<text x="1220" y="549" font-family="Arial, sans-serif" font-size="23" fill="#bac8da" font-weight="400">Completion and</text>
+<text x="1220" y="580" font-family="Arial, sans-serif" font-size="23" fill="#bac8da" font-weight="400">freshness</text>
+<rect x="90" y="696" width="1420" height="92" rx="14" fill="#1a2a40" stroke="#1a2a40" stroke-width="2"/>
+<text x="119" y="751" font-family="Arial, sans-serif" font-size="30" fill="#f3c875" font-weight="700">Preserve sources and check completion</text>
+<text x="90" y="850" font-family="Arial, sans-serif" font-size="20" fill="#8195ad" font-weight="400">Workflow schematic</text>
+</svg>

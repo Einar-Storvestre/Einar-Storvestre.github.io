@@ -11,8 +11,11 @@ design:
 sections:
   - block: collection
     content:
-      title: Selected Projects
-      text: A selection of data, finance and research projects I've worked on. Click any project for the full write-up.
+      title: Projects
+      text: Websites, tools and analyses I've worked on. Open a project to explore the result and how it was made.
+      count: 0
+      sort_by: Weight
+      order: asc
       filters:
         folders:
           - projects

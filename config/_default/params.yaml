@@ -22,8 +22,8 @@ hugoblox:
     tagline: "Einar Storvestre"
     # Social accounts (used for meta tags like Twitter Cards)
     social:
-      twitter: "BuildLore" # Twitter/X handle for Twitter Cards (without @)
-    description: Einar storvestre. Norwegian School of Economics. Business Economy Data Science.
+      twitter: ""
+    description: Websites, data tools and automations by Einar Storvestre, a Business, Economics and Data Science student at NHH.
 
   # ────────────────────────────────────────────────────────────────────────────
   # THEME
@@ -125,7 +125,7 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   seo:
     # Browser tab title override (defaults to identity.name if not set)
-    title: "Einar Storvestre | Student | Business Economy Data Science"
+    title: "Einar Storvestre | Projects"
     # For local_business identity type only
     location:
       address:
