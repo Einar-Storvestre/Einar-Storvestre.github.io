@@ -10,6 +10,9 @@ tags:
   - Python
   - AI
 project_kind: automation
+links:
+  - name: Try the demo
+    url: "/projects/internship-radar/#try-the-workflow"
 image:
   caption: "Workflow schematic"
   preview_only: true
@@ -18,6 +21,12 @@ image:
 I built Internship Radar to bring opportunities from different job boards and company
 websites into one workflow. The project combines data collection, matching rules, an
 additional AI review pass and delivery of a readable report.
+
+## Try the workflow
+
+{{< portfolio-demo kind="radar" >}}
+
+## Workflow
 
 ![Workflow schematic for Internship Radar](featured.png)
 

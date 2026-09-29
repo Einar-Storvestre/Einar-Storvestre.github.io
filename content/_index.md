@@ -28,7 +28,7 @@ sections:
     id: news
     content:
       title: Projects
-      text: 'Websites, tools and analyses I have worked on.'
+      text: 'Websites, tools and analyses I have worked on. [See how the tools fit together](/system/).'
       count: 8
       sort_by: Weight
       filters:

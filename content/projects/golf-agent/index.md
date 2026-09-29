@@ -10,6 +10,9 @@ tags:
   - Python
   - Browser Automation
 project_kind: automation
+links:
+  - name: Try the demo
+    url: "/projects/golf-agent/#try-the-workflow"
 image:
   caption: "Workflow schematic"
   preview_only: true
@@ -18,6 +21,12 @@ image:
 I built Golf Agent to coordinate the checks involved in planning a round: suitable
 weather, available tee times and space in the calendar. It sends suggestions and uses an
 explicit reply to decide which time to book.
+
+## Try the workflow
+
+{{< portfolio-demo kind="golf" >}}
+
+## Workflow
 
 ![Workflow schematic for Golf Agent](featured.png)
 

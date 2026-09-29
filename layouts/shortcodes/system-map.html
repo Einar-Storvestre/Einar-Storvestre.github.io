@@ -1,0 +1,57 @@
+{{- $style := resources.Get "css/portfolio-demos.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+<div class="system-map">
+  <details open>
+    <summary>Information and research</summary>
+    <div class="system-content">
+      <p>Collect information, make it useful and deliver it in a form I can act on.</p>
+      <ol class="system-flow">
+        <li><small>Inputs</small><strong>Public sources</strong><span>Job listings, articles and other source material</span></li>
+        <li><small>Work</small><strong>Review and structure</strong><span>Deduplication, matching, research and editorial choices</span></li>
+        <li><small>Outputs</small><strong>Readable reports</strong><span>Opportunity reports and the public Morningbrief</span></li>
+      </ol>
+      <div class="system-links"><a href="/projects/internship-radar/">Internship Radar</a><a href="/nyhetsbrev/">Morningbrief</a><a href="/projects/internship-radar/#try-the-workflow">Try the Radar demo</a></div>
+    </div>
+  </details>
+  <details>
+    <summary>Media and knowledge</summary>
+    <div class="system-content">
+      <p>Capture material from different formats and organise it for later use.</p>
+      <ol class="system-flow">
+        <li><small>Inputs</small><strong>Recordings and notes</strong><span>Media files, Canvas, OneNote and GoodNotes</span></li>
+        <li><small>Work</small><strong>Transcribe and sync</strong><span>Whisper integration and source-specific collection</span></li>
+        <li><small>Outputs</small><strong>A local workspace</strong><span>Timestamped text and organised course folders</span></li>
+      </ol>
+      <div class="system-links"><a href="/projects/local-transcription/">Local transcription</a><a href="/projects/study-sync/">Study knowledge sync</a></div>
+    </div>
+  </details>
+  <details>
+    <summary>Planning and booking</summary>
+    <div class="system-content">
+      <p>Find suitable choices, wait for a decision and handle the booking result.</p>
+      <ol class="system-flow">
+        <li><small>Inputs</small><strong>Availability and context</strong><span>Time slots, weather, preferences and calendar availability</span></li>
+        <li><small>Work</small><strong>Propose and confirm</strong><span>Suggestions followed by an explicit choice</span></li>
+        <li><small>Outputs</small><strong>A checked outcome</strong><span>A booking confirmation, an alternative or a request to check uncertainty</span></li>
+      </ol>
+      <div class="system-links"><a href="/projects/golf-agent/">Golf Agent and demo</a><a href="/projects/haircut-agent/">Haircut Agent and demo</a><a href="/vaerdata/">Weather project</a></div>
+    </div>
+  </details>
+  <details>
+    <summary>Public products and publishing</summary>
+    <div class="system-content">
+      <p>Make an analysis, a tool or an editorial project available to a reader.</p>
+      <ol class="system-flow">
+        <li><small>Inputs</small><strong>Content and analysis</strong><span>Research, editorial work and structured data</span></li>
+        <li><small>Work</small><strong>Build and publish</strong><span>Interfaces, content workflows and website deployment</span></li>
+        <li><small>Outputs</small><strong>Things to explore</strong><span>Websites, publications and interactive dashboards</span></li>
+      </ol>
+      <div class="system-links"><a href="/projects/nhhs-consulting/">NC website</a><a href="/projects/nc-ai-brief/">NC AI Brief</a><a href="/projects/protector-dashboard/">Protector dashboard</a></div>
+    </div>
+  </details>
+  <div class="system-operations">
+    <strong>Across the workflows: observe the outcome</strong>
+    <p>Vaktmester checks scheduled jobs, completion records and output freshness. NC-vakt adds DNS and public-page checks for the NC website. Each project keeps its own inputs and state.</p>
+    <div class="system-links"><a href="/projects/vaktmester/">Explore Vaktmester</a><a href="/projects/nhhs-consulting/#monitoring-after-launch">NC website monitoring</a></div>
+  </div>
+</div>

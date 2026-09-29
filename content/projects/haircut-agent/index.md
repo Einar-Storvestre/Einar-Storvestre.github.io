@@ -10,6 +10,9 @@ tags:
   - Python
   - API Integration
 project_kind: automation
+links:
+  - name: Try the demo
+    url: "/projects/haircut-agent/#try-the-workflow"
 image:
   caption: "Workflow schematic"
   preview_only: true
@@ -18,6 +21,12 @@ image:
 I built Haircut Agent to handle the routine around arranging a recurring appointment. It
 checks when a new appointment is due, finds suitable available times and waits for a
 confirmed choice before booking.
+
+## Try the workflow
+
+{{< portfolio-demo kind="haircut" >}}
+
+## Workflow
 
 ![Workflow schematic for Haircut Agent](featured.png)
 

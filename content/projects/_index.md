@@ -12,7 +12,7 @@ sections:
   - block: collection
     content:
       title: Projects
-      text: Websites, tools and analyses I've worked on. Open a project to explore the result and how it was made.
+      text: Websites, tools and analyses I've worked on. Open a project to explore the result, or [see how the tools fit together](/system/).
       count: 0
       sort_by: Weight
       order: asc

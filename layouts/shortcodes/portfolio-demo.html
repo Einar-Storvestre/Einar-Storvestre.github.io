@@ -1,0 +1,12 @@
+{{- $kind := .Get "kind" -}}
+{{- if not (in (slice "radar" "golf" "haircut") $kind) -}}
+  {{- errorf "Unknown portfolio demo kind: %s" $kind -}}
+{{- end -}}
+{{- $style := resources.Get "css/portfolio-demos.css" | minify | fingerprint -}}
+{{- $script := resources.Get "js/portfolio-demos.mjs" | js.Build (dict "targetPath" "js/portfolio-demos.js" "format" "esm" "minify" true) | fingerprint -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+<div class="portfolio-demo" id="demo-{{ $kind }}-{{ .Ordinal }}" data-portfolio-demo="{{ $kind }}" role="region" aria-label="{{ $kind }} interactive walkthrough">
+  <p>Interactive walkthrough using fictional example data. Loading the controls…</p>
+  <noscript>This walkthrough needs JavaScript. The workflow and design choices are explained below.</noscript>
+</div>
+<script type="module" src="{{ $script.RelPermalink }}"></script>

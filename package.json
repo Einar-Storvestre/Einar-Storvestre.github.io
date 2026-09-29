@@ -6,7 +6,8 @@
   "description": "Academic CV starter template for Hugo Blox with Tailwind CSS v4",
   "scripts": {
     "dev": "hugo server --disableFastRender",
-    "build": "hugo --minify"
+    "build": "hugo --minify",
+    "test:portfolio": "node --test tests/portfolio-demos.test.mjs"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12",
