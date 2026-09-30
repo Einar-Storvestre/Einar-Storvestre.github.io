@@ -1,9 +1,0 @@
-{{ define "main" }}
-<div class="site-wrap page-wrap">
-  <header class="page-intro"><h1>{{ .Title }}</h1>{{ with .Params.summary }}<p class="page-deck">{{ . | plainify }}</p>{{ end }}</header>
-  {{ with .Content }}<div class="article-body">{{ . }}</div>{{ end }}
-  <div class="project-list">
-    {{ range .Pages.ByWeight }}{{ partial "portfolio/project-row.html" . }}{{ end }}
-  </div>
-</div>
-{{ end }}

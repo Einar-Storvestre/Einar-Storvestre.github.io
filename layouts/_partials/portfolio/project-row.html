@@ -1,9 +1,0 @@
-{{- $p := . -}}
-{{- $id := printf "work-%v" (hash.FNV32a $p.RelPermalink) -}}
-<a class="project-row" href="{{ $p.RelPermalink }}" aria-labelledby="{{ $id }}-title" aria-describedby="{{ $id }}-summary">
-  <div>
-    <h3 id="{{ $id }}-title">{{ $p.Title }}</h3>
-    <p id="{{ $id }}-summary">{{ $p.Params.summary | plainify }}</p>
-  </div>
-  <span class="row-arrow" aria-hidden="true">↗</span>
-</a>

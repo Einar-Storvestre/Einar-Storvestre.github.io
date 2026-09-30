@@ -1,19 +1,16 @@
 ---
-title: Vosso risk analysis
+title: "Vosso – risikoanalyse"
 date: 2025-12-12
-weight: 110
-summary: Natural hazards, local vulnerability and possible measures in the Vosso watershed.
+summary: "Risikoanalyse som kartlegger naturfare, samfunnssårbarhet og tiltak for Vosso-vassdraget."
 tags:
-- Risiko
-- Analyse
-- Norge
+  - Risiko
+  - Analyse
+  - Norge
 links:
-- name: Read the report
-  url: /blog/vosso/
+  - name: Les hele rapporten
+    url: /blog/vosso/
 ---
 
-A report on flood, landslide and community risk around the Vosso watershed in
-western Norway. It brings together climate scenarios, local planning material
-and field observations.
+Rapport som kartlegger naturfare, samfunnssårbarhet og mulige tiltak for Vosso-vassdraget.
 
-[Read the report](/blog/vosso/). The original report is in Norwegian.
+<!--more-->

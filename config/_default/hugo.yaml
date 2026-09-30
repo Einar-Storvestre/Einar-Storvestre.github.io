@@ -1,35 +1,57 @@
-title: Einar Storvestre
-baseURL: https://einar-storvestre.github.io/
+# Configuration of Hugo
+# Guide: https://docs.hugoblox.com/tutorial/
+# Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
+# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+
+# Website name (set in params.yaml under hugoblox.branding.name)
+title: ''
+# Website URL
+baseURL: 'https://example.com/'
+
+############################
+## LANGUAGE
+############################
+
 defaultContentLanguage: en
 hasCJKLanguage: false
 defaultContentLanguageInSubdir: false
 removePathAccents: true
+
+############################
+## ADVANCED
+############################
+
+build:
+  writeStats: true
 enableGitInfo: false
 summaryLength: 30
 pagination:
-  pagerSize: 20
-enableEmoji: false
+  pagerSize: 10
+enableEmoji: true
 enableRobotsTXT: true
-disableAliases: true
+footnotereturnlinkcontents: <sup>^</sup>
 ignoreFiles: [".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
+disableAliases: true
 outputs:
-  home: [HTML, RSS, JSON]
-  section: [HTML, RSS]
-  taxonomy: [HTML]
-  term: [HTML]
+  home: [HTML, RSS, JSON, headers, redirects, backlinks]
+  section: [HTML, RSS, JSON]
+  taxonomy: [HTML, RSS, JSON]
+  taxonomyTerm: [HTML, RSS, JSON]
 imaging:
   resampleFilter: lanczos
-  quality: 88
+  quality: 90
   anchor: smart
+  hint: picture
 timeout: 600000
 taxonomies:
   author: authors
   tag: tags
+  publication_type: publication_types
 markup:
-  goldmark:
-    renderer:
-      unsafe: true
+  _merge: deep
   highlight:
-    noClasses: false
     lineNos: false
-    guessSyntax: true
+security:
+  _merge: deep
+sitemap:
+  _merge: deep

@@ -1,12 +1,10 @@
 ---
-title: Insider transactions
-summary: Reported transactions with links to their original announcements.
+title: "Innsidehandel"
+summary: "Live oversikt over meldepliktig innsidehandel i Protector Forsikring og på Oslo Børs."
 date: 2026-06-12
 type: page
 ---
 
-A view of reported insider transactions, including Protector Forsikring and
-the wider Oslo market. Open the linked announcements for the original details.
-The interface is in Norwegian.
+Når personer med innsideroller (styremedlemmer, ledelse og deres nærstående) kjøper eller selger aksjer, må det meldes til Oslo Børs. Slike kjøp regnes ofte som et tillitssignal. Oversikten under hentes **live** hver gang du åpner siden.
 
 {{< innsidehandel >}}

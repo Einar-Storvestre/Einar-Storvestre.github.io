@@ -23,7 +23,7 @@ concurrency:
 jobs:
   # Build website
   build:
-    if: github.repository_owner != 'HugoBlox'
+    if: github.ref == 'refs/heads/main' && github.repository_owner != 'HugoBlox'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -107,7 +107,7 @@ jobs:
 
   # Deploy website to GitHub Pages hosting
   deploy:
-    if: github.repository_owner != 'HugoBlox'
+    if: github.ref == 'refs/heads/main' && github.repository_owner != 'HugoBlox'
     needs: build
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:

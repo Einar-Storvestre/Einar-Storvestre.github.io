@@ -1,24 +1,17 @@
 ---
-title: REMA 1000
+title: "REMA 1000 – forbrukeratferd"
 date: 2026-03-27
-weight: 100
-summary: Consumer-behaviour coursework applied to everyday grocery shopping.
+summary: "Analyse av forbrukernes beslutninger på tvers av melk, øl, kaffe og REMA 1000-appen — skrevet for MAB1 ved NHH."
 tags:
-- Marketing
-- Consumer Behavior
-- Research
-- NHH
+  - Marketing
+  - Consumer Behavior
+  - Research
+  - NHH
 links:
-- name: Read the report
-  url: /blog/rema1000-consumer-behavior/
+  - name: Les hele analysen
+    url: /blog/rema1000-consumer-behavior/
 ---
 
-Our MAB1 group analysed consumer decisions involving milk, beer, coffee and the
-REMA 1000 app. The report applies course concepts to a representative customer
-persona and considers how the different purchase situations affect behaviour.
+En analyse av forbrukeratferd og beslutningstaking på tvers av melk, øl, kaffe og REMA 1000-appen, skrevet for MAB1 ved NHH våren 2026.
 
-The published report credits Knut Steckmest, Marius Andersen, Kai Thomas,
-Peder Olsen, Olav Lidal and me.
-
-[Read the analysis and download the report](/blog/rema1000-consumer-behavior/).
-The original report is in English.
+<!--more-->

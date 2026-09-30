@@ -1,29 +1,17 @@
 ---
-title: Protector dashboard
+title: "Protector Forsikring Dashboard"
 date: 2026-04-13
-weight: 80
-summary: An investment-analysis interface with adjustable scenarios.
+summary: "Interaktiv investoranalyse av Protector Forsikring (OSE: PROT) — bygget som en innkapslet dashboard-app integrert i nettsiden."
 tags:
-- Finance
-- Dashboard
-- React
-- Investing
+  - Finance
+  - Dashboard
+  - React
+  - Investing
 links:
-- name: Open the dashboard
-  url: /prot-dashboard/
+  - name: Les hele analysen
+    url: /blog/protector-dashboard/
 ---
 
-The dashboard brings together company information, price history, insider
-transactions and a scenario model for Protector Forsikring.
+Interaktiv investoranalyse av Protector Forsikring (OSE: PROT), bygget som en React-dashboard og innkapslet direkte i nettsiden.
 
-## Inputs and assumptions
-
-The model lets a reader change earnings and valuation assumptions and inspect
-how the scenario changes. The app includes dated manual inputs and subjective
-heuristic scores, which need to be read alongside their assumptions.
-
-It is built in React and embedded in this website. The original interface and
-analysis remain available below.
-
-[Open the dashboard](/prot-dashboard/) ·
-[Read the implementation note](/blog/protector-dashboard/)
+<!--more-->

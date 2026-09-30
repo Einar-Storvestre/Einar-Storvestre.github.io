@@ -1,21 +1,42 @@
 ---
-title: Vosso risk analysis
-summary: A report on natural hazards and local vulnerability in the Vosso watershed.
+title: "Vosso – en risikoanalyse av fremtidens farer (in norwegian)"
+summary: Rapport som kartlegger naturfare, samfunnssårbarhet og tiltak for Vosso-vassdraget.
 date: 2025-12-12
+
+image:
+  image:
+  caption: "Vosso-deltaet sett fra luften."
+
+cover:
+  image: vosso_flom.png
+  icon:
+    name: ""
+
 authors:
-- me
+  - me
+
 tags:
-- Risiko
-- Norge
-- Analyse
+  - Risiko
+  - Norge
+  - Analyse
+
 ---
+**Vosso – en risikoanalyse av fremtidens farer** er en rapport om flom-, skred- og samfunnsrisiko knyttet til elven Vosso som går gjennom Voss og ned til Bolstandfjorden på Vestlandet. Rapporten kombinerer klimascenarier, lokale beredskapsplaner og egne feltobservasjoner, og viser hvilke tiltak som er nødvendig de neste ti årene.
 
-The report considers flood, landslide and community risk around the Vosso
-watershed in western Norway. It brings together climate scenarios, local
-planning material and field observations.
+## Hovedfunn
 
-The original report is in Norwegian.
+- **Klima i 2035:** Økt nedbør og hyppigere stormfloe truer infrastruktur og befolkningen ved Vossevangen og Bolstadfjorden.
+- **Tiltak:** Naturbaserte løsninger, robust infrastruktur og flomavledning.
 
-[Download the report (PDF)](/uploads/vosso-riskioanalyse.pdf).
+## Last ned rapporten 
 
-<iframe src="/uploads/vosso-riskioanalyse.pdf#view=FitH" title="Vosso risk analysis report in Norwegian" width="100%" height="800" style="border:1px solid #d8dcd4"></iframe>
+[Last ned PDF-en](/uploads/vosso-riskioanalyse.pdf)
+
+<iframe
+  src="/uploads/vosso-riskioanalyse.pdf#view=FitH"
+  width="100%"
+  height="800"
+  style="border: none;">
+</iframe>
+
+
