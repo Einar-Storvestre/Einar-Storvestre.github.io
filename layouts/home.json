@@ -1,0 +1,6 @@
+{{- $items := slice -}}
+{{- range .Site.RegularPages -}}
+  {{- $date := "" -}}{{- if not .Date.IsZero -}}{{- $date = .Date.Format "2006-01-02" -}}{{- end -}}
+  {{- $items = $items | append (dict "title" .Title "summary" (.Params.summary | default "" | plainify) "permalink" .Permalink "date" $date) -}}
+{{- end -}}
+{{- $items | jsonify -}}

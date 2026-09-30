@@ -1,10 +1,11 @@
 ---
-title: "Nyhetsbrev"
-summary: "Morgenbriefen — nyheter, markeder, AI og dagens leksjon, kort hver morgen. Les dagens utgave og meld deg på."
+title: Morningbrief
+summary: The public edition of my automated daily briefing.
 date: 2026-06-13
 type: page
 ---
 
-Hver morgen leser jeg gjennom nyhetsbildet, markedene og det ferskeste innen AI, og koker det ned til en kort, lettlest brief. Les **dagens utgave** under — og meld deg på, så får du den rett i innboksen hver morgen.
+The public edition brings together news, markets and AI updates from my
+automated briefing workflow. Read the Norwegian edition and archive below.
 
 {{< nyhetsbrev >}}

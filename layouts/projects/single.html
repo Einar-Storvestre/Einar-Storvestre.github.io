@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="site-wrap article-wrap">
+  <header class="article-header">
+    <a class="back-link" href="{{ "/projects/" | relURL }}">← Projects</a>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="page-deck">{{ . }}</p>{{ end }}
+    {{ with .Params.links }}
+      <div class="project-actions">
+        {{ range . }}<a class="text-link" href="{{ .url | safeURL }}">{{ .name }} <span aria-hidden="true">↗</span></a>{{ end }}
+      </div>
+    {{ end }}
+  </header>
+  <div class="article-body">{{ .Content }}</div>
+  <footer class="article-end"><a href="{{ "/projects/" | relURL }}">Browse all projects <span aria-hidden="true">↗</span></a></footer>
+</article>
+{{ end }}

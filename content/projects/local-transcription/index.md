@@ -1,51 +1,29 @@
 ---
-title: "Local transcription"
+title: Local transcription
 date: 2026-09-29
 weight: 40
-summary: "A Mac workflow that turns audio and video into timestamped text using Whisper."
+summary: Audio and video to timestamped text, using Whisper on a Mac.
 authors:
-  - me
+- me
 tags:
-  - Automation
-  - Python
-  - AI
+- Automation
+- Python
+- AI
 project_kind: automation
-image:
-  caption: "Workflow schematic"
-  preview_only: true
 ---
 
-I built a local transcription workflow for Norwegian and English recordings. It accepts
-a media file or a supported URL, prepares the audio and exports text with timestamps.
-Whisper supplies the speech recognition; my project is the workflow around it.
+This tool accepts a local recording or a supported media URL. It prepares the
+audio, runs mlx-whisper and saves both a readable transcript and structured
+segments with timestamps.
 
-![Workflow schematic for Local transcription](featured.png)
+## Keeping the output useful
 
-## The problem
+The Markdown transcript is convenient for reading and searching. The segment
+file retains timestamps for further processing. Both outputs can be moved into
+the project the recording belongs to.
 
-A podcast, recording or video can contain useful information without a
-searchable transcript. Manually moving between download tools, audio formats
-and transcription software adds friction.
+Whisper provides the speech recognition. My work is the Python workflow around
+it, including media handling with yt-dlp and conversion with ffmpeg.
 
-## How it works
-
-- Accept a local media file or download supported media from a URL
-- Extract and normalise audio with ffmpeg
-- Run mlx-whisper on the Mac
-- Save a timestamped Markdown transcript and structured segment data
-
-## A decision that mattered
-
-**Keep the output reusable.** A readable transcript is useful for reviewing the
-recording, while structured segments preserve timestamps for later processing.
-The workflow can be used with different projects without changing the
-transcription engine.
-
-Names and technical terms still need checking, and the tool does not identify
-individual speakers. Those limits matter when turning a transcript into notes
-or quotations.
-
-## Built with
-
-Python, mlx-whisper, yt-dlp and ffmpeg. I integrated the tools into a repeatable
-workflow with AI-assisted development.
+The tool supports Norwegian and English. Names and technical terms need
+checking, and it does not identify individual speakers.

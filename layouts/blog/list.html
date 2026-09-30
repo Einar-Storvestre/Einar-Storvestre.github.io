@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="site-wrap page-wrap">
+  <header class="page-intro"><h1>Writing & analysis</h1><p class="page-deck">Published work and the material behind it.</p></header>
+  <section class="publication-feature" aria-labelledby="brief-title">
+    {{- $brief := site.GetPage "projects/nc-ai-brief" -}}
+    {{- $cover := $brief.Resources.GetMatch "featured.jpg" -}}
+    {{- $coverSmall := $cover.Resize "720x webp" -}}
+    <a href="{{ $brief.RelPermalink }}"><img src="{{ $coverSmall.RelPermalink }}" width="{{ $coverSmall.Width }}" height="{{ $coverSmall.Height }}" alt="The September 2026 edition of NC AI Brief"></a>
+    <div><p class="work-context">NHHS Consulting · September 2026</p><h2 id="brief-title">NC AI Brief</h2><p>Research and editing for a publication on practical uses of AI.</p><a class="text-link" href="{{ $brief.RelPermalink }}">Read about the publication <span aria-hidden="true">↗</span></a></div>
+  </section>
+  <section class="project-group"><h2>Reports & notebooks</h2><div class="project-list">{{ range .RegularPages.ByDate.Reverse }}{{ partial "portfolio/project-row.html" . }}{{ end }}</div></section>
+  <section class="reading-note"><h2>Morningbrief</h2><p>The public edition of my automated daily briefing.</p><a class="text-link" href="{{ "/nyhetsbrev/" | relURL }}">Read the brief and archive <span aria-hidden="true">↗</span></a></section>
+</div>
+{{ end }}

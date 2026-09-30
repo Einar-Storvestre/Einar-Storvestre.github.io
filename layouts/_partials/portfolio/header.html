@@ -1,0 +1,8 @@
+<header class="site-header site-wrap" id="top">
+  <a class="site-name" href="{{ "/" | relURL }}">Einar Storvestre</a>
+  <nav aria-label="Main navigation">
+    <a href="{{ "/projects/" | relURL }}"{{ if eq .Section "projects" }} aria-current="page"{{ end }}>Projects</a>
+    <a href="{{ "/blog/" | relURL }}"{{ if eq .Section "blog" }} aria-current="page"{{ end }}>Writing</a>
+    <a href="{{ "/tools/" | relURL }}"{{ if or (eq .Section "tools") (in (slice "vaerdata" "innsidehandel" "studier") .Section) }} aria-current="page"{{ end }}>Tools</a>
+  </nav>
+</header>

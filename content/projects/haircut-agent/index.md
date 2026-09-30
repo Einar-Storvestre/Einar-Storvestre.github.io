@@ -1,61 +1,42 @@
 ---
-title: "Haircut Agent"
+title: Haircut booking
 date: 2026-09-29
 weight: 70
-summary: "A recurring appointment workflow that checks available times, waits for a choice and handles booking uncertainty."
+summary: A recurring appointment workflow with an explicit confirmation step.
 authors:
-  - me
+- me
 tags:
-  - Automation
-  - Python
-  - API Integration
+- Automation
+- Python
+- API Integration
 project_kind: automation
 links:
-  - name: Try the demo
-    url: "/projects/haircut-agent/#try-the-workflow"
-image:
-  caption: "Workflow schematic"
-  preview_only: true
+- name: Example walkthrough
+  url: /projects/haircut-agent/#try-the-workflow
 ---
 
-I built Haircut Agent to handle the routine around arranging a recurring appointment. It
-checks when a new appointment is due, finds suitable available times and waits for a
-confirmed choice before booking.
+The agent uses the previous appointment and a configurable interval to decide
+when to check for another haircut. It finds suitable times, compares them with
+calendar availability and sends a proposal. A reply must select an offered
+time before booking.
 
-## Try the workflow
+## A request can finish after the connection drops
+
+If the connection fails after a booking request is sent, the appointment may
+already exist. The agent records the outcome as uncertain and asks for a
+manual check before another attempt.
+
+A successful availability check is also recorded only after its request
+completes. This keeps a temporary network error from delaying the next useful
+check.
+
+It uses Python, an appointment API, email replies and local state. The
+proposal-and-confirmation pattern is shared with [Golf Agent](/projects/golf-agent/).
+
+<details class="example-section" id="try-the-workflow">
+<summary>Try the uncertainty example</summary>
+<p>This is a simplified example with fictional data. It does not connect to the live services.</p>
 
 {{< portfolio-demo kind="haircut" >}}
 
-## Workflow
-
-![Workflow schematic for Haircut Agent](featured.png)
-
-## The problem
-
-Recurring appointments are easy to postpone. Automating the reminder is
-straightforward; coordinating availability, a calendar and a booking result
-requires a more careful workflow.
-
-## How it works
-
-- Use the previous appointment and a configurable interval to decide when to check
-- Find available slots and compare them with time preferences and calendar availability
-- Limit repeated suggestions and require a reply selecting an offered time
-- Record the booking outcome and attempt to add a calendar event
-
-## A decision that mattered
-
-**Handle an uncertain booking differently from a failed booking.** If the
-network drops after a booking request has been sent, the appointment may
-already exist. The workflow asks for a manual check instead of treating that
-uncertainty as permission to book again.
-
-Another important detail is recording a completed availability check only
-after the request succeeds. Otherwise, a temporary network failure could
-incorrectly delay the next useful attempt.
-
-## Built with
-
-Python, an appointment API, email replies, local state and macOS calendar
-integration. I developed it with AI assistance, using the same
-proposal-and-confirmation pattern as [Golf Agent](/projects/golf-agent/).
+</details>

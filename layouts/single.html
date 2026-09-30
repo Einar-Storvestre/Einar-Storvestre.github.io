@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{- $wide := or (eq .Section "tools") (.HasShortcode "vaerdata") (.HasShortcode "innsidehandel") (.HasShortcode "studier") (.HasShortcode "prot-dashboard") (.HasShortcode "notebook") -}}
+<article class="site-wrap article-wrap{{ if $wide }} article-wide{{ end }}">
+  <header class="article-header">
+    {{ if eq .Section "blog" }}<a class="back-link" href="{{ "/blog/" | relURL }}">← Writing</a>{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="page-deck">{{ . | plainify }}</p>{{ end }}
+    {{ if eq .Section "blog" }}
+      <p class="article-credit">{{ .Date.Format "January 2006" }}{{ with .Params.authors }} · {{ range $i,$name := . }}{{ if $i }}, {{ end }}{{ if eq $name "me" }}Einar Storvestre{{ else }}{{ $name }}{{ end }}{{ end }}{{ end }}</p>
+    {{ end }}
+  </header>
+  <div class="article-body">{{ .Content }}</div>
+</article>
+{{ end }}

@@ -1,53 +1,35 @@
 ---
-title: "Vaktmester"
+title: Vaktmester
 date: 2026-09-29
 weight: 30
-summary: "Monitoring scheduled automations through their actual outcomes, with alerts for meaningful failures."
+summary: Checking whether scheduled jobs actually delivered their results.
 authors:
-  - me
+- me
 tags:
-  - Automation
-  - Python
-  - Monitoring
+- Automation
+- Python
+- Monitoring
 project_kind: automation
-image:
-  caption: "Workflow schematic"
-  preview_only: true
 ---
 
-I built Vaktmester as the monitoring layer for my personal automations. Its purpose is
-to tell the difference between a job that started, a job that finished and a job that
-actually delivered the expected result.
+Vaktmester monitors the automations running on my Mac. It checks recent runs,
+failure signals and the outputs each job is expected to produce.
 
-![Workflow schematic for Vaktmester](featured.png)
+## Checking the result
 
-## The problem
+The success condition depends on the job. For a publication it can be a dated
+delivery record; for a sync it can be a completed collection. A recent log or a
+successful process exit is not sufficient on its own.
 
-Scheduled scripts can fail quietly. A process may return successfully while
-its data is stale or its output was never delivered. Repeated alerts can make
-the monitoring itself easy to ignore.
+The monitor accounts for retry windows and temporary network failures. It
+groups new problems and suppresses repeated alerts, so an existing error does
+not generate the same message on every check.
 
-## How it works
+State is associated with stable job names. This prevents a moved log file from
+being mistaken for a fresh collection of old errors.
 
-- Check scheduled jobs, their recent runs and relevant failure signals
-- Inspect completion records and output freshness where an exit code is insufficient
-- Account for retry windows and temporary network failures
-- Group and suppress repeated alerts so new problems remain visible
+The wider tooling records execution time and model usage for investigation.
+It is built in Python and uses local state files and macOS scheduling.
 
-## A decision that mattered
-
-**Define success for each workflow.** A delivered publication, a completed sync
-and a background checker do not have the same success condition. The monitor
-uses checks suited to each job rather than treating every log file alike.
-
-The wider tooling also records execution time and model usage. This helps me
-investigate how the system behaves without turning an old run into a claim
-about current uptime.
-
-## Built with
-
-Python, macOS scheduling, structured state files and email alerts. The monitor
-was developed and iterated with AI assistance.
-
-Related projects: [Internship Radar](/projects/internship-radar/) and
-[study knowledge sync](/projects/study-sync/).
+Related work: [Internship Radar](/projects/internship-radar/) and
+[study sync](/projects/study-sync/).

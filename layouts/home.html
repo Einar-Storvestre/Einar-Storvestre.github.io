@@ -1,0 +1,63 @@
+{{ define "main" }}
+<div class="site-wrap">
+  <section class="intro" aria-labelledby="intro-name">
+    <div class="intro-copy">
+      <h1 id="intro-name">Einar Storvestre</h1>
+      <p class="intro-lead">I study Business, Economics and Data Science at NHH.</p>
+      <p>The work here includes NHHS Consulting's website, coursework and tools I use myself.</p>
+      <a class="text-link" href="#news">Explore the work <span aria-hidden="true">↓</span></a>
+    </div>
+    {{- $portrait := resources.Get "media/authors/me.jpg" -}}
+    {{- $portraitSmall := $portrait.Resize "440x webp" -}}
+    <img class="portrait" src="{{ $portraitSmall.RelPermalink }}" width="{{ $portraitSmall.Width }}" height="{{ $portraitSmall.Height }}" alt="Einar Storvestre" fetchpriority="high">
+  </section>
+
+  <section class="selected-work" id="news" aria-labelledby="selected-title">
+    <div class="section-heading">
+      <h2 id="selected-title">Selected work</h2>
+      <a href="{{ "/projects/" | relURL }}">All projects <span aria-hidden="true">↗</span></a>
+    </div>
+    {{ range .Site.Data.portfolio.selected }}
+      {{- $p := site.GetPage .page -}}
+      {{- $visual := resources.Get .image -}}
+      {{- $visualSmall := $visual.Resize "1120x webp" -}}
+      <article class="featured-work">
+        <a class="work-image" href="{{ $p.RelPermalink }}" aria-label="{{ .title }}: project notes">
+          <img src="{{ $visualSmall.RelPermalink }}" width="{{ $visualSmall.Width }}" height="{{ $visualSmall.Height }}" alt="{{ .alt }}" loading="lazy">
+        </a>
+        <div class="work-description">
+          <p class="work-context">{{ .context }}</p>
+          <h3><a href="{{ $p.RelPermalink }}">{{ .title }}</a></h3>
+          <p>{{ .description }}</p>
+          <a class="text-link" href="{{ $p.RelPermalink }}">{{ .link_label }} <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    {{ end }}
+  </section>
+
+  <section class="home-tools" aria-labelledby="small-tools-title">
+    <div class="section-heading">
+      <h2 id="small-tools-title">Tools I use</h2>
+      <a href="{{ "/system/" | relURL }}">See the connections <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="compact-projects">
+      {{ range .Site.Data.portfolio.automation }}
+        {{ with site.GetPage . }}{{ partial "portfolio/project-row.html" . }}{{ end }}
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="home-notes" id="notebooks" aria-labelledby="notes-title">
+    <div class="section-heading">
+      <h2 id="notes-title">Writing & analysis</h2>
+      <a href="{{ "/blog/" | relURL }}">Browse the writing <span aria-hidden="true">↗</span></a>
+    </div>
+    <p>Original reports, a working notebook and a publication on AI.</p>
+    <ul class="reading-links">
+      <li><a href="{{ "/projects/nc-ai-brief/" | relURL }}">NC AI Brief</a><span>A publication for NHHS Consulting</span></li>
+      <li><a href="{{ "/blog/tech2_term_paper/" | relURL }}">Survey Signals</a><span>Our notebook on inflation expectations</span></li>
+      <li><a href="{{ "/nyhetsbrev/" | relURL }}">Morningbrief</a><span>The public edition and archive</span></li>
+    </ul>
+  </section>
+</div>
+{{ end }}

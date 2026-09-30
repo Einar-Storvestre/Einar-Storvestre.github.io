@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{ .Site.Language.LanguageCode | default "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>{{ if .IsHome }}Einar Storvestre{{ else }}{{ .Title }} · Einar Storvestre{{ end }}</title>
+  {{- $description := .Params.summary | default .Site.Params.description | plainify -}}
+  <meta name="description" content="{{ $description }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta property="og:title" content="{{ if .IsHome }}Einar Storvestre{{ else }}{{ .Title }}{{ end }}">
+  <meta property="og:description" content="{{ $description }}">
+  <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="Einar Storvestre">
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+  <link rel="preload" href="{{ "fonts/SourceSans3-Regular.otf.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ "fonts/SourceSerif4-Regular.otf.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  {{- $style := resources.Get "css/portfolio.css" | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  {{- $script := resources.Get "js/site.mjs" | js.Build (dict "targetPath" "js/site.js" "format" "esm" "minify" true) | fingerprint -}}
+  <script type="module" src="{{ $script.RelPermalink }}"></script>
+  {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .RelPermalink }}" title="{{ $.Title }}">{{ end }}
+  {{ if and hugo.IsProduction .Site.Params.analytics_id }}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.analytics_id }}"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","{{ .Site.Params.analytics_id }}");</script>
+  {{ end }}
+</head>
+<body class="{{ if .IsHome }}home{{ else }}page{{ end }}">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  {{ partial "portfolio/header.html" . }}
+  <main id="main-content">{{ block "main" . }}{{ end }}</main>
+  {{ partial "portfolio/footer.html" . }}
+</body>
+</html>
