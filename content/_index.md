@@ -38,8 +38,9 @@ sections:
       title: '📚 About Me'
       subtitle: ''
       text: |-
-        I am a student at Norwegian School of Economics studying Business, Economics and Data Science. I have interests in AI, entrepreneurship, sports and global challenges.
+        I am a student at Norwgian School of Economics studying Business, Economics and Data Science. I have interests in AI, entrepeneurship, sports and global challanges.
         
+        Please reach out if you have any questions :)
     design:
       columns: '1'
   # - block: collection
