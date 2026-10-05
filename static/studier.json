@@ -31,23 +31,23 @@
    "antall_filer": 12,
    "nyeste": [
     {
+     "navn": "Syllabus2026.xlsx",
+     "dato": "2026-10-05"
+    },
+    {
+     "navn": "Lecture 9 - Portfolio risk, beta, and CAPM.pptx",
+     "dato": "2026-10-05"
+    },
+    {
+     "navn": "Lecture 7 - Capital budgeting.pptx",
+     "dato": "2026-10-05"
+    },
+    {
      "navn": "Lecture 1 - Introduction.pptx",
      "dato": "2026-10-04"
     },
     {
-     "navn": "Lecture 9 - Portfolio risk, beta, and CAPM.pptx",
-     "dato": "2026-10-04"
-    },
-    {
      "navn": "Lecture 8 - Risk and return.pptx",
-     "dato": "2026-10-04"
-    },
-    {
-     "navn": "Lecture 7 - Capital budgeting.pptx",
-     "dato": "2026-10-04"
-    },
-    {
-     "navn": "Lecture 6 - Investment decision rules.pptx",
      "dato": "2026-10-04"
     }
    ]
@@ -83,20 +83,20 @@
    "antall_filer": 51,
    "nyeste": [
     {
+     "navn": "11_LeastSquares.xlsx",
+     "dato": "2026-10-05"
+    },
+    {
+     "navn": "11_OptimalAlpha_ExponentialSmoothing.xlsx",
+     "dato": "2026-10-05"
+    },
+    {
      "navn": "10_WyndorGlass_STOCHASTIC.xlsx",
      "dato": "2026-10-05"
     },
     {
      "navn": "10_WyndorGlass_ROBUST.xlsx",
      "dato": "2026-10-05"
-    },
-    {
-     "navn": "11_LeastSquares.xlsx",
-     "dato": "2026-10-04"
-    },
-    {
-     "navn": "11_OptimalAlpha_ExponentialSmoothing.xlsx",
-     "dato": "2026-10-04"
     },
     {
      "navn": "11_Forecast_FourMethods.xlsx",
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-10-05 10:06"
+ "oppdatert": "2026-10-05 15:39"
 }
