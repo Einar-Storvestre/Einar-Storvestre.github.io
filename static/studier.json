@@ -28,8 +28,12 @@
   },
   {
    "kode": "BUD3",
-   "antall_filer": 12,
+   "antall_filer": 13,
    "nyeste": [
+    {
+     "navn": "Lecture 1 - US companies in 2015.xls",
+     "dato": "2026-10-05"
+    },
     {
      "navn": "Syllabus2026.xlsx",
      "dato": "2026-10-05"
@@ -44,10 +48,6 @@
     },
     {
      "navn": "Lecture 1 - Introduction.pptx",
-     "dato": "2026-10-04"
-    },
-    {
-     "navn": "Lecture 8 - Risk and return.pptx",
      "dato": "2026-10-04"
     }
    ]
@@ -80,8 +80,16 @@
   },
   {
    "kode": "TECH4",
-   "antall_filer": 51,
+   "antall_filer": 53,
    "nyeste": [
+    {
+     "navn": "12_InventoryManagement.pdf",
+     "dato": "2026-10-06"
+    },
+    {
+     "navn": "12_Ex_Speakers.xlsx",
+     "dato": "2026-10-06"
+    },
     {
      "navn": "11_LeastSquares.xlsx",
      "dato": "2026-10-05"
@@ -93,14 +101,6 @@
     {
      "navn": "10_WyndorGlass_STOCHASTIC.xlsx",
      "dato": "2026-10-05"
-    },
-    {
-     "navn": "10_WyndorGlass_ROBUST.xlsx",
-     "dato": "2026-10-05"
-    },
-    {
-     "navn": "11_Forecast_FourMethods.xlsx",
-     "dato": "2026-10-04"
     }
    ]
   },
@@ -119,5 +119,5 @@
    ]
   }
  ],
- "oppdatert": "2026-10-05 15:39"
+ "oppdatert": "2026-10-06 09:05"
 }
