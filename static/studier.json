@@ -32,7 +32,7 @@
    "nyeste": [
     {
      "navn": "Lecture 1 - US companies in 2015.xls",
-     "dato": "2026-10-05"
+     "dato": "2026-10-06"
     },
     {
      "navn": "Syllabus2026.xlsx",
@@ -83,11 +83,11 @@
    "antall_filer": 53,
    "nyeste": [
     {
-     "navn": "12_InventoryManagement.pdf",
+     "navn": "12_Ex_Speakers.xlsx",
      "dato": "2026-10-06"
     },
     {
-     "navn": "12_Ex_Speakers.xlsx",
+     "navn": "12_InventoryManagement.pdf",
      "dato": "2026-10-06"
     },
     {
@@ -106,8 +106,12 @@
   },
   {
    "kode": "MAB3",
-   "antall_filer": 2,
+   "antall_filer": 3,
    "nyeste": [
+    {
+     "navn": "Session 1_Introduction 06.10.26.pdf",
+     "dato": "2026-10-06"
+    },
     {
      "navn": "image-1.png",
      "dato": "2026-08-27"
@@ -119,5 +123,5 @@
    ]
   }
  ],
- "oppdatert": "2026-10-06 09:05"
+ "oppdatert": "2026-10-06 15:06"
 }
