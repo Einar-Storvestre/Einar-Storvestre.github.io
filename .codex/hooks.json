@@ -1,0 +1,89 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -B /Users/einarstorvestre/Agenter_Claude/verktoy/prosjektkontekst/continuity.py hook --client codex",
+            "timeout": 10,
+            "statusMessage": "Felles prosjektkontekst"
+          }
+        ],
+        "matcher": "startup|resume|clear|compact"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -B /Users/einarstorvestre/Agenter_Claude/verktoy/prosjektkontekst/continuity.py hook --client codex",
+            "timeout": 10,
+            "statusMessage": "Felles prosjektkontekst"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -B /Users/einarstorvestre/Agenter_Claude/verktoy/prosjektkontekst/continuity.py hook --client codex",
+            "timeout": 10,
+            "statusMessage": "Felles prosjektkontekst"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -B /Users/einarstorvestre/Agenter_Claude/verktoy/prosjektkontekst/continuity.py hook --client codex",
+            "timeout": 10,
+            "statusMessage": "Felles prosjektkontekst"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -B /Users/einarstorvestre/Agenter_Claude/verktoy/prosjektkontekst/continuity.py hook --client codex",
+            "timeout": 10,
+            "statusMessage": "Felles prosjektkontekst"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -B /Users/einarstorvestre/Agenter_Claude/verktoy/prosjektkontekst/continuity.py hook --client codex",
+            "timeout": 3,
+            "statusMessage": "Felles prosjektkontekst"
+          }
+        ]
+      }
+    ],
+    "Interrupt": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 -B /Users/einarstorvestre/Agenter_Claude/verktoy/prosjektkontekst/continuity.py hook --client codex",
+            "timeout": 3,
+            "statusMessage": "Felles prosjektkontekst"
+          }
+        ]
+      }
+    ]
+  }
+}
