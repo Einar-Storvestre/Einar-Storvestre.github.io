@@ -15,7 +15,11 @@
   (én mappe per fag med notater, læringsark og feilbank). Tallene under viser hva speilet ser.</p>
   <div class="std__mirror" id="std-canvas"><p class="std__loading">Henter status …</p></div>
 
-  <p class="std__fineprint">Kilder: NHH-emnesider, TimeEdit og Canvas per 18.08.2026 (BUD3-frister ikke publisert ennå).
+  <p class="std__fineprint">Kilder: <a href="https://cloud.timeedit.net/nhh/web/student/ri1Q8.html">NHH TimeEdit</a> (skoleeksamener),
+  <a href="https://nhh.instructure.com/courses/3214/files/559149">BUD3 syllabus, Schedule!B17:D22</a>,
+  <a href="https://nhh.instructure.com/courses/3276/pages/oral-group-presentation-assignment">MAB3 Canvas</a>
+  (kontrollert 07.10.2026) og TECH4s foreløpige Canvas-plan fra 12.08.2026.
+  MAB3-refleksjonsnotat: Session 1, slide 32. Tidspunkter vises i norsk tid.
   Speilstatus oppdateres automatisk av canvas-syncen på hverdager.</p>
 </div>
 
@@ -59,19 +63,36 @@
 (function () {
   var rot = document.getElementById('studier-dash');
 
-  // ── Statiske fakta (kilder: NHH-emnesider/TimeEdit/Canvas per 18.08.2026) ──
+  // Dates are independent of the automated Canvas file-status feed.
+  // Keep syllabus dates with unknown personal slots as date-only values.
   var FRISTER = [
-    { t: '2026-09-17T23:59', hva: 'BUD2 gruppeprosjekt — egen frist', sub: 'egen margin; offisiell frist søn 20.09 12:00' },
-    { t: '2026-09-21T14:00', hva: 'TECH4 course approval #1', sub: 'obligatorisk · publiseres 15.09' },
-    { t: '2026-09-29T09:00', hva: 'BUD2-eksamen', sub: '09:00–13:00, digital skoleeksamen' },
-    { t: '2026-10-01T09:00', hva: 'EBO2-eksamen', sub: '09:00–12:00, hybrid digital/penn' },
-    { t: '2026-10-21T14:00', hva: 'TECH4 course approval #2', sub: 'obligatorisk · publiseres 15.10' },
-    { t: '2026-11-20T12:00', hva: 'TECH4 assignment (20 % av karakteren)', sub: 'publiseres 13.11 — én ukes hjemmeoppgave' },
-    { t: '2026-11-26T09:00', hva: 'TECH4-eksamen', sub: '09:00–13:00, digital, 80 % av karakteren' },
-    { t: '2026-12-03T09:00', hva: 'MAB3-eksamen', sub: 'dato fra eksamensplanen' }
+    { t: '2026-09-17T23:59:00+02:00', hva: 'BUD2 gruppeprosjekt: egen frist', sub: 'egen margin; offisiell frist søn 20.09 12:00' },
+    { t: '2026-09-21T14:00:00+02:00', hva: 'TECH4 course approval #1', sub: 'obligatorisk · publiseres 15.09' },
+    { t: '2026-09-29T09:00:00+02:00', hva: 'BUD2-eksamen', sub: '09:00–13:00, digital skoleeksamen' },
+    { t: '2026-10-01T09:00:00+02:00', hva: 'EBO2-eksamen', sub: '09:00–12:00, hybrid digital/penn' },
+    { t: '2026-10-15T23:59:59+02:00', hva: 'MAB3: gruppe og godkjenning av selskap', sub: 'registrer gruppen og lever selskapet til godkjenning i Canvas' },
+    { t: '2026-10-21T14:00:00+02:00', hva: 'TECH4 course approval #2', sub: 'obligatorisk · publiseres 15.10 (foreløpig plan)' },
+    { t: '2026-10-24T23:59:00+02:00', hva: 'BUD3 hjemmeoppgave 1 (25 %)', sub: 'Investment Valuation Report · åpner 14.10 · frist 23:59' },
+    { t: '2026-10-29', hva: 'MAB3 refleksjonsnotat', sub: 'kursgodkjenning · deles ut 22.10 · klokkeslett ikke publisert' },
+    { t: '2026-11-09', end: '2026-11-13', dato: '9.–13. november', hva: 'MAB3 gruppepresentasjon (40 %)', sub: 'personlig gruppetidspunkt ikke publisert; påmelding i Canvas fra midten av oktober' },
+    { t: '2026-11-12T23:59:00+01:00', hva: 'BUD3 hjemmeoppgave 2 (25 %)', sub: 'Diagnose the WACC Model · åpner 02.11 · frist 23:59' },
+    { t: '2026-11-16', hva: 'BUD3 muntlig eksamen (50 %)', sub: 'open-book · personlig tidspunkt ikke publisert' },
+    { t: '2026-11-20T12:00:00+01:00', hva: 'TECH4 assignment (20 % av karakteren)', sub: 'frist 12:00 · publiseres 13.11 09:00 (foreløpig plan)' },
+    { t: '2026-11-26T09:00:00+01:00', hva: 'TECH4-eksamen', sub: '09:00–13:00, digital, 80 % av karakteren' },
+    { t: '2026-12-03T09:00:00+01:00', hva: 'MAB3-eksamen', sub: '09:00–12:00, digital, 60 % av karakteren' },
+    { t: '2026-12-16T09:00:00+01:00', hva: 'TECH2-eksamen (gjentak)', sub: '09:00–12:00, digital, 70 % av karakteren' }
   ];
 
-  function dager(t) { return Math.ceil((new Date(t) - new Date()) / 864e5); }
+  function tidspunkt(t) { return new Date(t.length === 10 ? t + 'T12:00:00Z' : t); }
+  function kalenderdag(t) {
+    var deler = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Europe/Oslo', year: 'numeric', month: '2-digit', day: '2-digit'
+    }).formatToParts(t);
+    var dato = {};
+    deler.forEach(function (p) { dato[p.type] = p.value; });
+    return Date.UTC(+dato.year, +dato.month - 1, +dato.day);
+  }
+  function dager(t) { return Math.round((kalenderdag(tidspunkt(t)) - kalenderdag(new Date())) / 864e5); }
   function badge(d) {
     if (d < 0) return '<span class="std__badge">ferdig</span>';
     if (d === 0) return '<span class="std__badge std__badge--soon">i dag</span>';
@@ -80,9 +101,10 @@
   }
   document.getElementById('std-frister').innerHTML = FRISTER.map(function (f) {
     var d = dager(f.t);
-    return '<div class="std__frist' + (d < 0 ? ' std__frist--past' : '') + '">' + badge(d) +
+    var paagaar = f.end && d <= 0 && dager(f.end) >= 0;
+    return '<div class="std__frist' + (d < 0 && !paagaar ? ' std__frist--past' : '') + '">' + (paagaar ? '<span class="std__badge std__badge--soon">pågår</span>' : badge(d)) +
       '<div class="std__frist-txt"><b>' + f.hva + '</b><div class="std__frist-sub">' +
-      new Date(f.t).toLocaleDateString('nb-NO', { weekday: 'short', day: 'numeric', month: 'long' }) +
+      (f.dato || tidspunkt(f.t).toLocaleDateString('nb-NO', { timeZone: 'Europe/Oslo', weekday: 'short', day: 'numeric', month: 'long' })) +
       ' · ' + f.sub + '</div></div></div>';
   }).join('');
 
