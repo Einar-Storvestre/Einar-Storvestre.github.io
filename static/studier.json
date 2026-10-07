@@ -80,8 +80,16 @@
   },
   {
    "kode": "TECH4",
-   "antall_filer": 53,
+   "antall_filer": 55,
    "nyeste": [
+    {
+     "navn": "11_BoardNotes.pdf",
+     "dato": "2026-10-07"
+    },
+    {
+     "navn": "12_BoardNotespdf.pdf",
+     "dato": "2026-10-07"
+    },
     {
      "navn": "12_Ex_Speakers.xlsx",
      "dato": "2026-10-06"
@@ -92,14 +100,6 @@
     },
     {
      "navn": "11_LeastSquares.xlsx",
-     "dato": "2026-10-05"
-    },
-    {
-     "navn": "11_OptimalAlpha_ExponentialSmoothing.xlsx",
-     "dato": "2026-10-05"
-    },
-    {
-     "navn": "10_WyndorGlass_STOCHASTIC.xlsx",
      "dato": "2026-10-05"
     }
    ]
@@ -123,5 +123,5 @@
    ]
   }
  ],
- "oppdatert": "2026-10-06 15:06"
+ "oppdatert": "2026-10-07 15:06"
 }
