@@ -80,34 +80,38 @@
   },
   {
    "kode": "TECH4",
-   "antall_filer": 55,
+   "antall_filer": 57,
    "nyeste": [
     {
-     "navn": "11_BoardNotes.pdf",
-     "dato": "2026-10-07"
+     "navn": "12_BoardNotespdf.pdf",
+     "dato": "2026-10-08"
     },
     {
-     "navn": "12_BoardNotespdf.pdf",
-     "dato": "2026-10-07"
+     "navn": "CA1_T4_sol.pdf",
+     "dato": "2026-10-08"
+    },
+    {
+     "navn": "13_InventoryRevenueManagement.pdf",
+     "dato": "2026-10-08"
+    },
+    {
+     "navn": "11_BoardNotes.pdf",
+     "dato": "2026-10-08"
     },
     {
      "navn": "12_Ex_Speakers.xlsx",
      "dato": "2026-10-06"
-    },
-    {
-     "navn": "12_InventoryManagement.pdf",
-     "dato": "2026-10-06"
-    },
-    {
-     "navn": "11_LeastSquares.xlsx",
-     "dato": "2026-10-05"
     }
    ]
   },
   {
    "kode": "MAB3",
-   "antall_filer": 3,
+   "antall_filer": 4,
    "nyeste": [
+    {
+     "navn": "Session 2_Business Models 08.10.26.pdf",
+     "dato": "2026-10-08"
+    },
     {
      "navn": "Session 1_Introduction 06.10.26.pdf",
      "dato": "2026-10-06"
@@ -123,5 +127,5 @@
    ]
   }
  ],
- "oppdatert": "2026-10-08 09:06"
+ "oppdatert": "2026-10-08 15:06"
 }
