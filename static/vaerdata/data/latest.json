@@ -1,44 +1,41 @@
 {
- "updated": "2026-10-09T11:33:56.756Z",
+ "updated": "2026-10-09T21:30:18.542Z",
  "locations": {
   "bergen_gk": {
    "forecast": {
-    "snapshots": 17,
-    "metModelRun": "2026-10-09T11:30:41Z",
+    "snapshots": 18,
+    "metModelRun": "2026-10-09T21:29:33Z",
     "dailyDays": 10
    },
    "observations": {
-    "days": 162,
-    "newDays": 1,
-    "altitude": 60
+    "upToDate": true,
+    "days": 162
    },
    "accuracy": {
     "pairs": 2376,
-    "snapshots": 142
+    "snapshots": 143
    }
   },
   "vagslid": {
    "forecast": {
-    "snapshots": 17,
-    "metModelRun": "2026-10-09T11:30:41Z",
+    "snapshots": 18,
+    "metModelRun": "2026-10-09T21:29:33Z",
     "dailyDays": 10
    },
    "observations": {
-    "days": 170,
-    "newDays": 1,
-    "altitude": 984
+    "upToDate": true,
+    "days": 170
    }
   },
   "haukeliseter": {
    "forecast": {
-    "snapshots": 17,
-    "metModelRun": "2026-10-09T11:30:42Z",
+    "snapshots": 18,
+    "metModelRun": "2026-10-09T21:30:15Z",
     "dailyDays": 10
    },
    "observations": {
-    "days": 170,
-    "newDays": 1,
-    "altitude": 944
+    "upToDate": true,
+    "days": 170
    }
   }
  },
